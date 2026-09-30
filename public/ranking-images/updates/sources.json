@@ -1,0 +1,517 @@
+{
+  "The_Dark_Knight": {
+    "image": "/ranking-images/updates/The_Dark_Knight.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/The_Dark_Knight"
+  },
+  "Interstellar_(film)": {
+    "image": "/ranking-images/updates/Interstellar__film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Interstellar_(film)"
+  },
+  "The_Dark_Knight_Rises": {
+    "image": "/ranking-images/updates/The_Dark_Knight_Rises.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/The_Dark_Knight_Rises"
+  },
+  "Oppenheimer_(film)": {
+    "image": "/ranking-images/updates/Oppenheimer__film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Oppenheimer_(film)"
+  },
+  "Spider-Man_3": {
+    "image": "/ranking-images/updates/Spider-Man_3.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/7/7a/Spider-Man_3%2C_International_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man_3"
+  },
+  "Tenet_(film)": {
+    "image": "/ranking-images/updates/Tenet__film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/1/14/Tenet_movie_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Tenet"
+  },
+  "Spider-Man:_Far_From_Home": {
+    "image": "/ranking-images/updates/Spider-Man__Far_From_Home.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/b/bd/Spider-Man_Far_From_Home_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Far_From_Home"
+  },
+  "Spider-Man_(2002_film)": {
+    "image": "/ranking-images/updates/Spider-Man__2002_film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/6/6c/Spider-Man_%282002_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man_(2002_film)"
+  },
+  "Spider-Man:_Homecoming": {
+    "image": "/ranking-images/updates/Spider-Man__Homecoming.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/f/f9/Spider-Man_Homecoming_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Homecoming"
+  },
+  "The_Amazing_Spider-Man_(film)": {
+    "image": "/ranking-images/updates/The_Amazing_Spider-Man__film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/e/e0/The_Amazing_Spider-Man_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/The_Amazing_Spider-Man_(film)"
+  },
+  "Spider-Man:_Into_the_Spider-Verse": {
+    "image": "/ranking-images/updates/Spider-Man__Into_the_Spider-Verse.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/f/fa/Spider-Man_Into_the_Spider-Verse_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Into_the_Spider-Verse"
+  },
+  "Lee_Seung-yuop": {
+    "image": "/ranking-images/updates/Lee_Seung-yuop.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/2017_09_01_%EC%82%BC%EC%84%B1_vs_SK_%EA%B5%BF%EB%B0%94%EC%9D%B4_%EB%9D%BC%EC%9D%B4%EC%98%A8%ED%82%B9_2_%282%29.jpg/330px-2017_09_01_%EC%82%BC%EC%84%B1_vs_SK_%EA%B5%BF%EB%B0%94%EC%9D%B4_%EB%9D%BC%EC%9D%B4%EC%98%A8%ED%82%B9_2_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Lee_Seung-yuop"
+  },
+  "Lewin_Díaz": {
+    "image": "/ranking-images/updates/Lewin_D_az.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Lewin_Diaz.jpg/330px-Lewin_Diaz.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Lewin_D%C3%ADaz"
+  },
+  "Lee_Dae-ho": {
+    "image": "/ranking-images/updates/Lee_Dae-ho.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/2017_03_27_%ED%94%84%EB%A1%9C%EC%95%BC%EA%B5%AC_%EB%AF%B8%EB%94%94%EC%96%B4%EB%8D%B0%EC%9D%B4_1_%2810%29.jpg/330px-2017_03_27_%ED%94%84%EB%A1%9C%EC%95%BC%EA%B5%AC_%EB%AF%B8%EB%94%94%EC%96%B4%EB%8D%B0%EC%9D%B4_1_%2810%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Dae-ho_Lee"
+  },
+  "netflix-8": {
+    "image": "/ranking-images/updates/netflix-8.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABTNciFMzXZ2HvOyDcUj3JvZ88teo8Oq0tVRTvv6PJRpSWRybs5XUnKk6FSSp3cv3S4iduY7EWyBLFT16XaqnRHYu7OiFvHbtSE6FWizMeE8.png?r=469",
+    "title": "The Beekeeper",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-4": {
+    "image": "/ranking-images/updates/netflix-4.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABelkzXtAcKCfZUKrDUEQDKXd5GOZ5W-1hXp8O2J77ayUD1ogbFHyn2w6_PqT__RP_GVwiULf3ahgGOiQT-kuaDsHGh99U_fGgj07TbW5UAQ.png?r=4ea",
+    "title": "Spider-Man: Homecoming",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-10": {
+    "image": "/ranking-images/updates/netflix-10.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABUnwDUT3soOp7Ck8ZBaSYuGOxESdAswUm2uLh7DNoC0OIbOvsAELhUE9mM11wIssUAf3Rmvjk2y_syBizObxYH9vhc_yMxL_4rxgxmG9Dhc.png?r=14d",
+    "title": "Suicide Squad",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-3": {
+    "image": "/ranking-images/updates/netflix-3.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABZPqhMh1csUk3IIpqdVrFw-aMTa1mPrnfo5Ocs9tstbvYn-MoyG-UwRHjb3T-LWuR4n8QbkrNwHLv7UBVTYNii4gZDzr4_hHOxlll-XhwAM.png?r=b8d",
+    "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle I",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-9": {
+    "image": "/ranking-images/updates/netflix-9.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABcGfaGX7TX2ZVSu4n1x5CHpb8DgaA6hZBFn306eXpc0EheUCBatvX3CvyUCYaql77t6fnB496aAKmwfME3Eiap9HJnwV0aSB-vB00B0-hx0.png?r=f9a",
+    "title": "Cradle 2 the Grave",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-2": {
+    "image": "/ranking-images/updates/netflix-2.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABR9xQxsvT-Ljj8fQGsQ_hypmQjfRM9gdMajujSn8xAsBO3jlIrIMzYpv-me9PJzmSrdKnxFaxtxK3mMDaYNwt6QJmkdmPfDCLP41mv4hHZE.png?r=abb",
+    "title": "Wild Sing",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-1": {
+    "image": "/ranking-images/updates/netflix-1.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABenkxBnRw2LEy8eBb74C0cGzzwfggXAyo7JLluvfP6HghnZho7L7Sa9Vg7M_lntchGgnvGsGjqKg2HaE6wWLalnewcq7in4TGImfXs9iVPQ.png?r=867",
+    "title": "The Last House",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-6": {
+    "image": "/ranking-images/updates/netflix-6.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABUV4GmzBLQym_eP-l3k6ukY7Z88GKMwp1bpHJMkEztXKzo9JvShvfLe-4nwxY4gzxMSAw2r-ZZ3OedqR63EpjlDzQe1bah_kXGpJQKG3AFo.png?r=093",
+    "title": "Extinction",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-7": {
+    "image": "/ranking-images/updates/netflix-7.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABQfjm0zzI2JxA5ws0CY48hvdutdV-PJfH9Ap_1oCyW1Gvj1iSUt1n-hDeNGzpH2WYH5fycYOgjvfoBHH5tgpmi5bRUWD0NdVAycCvB0W7is.png?r=62b",
+    "title": "Facing El Chapo",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-5": {
+    "image": "/ranking-images/updates/netflix-5.png",
+    "original": "https://dnm.nflximg.net/api/v6/9R7jmI8ri5rJNRlvCsMBDHE5JuQ/AAAABcW3UZKcX_mnVIsovZCwmCH2fO7-Ynb5gwFOlOaGEc0w18-ifyEmwK8dUdDuPJinstEaNXImSBPTvLMwgtyINXsoDeawNJlSy3lewtqN9Kc.png?r=f58",
+    "title": "Spider-Man: Far from Home",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "The_Odyssey_(2026_film)": {
+    "image": "/ranking-images/updates/The_Odyssey__2026_film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/9/90/The_Odyssey_%282026_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/The_Odyssey_(2026_film)"
+  },
+  "Inception": {
+    "image": "/ranking-images/updates/Inception.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Inception"
+  },
+  "Dunkirk_(2017_film)": {
+    "image": "/ranking-images/updates/Dunkirk__2017_film_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/1/15/Dunkirk_Film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Dunkirk_(2017_film)"
+  },
+  "Spider-Man:_Brand_New_Day": {
+    "image": "/ranking-images/updates/Spider-Man__Brand_New_Day.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/9/9a/Spider-Man_Brand_New_Day_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Brand_New_Day"
+  },
+  "Spider-Man:_No_Way_Home": {
+    "image": "/ranking-images/updates/Spider-Man__No_Way_Home.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_No_Way_Home"
+  },
+  "Spider-Man_2": {
+    "image": "/ranking-images/updates/Spider-Man_2.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/4/4e/Spider-Man_2_USA_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man_2"
+  },
+  "The_Amazing_Spider-Man_2": {
+    "image": "/ranking-images/updates/The_Amazing_Spider-Man_2.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/2/24/The_Amazing_Spider-Man_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/The_Amazing_Spider-Man_2"
+  },
+  "Spider-Man:_Across_the_Spider-Verse": {
+    "image": "/ranking-images/updates/Spider-Man__Across_the_Spider-Verse.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/b/b4/Spider-Man-_Across_the_Spider-Verse_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Across_the_Spider-Verse"
+  },
+  "Park_Byung-ho": {
+    "image": "/ranking-images/updates/Park_Byung-ho.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Park_Byung-ho_2025.jpg/250px-Park_Byung-ho_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Byung-ho_Park"
+  },
+  "Yamaico_Navarro": {
+    "image": "/ranking-images/updates/Yamaico_Navarro.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Yamaico_Navarro_on_May_18%2C_2013.jpg/250px-Yamaico_Navarro_on_May_18%2C_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Yamaico_Navarro"
+  },
+  "Eric_Thames": {
+    "image": "/ranking-images/updates/Eric_Thames.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Eric_Thames_%2850337322491%29_%28cropped%29.jpg/250px-Eric_Thames_%2850337322491%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Eric_Thames"
+  },
+  "Mel_Rojas_Jr.": {
+    "image": "/ranking-images/updates/Mel_Rojas_Jr_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Rojas_Jr_Hanshin_Tigers_20220521.jpg/250px-Rojas_Jr_Hanshin_Tigers_20220521.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Mel_Rojas_Jr."
+  },
+  "Choi_Jeong": {
+    "image": "/ranking-images/updates/Choi_Jeong.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Jeong_Choi_on_March_2%2C_2013.jpg/250px-Jeong_Choi_on_March_2%2C_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Choi_Jeong"
+  },
+  "Kim_Jae-hwan_(baseball)": {
+    "image": "/ranking-images/updates/Kim_Jae-hwan_(baseball).jpg",
+    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/middle/2026/78224.jpg",
+    "source": "https://web1.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=78224"
+  },
+  "Jamie_Romak": {
+    "image": "/ranking-images/updates/Jamie_Romak.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/James_Robert_Romak_infielder_of_the_Yokohama_DeNA_BayStars%2C_at_Yokohama_Stadium.jpg/250px-James_Robert_Romak_infielder_of_the_Yokohama_DeNA_BayStars%2C_at_Yokohama_Stadium.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Jamie_Romak"
+  },
+  "Tyrone_Woods": {
+    "image": "/ranking-images/updates/Tyrone_Woods.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/IMG_1874_Tyrone_Woods.jpg/250px-IMG_1874_Tyrone_Woods.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Tyrone_Woods"
+  },
+  "netflix-art-1": {
+    "image": "/ranking-images/updates/netflix-art-1.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcdhkL3XtQBOHIhGRdNPPEvWdzZ6wCdLKq2u94ZaTytqWUq3z1Jw-Vxt71_hJcIUeMWewdEjNAizF60REY5Vy039VF7TTMCRV10c.jpg?r=705",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-2": {
+    "image": "/ranking-images/updates/netflix-art-2.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaEav61bCU3bXtFKie4H7T8hNzbax6PebzW_bRT3EvpyALNv8ThMNq_456keoRuHIPO1GuaIiKX9YRPMZKh_kbF14d5hIG1zKBM-.jpg?r=e11",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-3": {
+    "image": "/ranking-images/updates/netflix-art-3.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABcQ2tmyfOEklGVSAOfHnDHZjANlro7KSLK9jU6rS6kjM7Rel60X0XBwBY2r8IV9m4cpAdapx9wYVA74xXQCdCcg8XqUB7C1SawYz.jpg?r=779",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-4": {
+    "image": "/ranking-images/updates/netflix-art-4.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABXnzt_RrV59naBBky5WE6fdFwjbkZJ9yv-yhZbnyHYt6aM0Q3GowathbPrZyrns_LHXqWHIkKrDgq75u_yRvzliDGynV2SfDbyQ6.jpg?r=7b9",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-5": {
+    "image": "/ranking-images/updates/netflix-art-5.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABUCFLF8KQ4MJWxYWgLWUuoKi0_IKSOJLTFZ_Iam_avGEyLmC-0e4S3QCnCJuoKhn7L8itQmqPVC_IayIMYVq63EZVMy7BL1g4SSb.jpg?r=f5b",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-6": {
+    "image": "/ranking-images/updates/netflix-art-6.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABWIu20z4ibE80NwYqfmH6JTpv_yfuoO423mDjl7da3Bm3AvBK0IZtJCYxxnoxLwMNAoxR3TdlzG82Sh1GrEOvNN1WcnzFuvC-5mA.jpg?r=783",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-7": {
+    "image": "/ranking-images/updates/netflix-art-7.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABfmp_VOa0iXa5aBvWYwJaGdYMy4FnjUoFAnF2vCQLJ317CHolsOQ7xP9GePVEesEadxd_5Vsa5OwJl4AozzoqxmJqJT04KziM_Ad.jpg?r=a40",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-8": {
+    "image": "/ranking-images/updates/netflix-art-8.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABRH1f2C8sFLfSJJfvNVnjWPINUSshBuizh3QmJMcPMN85zhEvRpAgfZUPKiijXUayd82oFJgwkgiF5CrWDXYNJ8-l-8mL1rYT25O.jpg?r=24b",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-9": {
+    "image": "/ranking-images/updates/netflix-art-9.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABbjvtjvRMqUwd74w8vK8-sIElYJ5cfGAqukGOMB_muqh63ghmUiA0uBqxiJmYKMj60vNTkZjb69Pq9-Y3tkW4vIF7Ps5OFZoxy_L.jpg?r=e8c",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "netflix-art-10": {
+    "image": "/ranking-images/updates/netflix-art-10.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABTTXoFZHuiCuNANbyrF1gbYCereYYI1b1_UV9Mr6WttjKWzScnh_799Qy-eb8aO4aeKQm5Ulr2Ot8D50cPTH4UqJdvgpOK4OiktT.jpg?r=6e4",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/films"
+  },
+  "Matt_Davidson": {
+    "image": "/ranking-images/updates/Matt_Davidson.jpg",
+    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/middle/2026/54944.jpg",
+    "source": "https://web1.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=54944"
+  },
+  "Toy_Story_5": {
+    "image": "/ranking-images/updates/audit-Toy_Story_5.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/0/08/Toy_Story_5_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Toy_Story_5"
+  },
+  "Michael_(2026_film)": {
+    "image": "/ranking-images/updates/audit-Michael__2026_film_.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/3/37/Michael_%282026_film_poster%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Michael_(2026_film)"
+  },
+  "The_Super_Mario_Galaxy_Movie": {
+    "image": "/ranking-images/updates/audit-The_Super_Mario_Galaxy_Movie.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/b/bf/The_Super_Mario_Galaxy_Movie_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/The_Super_Mario_Galaxy_Movie"
+  },
+  "Hope_(2026_film)": {
+    "image": "/ranking-images/updates/audit-Hope__2026_film_.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/0/03/Hope_%282026_film%29_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Hope_(2026_film)"
+  },
+  "Burj_Khalifa": {
+    "image": "/ranking-images/updates/audit-Burj_Khalifa.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Burj_Khalifa_%28worlds_tallest_building%29_and_the_Dubai_skyline_%2825781049892%29.jpg/250px-Burj_Khalifa_%28worlds_tallest_building%29_and_the_Dubai_skyline_%2825781049892%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Burj_Khalifa"
+  },
+  "Merdeka_118": {
+    "image": "/ranking-images/updates/audit-Merdeka_118.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Merdeka_Tower_20241022_-_full_2_%28Cropped%29.jpg/250px-Merdeka_Tower_20241022_-_full_2_%28Cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Merdeka_118"
+  },
+  "Shanghai_Tower": {
+    "image": "/ranking-images/updates/audit-Shanghai_Tower.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/2/23/Shanghai_Tower_logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Shanghai_Tower"
+  },
+  "Abraj_Al_Bait": {
+    "image": "/ranking-images/updates/audit-Abraj_Al_Bait.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Abraj_Al_Bait_Tower_2017.jpg/250px-Abraj_Al_Bait_Tower_2017.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/The_Clock_Towers"
+  },
+  "Ping_An_Finance_Centre": {
+    "image": "/ranking-images/updates/audit-Ping_An_Finance_Centre.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Pingan_International_Finance_Center2020.jpg/250px-Pingan_International_Finance_Center2020.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Ping_An_Finance_Centre"
+  },
+  "Lotte_World_Tower": {
+    "image": "/ranking-images/updates/audit-Lotte_World_Tower.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Lotte_World_Tower_day_view_10.jpg/250px-Lotte_World_Tower_day_view_10.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Lotte_World_Tower"
+  },
+  "Hallasan": {
+    "image": "/ranking-images/updates/audit-Hallasan.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Hallasan_Above.jpg/250px-Hallasan_Above.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Hallasan"
+  },
+  "Jirisan": {
+    "image": "/ranking-images/updates/audit-Jirisan.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Korea-Mountain-Jirisan-15.jpg/250px-Korea-Mountain-Jirisan-15.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Jirisan"
+  },
+  "Seoraksan": {
+    "image": "/ranking-images/updates/audit-Seoraksan.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Dinosaur_Ridge_of_Seoraksan.jpg/250px-Dinosaur_Ridge_of_Seoraksan.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Seoraksan"
+  },
+  "Deogyusan": {
+    "image": "/ranking-images/updates/audit-Deogyusan.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Deogyusan_from_Hyangjeok_Peak.jpg/250px-Deogyusan_from_Hyangjeok_Peak.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Deogyusan"
+  },
+  "Mount_Everest": {
+    "image": "/ranking-images/updates/audit-Mount_Everest.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Mt._Everest_from_Gokyo_Ri_November_5%2C_2012.jpg/250px-Mt._Everest_from_Gokyo_Ri_November_5%2C_2012.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Mount_Everest"
+  },
+  "K2": {
+    "image": "/ranking-images/updates/audit-K2.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Chogori.jpg/250px-Chogori.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/K2"
+  },
+  "Kangchenjunga": {
+    "image": "/ranking-images/updates/audit-Kangchenjunga.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Kangchenjunga_PangPema.JPG/250px-Kangchenjunga_PangPema.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Kangchenjunga"
+  },
+  "Lhotse": {
+    "image": "/ranking-images/updates/audit-Lhotse.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Lhotse-fromChukhungRi.jpg/250px-Lhotse-fromChukhungRi.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Lhotse"
+  },
+  "Makalu": {
+    "image": "/ranking-images/updates/audit-Makalu.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Makalu.jpg/250px-Makalu.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Makalu"
+  },
+  "LG_Twins": {
+    "image": "/ranking-images/updates/audit-LG_Twins.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/LG_Twins_2017_logo.svg/250px-LG_Twins_2017_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/LG_Twins"
+  },
+  "Samsung_Lions": {
+    "image": "/ranking-images/updates/audit-Samsung_Lions.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0e/Samsung_Lions.svg/250px-Samsung_Lions.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Samsung_Lions"
+  },
+  "Doosan_Bears": {
+    "image": "/ranking-images/updates/audit-Doosan_Bears.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Doosan_Bears.svg/250px-Doosan_Bears.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Doosan_Bears"
+  },
+  "Lotte_Giants": {
+    "image": "/ranking-images/updates/audit-Lotte_Giants.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Lotte_Giants_logo.svg/250px-Lotte_Giants_logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Lotte_Giants"
+  },
+  "Gyeonggi_Province": {
+    "image": "/ranking-images/updates/audit-Gyeonggi_Province.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/%ED%8C%90%EA%B5%90_-_panoramio_%282%29.jpg/250px-%ED%8C%90%EA%B5%90_-_panoramio_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Gyeonggi_Province"
+  },
+  "Seoul": {
+    "image": "/ranking-images/updates/audit-Seoul.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg/250px-%EC%A4%91%ED%99%94%EC%A0%84%EC%9D%98_%EB%82%AE.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Seoul"
+  },
+  "Busan": {
+    "image": "/ranking-images/updates/audit-Busan.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Gwangan_Bridge1.jpg/250px-Gwangan_Bridge1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Busan"
+  },
+  "South_Gyeongsang_Province": {
+    "image": "/ranking-images/updates/audit-South_Gyeongsang_Province.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Aerial_View_of_Daewoo_Shipbuilding_%26_Marine_Engineering.jpg/250px-Aerial_View_of_Daewoo_Shipbuilding_%26_Marine_Engineering.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/South_Gyeongsang_Province"
+  },
+  "Incheon": {
+    "image": "/ranking-images/updates/audit-Incheon.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Songdo_Central_Park_and_Posco_Tower_Songdo.jpg/250px-Songdo_Central_Park_and_Posco_Tower_Songdo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Incheon"
+  },
+  "Sergei_Pavlovich": {
+    "image": "/ranking-images/updates/audit-Sergei_Pavlovich.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/SergeiPavlovich2018.png/250px-SergeiPavlovich2018.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Sergei_Pavlovich"
+  },
+  "netflix-tv-1": {
+    "image": "/ranking-images/updates/netflix-tv-1.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaqGTBiB69twObB8jyPSB_GogouOfDTKqbG--KN0nZCeUVRDuPXGqV2zZncGMs_UFIGO7b1QM2Cjv3axsHUWVaqs7tux-Ax6GoE6.jpg?r=c28",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-2": {
+    "image": "/ranking-images/updates/netflix-tv-2.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABXDuC3w5HodMi5oWQDup3AxJH7cExuC51pWHfh0vx3xyVZjym9H1ANzzuPrHbw8vb712qmoCqpkQhj8VBw2cT47aV5P37lcTUdP4.jpg?r=860",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-3": {
+    "image": "/ranking-images/updates/netflix-tv-3.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABbEoAg0S2j_U9wS8pBE0eQd8eVlbrvGp3PEJVI1pr9ePgzzptJOLzfiTyL9q5Eov5XuVt298kB9Datfl3EeDM7VXArJfqljgYHk8.jpg?r=8b2",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-4": {
+    "image": "/ranking-images/updates/netflix-tv-4.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYtyyJyc58EJAhIEyrRWsSHn_PoRn-ZL89X_p3MibVM4mkhfh_vkolvHBD2TvnvSVP-Aonp2XazCSU4HNGhooCOlRHx-BbYQJzTv.jpg?r=801",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-5": {
+    "image": "/ranking-images/updates/netflix-tv-5.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABfU2UPbw4_wvTWGiXdCfI_NkuZQz93VAUlUWsomIVOtI4DwQbWfPU05dMdhUDnUbI373kYPzgyuvBK8u63kv-MZ7u0lkHPNMP7Nt.jpg?r=c9d",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-6": {
+    "image": "/ranking-images/updates/netflix-tv-6.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYHJS1nvXq5Ctx4Zd_GUIJfP5lJRXCjcuQbYIl5VKk0n8zDomEUr1k3867ub8k8td5tJNZYTggb73seTG-aPsmFHOnvH8pRVejlZ.jpg?r=75a",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-7": {
+    "image": "/ranking-images/updates/netflix-tv-7.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABeT6iV0HF6EjAiFUIc1UQPVgnJGB0Gi8-KmZbaaakC2ZnqTOjlsmB1KJxH7xoqZ4BhV6jFyxm6Pn8z1YCSMPck1kquRvm14DDp_c.jpg?r=715",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-8": {
+    "image": "/ranking-images/updates/netflix-tv-8.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYJ6XhBQTZw3Jh1u8-lIABSG1EdUHXVYetfdopAELbTKPsDewh0JuJ8rskJ1QXE0mPZLS4sv9eVSrDaIVVWE9JJ8ZBYbyeXCGcm3.jpg?r=dde",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-9": {
+    "image": "/ranking-images/updates/netflix-tv-9.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABeT8PQb87UVFUJ6ZTqCeM-kFtK0RETxhXa83kn5vCJwac40e-7Rsy2LwqukA8FcyECM3Keuz9_2JQIjJlCqrzNaEIa9AkASP-c8u.jpg?r=48b",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "netflix-tv-10": {
+    "image": "/ranking-images/updates/netflix-tv-10.jpg",
+    "original": "https://dnm.nflximg.net/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABaRC1PaYAROfhlMHbBytT10aKJiHKEXYxaLlsHmW7-WYI3Ppx5tMMkNN6NpXGp8N6EVn3wb0Z3_ulGCflpicBFS52FM511vx-Hyd.jpg?r=582",
+    "source": "https://www.netflix.com/tudum/top10/south-korea/tv"
+  },
+  "Canelo_Álvarez": {
+    "image": "/ranking-images/updates/audit-Canelo__lvarez.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Sa%C3%BAl_%C3%81lvarez.png/250px-Sa%C3%BAl_%C3%81lvarez.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Canelo_%C3%81lvarez"
+  },
+  "LeBron_James": {
+    "image": "/ranking-images/updates/audit-LeBron_James.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/LeBron_James_%2851959977144%29_%28cropped2%29.jpg/250px-LeBron_James_%2851959977144%29_%28cropped2%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/LeBron_James"
+  },
+  "Shohei_Ohtani": {
+    "image": "/ranking-images/updates/audit-Shohei_Ohtani.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Dodgers_at_Nationals_%2853677192000%29_%28cropped%29.jpg/250px-Dodgers_at_Nationals_%2853677192000%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "source": "https://en.wikipedia.org/wiki/Shohei_Ohtani"
+  },
+  "Gwangju": {
+    "image": "/ranking-images/updates/audit-Gwangju.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/45/Gwangju_montage.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Gwangju"
+  },
+  "Colony_(2026_film)": {
+    "image": "/ranking-images/updates/audit-Colony__2026_film_.png",
+    "original": "https://upload.wikimedia.org/wikipedia/en/2/2d/Colony_%282026_film%29_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/Colony_(2026_film)"
+  },
+  "Shim_Jung-soo": {
+    "image": "/ranking-images/updates/audit-Shim_Jung-soo.jpg",
+    "original": "https://cdn.monthly.chosun.com/news/photo/202210//20221017_5_56360.jpg",
+    "source": "https://monthly.chosun.com/news/articleView.html?idxno=56360"
+  },
+  "Dan_Rohrmeier": {
+    "image": "/ranking-images/updates/audit-Dan_Rohrmeier.jpg",
+    "original": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSlazRoArNz8Mei7wDMldVq-ClFYRUJzcfjDrY2VCE7E9MLdgKNa_HvzXGkVytJTXvyJ4E4xV64ZQfo8WzWvdk9PhltXXRckKX0sh1mEgsTNsVDGCcpDpEfKKQRvGBQlsq8W5RTAUzXgo/s320-rw/GSTL29.jpg",
+    "source": "https://www.greatest21days.com/2020/06/dan-rohrmeier-got-paid-to-play-kids.html"
+  },
+  "Gyebangsan": {
+    "image": "/ranking-images/updates/audit-Gyebangsan.jpg",
+    "original": "https://tong.visitkorea.or.kr/cms/resource/37/3535037_image2_1.jpg",
+    "source": "https://tour.pc.go.kr/Home/H20000/H20200/placeDetail?place_no=10"
+  },
+  "First_Love_(1996_TV_series)": {
+    "image": "/ranking-images/updates/audit-First_Love__1996_TV_series_.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/en/0/07/First_Love_%281996_TV_series%29_promotional_image.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "source": "https://en.wikipedia.org/wiki/First_Love_(1996_TV_series)"
+  },
+  "Hyundai_Grandeur_2026": {
+    "image": "/ranking-images/updates/audit-Hyundai_Grandeur_2026.jpg",
+    "original": "https://www.hyundaimotorgroup.com/image/upload/asset_library/MDA00000000000078837/1112127fd31d43c59135d93454c85727.jpg",
+    "source": "https://www.hyundaimotorgroup.com/ko/news/hyundai-new-grandeur-design-reveal"
+  },
+  "Shanghai_Tower_photo": {
+    "image": "/ranking-images/updates/audit-Shanghai_Tower_photo.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/20191114_Shanghai_Tower_%282%29.jpg/330px-20191114_Shanghai_Tower_%282%29.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:20191114_Shanghai_Tower_(2).jpg"
+  }
+}
