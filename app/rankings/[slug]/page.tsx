@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageBySlug, pages } from "../data";
 import assets from '../../../public/ranking-images/updates/sources.json';
 import { notFound } from 'next/navigation';
+import { BrandLogo } from '../../brand-logo';
 import "./ranking.css";
 
 export const imageByName: Record<string,string> = {
@@ -31,21 +32,68 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
  const firstImage=p.rows[0]?.image||imageByName[p.rows[0]?.name];
  return {title:`${p.title} | 순위ZIP`,description:p.description,robots:p.noindex?{index:false,follow:true}:undefined,alternates:{canonical:`/rankings/${slug}`},openGraph:{title:p.title,description:p.description,type:"article",url:`/rankings/${slug}`,images:firstImage?[{url:firstImage}]:[]},twitter:{card:"summary_large_image",title:p.title,description:p.description,images:firstImage?[firstImage]:[]}};
 }
+type ImageKind = 'flag' | 'logo' | 'photo';
+const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly"];
+// 로고·차량처럼 잘리면 안 되는 이미지를 쓰는 순위는 흰 바탕 틀 안에 전체가 보이게 맞춥니다.
+const LOGO_SLUGS=["korea-ott-users","file-sharing-services","korea-import-car-brands","kbo-team-standings-2026","kbo-attendance-2026","korea-car-sales"];
+
+/** 이미지 종류마다 틀 비율이 다릅니다. 국기는 3:2, 로고·차량은 흰 바탕에 전체가 보이게, 인물·장소 사진은 정사각형을 꽉 채웁니다. 포스터는 별도 2:3 카드입니다. */
+function imageKind(slug:string,src:string):ImageKind{
+ if(src.includes('flagcdn.com'))return 'flag';
+ if(LOGO_SLUGS.includes(slug))return 'logo';
+ return 'photo';
+}
+
+/** "32,383.920십억 달러", "$2,332,507,928", "56홈런"처럼 앞에 숫자가 있는 값만 막대 비교에 씁니다. 등수("3위") 값은 제외합니다. */
+function numericValues(rows:{value:string}[]){
+ const values=rows.map(r=>/위$/.test(r.value.trim())?NaN:Number(r.value.replace(/[$,\s]/g,'').match(/^-?\d+(\.\d+)?/)?.[0]));
+ return values.length>1&&values.every(v=>Number.isFinite(v)&&v>0)?values:null;
+}
+
 export default async function RankingDetail({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params;const p=pageBySlug[slug];if(!p)notFound();
  const schema={"@context":"https://schema.org","@type":"ItemList",name:p.title,description:p.description,numberOfItems:p.rows.length,itemListOrder:p.unranked?"https://schema.org/ItemListUnordered":"https://schema.org/ItemListOrderAscending",itemListElement:p.rows.map((r,i)=>({"@type":"ListItem",position:r.rank??i+1,name:r.name,description:`${r.value} · ${r.note}`}))};
  const faqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:p.faq.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))};
  const json=(value:unknown)=>JSON.stringify(value).replace(/</g,'\\u003c');
+ const poster=p.posterLayout||POSTER_SLUGS.includes(p.slug);
+ const values=p.unranked?null:numericValues(p.rows);
+ const max=values?Math.max(...values):0;
+ const related=pages.filter(x=>!x.noindex&&x.category===p.category&&x.slug!==p.slug).slice(0,4);
+ const rowSources=(r:typeof p.rows[number])=>(r.sourceUrl||r.imageSource)&&<span className="dp-row-links">{r.sourceUrl&&<a href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>}{r.imageSource&&<a href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</span>;
  return <main className={`detail-page page-${p.slug}`}>
  {!p.noindex&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(schema)}}/>}
  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>
- <header className="detail-header"><a href="/" className="detail-logo"><span>⌂</span>순위<b>ZIP</b></a><a href="/">전체 랭킹</a></header>
- <section className="detail-hero"><div><p>{p.category} {p.unranked?"GUIDE":"RANKING"}</p><h1>{p.title}</h1><span>{p.description}</span><div className="detail-meta"><b>자료 기준 {p.date}</b><b>{p.basis}</b></div></div>{!p.unranked&&<div className="hero-number">TOP<br/><strong>{p.rows.length}</strong></div>}</section>
- <section className={`audit-notice ${p.noindex?'audit-pending':''}`}><b>{p.auditDate} 자료 점검</b><p>{p.auditNote}</p></section>
- {p.divisions&&<section className="division-section"><div className="section-title"><p>WEIGHT CLASSES</p><h2>남성부 체급별 챔피언과 랭커</h2><span>각 체급의 챔피언과 상위 3명입니다. 챔피언은 랭커 1위와 별도입니다.</span></div><div className="division-grid">{p.divisions.map(d=><article className="division-card" key={d.name}><div className="division-name">{d.name}</div><div className="champion"><img src={portrait(d.champion)} alt={`${d.champion} ${d.name} 챔피언`}/><div><i>CHAMPION</i><h3>{d.champion}</h3></div></div><div className="contenders">{d.contenders.map((x,i)=><div className="fighter" key={x}><img src={portrait(x)} alt={`${x} ${d.name} ${i+1}위`}/><b>{i+1}</b><span>{x}</span></div>)}</div></article>)}</div></section>}
- <section className="detail-content"><div className={`ranking-list ${(p.posterLayout||["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly"].includes(p.slug))?"poster-list":""} ${p.slug==="korea-ott-users"?"logo-list":""}`}><div className="section-title"><p>{p.unranked?"REFERENCE":"TOP RANKING"}</p><h2>{p.divisions?"체급을 대표하는 주요 선수":p.unranked?"자료 안내":"순위 한눈에 보기"}</h2></div><div className="ranking-items">
- {!p.rows.length&&<p>확인되지 않은 수치와 순위는 공개하지 않습니다. 검증 가능한 원자료 확보 후 다시 제공합니다.</p>}
- {p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];return <article className="detail-row" key={r.name}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<div className="image-placeholder" aria-label="확인 가능한 사진 준비 중">사진<br/>준비 중</div>}{!p.unranked&&<b className="position">{r.rank??i+1}</b>}<div><h3>{r.name}</h3><p>{r.note}</p>{r.sourceUrl&&<a className="row-source" href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>}{r.imageSource&&<a className="row-source" href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</div><strong>{r.value}</strong></article>})}</div><p className="image-credit">이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p></div>
- <aside><div className="source-card"><small>DATA SOURCE</small><h3>자료와 집계 기준</h3><p>{p.basis}</p><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a><span>자료 기준일과 사이트 점검일은 다릅니다. 과거 통계는 현재 순위로 해석하지 마세요.</span></div><div className="related-card"><small>RELATED</small><h3>다른 순위도 둘러보세요</h3>{pages.filter(x=>!x.noindex&&x.category===p.category&&x.slug!==p.slug).slice(0,4).map(x=><a key={x.slug} href={`/rankings/${x.slug}`}>{x.title} →</a>)}</div></aside></section>
- <section className="faq-section"><div className="section-title"><p>FAQ</p><h2>자주 묻는 질문</h2></div>{p.faq.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</section><footer className="detail-footer"><a href="/">순위ZIP 홈으로 돌아가기</a><p>자료 기준: {p.date} · 점검: {p.auditDate}</p></footer></main>;
+ <header className="site-header"><div className="header-inner"><BrandLogo href="/"/><a className="dp-all" href="/#rankings">전체 랭킹 <b>→</b></a></div></header>
+
+ <section className="dp-hero"><div className="dp-wrap">
+  <nav className="dp-crumb" aria-label="현재 위치"><a href="/">홈</a><span>/</span><a href="/#rankings">{p.category}</a></nav>
+  <h1>{p.title}</h1>
+  <p className="dp-desc">{p.description}</p>
+  <dl className="dp-facts">
+   <div><dt>자료 기준</dt><dd>{p.date}</dd></div>
+   <div><dt>집계 기준</dt><dd>{p.basis}</dd></div>
+   <div><dt>출처</dt><dd><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a></dd></div>
+   <div><dt>사이트 점검</dt><dd>{p.auditDate}</dd></div>
+  </dl>
+  <p className={`dp-audit ${p.noindex?'pending':''}`}><b>{p.noindex?'검증 보류':'자료 점검'}</b>{p.auditNote}</p>
+ </div></section>
+
+ {p.divisions&&<section className="dp-wrap dp-divisions"><div className="dp-head"><p>WEIGHT CLASSES</p><h2>체급별 챔피언과 랭커</h2><span>각 체급의 챔피언과 상위 3명입니다. 챔피언은 랭커 1위와 별도입니다.</span></div><div className="dp-division-grid">{p.divisions.map(d=><article className="dp-division" key={d.name}><h3>{d.name}</h3><div className="dp-champion"><img src={portrait(d.champion)} alt={`${d.champion} ${d.name} 챔피언`} loading="lazy"/><div><i>CHAMPION</i><strong>{d.champion}</strong></div></div><ol>{d.contenders.map((x,i)=><li key={x}><img src={portrait(x)} alt={`${x} ${d.name} ${i+1}위`} loading="lazy"/><b>{i+1}</b><span>{x}</span></li>)}</ol></article>)}</div></section>}
+
+ <section className="dp-wrap dp-body">
+  <div className="dp-main">
+   <div className="dp-head"><p>{p.unranked?"REFERENCE":"RANKING"}</p><h2>{p.divisions?"체급을 대표하는 주요 선수":p.unranked?"자료 안내":"순위 한눈에 보기"}</h2>{!p.unranked&&p.rows.length>0&&<span>{p.rows.length}개 항목</span>}</div>
+   {!p.rows.length&&<p className="dp-empty">확인되지 않은 수치와 순위는 공개하지 않습니다. 검증 가능한 원자료 확보 후 다시 제공합니다.</p>}
+   {poster?<ol className="dp-posters">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
+   :<ol className="dp-list">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${image?imageKind(p.slug,image):'none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}</h3><strong>{r.value}</strong></div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${Math.max(2,values[i]/max*100)}%`}}/></div>}<p>{r.note}</p>{rowSources(r)}</div></li>})}</ol>}
+   {p.rows.length>0&&<p className="dp-credit">이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
+  </div>
+  <aside className="dp-side">
+   <div className="dp-card"><small>DATA SOURCE</small><h3>자료와 집계 기준</h3><p>{p.basis}</p><a className="dp-source" href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a><span>자료 기준일과 사이트 점검일은 다릅니다. 과거 통계는 현재 순위로 해석하지 마세요.</span></div>
+   {related.length>0&&<div className="dp-card"><small>RELATED · {p.category}</small><h3>같은 분야의 다른 순위</h3><ul>{related.map(x=><li key={x.slug}><a href={`/rankings/${x.slug}`}><span>{x.title}</span><b>→</b></a></li>)}</ul></div>}
+  </aside>
+ </section>
+
+ {p.faq.length>0&&<section className="dp-wrap dp-faq"><div className="dp-head"><p>FAQ</p><h2>자주 묻는 질문</h2></div>{p.faq.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</section>}
+ <footer className="dp-footer"><div className="dp-wrap"><BrandLogo footer href="/"/><p>자료 기준 {p.date} · 점검 {p.auditDate}</p></div></footer></main>;
 }
