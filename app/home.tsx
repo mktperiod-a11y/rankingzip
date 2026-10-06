@@ -13,7 +13,7 @@ const categories: Category[] = ["전체", "스포츠", "미디어", "라이프",
 const rankings = [
   { category: "스포츠", icon: "⚾", title: "역대 아시안게임 야구 우승 국가 순위", desc: "한국 통산 7회 우승·대회 5연패", tag: "9.27", color: "blue" },
   { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", desc: "한국 금 8·은 8·동 25개로 종합 3위", tag: "9.23", color: "gold" },
-  { category: "서비스", icon: "☁", title: "파일 공유 서비스 비교", desc: "온디스크·케이디스크 등 이용 전 비교", tag: "서비스 비교", color: "indigo" },
+  { category: "서비스", icon: "☁", title: "파일 공유 서비스 비교", desc: "웹하드 검색 관심도 · 온디스크 1위", tag: "검색량", color: "indigo" },
   { category: "미디어", icon: "▶", title: "이번 주 넷플릭스 영화 TOP 10", desc: "9월 14~20일 · The Warriors 1위", tag: "주간", color: "red" },
   { category: "미디어", icon: "🎟", title: "2026년 국내 영화 흥행", desc: "오디세이 1,002만·스파이더맨 879만", tag: "9.7", color: "red" },
   { category: "스포츠", icon: "⚾", title: "2026 KBO 팀 순위", desc: "KT 7연승 단독 1위·삼성과 2.5경기", tag: "9.17", color: "blue" },
