@@ -2,7 +2,7 @@ import { extraPages, extraSlugs } from './additions';
 import { applyAudit } from './audit';
 import { expansionPages } from './expansion';
 import { asianGamesPages } from './asian-games';
-export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string };
+export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string; /** 지난 갱신 대비 순위 변화(+는 상승) 또는 새로 진입 */ change?: number | 'new' };
 export type Division = { name: string; champion: string; contenders: string[] };
 export type RankingPage = {
   slug: string; title: string; category: string; date: string; basis: string;
