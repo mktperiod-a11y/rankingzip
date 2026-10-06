@@ -1,41 +1,41 @@
 /* 순위 상세 화면. 색·헤더·로고는 메인(globals.css)과 같은 것을 씁니다. */
 .detail-page{background:#f6f8fb;min-height:100vh;color:var(--ink)}
 .dp-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.dp-all{margin-left:auto;font-size:13px;font-weight:800;color:#3b4557}
+.dp-all{margin-left:auto;font-size:14px;font-weight:800;color:#3b4557}
 .dp-all b{margin-left:4px;color:var(--blue)}
 .dp-all:hover{color:var(--blue)}
 
 /* 상단 소개: 분야 표시 · 제목 · 설명 · 기준 칩 · 항목 수, 그 아래 자료 점검 상자 */
 .dp-hero{padding:56px 0 40px}
 .dp-hero-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
-.dp-eyebrow{margin:0 0 10px;font-size:11px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
-.dp-hero h1{margin:0;font-size:42px;line-height:1.2;letter-spacing:-2.2px;font-weight:900;word-break:keep-all}
-.dp-desc{max-width:720px;margin:14px 0 0;font-size:15px;line-height:1.75;color:#5d6879;word-break:keep-all}
+.dp-eyebrow{margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
+.dp-hero h1{margin:0;font-size:43px;line-height:1.2;letter-spacing:-2.2px;font-weight:600;word-break:keep-all}
+.dp-desc{max-width:720px;margin:14px 0 0;font-size:16px;line-height:1.75;color:#5d6879;word-break:keep-all}
 .dp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.dp-chips b{max-width:100%;font-size:11px;font-weight:700;line-height:1.5;color:#4f5b6e;background:white;border:1px solid #e3e9f1;border-radius:8px;padding:7px 10px;word-break:keep-all}
-.dp-count{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;font-size:12px;font-weight:800;letter-spacing:1px;color:#b9c8e4;line-height:1}
-.dp-count strong{font-size:84px;font-weight:900;letter-spacing:-4px;color:var(--blue)}
-.dp-audit{padding:18px 22px;border:1px solid #dbe5f5;border-radius:14px;background:#edf4ff;font-size:13px;line-height:1.7}
-.dp-audit b{font-size:13px}
+.dp-chips b{max-width:100%;font-size:12px;font-weight:700;line-height:1.5;color:#4f5b6e;background:white;border:1px solid #e3e9f1;border-radius:8px;padding:7px 10px;word-break:keep-all}
+.dp-count{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;font-size:13px;font-weight:800;letter-spacing:1px;color:#b9c8e4;line-height:1}
+.dp-count strong{font-size:85px;font-weight:900;letter-spacing:-4px;color:var(--blue)}
+.dp-audit{padding:18px 22px;border:1px solid #dbe5f5;border-radius:14px;background:#edf4ff;font-size:14px;line-height:1.7}
+.dp-audit b{font-size:14px}
 .dp-audit p{margin:4px 0 0;color:#526780;word-break:keep-all}
 .dp-audit.pending{background:#fff7e8;border-color:#ecd5ab}
 
 /* 공통 소제목 */
 .dp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:16px}
-.dp-head p{flex-basis:100%;margin:0;font-size:11px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
-.dp-head h2{margin:0;font-size:22px;letter-spacing:-.8px}
-.dp-head span{font-size:12px;color:#8a94a4}
+.dp-head p{flex-basis:100%;margin:0;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
+.dp-head h2{margin:0;font-size:23px;letter-spacing:-.8px}
+.dp-head span{font-size:13px;color:#8a94a4}
 
 /* 본문: 순위 + 옆 정보 */
 .dp-body{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;margin-top:32px}
 .dp-main{background:white;border:1px solid var(--line);border-radius:18px;padding:26px}
-.dp-empty{margin:0;padding:30px 0;text-align:center;font-size:14px;color:#687386}
-.dp-credit{margin:18px 0 0;font-size:10px;line-height:1.6;color:#a1a9b5}
+.dp-empty{margin:0;padding:30px 0;text-align:center;font-size:15px;color:#687386}
+.dp-credit{margin:18px 0 0;font-size:11px;line-height:1.6;color:#a1a9b5}
 
 /* 한 줄 포인트 */
 .dp-points{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.dp-points li{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:12px;background:#f3f7ff;border:1px solid #e1eafa;font-size:13px;font-weight:700;color:#24324a;word-break:keep-all}
-.dp-points b{font-size:9px;font-weight:900;letter-spacing:1px;color:var(--blue)}
+.dp-points li{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:12px;background:#f3f7ff;border:1px solid #e1eafa;font-size:14px;font-weight:700;color:#24324a;word-break:keep-all}
+.dp-points b{font-size:10px;font-weight:900;letter-spacing:1px;color:var(--blue)}
 
 /* 1~3위 시상대: 2위 · 1위 · 3위 순서, 1위가 가장 높습니다. */
 .dp-podium{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:end}
@@ -49,12 +49,12 @@
 .dp-podium-poster{position:relative;width:100%;max-width:150px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:#eef3fb;box-shadow:0 10px 24px rgba(22,34,52,.14);margin-bottom:10px}
 .dp-podium-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;color:transparent;font-size:0}
 .dp-podium .place-1 .dp-podium-poster{max-width:180px}
-.dp-medal{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:13px;font-weight:900;color:white;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.12)}
+.dp-medal{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:14px;font-weight:900;color:white;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.12)}
 .place-1 .dp-medal{background:linear-gradient(145deg,#ffd45a,#e3a300)}
 .place-2 .dp-medal{background:linear-gradient(145deg,#d9dee6,#9aa4b2)}
 .place-3 .dp-medal{background:linear-gradient(145deg,#f0b07a,#c06a2b)}
-.dp-podium h3{margin:0;font-size:15px;letter-spacing:-.4px;line-height:1.35;word-break:keep-all;overflow-wrap:anywhere}
-.dp-podium strong{margin-top:4px;font-size:14px;font-weight:900;color:var(--blue);word-break:keep-all}
+.dp-podium h3{margin:0;font-size:16px;letter-spacing:-.4px;line-height:1.35;word-break:keep-all;overflow-wrap:anywhere}
+.dp-podium strong{margin-top:4px;font-size:15px;font-weight:900;color:var(--blue);word-break:keep-all}
 .dp-podium .dp-row-links{justify-content:center}
 .dp-step{box-sizing:border-box;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:14px 10px 16px;border-radius:14px 14px 0 0;background:linear-gradient(180deg,#eef4ff,#f8fbff);border:1px solid #e3eaf5;border-bottom:0}
 .place-1 .dp-step{min-height:168px;padding-top:18px;background:linear-gradient(180deg,#dfeaff,#f3f7ff)}
@@ -67,7 +67,7 @@
 .dp-list{list-style:none;margin:0;padding:0}
 .dp-list li{display:flex;align-items:center;gap:16px;padding:16px 4px;border-top:1px solid #eef1f6}
 .dp-list li:first-child{border-top:0}
-.dp-rank{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font-size:13px;font-weight:900;color:#566176;background:#f1f4f8}
+.dp-rank{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font-size:14px;font-weight:900;color:#566176;background:#f1f4f8}
 .dp-list li.top .dp-rank,.dp-rank.top{color:white;background:var(--blue)}
 .dp-thumb{position:relative;flex-shrink:0;width:64px;height:64px;border-radius:14px;overflow:hidden;background:#eef3fb;display:grid;place-items:center}
 /* 이미지를 못 불러오면 대체 글자 대신 빈 틀만 보입니다. */
@@ -78,24 +78,24 @@
 .dp-thumb.logo{width:80px;background:white;border:1px solid #e7ebf1}
 .dp-thumb.logo img{object-fit:contain;padding:8px}
 /* 메인 헤더 로고의 .logo span 스타일이 로고형 틀에 섞이지 않게 막습니다. */
-.detail-page .dp-thumb.none span{display:inline;width:auto;height:auto;border-radius:0;background:none;box-shadow:none;font-style:normal;font-size:20px;font-weight:900;color:#9fb3d6}
+.detail-page .dp-thumb.none span{display:inline;width:auto;height:auto;border-radius:0;background:none;box-shadow:none;font-style:normal;font-size:21px;font-weight:900;color:#9fb3d6}
 .dp-info{flex:1;min-width:0}
 .dp-line{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
-.dp-line h3{margin:0;font-size:16px;letter-spacing:-.4px;min-width:0;word-break:keep-all;overflow-wrap:anywhere}
-.dp-line strong{flex-shrink:0;font-size:15px;font-weight:900;letter-spacing:-.3px;text-align:right}
+.dp-line h3{margin:0;font-size:17px;letter-spacing:-.4px;min-width:0;word-break:keep-all;overflow-wrap:anywhere}
+.dp-line strong{flex-shrink:0;font-size:16px;font-weight:900;letter-spacing:-.3px;text-align:right}
 .dp-list li.top .dp-line strong{color:var(--blue)}
-.dp-change{margin-left:8px;font-style:normal;font-size:11px;font-weight:900;vertical-align:2px}
-.dp-change.up{color:#e5484d}
+.dp-change{margin-left:8px;font-style:normal;font-size:12px;font-weight:900;vertical-align:2px}
+.dp-change.up{color:#ff2848}
 .dp-change.down{color:var(--blue)}
-.dp-change.new{color:white;background:#e5484d;border-radius:4px;padding:1px 5px}
+.dp-change.new{color:white;background:#ff2848;border-radius:4px;padding:1px 5px}
 .dp-bar{height:6px;margin-top:8px;border-radius:999px;background:#eef2f7;overflow:hidden}
 .dp-bar i{display:block;height:100%;border-radius:inherit;background:#9dbcf6}
 .dp-list li.top .dp-bar i{background:var(--blue)}
-.dp-info>p{margin:7px 0 0;font-size:12px;line-height:1.55;color:#7a8597;word-break:keep-all}
+.dp-info>p{margin:7px 0 0;font-size:13px;line-height:1.55;color:#7a8597;word-break:keep-all}
 .dp-row-links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
-.dp-row-links a{font-size:11px;font-weight:700;color:#8a94a4;text-decoration:underline;text-underline-offset:2px}
+.dp-row-links a{font-size:12px;font-weight:700;color:#8a94a4;text-decoration:underline;text-underline-offset:2px}
 .dp-row-links a:hover{color:var(--blue)}
-.dp-row-links a.dp-visit{display:inline-block;margin-top:2px;padding:6px 12px;border-radius:8px;background:#eaf1ff;color:var(--blue);font-size:12px;font-weight:800;text-decoration:none}
+.dp-row-links a.dp-visit{display:inline-block;margin-top:2px;padding:6px 12px;border-radius:8px;background:#eaf1ff;color:var(--blue);font-size:13px;font-weight:800;text-decoration:none}
 .dp-row-links a.dp-visit:hover{background:var(--blue);color:white}
 
 /* 포스터형 순위 */
@@ -104,25 +104,25 @@
 .dp-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .dp-poster .dp-rank{position:absolute;left:10px;top:10px;box-shadow:0 4px 10px rgba(0,0,0,.18)}
 .dp-poster .dp-rank:not(.top){background:rgba(255,255,255,.92)}
-.dp-noimg{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:700;color:#9fb3d6}
-.dp-posters h3{margin:12px 0 0;font-size:15px;line-height:1.35;letter-spacing:-.4px;word-break:keep-all;overflow-wrap:anywhere}
-.dp-posters strong{display:block;margin-top:4px;font-size:14px;font-weight:900;color:var(--blue)}
-.dp-posters li>p{margin:4px 0 0;font-size:11px;line-height:1.5;color:#7a8597;word-break:keep-all}
+.dp-noimg{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:700;color:#9fb3d6}
+.dp-posters h3{margin:12px 0 0;font-size:16px;line-height:1.35;letter-spacing:-.4px;word-break:keep-all;overflow-wrap:anywhere}
+.dp-posters strong{display:block;margin-top:4px;font-size:15px;font-weight:900;color:var(--blue)}
+.dp-posters li>p{margin:4px 0 0;font-size:12px;line-height:1.5;color:#7a8597;word-break:keep-all}
 
 /* 옆 정보: 자료와 집계 기준, 다른 순위 */
 /* 메인 화면의 aside 기본 스타일(테두리, 900px 이하 숨김)이 적용되지 않게 덮어씁니다. */
 .detail-page .dp-side{display:flex;flex-direction:column;gap:14px;position:sticky;top:94px;border:0;border-radius:0;padding:0;height:auto}
 .dp-card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px}
-.dp-card small{font-size:10px;font-weight:900;letter-spacing:1.4px;color:var(--blue)}
-.dp-card h3{margin:8px 0 12px;font-size:17px;letter-spacing:-.5px}
-.dp-card>p{margin:0;font-size:13px;line-height:1.7;color:#5d6879;word-break:keep-all}
-.dp-source{display:block;margin:16px 0;padding:12px 14px;border-radius:10px;background:var(--blue);color:white;font-size:13px;font-weight:800;line-height:1.4;text-align:center;word-break:keep-all}
+.dp-card small{font-size:11px;font-weight:900;letter-spacing:1.4px;color:var(--blue)}
+.dp-card h3{margin:8px 0 12px;font-size:18px;letter-spacing:-.5px}
+.dp-card>p{margin:0;font-size:14px;line-height:1.7;color:#5d6879;word-break:keep-all}
+.dp-source{display:block;margin:16px 0;padding:12px 14px;border-radius:10px;background:var(--blue);color:white;font-size:14px;font-weight:800;line-height:1.4;text-align:center;word-break:keep-all}
 .dp-source:hover{background:#0d5be8}
 /* 링크가 없는 출처는 버튼이 아닌 글자로 표시합니다. */
-.dp-card>.dp-source.static{background:#f1f4f8;color:#3b4557;font-size:13px;line-height:1.4}
-.dp-card>span{display:block;font-size:11px;line-height:1.6;color:#9aa4b3}
+.dp-card>.dp-source.static{background:#f1f4f8;color:#3b4557;font-size:14px;line-height:1.4}
+.dp-card>span{display:block;font-size:12px;line-height:1.6;color:#9aa4b3}
 .dp-card ul{list-style:none;margin:0;padding:0}
-.dp-card li a{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid #edf0f4;font-size:13px;font-weight:700}
+.dp-card li a{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid #edf0f4;font-size:14px;font-weight:700}
 .dp-card li a b{color:#a1a9b5}
 .dp-card li a:hover,.dp-card li a:hover b{color:var(--blue)}
 
@@ -130,29 +130,29 @@
 .dp-divisions{margin-top:32px}
 .dp-division-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
 .dp-division{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}
-.dp-division h3{margin:0 0 12px;font-size:14px;color:#566176}
+.dp-division h3{margin:0 0 12px;font-size:15px;color:#566176}
 .dp-champion{display:flex;align-items:center;gap:12px}
 .dp-champion img{width:64px;height:64px;border-radius:14px;object-fit:cover;object-position:center 15%;background:#eef3fb}
-.dp-champion i{display:block;font-style:normal;font-size:10px;font-weight:900;letter-spacing:1px;color:#c08a00}
-.dp-champion strong{font-size:16px}
+.dp-champion i{display:block;font-style:normal;font-size:11px;font-weight:900;letter-spacing:1px;color:#c08a00}
+.dp-champion strong{font-size:17px}
 .dp-division ol{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1px solid #eef1f6;display:grid;gap:8px}
-.dp-division li{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700}
+.dp-division li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700}
 .dp-division li img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 15%;background:#eef3fb}
 .dp-division li b{color:var(--blue);width:12px}
 
 /* 자주 묻는 질문 */
 .dp-faq{margin-top:40px}
 .dp-faq details{background:white;border:1px solid var(--line);border-radius:14px;margin-top:10px}
-.dp-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;padding:17px 20px;font-size:14px;font-weight:800}
+.dp-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;padding:17px 20px;font-size:15px;font-weight:800}
 .dp-faq summary::-webkit-details-marker{display:none}
-.dp-faq summary:after{content:"+";color:var(--blue);font-size:18px;line-height:1}
+.dp-faq summary:after{content:"+";color:var(--blue);font-size:19px;line-height:1}
 .dp-faq details[open] summary:after{content:"−"}
-.dp-faq details p{margin:0;padding:0 20px 18px;font-size:13px;line-height:1.7;color:#5d6879;word-break:keep-all}
+.dp-faq details p{margin:0;padding:0 20px 18px;font-size:14px;line-height:1.7;color:#5d6879;word-break:keep-all}
 
 /* 바닥 */
 .dp-footer{margin-top:56px;border-top:1px solid var(--line);background:white;padding:26px 0}
 .dp-footer .dp-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.dp-footer p{margin:0;font-size:12px;color:#8a94a4}
+.dp-footer p{margin:0;font-size:13px;color:#8a94a4}
 
 @media(max-width:960px){
  .dp-body{grid-template-columns:1fr}
@@ -162,24 +162,24 @@
 @media(max-width:680px){
  .dp-wrap{padding:0 16px}
  .dp-hero{padding:34px 0 26px}
- .dp-hero h1{font-size:30px;letter-spacing:-1.4px}
- .dp-desc{font-size:14px}
- .dp-audit{padding:14px 16px;font-size:12px}
+ .dp-hero h1{font-size:31px;letter-spacing:-1.4px}
+ .dp-desc{font-size:15px}
+ .dp-audit{padding:14px 16px;font-size:13px}
  .dp-main{padding:18px 16px;border-radius:16px}
  .dp-list li{gap:12px;padding:14px 0;align-items:flex-start}
  .dp-thumb{width:52px;height:52px;border-radius:12px}
  .dp-thumb.flag{width:54px;height:36px;margin-top:4px}
  .dp-thumb.logo{width:60px}
- .dp-rank{width:26px;height:26px;font-size:12px;margin-top:4px}
+ .dp-rank{width:26px;height:26px;font-size:13px;margin-top:4px}
  .dp-line{flex-direction:column;gap:3px}
- .dp-line strong{text-align:left;font-size:14px}
+ .dp-line strong{text-align:left;font-size:15px}
  .dp-posters{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
  .dp-podium{gap:8px}
  .dp-podium .dp-thumb,.dp-podium .place-1 .dp-thumb{width:64px;height:64px;border-radius:14px}
  .dp-podium .dp-thumb.flag,.dp-podium .place-1 .dp-thumb.flag{width:72px;height:48px}
  .dp-podium .dp-thumb.logo,.dp-podium .place-1 .dp-thumb.logo{width:76px;height:58px}
- .dp-podium h3{font-size:13px}
- .dp-podium strong{font-size:12px}
- .dp-points li{font-size:12px}
+ .dp-podium h3{font-size:14px}
+ .dp-podium strong{font-size:13px}
+ .dp-points li{font-size:13px}
  .dp-footer .dp-wrap{flex-direction:column;align-items:flex-start}
 }
