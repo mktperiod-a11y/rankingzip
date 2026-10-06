@@ -81,6 +81,8 @@
 .dp-card>p{margin:0;font-size:13px;line-height:1.7;color:#5d6879;word-break:keep-all}
 .dp-source{display:block;margin:16px 0;padding:12px 14px;border-radius:10px;background:var(--blue);color:white;font-size:13px;font-weight:800;line-height:1.4;text-align:center;word-break:keep-all}
 .dp-source:hover{background:#0d5be8}
+/* 링크가 없는 출처는 버튼이 아닌 글자로 표시합니다. */
+.dp-card>.dp-source.static{background:#f1f4f8;color:#3b4557;font-size:13px;line-height:1.4}
 .dp-card>span{display:block;font-size:11px;line-height:1.6;color:#9aa4b3}
 .dp-card ul{list-style:none;margin:0;padding:0}
 .dp-card li a{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-top:1px solid #edf0f4;font-size:13px;font-weight:700}
