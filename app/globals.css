@@ -31,7 +31,8 @@
 .rank-card .icon{margin-bottom:12px}
 .rank-card>small{display:block;line-height:1.2}
 .rank-card h3{margin:5px 0 4px;line-height:1.3;height:2.6em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;word-break:keep-all;overflow-wrap:anywhere}
-.rank-card p{line-height:1.5;max-height:3em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+/* 카드 요약은 자료 기준일 한 줄만. 제목과 덩어리로 붙어 보이지 않게 간격을 둡니다. */
+.rank-card p.rank-meta{margin-top:12px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rank-card .badge{max-width:calc(100% - 100px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hero-row p,.trend p{min-width:0}
 .hero-row strong,.hero-row small,.trend strong,.trend small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
