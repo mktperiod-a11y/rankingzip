@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { slugByTitle, pageBySlug } from "./rankings/data";
 import { editorPicks as hot } from "./rankings/editor-picks";
 import { BrandLogo } from "./brand-logo";
@@ -56,6 +56,18 @@ const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산
 export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt?: string }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
+  // "지금 주목할 랭킹"을 실시간 검색어처럼 몇 초마다 위에서부터 한 줄씩 뒤집어 다시 보여줍니다.
+  const [flip, setFlip] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = setInterval(() => setFlip((n) => n + 1), 6000);
+    return () => clearInterval(timer);
+  }, []);
+  const showAll = () => {
+    setActive("전체");
+    setQuery("");
+    document.getElementById("rankings")?.scrollIntoView({ behavior: "smooth" });
+  };
   const filtered = useMemo(() => rankings.filter((item) =>
     !pageBySlug[slugByTitle[item.title]]?.noindex && (active === "전체" || item.category === active) &&
     (item.title + item.desc).toLowerCase().includes(query.toLowerCase())
@@ -100,9 +112,9 @@ export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt
           </div>
           <aside>
             <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em>추천</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
-            {picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong>{item.title}</strong><small>{item.subtitle}</small></p><em className="up">{item.label}</em></a>)}
+            <div className="trend-list">{picks.map((item,i)=><a className="trend flip" style={{animationDelay:`${i*110}ms`}} href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={`${item.title}-${flip}`}><b>{i+1}</b><p><strong>{item.title}</strong><small>{item.subtitle}</small></p><em className="up">{item.label}</em></a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
-            <button className="all-button">인기 랭킹 전체보기 <b>→</b></button>
+            <button className="all-button" type="button" onClick={showAll}>인기 랭킹 전체보기 <b>→</b></button>
           </aside>
         </div>
       </section>
