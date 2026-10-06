@@ -46,7 +46,8 @@
 .dp-thumb.flag img{object-position:center}
 .dp-thumb.logo{width:80px;background:white;border:1px solid #e7ebf1}
 .dp-thumb.logo img{object-fit:contain;padding:8px}
-.dp-thumb.none span{font-size:20px;font-weight:900;color:#9fb3d6}
+/* 메인 헤더 로고의 .logo span 스타일이 로고형 틀에 섞이지 않게 막습니다. */
+.detail-page .dp-thumb.none span{display:inline;width:auto;height:auto;border-radius:0;background:none;box-shadow:none;font-style:normal;font-size:20px;font-weight:900;color:#9fb3d6}
 .dp-info{flex:1;min-width:0}
 .dp-line{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
 .dp-line h3{margin:0;font-size:16px;letter-spacing:-.4px;min-width:0;word-break:keep-all;overflow-wrap:anywhere}

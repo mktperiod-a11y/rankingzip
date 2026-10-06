@@ -39,7 +39,7 @@ test('corrections and withheld rankings are consistent',()=>{
  assert.equal(by['korea-province-population'].rows[4].name,'전남광주통합특별시');
  assert.equal(by['ufc-rankings-by-division'].divisions[7].contenders[2],'세르게이 파블로비치');
  assert.equal(by['highest-paid-athletes'].rows[1].name,'카넬로 알바레스');
- assert.ok(by['file-sharing-services'].unranked&&!by['file-sharing-services'].noindex);
+ assert.ok(!by['file-sharing-services'].unranked&&!by['file-sharing-services'].noindex&&by['file-sharing-services'].sourceUrl.startsWith('https://trends.google.co.kr/'));
  assert.equal(pages.filter(p=>p.noindex).length,4);
  for(const p of pages.filter(p=>p.noindex))assert.ok(p.unranked);
 });
