@@ -47,7 +47,7 @@ function imageKind(slug:string,src:string):ImageKind{
 /** "32,383.920십억 달러", "$2,332,507,928", "56홈런"처럼 앞에 숫자가 있는 값만 막대 비교에 씁니다. 등수("3위") 값은 제외합니다. */
 function numericValues(rows:{value:string}[]){
  const values=rows.map(r=>/위$/.test(r.value.trim())?NaN:Number(r.value.replace(/[$,\s]/g,'').match(/^-?\d+(\.\d+)?/)?.[0]));
- return values.length>1&&values.every(v=>Number.isFinite(v)&&v>0)?values:null;
+ return values.length>1&&values.every(v=>Number.isFinite(v)&&v>=0)&&values.some(v=>v>0)?values:null;
 }
 
 export default async function RankingDetail({params}:{params:Promise<{slug:string}>}){
@@ -78,7 +78,7 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
    <div className="dp-head"><p>{p.unranked?"REFERENCE":"RANKING"}</p><h2>{p.divisions?"체급을 대표하는 주요 선수":p.unranked?"자료 안내":"순위 한눈에 보기"}</h2>{!p.unranked&&p.rows.length>0&&<span>{p.rows.length}개 항목</span>}</div>
    {!p.rows.length&&<p className="dp-empty">확인되지 않은 수치와 순위는 공개하지 않습니다. 검증 가능한 원자료 확보 후 다시 제공합니다.</p>}
    {poster?<ol className="dp-posters">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
-   :<ol className="dp-list">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${image?imageKind(p.slug,image):'none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}</h3><strong>{r.value}</strong></div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${Math.max(2,values[i]/max*100)}%`}}/></div>}<p>{r.note}</p>{rowSources(r)}</div></li>})}</ol>}
+   :<ol className="dp-list">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}</h3><strong>{r.value}</strong></div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${values[i]?Math.max(2,values[i]/max*100):0}%`}}/></div>}<p>{r.note}</p>{rowSources(r)}</div></li>})}</ol>}
    {p.rows.length>0&&<p className="dp-credit">이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
   </div>
   <aside className="dp-side">
