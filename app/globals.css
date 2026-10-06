@@ -40,3 +40,10 @@
 .ticker div>b,.ticker strong,.ticker span{flex-shrink:0}
 .idea-chips span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .idea-chips b{flex-shrink:0}
+
+/* 지금 주목할 랭킹: 실시간 검색어처럼 한 줄씩 위에서 아래로 뒤집히며 바뀝니다. */
+.trend-list{perspective:600px}
+.trend.flip{transform-origin:50% 0;animation:rank-flip .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rank-flip{0%{opacity:0;transform:rotateX(-90deg)}60%{opacity:1;transform:rotateX(12deg)}100%{opacity:1;transform:rotateX(0)}}
+@media(prefers-reduced-motion:reduce){.trend.flip{animation:none}}
+.all-button{cursor:pointer}
