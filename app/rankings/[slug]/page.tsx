@@ -65,18 +65,11 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>
  <header className="site-header"><div className="header-inner"><BrandLogo href="/"/><a className="dp-all" href="/#rankings">전체 랭킹 <b>→</b></a></div></header>
 
- <section className="dp-hero"><div className="dp-wrap">
-  <nav className="dp-crumb" aria-label="현재 위치"><a href="/">홈</a><span>/</span><a href="/#rankings">{p.category}</a></nav>
-  <h1>{p.title}</h1>
-  <p className="dp-desc">{p.description}</p>
-  <dl className="dp-facts">
-   <div><dt>자료 기준</dt><dd>{p.date}</dd></div>
-   <div><dt>집계 기준</dt><dd>{p.basis}</dd></div>
-   <div><dt>출처</dt><dd><a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a></dd></div>
-   <div><dt>사이트 점검</dt><dd>{p.auditDate}</dd></div>
-  </dl>
-  <p className={`dp-audit ${p.noindex?'pending':''}`}><b>{p.noindex?'검증 보류':'자료 점검'}</b>{p.auditNote}</p>
+ <section className="dp-hero"><div className="dp-wrap dp-hero-inner">
+  <div><p className="dp-eyebrow">{p.category} {p.unranked?"GUIDE":"RANKING"}</p><h1>{p.title}</h1><p className="dp-desc">{p.description}</p><div className="dp-chips"><b>자료 기준 {p.date}</b><b>{p.basis}</b></div></div>
+  {!p.unranked&&p.rows.length>0&&<div className="dp-count">TOP<strong>{p.rows.length}</strong></div>}
  </div></section>
+ <div className="dp-wrap"><section className={`dp-audit ${p.noindex?'pending':''}`}><b>{p.auditDate} {p.noindex?'검증 보류':'자료 점검'}</b><p>{p.auditNote}</p></section></div>
 
  {p.divisions&&<section className="dp-wrap dp-divisions"><div className="dp-head"><p>WEIGHT CLASSES</p><h2>체급별 챔피언과 랭커</h2><span>각 체급의 챔피언과 상위 3명입니다. 챔피언은 랭커 1위와 별도입니다.</span></div><div className="dp-division-grid">{p.divisions.map(d=><article className="dp-division" key={d.name}><h3>{d.name}</h3><div className="dp-champion"><img src={portrait(d.champion)} alt={`${d.champion} ${d.name} 챔피언`} loading="lazy"/><div><i>CHAMPION</i><strong>{d.champion}</strong></div></div><ol>{d.contenders.map((x,i)=><li key={x}><img src={portrait(x)} alt={`${x} ${d.name} ${i+1}위`} loading="lazy"/><b>{i+1}</b><span>{x}</span></li>)}</ol></article>)}</div></section>}
 
@@ -90,7 +83,7 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
   </div>
   <aside className="dp-side">
    <div className="dp-card"><small>DATA SOURCE</small><h3>자료와 집계 기준</h3><p>{p.basis}</p><a className="dp-source" href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a><span>자료 기준일과 사이트 점검일은 다릅니다. 과거 통계는 현재 순위로 해석하지 마세요.</span></div>
-   {related.length>0&&<div className="dp-card"><small>RELATED · {p.category}</small><h3>같은 분야의 다른 순위</h3><ul>{related.map(x=><li key={x.slug}><a href={`/rankings/${x.slug}`}><span>{x.title}</span><b>→</b></a></li>)}</ul></div>}
+   {related.length>0&&<div className="dp-card"><small>RELATED</small><h3>다른 순위도 둘러보세요</h3><ul>{related.map(x=><li key={x.slug}><a href={`/rankings/${x.slug}`}><span>{x.title}</span><b>→</b></a></li>)}</ul></div>}
   </aside>
  </section>
 
