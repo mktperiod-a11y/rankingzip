@@ -21,7 +21,7 @@ test('new season rankings and imported brands are complete and linked',()=>{
  assert.equal(rbi.rows[1].name,'샘 힐리어드');assert.equal(rbi.rows[2].name,'르윈 디아즈');assert.equal(cars.rows.length,10);
  assert.equal(cars.rows[0].value,'10,400대');assert.match(cars.rows[0].note,/34.9%/);
  const {slugByTitle}=load('app/rankings/data.ts');
- const home=fs.readFileSync('app/page.tsx','utf8');
+ const home=fs.readFileSync('app/home.tsx','utf8');
  for(const p of [hr,rbi,cars]){assert.equal(slugByTitle[p.title],p.slug);assert.ok(home.includes(p.title));assert.ok(p.faq.length>=3);for(const r of p.rows){assert.ok(r.imageSource&&r.sourceUrl);assert.ok(r.image.startsWith('/ranking-images/expansion/'));}}
 });
 test('current KBO standings and box office changes are reflected',()=>{
