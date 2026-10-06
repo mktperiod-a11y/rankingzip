@@ -10,7 +10,7 @@
 - [준비물](#준비물)
 - [폴더 구조](#폴더-구조)
 - [랭킹 추가·수정하기](#랭킹-추가수정하기)
-- [실시간 검색어 수집](#실시간-검색어-수집-npm-run-collecttrends)
+- [지금 주목할 랭킹 자동 선정](#지금-주목할-랭킹-자동-선정)
 - [명령어 모음](#명령어-모음)
 - [배포 (Sites)](#배포-sites)
 - [워크스페이스 인증 헤더](#워크스페이스-인증-헤더)
@@ -73,11 +73,13 @@ Sites로 배포된 실제 사이트 주소는 Sites 관리 화면에서 확인�
 
 ```
 app/
-  page.tsx                  메인 화면 (카테고리 탭, 검색, 랭킹 카드, 주목할 랭킹)
+  page.tsx                  메인 화면 진입점 (서버에서 "지금 주목할 랭킹"을 골라 home.tsx에 전달)
+  home.tsx                  메인 화면 (카테고리 탭, 검색, 랭킹 카드, 주목할 랭킹)
   globals.css               메인 화면 스타일
   layout.tsx                공통 레이아웃·메타데이터
   rankings/
     data.ts                 랭킹 데이터 모음 + 슬러그·제목 매핑
+    editor-picks.ts         편집 선정 주목할 랭킹 (자동 선정이 모자랄 때 채우는 목록)
     additions.ts            추가 랭킹 데이터
     expansion.ts            확장 랭킹 데이터
     asian-games.ts          아시안게임 랭킹 데이터
@@ -88,9 +90,10 @@ app/
   chatgpt-auth.ts           ChatGPT 로그인 도우미 (선택)
 public/ranking-images/      랭킹에 쓰는 이미지 (포스터, 선수 사진, 로고 등)
 scripts/
-  collect-trends.mjs        실시간 검색어 수집 실행 파일
-  trends/                   검색어 수집 소스·공통 도구
   *-assets.mjs              이미지 수집·점검 스크립트
+lib/
+  trends.ts                 검색어 해석·통합·순위 연결·주목할 랭킹 선정 (순수 함수)
+  trends-server.ts          검색어 수집과 10분 캐시
 tests/                      자동 테스트
 worker/index.ts             Cloudflare Worker 진입점 (이미지 최적화 포함)
 db/, drizzle/               D1 데이터베이스 스키마 (현재 비어 있음)
@@ -102,29 +105,24 @@ examples/d1/                D1 사용 예시 (선택)
 
 1. `app/rankings/` 아래 데이터 파일에 `RankingPage` 형식으로 항목을 추가합니다. 형식은 `app/rankings/data.ts` 맨 위에 정의되어 있습니다.
    - 필수: `slug`(주소), `title`, `category`(스포츠·미디어·라이프·서비스·글로벌), `date`, `basis`(집계 기준), `description`, `source`, `sourceUrl`, `rows`(순위 항목), `faq`
-2. 메인 화면에 카드를 보이게 하려면 `app/page.tsx`의 `rankings` 목록에 추가하고, `data.ts`의 `slugByTitle`에 제목과 슬러그를 연결합니다.
+2. 메인 화면에 카드를 보이게 하려면 `app/home.tsx`의 `rankings` 목록에 추가하고, `data.ts`의 `slugByTitle`에 제목과 슬러그를 연결합니다.
 3. 이미지는 `public/ranking-images/` 아래에 넣고 항목의 `image`에 `/ranking-images/...` 경로로 적습니다.
 4. `npm run dev`로 화면을 확인합니다.
 
-## 실시간 검색어 수집 (`npm run collect:trends`)
+## 지금 주목할 랭킹 자동 선정
 
-`scripts/collect-trends.mjs`가 등록된 소스에서 검색어 순위와 관련 내용을 받아 `data/trends/`에 저장합니다.
+메인 화면 오른쪽 "지금 주목할 랭킹" 카드는 화면 양식은 그대로 두고, 내용을 실시간 인기 검색어로 자동 선정합니다.
 
-- `data/trends/<소스id>.json`: 소스별 순위(검색어, 링크, 검색량, 이미지, 관련 뉴스)
-- `data/trends/latest.json`: 전체 소스를 합친 통합 순위. 여러 소스에 동시에 오른 검색어가 위로 갑니다.
-- 특정 소스만 받기: `node scripts/collect-trends.mjs namuwiki`
-- 소스가 실패하면 그 소스의 직전 결과를 `stale: true` 표시와 함께 유지합니다.
+1. **검색어 수집** (`lib/trends-server.ts`): 구글 트렌드 급상승 검색어 RSS와 나무위키 실시간 검색어를 받습니다. 마지막으로 받은 지 10분이 지났으면 다음 방문 때 새로 받고, 그 사이에는 저장해 둔 결과를 씁니다. 한 출처가 실패하면 그 출처의 직전 결과를 씁니다. 나무위키는 공식 API가 아니어서 막힐 수 있습니다.
+2. **통합**: 두 출처에 함께 오른 검색어가 먼저, 그다음은 각 출처 순위를 점수로 바꿔 합친 순서입니다. 띄어쓰기와 나무위키식 괄호 설명("오디세이(2026 영화)")은 같은 검색어로 봅니다.
+3. **순위 연결** (`matchRanking`): 검색어가 순위 항목 이름과 같으면(4점) > 항목 이름을 포함하면(3점) > 순위 제목에 들어 있으면(2점). 동점이면 그 항목이 더 위에 있는 순위를 고릅니다. 검증 보류(`noindex`) 순위는 제외합니다.
+4. **한 줄 만들기** (`buildPicks`): 통합 순서대로 연결된 순위를 최대 5개 고릅니다. 같은 순위는 한 번만 씁니다.
+   - 제목: 연결된 항목의 실제 값과 순위 (예: "그랜저 8,898대 2위")
+   - 부제: 순위 페이지 제목
+   - 라벨: 검색어가 3시간 안에 뜨기 시작했으면 "급상승", 아니면 "화제"
+5. **모자라면 채우기**: 연결된 순위가 5개보다 적거나 검색어를 못 받으면, 나머지를 `app/rankings/editor-picks.ts`의 편집 선정 목록으로 채웁니다.
 
-| id | 내용 | 비고 |
-| --- | --- | --- |
-| `google-trends` | 구글 트렌드 급상승 검색어 RSS + 관련 뉴스 | 키 불필요 |
-| `namuwiki` | 나무위키 실시간 검색어 | 공식 API 아님, 사이트가 바뀌면 동작하지 않을 수 있음 |
-
-새 소스를 추가하는 순서:
-
-1. `scripts/trends/sources/<id>.mjs` 파일을 만들고 `id`, `label`, `homepage`, `parse()`, `collect()`를 내보냅니다.
-2. `scripts/trends/sources/index.mjs`에 한 줄 등록합니다.
-3. `tests/fixtures/trends/`에 샘플 응답을 넣고 `tests/trends.test.mjs`에 파서 테스트를 추가합니다.
+새 출처를 추가하려면 `lib/trends.ts`에 응답을 `TrendItem[]`로 바꾸는 `parse` 함수를 만들어 `TREND_SOURCES`에 추가하고, `tests/fixtures/trends/`에 응답 샘플과 `tests/trends.test.mjs`에 테스트를 넣습니다.
 
 ## 명령어 모음
 
@@ -134,8 +132,7 @@ examples/d1/                D1 사용 예시 (선택)
 | `npm run build` | 배포용 결과물을 만들고 검증 |
 | `npm run start` | 빌드된 결과물로 서버 실행 |
 | `npm test` | 빌드 후 전체 테스트 실행 |
-| `node --test tests/trends.test.mjs` | 빌드 없이 검색어 수집 테스트만 실행 |
-| `npm run collect:trends` | 실시간 검색어 수집 |
+| `node --test tests/trends.test.mjs` | 빌드 없이 자동 선정 테스트만 실행 |
 | `npm run lint` | 코드 규칙 검사 |
 | `npm run install:ci` | 배포 환경용 의존성 설치 (한 번만, 재시도 없음) |
 | `npm run validate:artifact` | 이미 만든 배포 결과물의 매니페스트와 `default.fetch` 내보내기 재검사 |
