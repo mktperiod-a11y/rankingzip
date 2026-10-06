@@ -113,7 +113,7 @@ export default function Home({ picks }: { picks: TrendPick[] }) {
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>
           <aside>
-            <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em>추천</em></div>
+            <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em>추천</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
             {picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong>{item.title}</strong><small>{item.subtitle}</small></p><em className="up">{item.label}</em></a>)}
             <button className="all-button">인기 랭킹 전체보기 <b>→</b></button>
           </aside>
