@@ -1,0 +1,463 @@
+{
+  "ondisk": [
+    {
+      "page": "https://www.ondisk.co.kr/",
+      "status": 200,
+      "finalUrl": "https://www.ondisk.co.kr/",
+      "title": "�µ�ũ | ��ȭ����󸶡����ɡ��ִϡ����� �ٿ�ε�"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://image.ondisk.co.kr/img/icon/favicon.ico",
+      "file": "ondisk/01-shortcut-icon.ico",
+      "bytes": 41994
+    },
+    {
+      "kind": "og-image",
+      "url": "https://image.ondisk.co.kr/img/ondisk_og.png",
+      "file": "ondisk/02-og-image.png",
+      "bytes": 64788
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.ondisk.co.kr/favicon.ico",
+      "file": "ondisk/03-favicon-default.ico",
+      "bytes": 2774
+    }
+  ],
+  "kdisk": [
+    {
+      "page": "https://www.kdisk.co.kr/",
+      "status": 200,
+      "finalUrl": "https://www.kdisk.co.kr/",
+      "title": "���̵�ũ | ��ȭ����󸶡����ɡ��ִϡ����� �ٿ�ε�"
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.kdisk.co.kr/favicon.ico",
+      "file": "kdisk/01-favicon-default.ico",
+      "bytes": 84896
+    }
+  ],
+  "filestar": [
+    {
+      "page": "https://www.filestar.co.kr/",
+      "status": 200,
+      "finalUrl": "https://filestar.co.kr/",
+      "title": "파일스타"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://www.filestar.co.kr/favicon.ico",
+      "file": "filestar/01-shortcut-icon.ico",
+      "bytes": 14589
+    },
+    {
+      "kind": "og-image",
+      "url": "https://filestar.co.kr/_static/web/images/common/meta_logo_filestar_new.png",
+      "file": "filestar/02-og-image.png",
+      "bytes": 8193
+    },
+    {
+      "kind": "img-logo",
+      "alt": "",
+      "url": "https://pic.filestar.co.kr/_img/logo/2025/09/29/627719_1759103344.jpg",
+      "file": "filestar/03-img-logo.jpg",
+      "bytes": 33952
+    }
+  ],
+  "filemaru": [
+    {
+      "page": "https://www.filemaru.com/",
+      "status": 200,
+      "finalUrl": "https://www.filemaru.com/",
+      "title": "파일마루"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://www.filemaru.com/filemaru.ico",
+      "file": "filemaru/01-shortcut-icon.ico",
+      "bytes": 5430
+    },
+    {
+      "kind": "og-image",
+      "url": "https://m.filemaru.com/ico/sns_img.png",
+      "file": "filemaru/02-og-image.png",
+      "bytes": 8520
+    },
+    {
+      "kind": "img-logo",
+      "alt": "파일마루",
+      "url": "https://www.filemaru.com/img/sub/logo.gif",
+      "file": "filemaru/03-img-logo.gif",
+      "bytes": 2207
+    },
+    {
+      "kind": "img-logo",
+      "alt": "파일마루",
+      "url": "https://www.filemaru.com/img/pop/logo_join.gif",
+      "file": "filemaru/04-img-logo.gif",
+      "bytes": 2299
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.filemaru.com/favicon.ico",
+      "skipped": "404 text/html; charset=UTF-8 779"
+    }
+  ],
+  "yesfile": [
+    {
+      "page": "https://www.yesfile.com/",
+      "status": 200,
+      "finalUrl": "https://www.yesfile.com/",
+      "title": "예스파일 - 영화·드라마·웹툰·웹소설 다운로드"
+    },
+    {
+      "kind": "icon",
+      "sizes": "",
+      "url": "https://www.yesfile.com/img/favicon.ico",
+      "file": "yesfile/01-icon.ico",
+      "bytes": 1150
+    },
+    {
+      "kind": "apple-touch-icon",
+      "sizes": "",
+      "url": "https://www.yesfile.com/img/favicon-touch-icon-180x180.ico",
+      "file": "yesfile/02-apple-touch-icon.ico",
+      "bytes": 133982
+    },
+    {
+      "kind": "og-image",
+      "url": "https://www.yesfile.com/img/yesfile_og.png",
+      "file": "yesfile/03-og-image.png",
+      "bytes": 63671
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.yesfile.com/favicon.ico",
+      "file": "yesfile/04-favicon-default.ico",
+      "bytes": 5686
+    }
+  ],
+  "filejo": [
+    {
+      "page": "https://www.filejo.com/",
+      "status": 200,
+      "finalUrl": "https://www.filejo.com/main/",
+      "title": "������ : ���ϴ� ��� ��!"
+    },
+    {
+      "kind": "icon",
+      "sizes": "32x32",
+      "url": "https://wimg.filejo.com/index/favicon_b.ico",
+      "file": "filejo/01-icon.ico",
+      "bytes": 15406
+    },
+    {
+      "kind": "og-image",
+      "url": "https://wimg.filejo.com/top/logo.gif",
+      "file": "filejo/02-og-image.gif",
+      "bytes": 5572
+    },
+    {
+      "kind": "img-logo",
+      "alt": "",
+      "url": "https://wimg.filejo.com/icon/ksci_logo.png",
+      "file": "filejo/03-img-logo.png",
+      "bytes": 35777
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.filejo.com/favicon.ico",
+      "skipped": "404 text/html; charset=iso-8859-1 10"
+    },
+    {
+      "page": "https://play.google.com/store/apps/details?id=com.contents.filejo2&hl=ko",
+      "status": 404,
+      "finalUrl": "https://play.google.com/store/apps/details?id=com.contents.filejo2&hl=ko",
+      "title": "찾을 수 없음"
+    }
+  ],
+  "fileis": [
+    {
+      "page": "https://www.fileis.com/",
+      "status": 200,
+      "finalUrl": "https://www.fileis.com/",
+      "title": "파일이즈"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://fileis.com/favicon.ico",
+      "file": "fileis/01-shortcut-icon.ico",
+      "bytes": 4662
+    },
+    {
+      "kind": "img-logo",
+      "alt": "no.1 웹하드는 역시 파일이즈!",
+      "url": "https://www.fileis.com/images/renew_icon/LOGO-default.svg",
+      "file": "fileis/02-img-logo.svg",
+      "bytes": 1551
+    },
+    {
+      "kind": "img-logo",
+      "alt": "파일이즈",
+      "url": "https://www.fileis.com/images/renew_icon/LOGO-gray.svg",
+      "file": "fileis/03-img-logo.svg",
+      "bytes": 1625
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.fileis.com/favicon.ico",
+      "file": "fileis/04-favicon-default.ico",
+      "bytes": 4662
+    },
+    {
+      "page": "https://fileis.com/",
+      "status": 200,
+      "finalUrl": "https://fileis.com/",
+      "title": "파일이즈"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://fileis.com/favicon.ico",
+      "file": "fileis/01-shortcut-icon.ico",
+      "bytes": 4662
+    },
+    {
+      "kind": "img-logo",
+      "alt": "no.1 웹하드는 역시 파일이즈!",
+      "url": "https://fileis.com/images/renew_icon/LOGO-default.svg",
+      "file": "fileis/02-img-logo.svg",
+      "bytes": 1551
+    },
+    {
+      "kind": "img-logo",
+      "alt": "파일이즈",
+      "url": "https://fileis.com/images/renew_icon/LOGO-gray.svg",
+      "file": "fileis/03-img-logo.svg",
+      "bytes": 1625
+    },
+    {
+      "page": "https://play.google.com/store/search?q=%ED%8C%8C%EC%9D%BC%EC%9D%B4%EC%A6%88&c=apps&hl=ko",
+      "status": 200,
+      "finalUrl": "https://play.google.com/store/search?q=%ED%8C%8C%EC%9D%BC%EC%9D%B4%EC%A6%88&c=apps&hl=ko",
+      "title": "파일이즈 - Android 앱 Google Play"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://www.gstatic.com/android/market_images/web/favicon_v3.ico",
+      "file": "fileis/01-shortcut-icon.ico",
+      "bytes": 4286
+    },
+    {
+      "kind": "img-logo",
+      "alt": "",
+      "url": "https://fonts.gstatic.com/s/i/productlogos/avatar_anonymous/v4/web-32dp/logo_avatar_anonymous_color_1x_web_32dp.png",
+      "file": "fileis/02-img-logo.png",
+      "bytes": 645
+    },
+    {
+      "kind": "img-logo",
+      "alt": "아이콘 이미지",
+      "url": "https://play-lh.googleusercontent.com/wdJwkrDE0bY8AzFtHqBsIucPYx_6QChDXDGPxF-5qNKIfJUztOqZ6c3F__kEchJ4cztON04YVchdN58mIwgvqA=s64-rw",
+      "file": "fileis/03-img-logo.webp",
+      "bytes": 1308
+    },
+    {
+      "kind": "img-logo",
+      "alt": "아이콘 이미지",
+      "url": "https://play-lh.googleusercontent.com/wdJwkrDE0bY8AzFtHqBsIucPYx_6QChDXDGPxF-5qNKIfJUztOqZ6c3F__kEchJ4cztON04YVchdN58mIwgvqA=s52-rw",
+      "file": "fileis/04-img-logo.webp",
+      "bytes": 1066
+    },
+    {
+      "kind": "img-logo",
+      "alt": "콘텐츠 등급",
+      "url": "https://play-lh.googleusercontent.com/bxs95MghtAOuZR_LPwVCUmUPYEvXsGVOH3chF1OCX0-Ns_S0qdHnzml2CGCgOGbYlftKsmt9gtpxLb8U=w48-h16-rw",
+      "file": "fileis/05-img-logo.webp",
+      "bytes": 220
+    },
+    {
+      "kind": "img-logo",
+      "alt": "콘텐츠 등급",
+      "url": "https://play-lh.googleusercontent.com/bxs95MghtAOuZR_LPwVCUmUPYEvXsGVOH3chF1OCX0-Ns_S0qdHnzml2CGCgOGbYlftKsmt9gtpxLb8U=s38-rw",
+      "file": "fileis/06-img-logo.webp",
+      "bytes": 562
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/teP_aIMBPctsSpjuFnIJgyDX6yLA8ydd00VENT3zFQ92OvNP9e50kFjYjxNkxvvvYZu4saZDpcK3ofmP105E=w526-h296-rw",
+      "file": "fileis/07-img-logo.webp",
+      "bytes": 32176
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/NlTIwkA1xRPTijzYZVwM-6H3irb_XoTLblomoM13qSNrLfXVbrBvSUcVYU88NT_taf9LlzDsOzwE7AtNr7hgY0w=w526-h296-rw",
+      "file": "fileis/08-img-logo.webp",
+      "bytes": 28010
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/btmcX_Uy5MFzC2KVW0DTxVLZylqR37zDnQYP4b1OCP_MO3T9HD4M236GVXvN6dTGlTSY2HeNaaPMTIxpoBA6=w526-h296-rw",
+      "file": "fileis/09-img-logo.webp",
+      "bytes": 18946
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/x72pOLO3x3ssyEPP8uDnoEslHezZtguMcPa8PcISvBmySfmfGO4ZcWJL3wQ_Cdj5daTpHgsDfQGTpXIdZ2Y0sA=w526-h296-rw",
+      "file": "fileis/10-img-logo.webp",
+      "bytes": 17590
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/07Vq2oUW09X2ueB6hp7PqI94QdTJAGIgAyLwaMv66CibH55mpEtIhgM9CclT28Or_JQq9wAr7AGEnOpXPSjm=w416-h235-rw",
+      "file": "fileis/11-img-logo.webp",
+      "bytes": 33978
+    },
+    {
+      "kind": "img-logo",
+      "alt": "썸네일 이미지",
+      "url": "https://play-lh.googleusercontent.com/jHHc9Jb7Y3N565nKc-ekajw7E8r-VtBzpSB-u4dIpEgQdbeJGzyomXxnKS8KqD8VlVR71O5SiuzMWVjvfzoS=s64-rw",
+      "file": "fileis/12-img-logo.webp",
+      "bytes": 692
+    }
+  ],
+  "bigfile": [
+    {
+      "page": "https://www.bigfile.co.kr/",
+      "status": 200,
+      "finalUrl": "https://www.bigfile.co.kr/",
+      "title": "������ - ��ȭ, ���, ����, �ִ� ������ �ٷκ���"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://www.bigfile.co.kr/bigfile.ico",
+      "file": "bigfile/01-shortcut-icon.ico",
+      "bytes": 17542
+    },
+    {
+      "kind": "og-image",
+      "url": "https://www.bigfile.co.kr/og_img.jpg",
+      "file": "bigfile/02-og-image.jpg",
+      "bytes": 38855
+    },
+    {
+      "kind": "img-logo",
+      "alt": "",
+      "url": "https://www.bigfile.co.kr/_template/service/images/common/2026/bigfile_logo.png",
+      "file": "bigfile/03-img-logo.png",
+      "bytes": 3230
+    },
+    {
+      "kind": "favicon-default",
+      "url": "https://www.bigfile.co.kr/favicon.ico",
+      "skipped": "204  0"
+    },
+    {
+      "page": "https://play.google.com/store/apps/details?id=kr.service.bigplay&hl=ko",
+      "status": 200,
+      "finalUrl": "https://play.google.com/store/apps/details?id=kr.service.bigplay&hl=ko",
+      "title": "빅파일 다운로드 - Google Play 앱"
+    },
+    {
+      "kind": "shortcut-icon",
+      "sizes": "",
+      "url": "https://www.gstatic.com/android/market_images/web/favicon_v3.ico",
+      "file": "bigfile/01-shortcut-icon.ico",
+      "bytes": 4286
+    },
+    {
+      "kind": "og-image",
+      "url": "https://play-lh.googleusercontent.com/SLhdJrfokENLz8f_SugNOPINEjXpWiAXCaoBowDbklP7S29pNvI16MKzGw4GI8P0mMfm0sLKt9WMsDw6HU3vpA=s0-br30",
+      "file": "bigfile/02-og-image.png",
+      "bytes": 48354
+    },
+    {
+      "kind": "twitter-image",
+      "url": "https://play-lh.googleusercontent.com/SLhdJrfokENLz8f_SugNOPINEjXpWiAXCaoBowDbklP7S29pNvI16MKzGw4GI8P0mMfm0sLKt9WMsDw6HU3vpA=s0-br30=w600-h300-pc0xffffff-pd",
+      "skipped": "400 text/html; charset=UTF-8 1555"
+    },
+    {
+      "kind": "img-logo",
+      "alt": "",
+      "url": "https://fonts.gstatic.com/s/i/productlogos/avatar_anonymous/v4/web-32dp/logo_avatar_anonymous_color_1x_web_32dp.png",
+      "file": "bigfile/03-img-logo.png",
+      "bytes": 645
+    },
+    {
+      "kind": "img-logo",
+      "alt": "아이콘 이미지",
+      "url": "https://play-lh.googleusercontent.com/SLhdJrfokENLz8f_SugNOPINEjXpWiAXCaoBowDbklP7S29pNvI16MKzGw4GI8P0mMfm0sLKt9WMsDw6HU3vpA=w240-h480-rw",
+      "file": "bigfile/04-img-logo.webp",
+      "bytes": 11540
+    },
+    {
+      "kind": "img-logo",
+      "alt": "콘텐츠 등급",
+      "url": "https://play-lh.googleusercontent.com/OBVqgRK7eerY0GPfK8AOzitu5oE9ecC6kG4kURTCb1K41gpqVsN0WjmJwJh-wX8vILzpcc1kYHt56aLN2g=w48-h16-rw",
+      "file": "bigfile/05-img-logo.webp",
+      "bytes": 200
+    },
+    {
+      "kind": "img-logo",
+      "alt": "콘텐츠 등급",
+      "url": "https://play-lh.googleusercontent.com/OBVqgRK7eerY0GPfK8AOzitu5oE9ecC6kG4kURTCb1K41gpqVsN0WjmJwJh-wX8vILzpcc1kYHt56aLN2g=s38-rw",
+      "file": "bigfile/06-img-logo.webp",
+      "bytes": 450
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/LV-UgxBErjlA3bz6NyndxFO45C0U2ThX5URmCiQpAC20brhPxWPdYXPlWZAu2trxw-IeupHdDil7_UwWDf_MMfk=w526-h296-rw",
+      "file": "bigfile/07-img-logo.webp",
+      "bytes": 5004
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/H-4IJ5cCNTp_gFAPKxExB5u1WkIdjFvwk7FH_eX1rxU4XZNLk6xtQietgooXV2nQoAYuhH4lcRNfxNYhqwblIaQ=w526-h296-rw",
+      "file": "bigfile/08-img-logo.webp",
+      "bytes": 5678
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/OS-Ap72vlODkhchnpUoMl_CGvyLO714fhQbDzyac41EQ7JAjwSZ9Ca_OPr4e3iP0EOHsHsqu5yyaDhRhR5uOcu8=w526-h296-rw",
+      "file": "bigfile/09-img-logo.webp",
+      "bytes": 4504
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/kyESeQ2SLOVfz39rHl4fko7Cfx2KZHhD07Z-U5L8dO8LNm7Cavr53bDPLVmb-3udh1Fmrjwmx3HdYVgtjfoB=w526-h296-rw",
+      "file": "bigfile/10-img-logo.webp",
+      "bytes": 4242
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/FlYjwrwFdnlx-mcYZHFGImhwzTVBdQ4MIg9P9mTJTS-ogyo8u2zhWYQJW05XkRF_r7jdwY11DoiqDOo9n3PG=w526-h296-rw",
+      "file": "bigfile/11-img-logo.webp",
+      "bytes": 4492
+    },
+    {
+      "kind": "img-logo",
+      "alt": "스크린샷 이미지",
+      "url": "https://play-lh.googleusercontent.com/XK_uV9UcB_kTgDPvdZ9BouBC97GHi_ejYasEfKTva1Joy_1XRrYmuuFolJSXlXRR2HiQwCHuIOXkumYY6jDR_rI=w526-h296-rw",
+      "file": "bigfile/12-img-logo.webp",
+      "bytes": 4528
+    }
+  ]
+}
