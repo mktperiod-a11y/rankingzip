@@ -1,108 +1,216 @@
-# vinext-starter
+# 순위ZIP
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+**대한민국의 흥미로운 순위를 한곳에 모은 서비스**입니다.
+스포츠 기록, 영화 흥행, 자동차 판매, OTT, 세계 통계처럼 사람들이 궁금해하지만 흩어져 있어 찾기 어려운 순위를 공개 자료로 확인해 보기 쉽게 정리합니다.
 
-## Prerequisites
+- 서비스 주소 (GitHub Pages): https://mktperiod-a11y.github.io/rankingzip/
+- 개발·배포 안내: [docs/개발환경.md](docs/개발환경.md)
 
-- Node.js `>=22.13.0`
-- Linux with `flock`, `curl`, and GNU `timeout`
+## 목차
 
-## Sites Lifecycle
+- [서비스 소개](#서비스-소개)
+- [화면 구성](#화면-구성)
+- [보유 순위](#보유-순위)
+- [데이터 갱신 방식](#데이터-갱신-방식)
+- [운영 원칙](#운영-원칙)
+- [로드맵](#로드맵)
+- [개발자 안내](#개발자-안내)
 
-The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
+## 서비스 소개
 
-This starter does not use `wrangler.jsonc`.
+- **무엇을 하나요?** 검색해도 한 번에 나오지 않는 순위를 출처와 기준을 밝혀 한 페이지에 정리합니다.
+- **누구를 위한 건가요?** "요즘 뭐가 1위야?", "역대 최고 기록은?"이 궁금한 일반 사용자입니다.
+- **무엇이 다른가요?** 모든 순위에 **자료 기준일, 집계 기준, 원자료 링크, 자료 점검일**을 함께 보여줍니다. 확인되지 않은 수치는 순위로 공개하지 않습니다.
 
-`install:ci` is intentionally a single, non-retrying `npm ci`. It refuses a concurrent install for the same project, consumes a matching image-seeded npm cache with `--prefer-offline` while retaining registry fallback for a missing cache object, otherwise downloads and verifies the complete vinext tarball recorded in `package-lock.json`, limits npm to one socket, and terminates a stalled install. `build` applies a short timeout and then validates the Sites artifact. These helpers target Linux and use GNU `timeout`; they are not native macOS scripts.
+## 화면 구성
 
-Scripts that need writable project-scoped home, npm, XDG, and temporary paths use `scripts/sites-env.sh`. The `dev` and `start` scripts honor the caller's runtime environment and keep Wrangler logs inside the checkout. The generated `.sites-runtime/` directory is disposable and ignored by Git.
+### 메인 화면 (`/`)
 
-## Included Shape
+| 영역 | 내용 | 갱신 |
+|---|---|---|
+| 상단 소개 | "지금 사람들이 가장 궁금한 순위" 문구와 순위 둘러보기 버튼 | 고정 |
+| 이번 주 주목할 랭킹 (오른쪽 위 카드) | 편집자가 고른 순위 3개 | 편집자가 직접 |
+| HOT 이번 주 관심 키워드 | 키워드 5개 | 편집자가 직접 |
+| 분야별 인기 순위 | 전체·스포츠·미디어·라이프·서비스·글로벌 탭, 검색, 순위 카드 | 순위 추가 시 |
+| 지금 주목할 랭킹 (오른쪽 카드) | 실시간 인기 검색어 5개와 관련 뉴스 제목 | **배포할 때 자동** ([데이터 갱신 방식](#데이터-갱신-방식) 참고) |
+| 추가하면 재미있는 순위 | 다음에 만들 순위 후보 | 편집자가 직접 |
+| 랭킹 제안하기 | 순위 제안 버튼 | 아직 동작하지 않음 |
 
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+### 순위 상세 화면 (`/rankings/<주소>`)
 
-## Workspace Auth Headers
+- 순위 제목, 설명, 자료 기준일, 집계 기준
+- 자료 점검 안내 (언제 무엇을 확인했는지)
+- 순위 목록 (대표 이미지, 수치, 메모)
+- 자료 출처 카드 (원자료 링크)
+- 자주 묻는 질문
+- 검색엔진용 구조화 데이터 (순위 목록, FAQ)
 
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
+## 보유 순위
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+현재 **32개** 순위가 있고, 그중 **28개를 공개**하고 4개는 자료 검증 때문에 공개를 보류하고 있습니다.
 
-Treat the full name as optional and fall back to email when it is absent:
+### 스포츠
 
-```tsx
-import { headers } from "next/headers";
+| 순위 | 자료 기준 | 출처 |
+|---|---|---|
+| 역대 아시안게임 야구 우승 국가 순위 | 2026.09.27 | KBO |
+| 2026 아시안게임 국가별 메달 순위 | 2026.09.23 | 연합뉴스 |
+| 2026 KBO 팀 순위 | 2026.09.16 | KBO 공식 기록 |
+| 2026 KBO 홈런 순위 TOP 5 | 2026.09.16 | KBO 공식 기록 |
+| 2026 KBO 타점 순위 TOP 5 | 2026.09.16 | KBO 공식 기록 |
+| KBO 역대 한 시즌 홈런 TOP 20 | 2025시즌 종료 | KBO 역대 기록실 |
+| 2026 KBO 구단 관중 순위 | 2026.08.26 | KBO 보도자료 |
+| UFC 체급별 공식 랭킹 | 2026.08.27 | UFC 공식 랭킹 |
 
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
+### 미디어
 
-  const displayName = fullName ?? email;
-  // ...
-}
+| 순위 | 자료 기준 | 출처 |
+|---|---|---|
+| 2026년 국내 영화 흥행 순위 | 2026.09.06 | 영화진흥위원회 KOBIS |
+| 역대 국내 영화 관객 순위 | 2026.09.06 | 영화진흥위원회 KOBIS |
+| 크리스토퍼 놀란 영화 국내 흥행 순위 | 2026.09.07 | KOBIS·보도 |
+| 2026년 세계 영화 흥행 순위 | 2026.08.31 | Box Office Mojo |
+| 역대 스파이더맨 영화 흥행 순위 | 2026.08.31 | The Numbers |
+| 이번 주 넷플릭스 영화 TOP 10 | 2026.09.14~09.20 | Netflix Tudum |
+| 이번 주 넷플릭스 한국 TV TOP 10 | 2026.09.14~09.20 | Netflix Tudum |
+| 역대 한국 드라마 시청률 순위 | 역대 기록 | 시청률 인용 보도 |
+
+### 라이프
+
+| 순위 | 자료 기준 | 출처 |
+|---|---|---|
+| 국내 자동차 월간 판매 순위 | 2026년 8월 | 다나와자동차 |
+| 수입차 브랜드 등록 순위 TOP 10 | 2026년 8월 | 한국수입자동차협회(KAIDA) |
+| 대한민국 시도 인구 순위 | 2026년 7월 | 행정안전부 주민등록 인구통계 |
+| 대한민국 높은 산 순위 | 2026년 | 산림청·국립공원공단 등 |
+| 세계 관광객 방문 국가 순위 | 2024년 | UN Tourism 인용 자료 |
+
+### 서비스
+
+| 순위 | 자료 기준 | 출처 |
+|---|---|---|
+| 웹하드 서비스 이용 전 비교 | 2026.08.27 | 각 서비스 홈페이지 (편집 비교, 순위 아님) |
+| 국내 OTT 앱 사용자 순위 | 2025년 4월 | 와이즈앱 |
+
+### 글로벌
+
+| 순위 | 자료 기준 | 출처 |
+|---|---|---|
+| 세계 스포츠 스타 수입 순위 | 2026.05.22 | Forbes |
+| 세계 최고층 빌딩 순위 | 2026.08.27 | CTBUH |
+| 세계 인구 순위 | 2025년 | UNFPA |
+| 세계 GDP 순위 | IMF 2026년 전망 | IMF |
+| 세계에서 가장 큰 나라 순위 | 2023년 | World Bank·FAOSTAT |
+| 세계에서 가장 높은 산 순위 | 2026년 | 산별 고도 자료 |
+
+### 공개 보류 (자료 검증 중)
+
+| 순위 | 보류 이유 |
+|---|---|
+| MLB 한국 선수 누적 연봉 | 누적 지급액과 계약 총액 기준 재검증 |
+| 한국 축구선수 연봉 | 계약·환율 기준이 서로 달라 순위 비교 보류 |
+| 한국인 해외여행 통계 | 국가별 통계 기준 재검증 |
+| 일본 성인 배우 인기 | 원본 차트와 측정 기준 재검증 |
+
+## 데이터 갱신 방식
+
+### 순위 데이터: 현재는 사람이 직접 갱신
+
+모든 순위는 편집자가 원자료를 확인해 `app/rankings/` 아래 데이터 파일에 직접 입력합니다. 원자료에 따라 앞으로 자동화할 수 있는 정도는 다음과 같습니다.
+
+| 수준 | 순위 | 필요한 것 |
+|---|---|---|
+| 자동화 가능 (공식 API) | 국내 영화 흥행·역대 관객, 넷플릭스 주간 TOP 10, 세계 인구·GDP·국토 면적, 시도 인구 | KOBIS API 키 등 |
+| 반자동 (발표 자료 정리) | 자동차 판매, 수입차 등록, KBO 기록·관중, UFC 랭킹, 세계 영화 흥행, OTT 사용자 | 보도자료·기록 페이지 수집, 약관 확인 |
+| 수동 유지 (거의 안 바뀜) | 높은 산, 최고층 빌딩, 역대 드라마 시청률, 스포츠 스타 수입 | 연 1회 점검 |
+
+### 지금 주목할 랭킹: 배포할 때 자동
+
+메인 화면 오른쪽 "지금 주목할 랭킹" 카드는 **양식은 그대로 두고 내용만** 실시간 인기 검색어로 자동으로 바뀝니다. API 키가 필요한 연동 없이, 누구나 받을 수 있는 공개 데이터만 씁니다.
+
+1. **검색어 받기:** 사이트를 만들 때(GitHub Pages 배포 시점) 구글 트렌드 급상승 검색어 RSS와 나무위키 실시간 검색어를 받습니다. 최신 검색어로 바꾸려면 다시 배포하면 됩니다([배포](#배포-github-pages) 참고).
+2. **합치기:** 두 곳에 함께 오른 검색어를 먼저 놓습니다. 띄어쓰기나 나무위키식 괄호 설명("오디세이(2026 영화)")만 다른 검색어는 같은 것으로 봅니다.
+3. **한 줄 만들기:** 위에서부터 최대 5개를 고르고, 각 줄은 다음처럼 만듭니다.
+   - 제목: 검색어
+   - 부제: 구글 트렌드 RSS에 함께 들어 있는 관련 뉴스 제목과 언론사 (왜 떴는지)
+   - 라벨: 3시간 안에 뜬 검색어면 "급상승", 아니면 "화제"
+   - 링크: 검색어와 이름이 맞는 우리 순위가 있으면 그 순위 페이지, 없으면 뉴스 기사(새 창)
+4. **건너뛰기·채우기:** 관련 뉴스가 없는 검색어(주로 나무위키에만 오른 검색어)는 설명할 근거가 없어 건너뜁니다. 5개가 안 되거나 검색어를 못 받으면 편집자가 고른 목록(`app/rankings/editor-picks.ts`)으로 채웁니다.
+
+한계: 설명은 뉴스 제목을 그대로 보여주는 것이라 요약이나 해설은 없습니다. 나무위키 실시간 검색어는 공식 API가 아니어서 언제든 막힐 수 있고, 막히면 구글 트렌드만으로 동작합니다.
+
+## 운영 원칙
+
+- **출처 표시:** 모든 순위에 원자료 링크와 자료 기준일을 표시합니다.
+- **검증 우선:** 기준이 서로 다른 자료를 섞었거나 확인되지 않은 수치는 순위로 공개하지 않고, 검색엔진 노출도 막습니다(`noindex`).
+- **자료 점검:** 순위마다 언제 무엇을 점검했는지 상세 화면에 적습니다.
+- **비순위 구분:** 순위가 아닌 비교·안내 자료는 순위 번호 없이 보여줍니다.
+- **제휴 표시:** 제휴 콘텐츠는 별도로 표시합니다.
+- **저작권:** 외부 기사는 제목과 링크만 쓰고 본문은 옮기지 않습니다. 나무위키 문서 내용은 비영리 조건 라이선스라 가져오지 않습니다.
+
+## 로드맵
+
+1. **실시간 검색어 설명 보강 (선택):** 지금은 뉴스 제목을 그대로 보여줍니다. 필요해지면 네이버 뉴스 검색(NAVER API HUB 키·결제 수단 등록 필요)으로 나무위키 검색어에도 설명을 붙이거나, AI 요약을 더할 수 있습니다.
+2. **검색어 상세 페이지:** 설명, 출처 기사, 검색량 추이(네이버 데이터랩), 관련 순위를 보여줍니다.
+3. **순위 데이터 자동 갱신:** 영화 흥행, 넷플릭스 TOP 10, KBO 기록부터 자동화합니다.
+4. **순위 제안 시스템:** 사이트 검색에서 결과가 없던 검색어 기록, 실시간 검색어 기반 순위 후보 제안, 사용자 투표를 모아 다음에 만들 순위를 고릅니다.
+5. **새 순위 추가:** 로또 번호 출현 횟수, 아파트 실거래가 최고가, 시가총액, 유튜버 구독자 등.
+
+## 개발자 안내
+
+자세한 실행·배포 방법은 [docs/개발환경.md](docs/개발환경.md)에 있습니다.
+
+### 빠르게 실행하기
+
+Node.js 22.13 이상이 필요합니다.
+
+```bash
+npm ci
+npm run dev   # http://localhost:5173
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+### 폴더 구조
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+```
+app/
+  page.tsx                메인 화면 진입점 (서버에서 "지금 주목할 랭킹"을 골라 전달)
+  home.tsx                메인 화면
+  rankings/
+    data.ts               순위 데이터 모음 + 제목·주소 연결
+    additions.ts          추가 순위 데이터
+    expansion.ts          확장 순위 데이터
+    asian-games.ts        아시안게임 순위 데이터
+    audit.ts              자료 점검일·메모, 공개 보류 처리
+    editor-picks.ts       편집자가 고른 주목할 랭킹
+    [slug]/page.tsx       순위 상세 화면
+lib/
+  trends.ts               실시간 검색어 해석·합치기·순위 연결·주목할 랭킹 채우기
+  trends-server.ts        실시간 검색어 받기
+public/ranking-images/    순위 이미지
+scripts/                  이미지 수집·점검 스크립트
+tests/                    자동 테스트
+docs/개발환경.md            개발·배포 안내
+```
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+### 순위 추가하기
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+1. `app/rankings/` 아래 데이터 파일에 순위를 추가합니다. 형식은 `app/rankings/data.ts` 맨 위 `RankingPage`에 정의되어 있습니다.
+   - 필수: `slug`(주소), `title`, `category`, `date`(자료 기준일), `basis`(집계 기준), `description`, `source`, `sourceUrl`, `rows`(순위 항목), `faq`
+2. 메인 화면 카드에 보이게 하려면 `app/home.tsx`의 `rankings` 목록에 추가하고, `data.ts`의 `slugByTitle`에 제목과 주소를 연결합니다.
+3. 이미지는 `public/ranking-images/`에 넣고 항목의 `image`에 `/ranking-images/...` 경로로 적습니다.
+4. `npm run dev`로 화면을 확인합니다.
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+### 배포 (GitHub Pages)
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+`main`에 올라오면 `.github/workflows/pages.yml`이 정적 사이트를 만들어 GitHub Pages에 올립니다. 주소는 https://mktperiod-a11y.github.io/rankingzip/ 입니다.
 
-## Diagnostic Commands
+- 처음 한 번: 저장소 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꿉니다.
+- 다시 만들기: **Actions → GitHub Pages → Run workflow**를 누르면 최신 실시간 검색어로 다시 만들어집니다.
+- 내 컴퓨터에서 같은 결과 만들기: `node scripts/build-github-pages.mjs /rankingzip out` 실행 후 `out/` 폴더 확인
 
-- `npm run install:ci`: perform the one bounded lockfile install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build and validate the deployable Sites artifact
-- `npm run start`: start the built Vinext application
-- `npm test`: build, validate, and verify the rendered development-preview metadata
-- `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+### 테스트
 
-Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
-
-The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+```bash
+node --test tests/trends.test.mjs   # 빌드 없이 실시간 검색어 테스트만
+npm test                            # 빌드 후 전체 테스트
+```
