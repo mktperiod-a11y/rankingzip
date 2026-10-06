@@ -50,6 +50,24 @@ function numericValues(rows:{value:string}[]){
  return values.length>1&&values.every(v=>Number.isFinite(v)&&v>=0)&&values.some(v=>v>0)?values:null;
 }
 
+const changeBadge=(r:{change?:number|'new'})=>r.change==='new'?<em className="dp-change new">NEW</em>:r.change?<em className={`dp-change ${r.change>0?'up':'down'}`}>{r.change>0?`▲${r.change}`:`▼${-r.change}`}</em>:null;
+
+/** 데이터에서 눈에 띄는 사실을 최대 3개 자동으로 뽑습니다. 1·2위 격차, 대한민국 순위, 가장 많이 오른 항목. */
+function rankingPoints(rows:{name:string;value:string;rank?:number;change?:number|'new'}[],values:number[]|null){
+ const out:string[]=[];
+ if(values&&values[1]>0){
+  const ratio=values[0]/values[1];
+  if(ratio>=1.5)out.push(`1위 ${rows[0].name}, 2위의 ${ratio.toFixed(1)}배`);
+  else if(ratio>1.005)out.push(`1위 ${rows[0].name}, 2위보다 ${Math.round((ratio-1)*100)||1}% 높아요`);
+  else out.push(`1위와 2위가 거의 같아요`);
+ }
+ const korea=rows.findIndex(r=>/^(대한민국|한국)$/.test(r.name.trim()));
+ if(korea>=0)out.push(`대한민국은 ${rows[korea].rank??korea+1}위`);
+ const rising=rows.filter(r=>typeof r.change==='number'&&r.change>0).sort((a,b)=>(b.change as number)-(a.change as number))[0];
+ if(rising)out.push(`가장 많이 오른 곳 ${rising.name} ▲${rising.change}`);
+ return out.slice(0,3);
+}
+
 export default async function RankingDetail({params}:{params:Promise<{slug:string}>}){
  const {slug}=await params;const p=pageBySlug[slug];if(!p)notFound();
  const schema={"@context":"https://schema.org","@type":"ItemList",name:p.title,description:p.description,numberOfItems:p.rows.length,itemListOrder:p.unranked?"https://schema.org/ItemListUnordered":"https://schema.org/ItemListOrderAscending",itemListElement:p.rows.map((r,i)=>({"@type":"ListItem",position:r.rank??i+1,name:r.name,description:`${r.value} · ${r.note}`}))};
@@ -58,6 +76,10 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  const poster=p.posterLayout||POSTER_SLUGS.includes(p.slug);
  const values=p.unranked||p.hideBars?null:numericValues(p.rows);
  const max=values?Math.max(...values):0;
+ // 1~3위는 시상대로 따로 보여주고, 목록은 4위부터 이어갑니다.
+ const podium=!p.unranked&&!p.divisions&&p.rows.length>=3;
+ const start=podium?3:0;
+ const points=rankingPoints(p.rows,p.unranked?null:numericValues(p.rows));
  const related=pages.filter(x=>!x.noindex&&x.category===p.category&&x.slug!==p.slug).slice(0,4);
  const rowSources=(r:typeof p.rows[number])=>(r.sourceUrl||r.imageSource)&&<span className="dp-row-links">{r.sourceUrl&&(p.rowLinkLabel?<a className="dp-visit" href={r.sourceUrl} target="_blank" rel="noreferrer">{p.rowLinkLabel} →</a>:<a href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>)}{r.imageSource&&<a href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</span>;
  return <main className={`detail-page page-${p.slug}`}>
@@ -77,8 +99,10 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
   <div className="dp-main">
    <div className="dp-head"><p>{p.unranked?"REFERENCE":"RANKING"}</p><h2>{p.divisions?"체급을 대표하는 주요 선수":p.unranked?"자료 안내":"순위 한눈에 보기"}</h2>{!p.unranked&&p.rows.length>0&&<span>{p.rows.length}개 항목</span>}</div>
    {!p.rows.length&&<p className="dp-empty">확인되지 않은 수치와 순위는 공개하지 않습니다. 검증 가능한 원자료 확보 후 다시 제공합니다.</p>}
-   {poster?<ol className="dp-posters">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
-   :<ol className="dp-list">{p.rows.map((r,i)=>{const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}{r.change==='new'?<em className="dp-change new">NEW</em>:r.change?<em className={`dp-change ${r.change>0?'up':'down'}`}>{r.change>0?`▲${r.change}`:`▼${-r.change}`}</em>:null}</h3>{r.value&&<strong>{r.value}</strong>}</div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${values[i]?Math.max(2,values[i]/max*100):0}%`}}/></div>}{r.note&&<p>{r.note}</p>}{rowSources(r)}</div></li>})}</ol>}
+   {points.length>0&&<ul className="dp-points">{points.map(t=><li key={t}><b>POINT</b>{t}</li>)}</ul>}
+   {podium&&<ol className={`dp-podium ${poster?'poster':''}`}>{[1,0,2].map(i=>{const r=p.rows[i];const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={`place-${i+1}`}><div className={poster?'dp-podium-poster':`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-step"><b className="dp-medal">{rank}</b><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}{rowSources(r)}</div></li>})}</ol>}
+   {poster?<ol className="dp-posters" start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}{changeBadge(r)}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
+   :<ol className="dp-list" start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}</div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${values[i]?Math.max(2,values[i]/max*100):0}%`}}/></div>}{r.note&&<p>{r.note}</p>}{rowSources(r)}</div></li>})}</ol>}
    {p.rows.length>0&&<p className="dp-credit">이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
   </div>
   <aside className="dp-side">
