@@ -106,3 +106,19 @@ The timeout defaults can be overridden for a controlled canary with `SITES_INSTA
 
 - [vinext Documentation](https://github.com/cloudflare/vinext)
 - [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+
+## 실시간 검색어 수집 (`npm run collect:trends`)
+
+`scripts/collect-trends.mjs`가 등록된 소스에서 검색어 순위와 관련 내용을 받아 `data/trends/`에 저장합니다.
+
+- `data/trends/<소스id>.json`: 소스별 순위(검색어, 링크, 검색량, 이미지, 관련 뉴스)
+- `data/trends/latest.json`: 전체 소스를 합친 통합 순위. 여러 소스에 동시에 오른 검색어가 위로 갑니다.
+- 특정 소스만 받기: `node scripts/collect-trends.mjs namuwiki`
+- 소스가 실패하면 그 소스의 직전 결과를 `stale: true`로 유지합니다.
+
+| id | 내용 | 비고 |
+| --- | --- | --- |
+| `google-trends` | 구글 트렌드 급상승 검색어 RSS + 관련 뉴스 | 키 불필요 |
+| `namuwiki` | 나무위키 실시간 검색어 | 공식 API 아님, 사이트 변경 시 깨질 수 있음 |
+
+새 소스를 추가하려면 `scripts/trends/sources/<id>.mjs`에 `id`, `label`, `homepage`, `parse()`, `collect()`를 만들고 `sources/index.mjs`에 한 줄 등록한 뒤, `tests/fixtures/trends/`에 샘플 응답을 넣고 `tests/trends.test.mjs`에 파서 테스트를 추가합니다.
