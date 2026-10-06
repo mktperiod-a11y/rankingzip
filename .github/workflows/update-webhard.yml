@@ -1,0 +1,35 @@
+# 인기 웹하드 순위를 2일마다(09:00 KST) 갱신하고 GitHub Pages를 다시 배포합니다.
+name: Update webhard ranking
+
+on:
+  schedule:
+    - cron: "0 0 */2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  webhard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/update-webhard.mjs
+      - name: 저장 후 사이트 재배포
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rankings/webhard.json
+          git commit -m "Update webhard ranking"
+          git push
+          gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
