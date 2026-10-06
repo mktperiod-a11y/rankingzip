@@ -106,7 +106,7 @@ export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt
           <div className="card-grid">
             {filtered.map((item) => <article className="rank-card" key={item.title}>
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{item.tag}</span>
-              <small>{item.category}</small><h3>{pageBySlug[slugByTitle[item.title]]?.title||item.title}</h3><p>{pageBySlug[slugByTitle[item.title]]?.date} · {pageBySlug[slugByTitle[item.title]]?.basis}</p>
+              <small>{item.category}</small><h3>{pageBySlug[slugByTitle[item.title]]?.title||item.title}</h3><p className="rank-meta">{(pageBySlug[slugByTitle[item.title]]?.date??"").split(" · ")[0]}</p>
               <a className="rank-link" href={`/rankings/${slugByTitle[item.title]}`}>상세 자료 보기 <b>→</b></a>
             </article>)}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
