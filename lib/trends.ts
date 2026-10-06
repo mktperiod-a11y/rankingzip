@@ -21,7 +21,7 @@ export type RankingCandidate = { slug: string; title: string; noindex?: boolean;
 /** 편집 선정 주목할 랭킹 한 줄: [제목, 순위 이름, 라벨, 순위 slug] */
 export type Pick = [headline: string, subtitle: string, label: string, slug: string];
 /** "지금 주목할 랭킹" 카드 한 줄. external이면 외부 기사 링크입니다. */
-export type TrendPick = { title: string; subtitle: string; label: string; href: string; external?: boolean };
+export type TrendPick = { title: string; subtitle: string; label: string; href: string; external?: boolean; live?: boolean };
 
 const ENTITIES: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 
@@ -157,6 +157,7 @@ export function buildPicks(snapshot: TrendSnapshot, fallback: Pick[], count = fa
       title: trend.keyword,
       subtitle: news.source ? `${news.title} · ${news.source}` : news.title,
       label: isNew ? "급상승" : "화제",
+      live: true,
       ...(trend.ranking ? { href: `/rankings/${trend.ranking.slug}` } : { href: news.url, external: true }),
     });
     if (picks.length === count) return picks;
