@@ -1,11 +1,11 @@
-// 실시간 인기 검색어: 소스 응답 해석, 소스 간 통합, 우리 순위 페이지 연결, 홈 화면 "지금 주목할 랭킹" 자동 선정.
+// 실시간 인기 검색어: 소스 응답 해석, 소스 간 통합, 우리 순위 페이지 연결, 홈 화면 "지금 주목할 랭킹" 채우기.
 // 네트워크와 캐시는 lib/trends-server.ts가 맡고, 이 파일은 입력→출력만 다루는 순수 함수만 둡니다.
 
 export type TrendNews = { title: string; url: string; source?: string };
 export type TrendItem = { rank: number; keyword: string; traffic?: string; startedAt?: string; news: TrendNews[] };
 export type TrendSourceId = "google" | "namuwiki";
 export type TrendSource = { id: TrendSourceId; label: string; homepage: string; url: string; headers?: Record<string, string>; parse: (body: string) => TrendItem[] };
-export type TrendRankingLink = { slug: string; title: string; row: number };
+export type TrendRankingLink = { slug: string; title: string };
 export type Trend = {
   rank: number;
   keyword: string;
@@ -17,9 +17,11 @@ export type Trend = {
 };
 export type TrendSourceStatus = { id: TrendSourceId; label: string; homepage: string; ok: boolean; count: number; fetchedAt?: string };
 export type TrendSnapshot = { updatedAt: string; sources: TrendSourceStatus[]; trends: Trend[] };
-export type RankingCandidate = { slug: string; title: string; noindex?: boolean; unranked?: boolean; rows: { name: string; value: string; rank?: number }[] };
-/** 홈 화면 주목할 랭킹 한 줄: [제목, 순위 이름, 라벨, 순위 slug] */
+export type RankingCandidate = { slug: string; title: string; noindex?: boolean; rows: { name: string }[] };
+/** 편집 선정 주목할 랭킹 한 줄: [제목, 순위 이름, 라벨, 순위 slug] */
 export type Pick = [headline: string, subtitle: string, label: string, slug: string];
+/** "지금 주목할 랭킹" 카드 한 줄. external이면 외부 기사 링크입니다. */
+export type TrendPick = { title: string; subtitle: string; label: string; href: string; external?: boolean };
 
 const ENTITIES: Record<string, string> = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " " };
 
@@ -133,34 +135,35 @@ export function matchRanking(keyword: string, pages: RankingCandidate[]): TrendR
     if (!score && long(key) && keywordKey(page.title).includes(key)) { score = 2; position = page.rows.length; }
     if (score && (!best || score > best.score || (score === best.score && position < best.position))) best = { score, position, page };
   }
-  // 제목으로만 연결되면 그 순위의 1위 항목을 대표로 씁니다.
-  return best && { slug: best.page.slug, title: best.page.title, row: best.score === 2 ? 0 : best.position };
+  return best && { slug: best.page.slug, title: best.page.title };
 }
 
 const PICK_NEW_MS = 3 * 60 * 60 * 1000;
 
 /**
- * 실시간 검색어와 연결된 순위로 "지금 주목할 랭킹"을 채웁니다.
- * 제목은 연결된 순위 항목의 실제 값으로 만들고(예: "그랜저 8,898대 1위"), 라벨은 3시간 안에 뜬 검색어면 "급상승", 아니면 "화제"입니다.
- * 연결된 순위가 모자라면 편집 선정 목록으로 나머지를 채웁니다.
+ * "지금 주목할 랭킹"을 실시간 검색어로 채웁니다. 별도 API 키 없이 구글 트렌드 RSS에 들어 있는 뉴스만 씁니다.
+ * - 제목: 검색어, 부제: 관련 뉴스 제목(=왜 떴는지), 라벨: 3시간 안에 뜬 검색어면 "급상승", 아니면 "화제"
+ * - 링크: 우리 관련 순위가 있으면 그 순위, 없으면 뉴스 기사
+ * 설명할 뉴스가 없는 검색어(나무위키에만 오른 검색어 등)는 건너뛰고, 모자라면 편집 선정 목록으로 채웁니다.
  */
-export function buildPicks(snapshot: TrendSnapshot, pages: RankingCandidate[], fallback: Pick[], count = fallback.length): Pick[] {
-  const bySlug = new Map(pages.map((p) => [p.slug, p]));
+export function buildPicks(snapshot: TrendSnapshot, fallback: Pick[], count = fallback.length): TrendPick[] {
   const updated = new Date(snapshot.updatedAt).getTime();
-  const picks: Pick[] = [];
+  const picks: TrendPick[] = [];
   for (const trend of snapshot.trends) {
-    const page = trend.ranking && bySlug.get(trend.ranking.slug);
-    if (!page || !page.rows.length || picks.some((p) => p[3] === page.slug)) continue;
-    const index = trend.ranking!.row;
-    const row = page.rows[index];
-    const place = page.unranked ? "" : ` ${row.rank ?? index + 1}위`;
+    const news = trend.news[0];
+    if (!news) continue;
     const isNew = trend.startedAt && updated - new Date(trend.startedAt).getTime() < PICK_NEW_MS;
-    picks.push([`${row.name} ${row.value}${place}`, page.title, isNew ? "급상승" : "화제", page.slug]);
+    picks.push({
+      title: trend.keyword,
+      subtitle: news.source ? `${news.title} · ${news.source}` : news.title,
+      label: isNew ? "급상승" : "화제",
+      ...(trend.ranking ? { href: `/rankings/${trend.ranking.slug}` } : { href: news.url, external: true }),
+    });
     if (picks.length === count) return picks;
   }
-  for (const pick of fallback) {
+  for (const [title, subtitle, label, slug] of fallback) {
     if (picks.length === count) break;
-    if (!picks.some((p) => p[3] === pick[3])) picks.push(pick);
+    picks.push({ title, subtitle, label, href: `/rankings/${slug}` });
   }
   return picks;
 }

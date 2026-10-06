@@ -1,5 +1,5 @@
 import { pages } from "../app/rankings/data";
-import { TREND_SOURCES, buildPicks, matchRanking, mergeTrends, type Pick, type TrendItem, type TrendSnapshot, type TrendSourceId } from "./trends";
+import { TREND_SOURCES, buildPicks, matchRanking, mergeTrends, type Pick, type TrendItem, type TrendPick, type TrendSnapshot, type TrendSourceId } from "./trends";
 
 // 소스는 약 10분마다 갱신되므로 같은 주기로 다시 받습니다. 실패한 소스는 직전 결과를 계속 씁니다.
 const REFRESH_MS = 10 * 60 * 1000;
@@ -58,6 +58,6 @@ export async function getTrends(): Promise<TrendSnapshot> {
 }
 
 /** 홈 화면 "지금 주목할 랭킹" 목록. 실시간 검색어를 못 받으면 편집 선정 목록을 그대로 돌려줍니다. */
-export async function getPicks(fallback: Pick[]): Promise<Pick[]> {
-  return buildPicks(await getTrends(), pages, fallback);
+export async function getPicks(fallback: Pick[]): Promise<TrendPick[]> {
+  return buildPicks(await getTrends(), fallback);
 }
