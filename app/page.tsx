@@ -85,9 +85,6 @@ export default function Home() {
       <header className="site-header">
         <div className="header-inner">
           <BrandLogo />
-          <nav aria-label="주요 메뉴">
-            {categories.slice(1).map((cat) => <button key={cat} onClick={() => setActive(cat)}>{cat}</button>)}
-          </nav>
           <label className="search"><span>⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="궁금한 순위를 검색하세요" /></label>
         </div>
       </header>
