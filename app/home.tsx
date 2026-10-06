@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { slugByTitle, pageBySlug } from "./rankings/data";
 import { editorPicks as hot } from "./rankings/editor-picks";
-import type { Pick } from "../lib/trends";
+import type { TrendPick } from "../lib/trends";
 
 type Category = "전체" | "스포츠" | "미디어" | "라이프" | "서비스" | "글로벌";
 
@@ -67,7 +67,7 @@ function BrandLogo({ footer = false }: { footer?: boolean }) {
   );
 }
 
-export default function Home({ picks }: { picks: Pick[] }) {
+export default function Home({ picks }: { picks: TrendPick[] }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
   const filtered = useMemo(() => rankings.filter((item) =>
@@ -114,7 +114,7 @@ export default function Home({ picks }: { picks: Pick[] }) {
           </div>
           <aside>
             <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em>추천</em></div>
-            {picks.map((item,i)=><a className="trend" href={`/rankings/${item[3]}`} key={item[0]}><b>{i+1}</b><p><strong>{item[0]}</strong><small>{item[1]}</small></p><em className="up">{item[2]}</em></a>)}
+            {picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong>{item.title}</strong><small>{item.subtitle}</small></p><em className="up">{item.label}</em></a>)}
             <button className="all-button">인기 랭킹 전체보기 <b>→</b></button>
           </aside>
         </div>

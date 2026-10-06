@@ -56,22 +56,19 @@ test('keywords link to the most relevant ranking page', () => {
   assert.equal(matchRanking('날씨', pages), undefined);
 });
 
-test('editor picks are filled from trending keywords, then the editorial list', () => {
-  const pages = [
-    { slug: 'cars', title: '국내 자동차 월간 판매 순위', rows: [{ name: '쏘렌토', value: '9,100대' }, { name: '그랜저', value: '8,898대' }] },
-    { slug: 'box', title: '2026년 국내 영화 흥행 순위', rows: [{ name: '오디세이', value: '10,027,997명', rank: 2 }] },
-    { slug: 'ufc', title: 'UFC 체급별 공식 랭킹', unranked: true, rows: [{ name: '알렉스 페레이라', value: '라이트헤비급 챔피언' }] },
-  ];
+test('picks show trending keywords with their news headline, then the editorial list', () => {
   const at = (minutesAgo) => new Date(Date.parse('2026-10-06T12:00:00Z') - minutesAgo * 60000).toISOString();
-  const trend = (keyword, minutesAgo) => ({ keyword, startedAt: minutesAgo === undefined ? undefined : at(minutesAgo), ranking: matchRanking(keyword, pages) });
-  const snapshot = { updatedAt: at(0), trends: [trend('날씨', 5), trend('그랜저', 30), trend('오디세이 2', 600), trend('오디세이', 10), trend('UFC', undefined)] };
-  const fallback = [['편집 1', '순위 A', '주간', 'a'], ['편집 2', '자동차', '최종', 'cars'], ['편집 3', '순위 B', '흥행', 'b']];
-  assert.deepEqual(buildPicks(snapshot, pages, fallback, 5), [
-    ['그랜저 8,898대 2위', '국내 자동차 월간 판매 순위', '급상승', 'cars'],
-    ['오디세이 10,027,997명 2위', '2026년 국내 영화 흥행 순위', '화제', 'box'],
-    ['알렉스 페레이라 라이트헤비급 챔피언', 'UFC 체급별 공식 랭킹', '화제', 'ufc'],
-    ['편집 1', '순위 A', '주간', 'a'],
-    ['편집 3', '순위 B', '흥행', 'b'],
+  const news = (title, source) => [{ title, url: `https://example.com/${encodeURIComponent(title)}`, source }];
+  const snapshot = { updatedAt: at(0), trends: [
+    { keyword: '그랜저', startedAt: at(30), news: news('9월 국산차 판매 1위 그랜저', '한국경제'), ranking: { slug: 'cars', title: '국내 자동차 월간 판매 순위' } },
+    { keyword: '체인소 맨', news: [] },
+    { keyword: '태풍 경로', startedAt: at(600), news: news('제18호 태풍 북상') },
+  ] };
+  const fallback = [['편집 1', '순위 A', '주간', 'a'], ['편집 2', '순위 B', '최종', 'b'], ['편집 3', '순위 C', '흥행', 'c']];
+  assert.deepEqual(buildPicks(snapshot, fallback), [
+    { title: '그랜저', subtitle: '9월 국산차 판매 1위 그랜저 · 한국경제', label: '급상승', href: '/rankings/cars' },
+    { title: '태풍 경로', subtitle: '제18호 태풍 북상', label: '화제', href: 'https://example.com/%EC%A0%9C18%ED%98%B8%20%ED%83%9C%ED%92%8D%20%EB%B6%81%EC%83%81', external: true },
+    { title: '편집 1', subtitle: '순위 A', label: '주간', href: '/rankings/a' },
   ]);
-  assert.deepEqual(buildPicks({ updatedAt: at(0), trends: [] }, pages, fallback), fallback);
+  assert.deepEqual(buildPicks({ updatedAt: at(0), trends: [] }, fallback).map((p) => p.title), ['편집 1', '편집 2', '편집 3']);
 });
