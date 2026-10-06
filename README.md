@@ -10,7 +10,7 @@
 - [준비물](#준비물)
 - [폴더 구조](#폴더-구조)
 - [랭킹 추가·수정하기](#랭킹-추가수정하기)
-- [실시간 인기 검색어](#실시간-인기-검색어)
+- [실시간 검색어 수집](#실시간-검색어-수집-npm-run-collecttrends)
 - [명령어 모음](#명령어-모음)
 - [배포 (Sites)](#배포-sites)
 - [워크스페이스 인증 헤더](#워크스페이스-인증-헤더)
@@ -73,10 +73,7 @@ Sites로 배포된 실제 사이트 주소는 Sites 관리 화면에서 확인�
 
 ```
 app/
-  page.tsx                  메인 화면 진입점 (서버에서 실시간 검색어를 불러와 home.tsx에 전달)
-  home.tsx                  메인 화면 (카테고리 탭, 검색, 랭킹 카드, 주목할 랭킹)
-  live-trends.tsx           메인 화면 왼쪽 실시간 인기 검색어
-  api/trends/route.ts       실시간 검색어 JSON (/api/trends)
+  page.tsx                  메인 화면 (카테고리 탭, 검색, 랭킹 카드, 주목할 랭킹)
   globals.css               메인 화면 스타일
   layout.tsx                공통 레이아웃·메타데이터
   rankings/
@@ -91,10 +88,9 @@ app/
   chatgpt-auth.ts           ChatGPT 로그인 도우미 (선택)
 public/ranking-images/      랭킹에 쓰는 이미지 (포스터, 선수 사진, 로고 등)
 scripts/
+  collect-trends.mjs        실시간 검색어 수집 실행 파일
+  trends/                   검색어 수집 소스·공통 도구
   *-assets.mjs              이미지 수집·점검 스크립트
-lib/
-  trends.ts                 검색어 소스 해석·통합·관련 순위 연결 (순수 함수)
-  trends-server.ts          검색어 수집과 10분 캐시
 tests/                      자동 테스트
 worker/index.ts             Cloudflare Worker 진입점 (이미지 최적화 포함)
 db/, drizzle/               D1 데이터베이스 스키마 (현재 비어 있음)
@@ -106,32 +102,29 @@ examples/d1/                D1 사용 예시 (선택)
 
 1. `app/rankings/` 아래 데이터 파일에 `RankingPage` 형식으로 항목을 추가합니다. 형식은 `app/rankings/data.ts` 맨 위에 정의되어 있습니다.
    - 필수: `slug`(주소), `title`, `category`(스포츠·미디어·라이프·서비스·글로벌), `date`, `basis`(집계 기준), `description`, `source`, `sourceUrl`, `rows`(순위 항목), `faq`
-2. 메인 화면에 카드를 보이게 하려면 `app/home.tsx`의 `rankings` 목록에 추가하고, `data.ts`의 `slugByTitle`에 제목과 슬러그를 연결합니다.
+2. 메인 화면에 카드를 보이게 하려면 `app/page.tsx`의 `rankings` 목록에 추가하고, `data.ts`의 `slugByTitle`에 제목과 슬러그를 연결합니다.
 3. 이미지는 `public/ranking-images/` 아래에 넣고 항목의 `image`에 `/ranking-images/...` 경로로 적습니다.
 4. `npm run dev`로 화면을 확인합니다.
 
-## 실시간 인기 검색어
+## 실시간 검색어 수집 (`npm run collect:trends`)
 
-메인 화면 왼쪽은 지금 사람들이 많이 찾는 검색어를 실시간으로 보여줍니다.
+`scripts/collect-trends.mjs`가 등록된 소스에서 검색어 순위와 관련 내용을 받아 `data/trends/`에 저장합니다.
 
-| 출처 | 받는 내용 | 비고 |
+- `data/trends/<소스id>.json`: 소스별 순위(검색어, 링크, 검색량, 이미지, 관련 뉴스)
+- `data/trends/latest.json`: 전체 소스를 합친 통합 순위. 여러 소스에 동시에 오른 검색어가 위로 갑니다.
+- 특정 소스만 받기: `node scripts/collect-trends.mjs namuwiki`
+- 소스가 실패하면 그 소스의 직전 결과를 `stale: true` 표시와 함께 유지합니다.
+
+| id | 내용 | 비고 |
 | --- | --- | --- |
-| 구글 트렌드 급상승 검색어 RSS | 검색어, 대략적인 검색량, 시작 시각, 관련 뉴스 | 키 불필요 |
-| 나무위키 실시간 검색어 | 검색어 | 공식 API 아님, 사이트가 바뀌면 동작하지 않을 수 있음 |
+| `google-trends` | 구글 트렌드 급상승 검색어 RSS + 관련 뉴스 | 키 불필요 |
+| `namuwiki` | 나무위키 실시간 검색어 | 공식 API 아님, 사이트가 바뀌면 동작하지 않을 수 있음 |
 
-동작 방식:
+새 소스를 추가하는 순서:
 
-- 별도 예약 작업 없이 서버가 직접 받아 옵니다. 마지막으로 받은 지 10분이 지났으면 다음 요청 때 다시 받고, 그 사이에는 저장해 둔 결과를 바로 보여줍니다(`lib/trends-server.ts`).
-- 한 출처가 실패하면 그 출처의 직전 결과를 계속 씁니다. 모두 실패하면 1분 뒤 다시 시도하고, 화면에는 안내 문구가 나옵니다.
-- 두 출처를 합친 '통합' 순위에서는 양쪽에 함께 오른 검색어가 먼저 나옵니다. 띄어쓰기와 나무위키식 괄호 설명("오디세이(2026 영화)")은 같은 검색어로 봅니다.
-- 검색어가 우리 순위 페이지의 항목 이름이나 제목과 맞으면 '관련 순위' 버튼으로 연결합니다(`matchRanking`).
-- 화면을 열어 둔 사람에게는 5분마다 `/api/trends`로 새 결과를 받아 바꿔 보여줍니다.
-- 'NEW'는 구글 트렌드에서 3시간 안에 오르기 시작한 검색어입니다.
-
-새 출처를 추가하는 순서:
-
-1. `lib/trends.ts`에 응답을 `TrendItem[]`로 바꾸는 `parse` 함수를 만들고 `TREND_SOURCES`에 한 줄 추가합니다.
-2. `tests/fixtures/trends/`에 실제 응답 샘플을 넣고 `tests/trends.test.mjs`에 해석 테스트를 추가합니다.
+1. `scripts/trends/sources/<id>.mjs` 파일을 만들고 `id`, `label`, `homepage`, `parse()`, `collect()`를 내보냅니다.
+2. `scripts/trends/sources/index.mjs`에 한 줄 등록합니다.
+3. `tests/fixtures/trends/`에 샘플 응답을 넣고 `tests/trends.test.mjs`에 파서 테스트를 추가합니다.
 
 ## 명령어 모음
 
@@ -141,7 +134,8 @@ examples/d1/                D1 사용 예시 (선택)
 | `npm run build` | 배포용 결과물을 만들고 검증 |
 | `npm run start` | 빌드된 결과물로 서버 실행 |
 | `npm test` | 빌드 후 전체 테스트 실행 |
-| `node --test tests/trends.test.mjs` | 빌드 없이 실시간 검색어 테스트만 실행 |
+| `node --test tests/trends.test.mjs` | 빌드 없이 검색어 수집 테스트만 실행 |
+| `npm run collect:trends` | 실시간 검색어 수집 |
 | `npm run lint` | 코드 규칙 검사 |
 | `npm run install:ci` | 배포 환경용 의존성 설치 (한 번만, 재시도 없음) |
 | `npm run validate:artifact` | 이미 만든 배포 결과물의 매니페스트와 `default.fetch` 내보내기 재검사 |
