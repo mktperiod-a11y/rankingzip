@@ -1,4 +1,5 @@
 import type { RankingPage, RankingRow } from './data';
+import { netflixFilms } from './netflix';
 import assetSources from '../../public/ranking-images/updates/sources.json';
 
 const assets = assetSources as Record<string,{image:string;source?:string}>;
@@ -49,8 +50,6 @@ const spider: [string,number,number,string][] = [
  ['스파이더맨: 어크로스 더 유니버스',2023,690824738,'Spider-Man:_Across_the_Spider-Verse'],
  ['스파이더맨: 뉴 유니버스',2018,373807069,'Spider-Man:_Into_the_Spider-Verse'],
 ];
-const netflixNames=['The Warriors','Black Bag','Troy','Vanishing Point','Margaux','Shelter','Hercules','One Way Trip','Choir of God: Anthem','Demon Slayer: Kimetsu no Yaiba Infinity Castle I'];
-const netflixWeeks=[1,1,2,2,1,4,2,1,4,1];
 
 export const extraPages: RankingPage[] = [
  {slug:'kbo-single-season-home-runs',title:'KBO 역대 한 시즌 홈런 TOP 20',category:'스포츠',date:'2025시즌 종료 · 2026.08.27 확인',basis:'1982~2025 KBO 정규시즌 · 선수-시즌별 홈런 · 동률 공동 순위',description:'이승엽의 56홈런부터 우즈의 42홈런까지, 한 시즌을 수놓은 20개 홈런 기록을 비교합니다. 동일 선수가 여러 시즌에 등장하며 진행 중인 2026시즌과 포스트시즌은 제외합니다.',source:'KBO 역대 기록실',sourceUrl:kbo,
@@ -62,8 +61,7 @@ export const extraPages: RankingPage[] = [
  {slug:'spider-man-worldwide-box-office',title:'역대 스파이더맨 영화 흥행 순위',category:'미디어',date:'2026년 8월 27일 확인',basis:'전 세계 극장 누적 매출 · 미국 달러 · 물가 보정 없음',posterLayout:true,description:'실사와 장편 애니메이션을 함께 비교한 스파이더맨 시리즈 11편의 세계 흥행 순위입니다. 어벤져스 등 조연 출연작, 단편, 합본 상영과 미개봉 작품은 제외합니다. 상영 중인 작품의 매출은 계속 변동됩니다.',source:'The Numbers · Spider-Man 프랜차이즈',sourceUrl:'https://www.the-numbers.com/movies/franchise/Spider-Man',
  rows:spider.map(([name,year,value,key])=>({name,value:`$${value.toLocaleString('en-US')}`,note:`${year} · 전 세계 누적 매출`,...art(key)})),
  faq:[['국내 관객 수 순위인가요?','아니요. 전 세계 극장 매출을 미국 달러로 비교한 순위입니다.'],['애니메이션도 포함되나요?','뉴 유니버스와 어크로스 더 유니버스 등 개봉한 장편 애니메이션을 포함합니다.'],['흥행 수익은 순이익인가요?','아닙니다. 극장 매출이며 제작비·마케팅비·배급 수수료 등을 뺀 순이익은 아닙니다.']]},
- {slug:'netflix-korea-films-weekly',title:'이번 주 넷플릭스 영화 TOP 10',category:'미디어',date:'2026.09.14~09.20 · 9월 24일 확인',basis:'Netflix 공식 · 대한민국 · 영화 · 주간 TOP 10',posterLayout:true,description:'넷플릭스가 공개한 대한민국 영화 최신 완료 주간 순위입니다. 1위는 The Warriors이며, TV 프로그램 순위나 오늘의 앱 순위와는 다릅니다. 한국 시청수는 공개하지 않아 별도로 추정하지 않습니다.',source:'Netflix Tudum · South Korea Films',sourceUrl:'https://www.netflix.com/tudum/top10/south-korea/films',
- rows:netflixNames.map((name,i):RankingRow=>({name,value:`${i+1}위`,note:`한국 영화 주간 차트 · TOP 10 진입 ${netflixWeeks[i]}주`})),
- faq:[['이번 주는 정확히 언제인가요?','2026년 9월 14일부터 9월 20일까지입니다. 확인 시점에 공개된 최신 완료 주간 차트입니다.'],['이번 주 넷플릭스 한국 영화 1위는?','The Warriors가 9월 14일부터 20일까지 한국 영화 차트 1위입니다.'],['오늘 넷플릭스 앱 순위와 왜 다른가요?','이 페이지는 일간 차트가 아닌 공식 주간 집계를 사용합니다.']]},
+ {slug:'netflix-korea-films-weekly',title:'이번 주 넷플릭스 영화 TOP 10',category:'미디어',basis:'Netflix 공식 · 대한민국 · 영화 · 주간 TOP 10',posterLayout:true,source:'Netflix Tudum · South Korea Films',sourceUrl:'https://www.netflix.com/tudum/top10/south-korea/films',
+ ...netflixFilms},
 ];
 export const extraSlugs:Record<string,string> = Object.fromEntries(extraPages.map(p=>[p.title,p.slug]));

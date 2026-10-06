@@ -1,0 +1,68 @@
+{
+  "source": "https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv",
+  "weekStart": "2026-09-14",
+  "weekEnd": "2026-09-20",
+  "checkedAt": "2026-09-24",
+  "rows": [
+    {
+      "rank": 1,
+      "title": "The Scandal",
+      "season": "Limited Series",
+      "weeks": null
+    },
+    {
+      "rank": 2,
+      "title": "Four Hands, Two Sonatas",
+      "season": "Limited Series",
+      "weeks": null
+    },
+    {
+      "rank": 3,
+      "title": "Mousetrap",
+      "season": "Limited Series",
+      "weeks": null
+    },
+    {
+      "rank": 4,
+      "title": "I am Solo",
+      "season": "Part 33",
+      "weeks": null
+    },
+    {
+      "rank": 5,
+      "title": "K-Shaman: True Horror Stories",
+      "season": "Season 2",
+      "weeks": null
+    },
+    {
+      "rank": 6,
+      "title": "My Secretary: My Genie Secretary",
+      "season": "My Genie Secretary",
+      "weeks": null
+    },
+    {
+      "rank": 7,
+      "title": "I'm SOLO, Love goes on",
+      "season": "2026 Part 2",
+      "weeks": null
+    },
+    {
+      "rank": 8,
+      "title": "The Early Spring",
+      "season": "Season 1",
+      "weeks": null
+    },
+    {
+      "rank": 9,
+      "title": "Teach You a Lesson",
+      "season": "Limited Series",
+      "weeks": null
+    },
+    {
+      "rank": 10,
+      "title": "Physical 100: Italy",
+      "season": "Season 1",
+      "weeks": null
+    }
+  ]
+}

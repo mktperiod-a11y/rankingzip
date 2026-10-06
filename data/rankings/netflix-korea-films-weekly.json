@@ -1,0 +1,68 @@
+{
+  "source": "https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv",
+  "weekStart": "2026-09-14",
+  "weekEnd": "2026-09-20",
+  "checkedAt": "2026-09-24",
+  "rows": [
+    {
+      "rank": 1,
+      "title": "The Warriors",
+      "season": "",
+      "weeks": 1
+    },
+    {
+      "rank": 2,
+      "title": "Black Bag",
+      "season": "",
+      "weeks": 1
+    },
+    {
+      "rank": 3,
+      "title": "Troy",
+      "season": "",
+      "weeks": 2
+    },
+    {
+      "rank": 4,
+      "title": "Vanishing Point",
+      "season": "",
+      "weeks": 2
+    },
+    {
+      "rank": 5,
+      "title": "Margaux",
+      "season": "",
+      "weeks": 1
+    },
+    {
+      "rank": 6,
+      "title": "Shelter",
+      "season": "",
+      "weeks": 4
+    },
+    {
+      "rank": 7,
+      "title": "Hercules",
+      "season": "",
+      "weeks": 2
+    },
+    {
+      "rank": 8,
+      "title": "One Way Trip",
+      "season": "",
+      "weeks": 1
+    },
+    {
+      "rank": 9,
+      "title": "Choir of God: Anthem",
+      "season": "",
+      "weeks": 4
+    },
+    {
+      "rank": 10,
+      "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle I",
+      "season": "",
+      "weeks": 1
+    }
+  ]
+}
