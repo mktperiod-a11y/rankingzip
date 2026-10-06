@@ -57,7 +57,12 @@ export async function getTrends(): Promise<TrendSnapshot> {
   return inflight;
 }
 
-/** 홈 화면 "지금 주목할 랭킹" 목록. 실시간 검색어를 못 받으면 편집 선정 목록을 그대로 돌려줍니다. */
-export async function getPicks(fallback: Pick[]): Promise<TrendPick[]> {
-  return buildPicks(await getTrends(), fallback);
+/**
+ * 홈 화면 "지금 주목할 랭킹" 목록과 실시간 검색어 기준 시각.
+ * 실시간 검색어를 못 받으면 편집 선정 목록을 그대로 돌려주고 기준 시각은 비워 둡니다.
+ */
+export async function getPicks(fallback: Pick[]): Promise<{ picks: TrendPick[]; trendsAt?: string }> {
+  const snapshot = await getTrends();
+  const picks = buildPicks(snapshot, fallback);
+  return { picks, trendsAt: picks.some((p) => p.live) ? snapshot.updatedAt : undefined };
 }
