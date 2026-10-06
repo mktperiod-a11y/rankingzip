@@ -56,10 +56,10 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  const faqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:p.faq.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))};
  const json=(value:unknown)=>JSON.stringify(value).replace(/</g,'\\u003c');
  const poster=p.posterLayout||POSTER_SLUGS.includes(p.slug);
- const values=p.unranked?null:numericValues(p.rows);
+ const values=p.unranked||p.hideBars?null:numericValues(p.rows);
  const max=values?Math.max(...values):0;
  const related=pages.filter(x=>!x.noindex&&x.category===p.category&&x.slug!==p.slug).slice(0,4);
- const rowSources=(r:typeof p.rows[number])=>(r.sourceUrl||r.imageSource)&&<span className="dp-row-links">{r.sourceUrl&&<a href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>}{r.imageSource&&<a href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</span>;
+ const rowSources=(r:typeof p.rows[number])=>(r.sourceUrl||r.imageSource)&&<span className="dp-row-links">{r.sourceUrl&&(p.rowLinkLabel?<a className="dp-visit" href={r.sourceUrl} target="_blank" rel="noreferrer">{p.rowLinkLabel} →</a>:<a href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>)}{r.imageSource&&<a href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</span>;
  return <main className={`detail-page page-${p.slug}`}>
  {!p.noindex&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(schema)}}/>}
  {p.faq.length>0&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>}
