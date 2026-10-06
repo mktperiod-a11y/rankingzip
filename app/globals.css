@@ -41,9 +41,10 @@
 .idea-chips span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .idea-chips b{flex-shrink:0}
 
-/* 지금 주목할 랭킹: 실시간 검색어처럼 한 줄씩 위에서 아래로 뒤집히며 바뀝니다. */
-.trend-list{perspective:600px}
-.trend.flip{transform-origin:50% 0;animation:rank-flip .55s cubic-bezier(.2,.8,.2,1) both}
-@keyframes rank-flip{0%{opacity:0;transform:rotateX(-90deg)}60%{opacity:1;transform:rotateX(12deg)}100%{opacity:1;transform:rotateX(0)}}
-@media(prefers-reduced-motion:reduce){.trend.flip{animation:none}}
+/* 지금 주목할 랭킹: 제목 글자가 타일처럼 가로축으로 한 장씩 넘어가며 바뀝니다. 헤더의 급상승 칩은 둥글게. */
+.flap{display:inline}
+.flap-ch{display:inline-block;transform-origin:50% 55%;backface-visibility:hidden;animation:flap-in .5s cubic-bezier(.3,.7,.2,1) both}
+@keyframes flap-in{0%{opacity:0;transform:perspective(220px) rotateX(-100deg);filter:blur(1.2px)}55%{opacity:1;transform:perspective(220px) rotateX(18deg);filter:blur(.4px)}80%{transform:perspective(220px) rotateX(-6deg);filter:none}100%{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.flap-ch{animation:none}}
+.aside-title>em.hot{border-radius:999px;padding:4px 9px}
 .all-button{cursor:pointer}
