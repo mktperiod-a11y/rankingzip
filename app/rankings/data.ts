@@ -9,6 +9,8 @@ export type RankingPage = {
   description: string; source: string; sourceUrl: string; rows: RankingRow[];
   faq: [string,string][]; divisions?: Division[]; posterLayout?: boolean;
   auditDate?: string; auditNote?: string; unranked?: boolean; noindex?: boolean;
+  /** 값 막대 비교를 숨깁니다. */ hideBars?: boolean;
+  /** 항목 링크를 '자료 출처' 대신 이 문구의 버튼으로 보여줍니다. 예: '사이트로 이동' */ rowLinkLabel?: string;
 };
 
 const originalPages: RankingPage[] = [
