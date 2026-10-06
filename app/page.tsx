@@ -93,7 +93,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow">대한민국 모든 순위를 한곳에</p>
           <h1>지금 사람들이<br/><em>가장 궁금한 순위</em></h1>
-          <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
+          <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a><span>매주 새로운 랭킹 업데이트</span></div>
         </div>
         <div className="hero-board" aria-label="오늘의 인기 순위">
