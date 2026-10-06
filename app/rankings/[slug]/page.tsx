@@ -62,14 +62,14 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  const rowSources=(r:typeof p.rows[number])=>(r.sourceUrl||r.imageSource)&&<span className="dp-row-links">{r.sourceUrl&&<a href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>}{r.imageSource&&<a href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</span>;
  return <main className={`detail-page page-${p.slug}`}>
  {!p.noindex&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(schema)}}/>}
- <script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>
+ {p.faq.length>0&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>}
  <header className="site-header"><div className="header-inner"><BrandLogo href="/"/><a className="dp-all" href="/#rankings">전체 랭킹 <b>→</b></a></div></header>
 
  <section className="dp-hero"><div className="dp-wrap dp-hero-inner">
   <div><p className="dp-eyebrow">{p.category} {p.unranked?"GUIDE":"RANKING"}</p><h1>{p.title}</h1><p className="dp-desc">{p.description}</p><div className="dp-chips"><b>자료 기준 {p.date}</b><b>{p.basis}</b></div></div>
   {!p.unranked&&p.rows.length>0&&<div className="dp-count">TOP<strong>{p.rows.length}</strong></div>}
  </div></section>
- <div className="dp-wrap"><section className={`dp-audit ${p.noindex?'pending':''}`}><b>{p.auditDate} {p.noindex?'검증 보류':'자료 점검'}</b><p>{p.auditNote}</p></section></div>
+ {p.auditNote&&<div className="dp-wrap"><section className={`dp-audit ${p.noindex?'pending':''}`}><b>{p.auditDate} {p.noindex?'검증 보류':'자료 점검'}</b><p>{p.auditNote}</p></section></div>}
 
  {p.divisions&&<section className="dp-wrap dp-divisions"><div className="dp-head"><p>WEIGHT CLASSES</p><h2>체급별 챔피언과 랭커</h2><span>각 체급의 챔피언과 상위 3명입니다. 챔피언은 랭커 1위와 별도입니다.</span></div><div className="dp-division-grid">{p.divisions.map(d=><article className="dp-division" key={d.name}><h3>{d.name}</h3><div className="dp-champion"><img src={portrait(d.champion)} alt={`${d.champion} ${d.name} 챔피언`} loading="lazy"/><div><i>CHAMPION</i><strong>{d.champion}</strong></div></div><ol>{d.contenders.map((x,i)=><li key={x}><img src={portrait(x)} alt={`${x} ${d.name} ${i+1}위`} loading="lazy"/><b>{i+1}</b><span>{x}</span></li>)}</ol></article>)}</div></section>}
 
