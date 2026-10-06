@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { slugByTitle, pageBySlug } from "./rankings/data";
 import { editorPicks as hot } from "./rankings/editor-picks";
 import { BrandLogo } from "./brand-logo";
+import { FlapText } from "./flap-text";
 import type { TrendPick } from "../lib/trends";
 
 type Category = "전체" | "스포츠" | "미디어" | "라이프" | "서비스" | "글로벌";
@@ -13,37 +14,37 @@ const categories: Category[] = ["전체", "스포츠", "미디어", "라이프",
 const rankings = [
   { category: "스포츠", icon: "⚾", title: "역대 아시안게임 야구 우승 국가 순위", desc: "한국 통산 7회 우승·대회 5연패", tag: "9.27", color: "blue" },
   { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", desc: "한국 금 8·은 8·동 25개로 종합 3위", tag: "9.23", color: "gold" },
-  { category: "서비스", icon: "☁", title: "파일 공유 서비스 비교", desc: "인기 웹하드 8곳 · 2일마다 갱신", tag: "2일 갱신", color: "indigo" },
-  { category: "미디어", icon: "▶", title: "이번 주 넷플릭스 영화 TOP 10", desc: "9월 14~20일 · The Warriors 1위", tag: "주간", color: "red" },
-  { category: "미디어", icon: "🎟", title: "2026년 국내 영화 흥행", desc: "오디세이 1,002만·스파이더맨 879만", tag: "9.7", color: "red" },
-  { category: "스포츠", icon: "⚾", title: "2026 KBO 팀 순위", desc: "KT 7연승 단독 1위·삼성과 2.5경기", tag: "9.17", color: "blue" },
-  { category: "스포츠", icon: "⚾", title: "2026 KBO 홈런 순위 TOP 5", desc: "김도영 40·오스틴 39·힐리어드 36홈런", tag: "9.17", color: "blue" },
-  { category: "라이프", icon: "🚘", title: "수입차 브랜드 등록 순위 TOP 10", desc: "테슬라 10,400대 · 2026년 8월", tag: "8월", color: "navy" },
-  { category: "스포츠", icon: "⚾", title: "2026 KBO 타점 순위 TOP 5", desc: "오스틴·디아즈·김도영 · 홈런과 다른 타점 경쟁", tag: "NEW", color: "green" },
-  { category: "스포츠", icon: "⚾", title: "KBO 역대 한 시즌 홈런 TOP 20", desc: "이승엽 56홈런부터 · 역대 20개 시즌 기록", tag: "역대", color: "blue" },
-  { category: "미디어", icon: "🎬", title: "크리스토퍼 놀란 영화 국내 흥행 순위", desc: "인터스텔라부터 오디세이까지 · 관객 비교", tag: "NEW", color: "purple" },
-  { category: "미디어", icon: "🕷", title: "역대 스파이더맨 영화 흥행 순위", desc: "실사·애니메이션 11편 · 세계 매출 비교", tag: "NEW", color: "red" },
-  { category: "스포츠", icon: "⚾", title: "2026 KBO 구단 관중", desc: "역대 최소 565경기 만에 1,000만 돌파", tag: "NEW", color: "blue" },
-  { category: "미디어", icon: "▶", title: "OTT 인기 콘텐츠", desc: "나는 SOLO·우리의 끈끈한 사랑", tag: "주간", color: "pink" },
-  { category: "라이프", icon: "🚘", title: "국내 자동차 판매량", desc: "8월 쏘렌토 6,397대 1위", tag: "8월", color: "navy" },
+  { category: "서비스", icon: "💾", title: "파일 공유 서비스 비교", desc: "인기 웹하드 8곳 · 2일마다 갱신", tag: "2일 갱신", color: "indigo" },
+  { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", desc: "9월 14~20일 · The Warriors 1위", tag: "주간", color: "red" },
+  { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", desc: "오디세이 1,002만·스파이더맨 879만", tag: "9.7", color: "red" },
+  { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", desc: "KT 7연승 단독 1위·삼성과 2.5경기", tag: "9.17", color: "blue" },
+  { category: "스포츠", icon: "💥", title: "2026 KBO 홈런 순위 TOP 5", desc: "김도영 40·오스틴 39·힐리어드 36홈런", tag: "9.17", color: "blue" },
+  { category: "라이프", icon: "🚗", title: "수입차 브랜드 등록 순위 TOP 10", desc: "테슬라 10,400대 · 2026년 8월", tag: "8월", color: "navy" },
+  { category: "스포츠", icon: "🎯", title: "2026 KBO 타점 순위 TOP 5", desc: "오스틴·디아즈·김도영 · 홈런과 다른 타점 경쟁", tag: "NEW", color: "green" },
+  { category: "스포츠", icon: "🏆", title: "KBO 역대 한 시즌 홈런 TOP 20", desc: "이승엽 56홈런부터 · 역대 20개 시즌 기록", tag: "역대", color: "blue" },
+  { category: "미디어", icon: "🎞️", title: "크리스토퍼 놀란 영화 국내 흥행 순위", desc: "인터스텔라부터 오디세이까지 · 관객 비교", tag: "NEW", color: "purple" },
+  { category: "미디어", icon: "🕷️", title: "역대 스파이더맨 영화 흥행 순위", desc: "실사·애니메이션 11편 · 세계 매출 비교", tag: "NEW", color: "red" },
+  { category: "스포츠", icon: "🎟️", title: "2026 KBO 구단 관중", desc: "역대 최소 565경기 만에 1,000만 돌파", tag: "NEW", color: "blue" },
+  { category: "미디어", icon: "📺", title: "OTT 인기 콘텐츠", desc: "나는 SOLO·우리의 끈끈한 사랑", tag: "주간", color: "pink" },
+  { category: "라이프", icon: "🚙", title: "국내 자동차 판매량", desc: "8월 쏘렌토 6,397대 1위", tag: "8월", color: "navy" },
   { category: "스포츠", icon: "⚽", title: "한국 축구선수 연봉", desc: "이강인 AT마드리드 데뷔골 반영", tag: "8.24", color: "green" },
-  { category: "미디어", icon: "🌍", title: "2026년 세계 영화 흥행", desc: "스파이더맨·오디세이 최신 흥행", tag: "8.27", color: "purple" },
-  { category: "스포츠", icon: "⚾", title: "MLB 한국 선수 역대 연봉", desc: "시즌별 최고 연봉과 누적 기록", tag: "역대", color: "blue" },
+  { category: "미디어", icon: "🌏", title: "2026년 세계 영화 흥행", desc: "스파이더맨·오디세이 최신 흥행", tag: "8.27", color: "purple" },
+  { category: "스포츠", icon: "💵", title: "MLB 한국 선수 역대 연봉", desc: "시즌별 최고 연봉과 누적 기록", tag: "역대", color: "blue" },
   { category: "스포츠", icon: "🥊", title: "UFC 체급별 랭킹", desc: "챔피언부터 한국 선수까지", tag: "주간", color: "red" },
-  { category: "미디어", icon: "🎬", title: "역대 국내 영화 관객", desc: "천만 영화와 흥행 기록 모음", tag: "역대", color: "purple" },
-  { category: "미디어", icon: "📺", title: "역대 드라마 시청률", desc: "지상파·케이블 최고 기록", tag: "역대", color: "orange" },
-  { category: "라이프", icon: "✈", title: "한국인이 찾는 여행지", desc: "해외여행 목적지 관심도", tag: "월간", color: "cyan" },
-  { category: "서비스", icon: "◫", title: "국내 OTT 서비스", desc: "2025년 4월 스마트폰 앱 사용자", tag: "과거 통계", color: "black" },
-  { category: "글로벌", icon: "¥", title: "일본 AV 배우 인기", desc: "월간 검색·스트리밍 관심 순위", tag: "19+", color: "rose" },
-  { category: "글로벌", icon: "🏆", title: "세계 스포츠 스타 수입", desc: "연봉과 광고 수입 종합", tag: "연간", color: "gold" },
-  { category: "글로벌", icon: "🏙", title: "세계 최고층 빌딩", desc: "완공 건축물 높이 TOP 6", tag: "역대", color: "blue" },
+  { category: "미디어", icon: "🎥", title: "역대 국내 영화 관객", desc: "천만 영화와 흥행 기록 모음", tag: "역대", color: "purple" },
+  { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", desc: "지상파·케이블 최고 기록", tag: "역대", color: "orange" },
+  { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", desc: "해외여행 목적지 관심도", tag: "월간", color: "cyan" },
+  { category: "서비스", icon: "📱", title: "국내 OTT 서비스", desc: "2025년 4월 스마트폰 앱 사용자", tag: "과거 통계", color: "black" },
+  { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", desc: "월간 검색·스트리밍 관심 순위", tag: "19+", color: "rose" },
+  { category: "글로벌", icon: "💸", title: "세계 스포츠 스타 수입", desc: "연봉과 광고 수입 종합", tag: "연간", color: "gold" },
+  { category: "글로벌", icon: "🏙️", title: "세계 최고층 빌딩", desc: "완공 건축물 높이 TOP 6", tag: "역대", color: "blue" },
   { category: "글로벌", icon: "🌍", title: "세계 인구", desc: "UN 추계로 보는 국가별 인구", tag: "연간", color: "green" },
   { category: "라이프", icon: "👥", title: "대한민국 시도 인구", desc: "행정안전부 월간 주민등록 인구", tag: "월간", color: "orange" },
-  { category: "라이프", icon: "⛰", title: "대한민국 높은 산", desc: "대표 정상 해발고도 비교", tag: "역대", color: "cyan" },
-  { category: "글로벌", icon: "$", title: "세계 GDP", desc: "IMF 전망으로 보는 경제 규모", tag: "연간", color: "gold" },
-  { category: "글로벌", icon: "▰", title: "세계에서 가장 큰 나라", desc: "육지 면적 기준 국가 비교", tag: "역대", color: "green" },
-  { category: "글로벌", icon: "▲", title: "세계에서 가장 높은 산", desc: "8천 미터급 정상 고도 비교", tag: "역대", color: "navy" },
-  { category: "라이프", icon: "✈", title: "세계 관광객 방문 국가", desc: "해외 관광객이 많이 찾은 나라", tag: "연간", color: "purple" },
+  { category: "라이프", icon: "⛰️", title: "대한민국 높은 산", desc: "대표 정상 해발고도 비교", tag: "역대", color: "cyan" },
+  { category: "글로벌", icon: "💰", title: "세계 GDP", desc: "IMF 전망으로 보는 경제 규모", tag: "연간", color: "gold" },
+  { category: "글로벌", icon: "🗺️", title: "세계에서 가장 큰 나라", desc: "육지 면적 기준 국가 비교", tag: "역대", color: "green" },
+  { category: "글로벌", icon: "🏔️", title: "세계에서 가장 높은 산", desc: "8천 미터급 정상 고도 비교", tag: "역대", color: "navy" },
+  { category: "라이프", icon: "✈️", title: "세계 관광객 방문 국가", desc: "해외 관광객이 많이 찾은 나라", tag: "연간", color: "purple" },
 ];
 
 
@@ -56,7 +57,7 @@ const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산
 export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt?: string }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
-  // "지금 주목할 랭킹"을 실시간 검색어처럼 몇 초마다 위에서부터 한 줄씩 뒤집어 다시 보여줍니다.
+  // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
   const [flip, setFlip] = useState(0);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -111,8 +112,8 @@ export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>
           <aside>
-            <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em>추천</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
-            <div className="trend-list">{picks.map((item,i)=><a className="trend flip" style={{animationDelay:`${i*110}ms`}} href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={`${item.title}-${flip}`}><b>{i+1}</b><p><strong>{item.title}</strong><small>{item.subtitle}</small></p><em className="up">{item.label}</em></a>)}</div>
+            <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
+            <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
             <button className="all-button" type="button" onClick={showAll}>인기 랭킹 전체보기 <b>→</b></button>
           </aside>
