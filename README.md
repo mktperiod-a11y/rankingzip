@@ -1,46 +1,167 @@
-# vinext-starter
+# 순위ZIP
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+대한민국의 흥미로운 순위를 한곳에 모아 보여주는 웹사이트입니다. 스포츠 기록, 영화 흥행, 자동차 판매, OTT, 세계 통계 같은 공개 자료를 분야별 랭킹 페이지로 정리합니다.
 
-## Prerequisites
+[vinext](https://github.com/cloudflare/vinext)(Vite 기반으로 Next.js 앱 라우터를 Cloudflare Workers에서 돌리는 도구)로 만들었으며, 필요하면 Cloudflare D1 데이터베이스와 Drizzle ORM을 붙일 수 있습니다.
 
-- Node.js `>=22.13.0`
-- Linux with `flock`, `curl`, and GNU `timeout`
+## 목차
 
-## Sites Lifecycle
+- [사이트 화면 보는 법](#사이트-화면-보는-법)
+- [준비물](#준비물)
+- [폴더 구조](#폴더-구조)
+- [랭킹 추가·수정하기](#랭킹-추가수정하기)
+- [실시간 검색어 수집](#실시간-검색어-수집-npm-run-collecttrends)
+- [명령어 모음](#명령어-모음)
+- [배포 (Sites)](#배포-sites)
+- [워크스페이스 인증 헤더](#워크스페이스-인증-헤더)
+- [ChatGPT 로그인 (선택)](#chatgpt-로그인-선택)
+- [참고 자료](#참고-자료)
 
-The Sites lifecycle CLI runs the locked dependency install before returning this checkout. Edit the source under `app/`, then checkpoint when a coherent milestone is ready to inspect or share. The remote Sites builder runs `npm run build` against the pushed commit. Do not repeat install or build as a normal pre-checkpoint step.
+## 사이트 화면 보는 법
 
-This starter does not use `wrangler.jsonc`.
+GitHub 저장소 페이지는 **코드만 보여주고 사이트를 실행해 주지는 않습니다.** 화면을 보려면 아래 방법 중 하나로 사이트를 띄워야 합니다.
 
-`install:ci` is intentionally a single, non-retrying `npm ci`. It refuses a concurrent install for the same project, consumes a matching image-seeded npm cache with `--prefer-offline` while retaining registry fallback for a missing cache object, otherwise downloads and verifies the complete vinext tarball recorded in `package-lock.json`, limits npm to one socket, and terminates a stalled install. `build` applies a short timeout and then validates the Sites artifact. These helpers target Linux and use GNU `timeout`; they are not native macOS scripts.
+### 방법 1. GitHub Codespaces (설치 없이 브라우저에서)
 
-Scripts that need writable project-scoped home, npm, XDG, and temporary paths use `scripts/sites-env.sh`. The `dev` and `start` scripts honor the caller's runtime environment and keep Wrangler logs inside the checkout. The generated `.sites-runtime/` directory is disposable and ignored by Git.
+1. GitHub에서 저장소(`mktperiod-a11y/rankingzip`)를 엽니다.
+2. 왼쪽 위 브랜치 선택 버튼에서 보고 싶은 브랜치를 고릅니다. 기본은 `main`입니다.
+3. 초록색 **Code** 버튼 → **Codespaces** 탭 → **Create codespace on (브랜치명)** 을 누릅니다.
+4. 브라우저 안에 VS Code가 열리면, 아래쪽 터미널에서 다음을 실행합니다.
 
-## Included Shape
+   ```bash
+   node -v          # v22.13 이상인지 확인. 낮으면: nvm install 22 && nvm use 22
+   npm ci
+   npm run dev
+   ```
 
-- edit site code under `app/`
-- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+5. 오른쪽 아래에 "포트 5173에서 실행 중" 알림이 뜨면 **Open in Browser** 를 누릅니다. 알림을 놓쳤다면 아래쪽 **Ports** 탭에서 5173 포트의 지구본 아이콘을 누르면 됩니다.
 
-## Workspace Auth Headers
+Codespaces는 개인 계정 기준으로 매달 일정 시간이 무료이고, 다 쓰고 나면 왼쪽 위 메뉴에서 Codespace를 중지해 두는 것이 좋습니다.
 
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
+### 방법 2. 내 컴퓨터에서 실행
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+[Node.js](https://nodejs.org/) 22.13 이상과 Git이 설치되어 있어야 합니다.
 
-Treat the full name as optional and fall back to email when it is absent:
+```bash
+git clone https://github.com/mktperiod-a11y/rankingzip.git
+cd rankingzip
+git checkout main      # 다른 브랜치를 보려면 브랜치명으로 바꿉니다
+npm ci
+npm run dev
+```
+
+터미널에 `http://localhost:5173` 주소가 나오면 브라우저로 열면 됩니다. 종료는 터미널에서 `Ctrl + C`입니다.
+
+### 방법 3. 배포된 주소
+
+Sites로 배포된 실제 사이트 주소는 Sites 관리 화면에서 확인할 수 있습니다. 배포는 푸시된 커밋을 기준으로 이루어지므로, 아직 배포되지 않은 브랜치의 화면은 방법 1이나 2로 봐야 합니다.
+
+### 주요 화면 주소
+
+| 화면 | 주소 |
+| --- | --- |
+| 메인 (분야별 랭킹 목록) | `/` |
+| 랭킹 상세 | `/rankings/<슬러그>` 예: `/rankings/korea-box-office-2026` |
+| 사이트맵 | `/sitemap.xml` |
+
+## 준비물
+
+- Node.js `22.13.0` 이상
+- 배포용 도우미 스크립트(`install:ci`, `build`)를 쓰려면 `flock`, `curl`, GNU `timeout`이 있는 Linux 환경. 화면만 볼 때는 필요 없습니다.
+
+## 폴더 구조
+
+```
+app/
+  page.tsx                  메인 화면 (카테고리 탭, 검색, 랭킹 카드, 주목할 랭킹)
+  globals.css               메인 화면 스타일
+  layout.tsx                공통 레이아웃·메타데이터
+  rankings/
+    data.ts                 랭킹 데이터 모음 + 슬러그·제목 매핑
+    additions.ts            추가 랭킹 데이터
+    expansion.ts            확장 랭킹 데이터
+    asian-games.ts          아시안게임 랭킹 데이터
+    audit.ts                자료 점검 날짜·메모 적용
+    [slug]/page.tsx         랭킹 상세 화면
+    [slug]/ranking.css      상세 화면 스타일
+  sitemap.ts, robots.ts     검색엔진용 파일
+  chatgpt-auth.ts           ChatGPT 로그인 도우미 (선택)
+public/ranking-images/      랭킹에 쓰는 이미지 (포스터, 선수 사진, 로고 등)
+scripts/
+  collect-trends.mjs        실시간 검색어 수집 실행 파일
+  trends/                   검색어 수집 소스·공통 도구
+  *-assets.mjs              이미지 수집·점검 스크립트
+tests/                      자동 테스트
+worker/index.ts             Cloudflare Worker 진입점 (이미지 최적화 포함)
+db/, drizzle/               D1 데이터베이스 스키마 (현재 비어 있음)
+examples/d1/                D1 사용 예시 (선택)
+.openai/hosting.json        Sites의 D1·R2 연결 설정
+```
+
+## 랭킹 추가·수정하기
+
+1. `app/rankings/` 아래 데이터 파일에 `RankingPage` 형식으로 항목을 추가합니다. 형식은 `app/rankings/data.ts` 맨 위에 정의되어 있습니다.
+   - 필수: `slug`(주소), `title`, `category`(스포츠·미디어·라이프·서비스·글로벌), `date`, `basis`(집계 기준), `description`, `source`, `sourceUrl`, `rows`(순위 항목), `faq`
+2. 메인 화면에 카드를 보이게 하려면 `app/page.tsx`의 `rankings` 목록에 추가하고, `data.ts`의 `slugByTitle`에 제목과 슬러그를 연결합니다.
+3. 이미지는 `public/ranking-images/` 아래에 넣고 항목의 `image`에 `/ranking-images/...` 경로로 적습니다.
+4. `npm run dev`로 화면을 확인합니다.
+
+## 실시간 검색어 수집 (`npm run collect:trends`)
+
+`scripts/collect-trends.mjs`가 등록된 소스에서 검색어 순위와 관련 내용을 받아 `data/trends/`에 저장합니다.
+
+- `data/trends/<소스id>.json`: 소스별 순위(검색어, 링크, 검색량, 이미지, 관련 뉴스)
+- `data/trends/latest.json`: 전체 소스를 합친 통합 순위. 여러 소스에 동시에 오른 검색어가 위로 갑니다.
+- 특정 소스만 받기: `node scripts/collect-trends.mjs namuwiki`
+- 소스가 실패하면 그 소스의 직전 결과를 `stale: true` 표시와 함께 유지합니다.
+
+| id | 내용 | 비고 |
+| --- | --- | --- |
+| `google-trends` | 구글 트렌드 급상승 검색어 RSS + 관련 뉴스 | 키 불필요 |
+| `namuwiki` | 나무위키 실시간 검색어 | 공식 API 아님, 사이트가 바뀌면 동작하지 않을 수 있음 |
+
+새 소스를 추가하는 순서:
+
+1. `scripts/trends/sources/<id>.mjs` 파일을 만들고 `id`, `label`, `homepage`, `parse()`, `collect()`를 내보냅니다.
+2. `scripts/trends/sources/index.mjs`에 한 줄 등록합니다.
+3. `tests/fixtures/trends/`에 샘플 응답을 넣고 `tests/trends.test.mjs`에 파서 테스트를 추가합니다.
+
+## 명령어 모음
+
+| 명령어 | 하는 일 |
+| --- | --- |
+| `npm run dev` | 개발 서버 실행 (화면 확인용, 저장하면 바로 반영) |
+| `npm run build` | 배포용 결과물을 만들고 검증 |
+| `npm run start` | 빌드된 결과물로 서버 실행 |
+| `npm test` | 빌드 후 전체 테스트 실행 |
+| `node --test tests/trends.test.mjs` | 빌드 없이 검색어 수집 테스트만 실행 |
+| `npm run collect:trends` | 실시간 검색어 수집 |
+| `npm run lint` | 코드 규칙 검사 |
+| `npm run install:ci` | 배포 환경용 의존성 설치 (한 번만, 재시도 없음) |
+| `npm run validate:artifact` | 이미 만든 배포 결과물의 매니페스트와 `default.fetch` 내보내기 재검사 |
+| `npm run db:generate` | DB 스키마를 바꾼 뒤 Drizzle 마이그레이션 생성 |
+
+## 배포 (Sites)
+
+이 프로젝트는 Sites 호스팅에 배포됩니다.
+
+- Sites 도구가 저장소를 받아 올 때 잠금 파일(`package-lock.json`) 기준으로 의존성을 미리 설치합니다. 작업자는 `app/` 아래 코드를 고치고, 확인할 만한 단위가 완성되면 체크포인트(커밋·푸시)를 남기면 됩니다.
+- 원격 빌더가 푸시된 커밋으로 `npm run build`를 실행합니다. 따라서 체크포인트 전에 설치나 빌드를 매번 직접 돌릴 필요는 없습니다. 빌드·검증 명령은 원격 빌드가 실패했을 때 원인을 찾는 용도로 씁니다.
+- 이 프로젝트는 `wrangler.jsonc`를 쓰지 않습니다. D1·R2 연결은 `.openai/hosting.json`에서 선언하고, 로컬 개발 때는 `vite.config.ts`가 이를 흉내 냅니다.
+- `install:ci`는 일부러 재시도 없는 `npm ci` 한 번만 실행합니다. 같은 프로젝트에서 동시에 설치하는 것을 막고, 미리 준비된 npm 캐시가 맞으면 `--prefer-offline`으로 쓰되 캐시에 없는 패키지는 레지스트리에서 받습니다. 캐시가 없으면 `package-lock.json`에 기록된 vinext 압축 파일 전체를 받아 검증하고, npm 연결을 하나로 제한하며, 멈춘 설치는 강제로 종료합니다.
+- `build`는 짧은 제한 시간 안에 빌드한 뒤 Sites 배포 결과물을 검증합니다.
+- 이 도우미 스크립트들은 Linux와 GNU `timeout` 기준이라 macOS에서는 그대로 동작하지 않습니다.
+- 프로젝트 전용 홈·npm·XDG·임시 폴더가 필요한 스크립트는 `scripts/sites-env.sh`를 거쳐 실행됩니다. 이때 생기는 `.sites-runtime/` 폴더는 지워도 되며 Git에서 제외됩니다.
+- `dev`와 `start`는 실행하는 쪽의 환경 변수를 그대로 쓰고, Wrangler 로그는 프로젝트 폴더 안에 남깁니다.
+- 제한 시간은 시험 배포용으로 `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, `SITES_BUILD_KILL_AFTER` 환경 변수로 바꿀 수 있습니다. 시간을 넘기면 명령이 실패하며, 같은 설치나 빌드를 자동으로 다시 시도하지 않습니다.
+
+## 워크스페이스 인증 헤더
+
+OpenAI 워크스페이스 사이트는 요청 헤더 `oai-authenticated-user-email`에서 현재 사용자의 이메일을 읽을 수 있습니다.
+
+ChatGPT 로그인(SIWC)을 거친 워크스페이스 사이트는, 사용자 프로필에 이름이 있으면 `oai-authenticated-user-full-name` 헤더도 받을 수 있습니다. 이 값은 퍼센트 인코딩된 UTF-8 문자열이고 `oai-authenticated-user-full-name-encoding: percent-encoded-utf-8` 헤더가 함께 옵니다.
+
+이름은 없을 수도 있으니 없으면 이메일을 대신 보여주세요.
 
 ```tsx
 import { headers } from "next/headers";
@@ -61,64 +182,24 @@ export default async function Home() {
 }
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+## ChatGPT 로그인 (선택)
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+로그인이 필요한 화면을 만들 때는 `app/chatgpt-auth.ts`의 도우미를 가져다 씁니다.
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+- `getChatGPTUser()`: 로그인하지 않아도 되는 화면에서 로그인 상태에 따라 다르게 보여줄 때
+- `requireChatGPTUser(returnTo)`: 서버에서 그리는 화면 중 로그인이 꼭 필요한 곳. 로그인하지 않은 방문자는 ChatGPT 로그인으로 보냅니다.
+- `chatGPTSignInPath(returnTo)`, `chatGPTSignOutPath(returnTo)`: 로그인·로그아웃 링크나 버튼
+- `returnTo`에는 로그인·로그아웃 뒤 돌아올 같은 사이트 안의 상대 경로를 넣습니다. 도우미가 안전한지 확인하고 인코딩합니다.
+- 보호된 화면은 요청마다 사용자 정보가 달라지므로 `export const dynamic = "force-dynamic"`을 붙입니다.
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+`/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback` 경로와 로그인 쿠키, 사용자 헤더 주입은 Sites 쪽에서 처리합니다. 이 경로들에 직접 화면을 만들지 마세요. 도우미를 쓰지 않는 화면은 지금처럼 로그인 없이 볼 수 있습니다.
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+ChatGPT 로그인은 "누구인지"만 확인할 뿐 "우리 워크스페이스 구성원인지"는 보장하지 않습니다. 워크스페이스 전체를 막으려면 Sites 호스팅의 접근 정책을 쓰거나, 서버에서 구성원·허용 목록을 직접 확인하세요.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+로그인은 계정 화면, 사용자별 대시보드, 저장 기록, 사용자와 연결된 쓰기 작업에 쓰고, 공개 랭킹처럼 누구나 보는 내용은 로그인 없이 두세요.
 
-## Diagnostic Commands
+## 참고 자료
 
-- `npm run install:ci`: perform the one bounded lockfile install
-- `npm run dev`: start the Vite/Vinext development server
-- `npm run build`: build and validate the deployable Sites artifact
-- `npm run start`: start the built Vinext application
-- `npm test`: build, validate, and verify the rendered development-preview metadata
-- `npm run validate:artifact`: recheck an existing artifact's manifest and ESM `default.fetch` export
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-Use build and validation commands for targeted diagnosis after a remote failure, not as part of the normal checkpoint path.
-
-The timeout defaults can be overridden for a controlled canary with `SITES_INSTALL_TIMEOUT`, `SITES_INSTALL_KILL_AFTER`, `SITES_BUILD_TIMEOUT`, and `SITES_BUILD_KILL_AFTER`. A timeout fails the command; the helpers never retry an unchanged install or build.
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
-
-## 실시간 검색어 수집 (`npm run collect:trends`)
-
-`scripts/collect-trends.mjs`가 등록된 소스에서 검색어 순위와 관련 내용을 받아 `data/trends/`에 저장합니다.
-
-- `data/trends/<소스id>.json`: 소스별 순위(검색어, 링크, 검색량, 이미지, 관련 뉴스)
-- `data/trends/latest.json`: 전체 소스를 합친 통합 순위. 여러 소스에 동시에 오른 검색어가 위로 갑니다.
-- 특정 소스만 받기: `node scripts/collect-trends.mjs namuwiki`
-- 소스가 실패하면 그 소스의 직전 결과를 `stale: true`로 유지합니다.
-
-| id | 내용 | 비고 |
-| --- | --- | --- |
-| `google-trends` | 구글 트렌드 급상승 검색어 RSS + 관련 뉴스 | 키 불필요 |
-| `namuwiki` | 나무위키 실시간 검색어 | 공식 API 아님, 사이트 변경 시 깨질 수 있음 |
-
-새 소스를 추가하려면 `scripts/trends/sources/<id>.mjs`에 `id`, `label`, `homepage`, `parse()`, `collect()`를 만들고 `sources/index.mjs`에 한 줄 등록한 뒤, `tests/fixtures/trends/`에 샘플 응답을 넣고 `tests/trends.test.mjs`에 파서 테스트를 추가합니다.
+- [vinext 문서](https://github.com/cloudflare/vinext)
+- [Drizzle D1 가이드](https://orm.drizzle.team/docs/get-started/d1-new)
+- [GitHub Codespaces 시작하기](https://docs.github.com/ko/codespaces/developing-in-a-codespace/creating-a-codespace-for-a-repository)
