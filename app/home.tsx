@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { slugByTitle, pageBySlug } from "./rankings/data";
 import { editorPicks as hot } from "./rankings/editor-picks";
+import { BrandLogo } from "./brand-logo";
 import type { TrendPick } from "../lib/trends";
 
 type Category = "전체" | "스포츠" | "미디어" | "라이프" | "서비스" | "글로벌";
@@ -51,21 +52,6 @@ const weeklyKeywords = ["한국 야구 5연패", "아시안게임 야구 통산 
 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
 
-function BrandLogo({ footer = false }: { footer?: boolean }) {
-  return (
-    <a className={`logo${footer ? " footer-logo" : ""}`} href="#top" aria-label="순위ZIP 홈">
-      <span className="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40">
-          <path className="house" d="M5.5 18.4 20 6.5l14.5 11.9v14.1a2 2 0 0 1-2 2h-25a2 2 0 0 1-2-2Z" />
-          <path className="roof" d="m3.8 19.2 16.2-13 16.2 13" />
-          <path className="bars" d="M12 29v-6m8 6V18m8 11V13" />
-          <path className="arrow" d="m23.8 13 4.2-4 4.2 4M28 9v7" />
-        </svg>
-      </span>
-      <span className="logo-word">순위<b>ZIP</b></span>
-    </a>
-  );
-}
 
 export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt?: string }) {
   const [active, setActive] = useState<Category>("전체");
