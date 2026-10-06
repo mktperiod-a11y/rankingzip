@@ -82,7 +82,7 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
    {p.rows.length>0&&<p className="dp-credit">이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
   </div>
   <aside className="dp-side">
-   <div className="dp-card"><small>DATA SOURCE</small><h3>자료와 집계 기준</h3><p>{p.basis}</p><a className="dp-source" href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a><span>자료 기준일과 사이트 점검일은 다릅니다. 과거 통계는 현재 순위로 해석하지 마세요.</span></div>
+   <div className="dp-card"><small>DATA SOURCE</small><h3>자료와 집계 기준</h3><p>{p.basis}</p>{p.sourceUrl?<a className="dp-source" href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a>:<span className="dp-source static">{p.source}</span>}<span>자료 기준일과 사이트 점검일은 다릅니다. 과거 통계는 현재 순위로 해석하지 마세요.</span></div>
    {related.length>0&&<div className="dp-card"><small>RELATED</small><h3>다른 순위도 둘러보세요</h3><ul>{related.map(x=><li key={x.slug}><a href={`/rankings/${x.slug}`}><span>{x.title}</span><b>→</b></a></li>)}</ul></div>}
   </aside>
  </section>
