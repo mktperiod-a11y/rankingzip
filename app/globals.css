@@ -39,16 +39,16 @@
 .idea-chips b{flex-shrink:0}
 
 /* 지금 주목할 랭킹: 플립 시계처럼 글자 칸의 위쪽 절반이 앞으로 떨어지고, 새 글자의 아래쪽 절반이 펼쳐집니다. */
-.flap{display:inline}
-.fc{position:relative;display:inline-block}
+.flap{display:inline;--flap-bg:#fff}
+.fc{position:relative;display:inline-block;perspective:180px}
 .fc-size{visibility:hidden}
-.fc-half,.fc-leaf{position:absolute;inset:0;display:block;backface-visibility:hidden}
+.fc-face{position:absolute;inset:0;display:block;text-align:center;white-space:nowrap;background:var(--flap-bg);backface-visibility:hidden;transform-style:preserve-3d}
 .fc-top{clip-path:inset(0 0 50% 0)}
 .fc-bottom{clip-path:inset(50% 0 0 0)}
-.fc-leaf.fc-top{transform-origin:50% 50%;animation:fc-fall 75ms ease-in forwards}
-.fc-leaf.fc-bottom{transform-origin:50% 50%;animation:fc-rise 75ms ease-out 75ms both}
-@keyframes fc-fall{from{transform:perspective(160px) rotateX(0);filter:brightness(1)}to{transform:perspective(160px) rotateX(-90deg);filter:brightness(.6)}}
-@keyframes fc-rise{from{transform:perspective(160px) rotateX(90deg);filter:brightness(.6)}to{transform:perspective(160px) rotateX(0);filter:brightness(1)}}
-@media(prefers-reduced-motion:reduce){.fc-leaf{display:none}}
+.fc-fall{transform-origin:50% 50%;animation:fc-fall 80ms ease-in forwards}
+.fc-drop{transform-origin:50% 50%;transform:rotateX(90deg);animation:fc-drop 80ms ease-out 80ms forwards}
+@keyframes fc-fall{from{transform:rotateX(0);filter:brightness(1)}to{transform:rotateX(-90deg);filter:brightness(.7)}}
+@keyframes fc-drop{from{transform:rotateX(90deg);filter:brightness(.7)}to{transform:rotateX(0);filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.fc-fall,.fc-drop{display:none}}
 .aside-title>em.hot{border-radius:999px;padding:4px 9px}
 .all-button{cursor:pointer}
