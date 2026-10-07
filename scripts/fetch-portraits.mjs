@@ -1,22 +1,22 @@
 #!/usr/bin/env node
-// 인물 사진을 위키미디어 공용의 자유 이용 사진(CC BY·CC BY-SA·CC0·퍼블릭 도메인)으로만 가져옵니다.
+// 인물 사진을 위키미디어 공용의 자유 이용 사진(CC BY·CC BY-SA·CC0·퍼블릭 도메인·영국 OGL)으로만 가져옵니다.
 //   node scripts/fetch-portraits.mjs   → public/ranking-images/portraits/*.jpg, credits.json
 // 야구 선수는 구단 로고로 통일해 여기서 받지 않습니다. 선수 본인 문서의 대표 사진만 쓰고, 공용(Commons)에 없는 사진(비자유 이미지)은 쓰지 않습니다.
 import fs from 'node:fs';
 
 const OUT = 'public/ranking-images/portraits';
 const UA = 'RankingZipBot/1.0 (https://mktperiod-a11y.github.io/rankingzip/)';
-const FREE = /^(CC BY(-SA)? \d|CC0|Public domain|PD|CC-BY)/i;
+const FREE = /^(CC BY(-SA)? \d|CC0|Public domain|PD|CC-BY|OGL)/i;
 const KIND = {
   mma: { en: /mixed martial|MMA|fighter/i, ko: /종합격투기|격투기|UFC/ },
   football: { en: /footballer|soccer/i, ko: /축구/ },
-  athlete: { en: /footballer|basketball|boxer|baseball|player|athlete/i, ko: /선수/ },
+  athlete: { en: /footballer|basketball|boxer|baseball|player|athlete|golfer|racing driver/i, ko: /선수/ },
 };
 
 // [화면 이름, 영문 검색어, 종목, 한국어 위키 먼저]
 export const PEOPLE = [
   ...[['조슈아 반','Joshua Van'],['알렉산드레 판토자','Alexandre Pantoja'],['마넬 케이프','Manel Kape'],['브랜든 로이발','Brandon Royval'],['페트르 얀','Petr Yan'],['메랍 드발리시빌리','Merab Dvalishvili'],['션 오말리',"Sean O'Malley"],['우마르 누르마고메도프','Umar Nurmagomedov'],['알렉산더 볼카노프스키','Alexander Volkanovski'],['모브사르 에블로예프','Movsar Evloev'],['디에고 로페스','Diego Lopes'],['레론 머피','Lerone Murphy'],['저스틴 게이치','Justin Gaethje'],['일리아 토푸리아','Ilia Topuria'],['아르만 사루키안','Arman Tsarukyan'],['찰스 올리베이라','Charles Oliveira'],['이슬람 마카체프','Islam Makhachev'],['이안 마차도 개리','Ian Machado Garry'],['카를로스 프라치스','Carlos Prates'],['마이클 모랄레스','Michael Morales (fighter)'],['션 스트릭랜드','Sean Strickland'],['함자트 치마예프','Khamzat Chimaev'],['드리커스 뒤 플레시','Dricus du Plessis'],['나수르딘 이마보프','Nassourdine Imavov'],['카를로스 울버그','Carlos Ulberg'],['마고메드 안칼라예프','Magomed Ankalaev'],['유리 프로하스카','Jiří Procházka'],['알렉스 페레이라','Alex Pereira'],['톰 아스피날','Tom Aspinall'],['시릴 간','Ciryl Gane'],['알렉산더 볼코프','Alexander Volkov (fighter)'],['커티스 블레이즈','Curtis Blaydes'],['세르게이 파블로비치','Sergei Pavlovich']].map(([ko,en])=>[ko,en,'mma',false]),
-  ...[['크리스티아누 호날두','Cristiano Ronaldo'],['리오넬 메시','Lionel Messi'],['카넬로 알바레스','Canelo Álvarez'],['르브론 제임스','LeBron James'],['오타니 쇼헤이','Shohei Ohtani'],['스테픈 커리','Stephen Curry'],['타이슨 퓨리','Tyson Fury'],['닥 프레스콧','Dak Prescott']].map(([ko,en])=>[ko,en,'athlete',false]),
+  ...[['크리스티아누 호날두','Cristiano Ronaldo'],['리오넬 메시','Lionel Messi'],['카넬로 알바레스','Canelo Álvarez'],['르브론 제임스','LeBron James'],['오타니 쇼헤이','Shohei Ohtani'],['스테픈 커리','Stephen Curry'],['타이슨 퓨리','Tyson Fury'],['닥 프레스콧','Dak Prescott'],['존 람','Jon Rahm'],['카림 벤제마','Karim Benzema'],['케빈 듀랜트','Kevin Durant'],['루이스 해밀턴','Lewis Hamilton']].map(([ko,en])=>[ko,en,'athlete',false]),
 ];
 
 const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -61,6 +61,7 @@ async function main() {
   fs.mkdirSync(OUT, { recursive: true });
   const credits = {};
   for (const [name, en, kind, koFirst] of PEOPLE) {
+    await new Promise((r) => setTimeout(r, 1500)); // 위키미디어 요청 제한을 넘지 않게 천천히 받습니다.
     let found = null, reason = '';
     const base = en.replace(/\s*\([^)]*\)$/, '');
     const enTitles = [en, `${base} (fighter)`, `${base} (baseball)`, `${base} (baseball player)`, base];
