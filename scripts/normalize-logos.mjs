@@ -54,5 +54,11 @@ async function tile(src, dest, { background, fill = 0.78, size = 512 }) {
 await tile('data/logo-sources/fileis.svg', 'public/ranking-images/apps/tile-fileis.png', { background: '#ffffff', fill: 0.8 });
 await tile('data/logo-sources/filemong.webp', 'public/ranking-images/apps/tile-filemong.png', { background: '#b14747', fill: 0.74 });
 // PC 게임 중 공식 대표 이미지가 투명 배경 로고뿐인 게임은 브랜드 색 바탕 타일로 만듭니다.
-await tile('data/logo-sources/league-of-legends.webp', 'public/ranking-images/games/pc-tile-league-of-legends.png', { background: '#0a1428', fill: 0.62 });
 await tile('data/logo-sources/valorant.webp', 'public/ranking-images/games/pc-tile-valorant.png', { background: '#0f1923', fill: 0.62 });
+
+/** 가로형 키 아트를 가운데 기준 정사각으로 잘라 프레임을 꽉 채웁니다. */
+async function cover(src, dest, size = 512) {
+  await sharp(fs.readFileSync(src)).resize(size, size, { fit: 'cover', position: 'centre' }).webp({ quality: 86 }).toFile(dest);
+  console.log('cover', dest);
+}
+await cover('data/logo-sources/league-of-legends-key.jpg', 'public/ranking-images/games/pc-key-league-of-legends.webp');
