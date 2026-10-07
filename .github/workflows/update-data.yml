@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: 22
       - name: 넷플릭스 TOP 10 갱신
+        env:
+          # 선택: 한국 전용 작품의 한국어 제목을 TMDB에서 찾습니다(Settings → Secrets → TMDB_API_KEY).
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/update-netflix.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
       - name: 바뀐 데이터 저장 후 사이트 재배포
         env:

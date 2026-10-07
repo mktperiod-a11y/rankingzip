@@ -89,7 +89,33 @@ export function parseTitlePage(html) {
   return { titleKo: decodeHtml(h1 || og) || undefined, image: decodeHtml(meta('og:image')) || undefined };
 }
 
-/** 차트 행마다 한국어 제목(titleKo)과 이미지(image)를 붙입니다. 실패한 행은 그대로 둡니다. */
+const hasHangul = (s) => /[가-힣]/.test(s ?? '');
+
+/**
+ * 넷플릭스 작품 페이지가 막혔을 때(한국 전용 작품은 해외에서 404) TMDB에서 한국어 제목을 찾습니다.
+ * TMDB_API_KEY(v3 키 또는 읽기 토큰)가 있을 때만 씁니다. 원제가 같거나 한국 작품인 결과만 받아들입니다.
+ */
+async function tmdbTitleKo(title, category) {
+  const key = process.env.TMDB_API_KEY;
+  if (!key) return undefined;
+  const url = new URL(`https://api.themoviedb.org/3/search/${category === 'Films' ? 'movie' : 'tv'}`);
+  url.searchParams.set('query', title);
+  url.searchParams.set('language', 'ko-KR');
+  const headers = { accept: 'application/json' };
+  if (key.length > 40) headers.authorization = `Bearer ${key}`; else url.searchParams.set('api_key', key);
+  const res = await fetch(url, { headers, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`TMDB 응답 ${res.status}`);
+  const hit = ((await res.json()).results ?? []).find((r) => hasHangul(r.title ?? r.name) && ((r.original_title ?? r.original_name) === title || r.original_language === 'ko'));
+  return hit ? (hit.title ?? hit.name) : undefined;
+}
+
+async function download(src, file) {
+  const res = await fetch(src, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`이미지 응답 ${res.status}`);
+  fs.writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+}
+
+/** 차트 행마다 한국어 제목(titleKo)과 이미지(image)를 붙입니다. 실패한 항목은 비워 두고 다음 갱신 때 다시 시도합니다. */
 async function enrich(chart, saveImages) {
   let cards = [];
   try { cards = parseTudumCards(await getText(TUDUM[chart.category])); } catch (error) { console.log(`  ! Tudum 페이지 실패: ${error.message}`); }
@@ -97,21 +123,21 @@ async function enrich(chart, saveImages) {
   for (const row of chart.rows) {
     const names = [row.season ? `${row.title}: ${row.season}` : '', row.title].filter(Boolean);
     const card = cards.find((c) => names.includes(c.alt)) ?? cards.find((c) => c.alt.startsWith(`${row.title}:`));
-    if (!card) { console.log(`  ! ${row.title}: Tudum 카드 없음`); continue; }
-    row.videoId = Number(card.videoId);
-    try {
-      const page = parseTitlePage(await getText(`https://www.netflix.com/title/${card.videoId}`));
-      if (page.titleKo) row.titleKo = page.titleKo;
-      const src = card.artwork || page.image;
-      if (src && saveImages) {
-        const res = await fetch(src, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
-        if (res.ok) {
-          const file = `${IMAGE_DIR}/${card.videoId}.jpg`;
-          fs.writeFileSync(file, Buffer.from(await res.arrayBuffer()));
-          row.image = `/${file.replace(/^public\//, '')}`;
-        }
-      }
-    } catch (error) { console.log(`  ! ${row.title}: 작품 페이지 실패 (${error.message})`); }
+    if (!card) console.log(`  ! ${row.title}: Tudum 카드 없음`);
+    else row.videoId = Number(card.videoId);
+    let page = {};
+    if (card) {
+      try { page = parseTitlePage(await getText(`https://www.netflix.com/title/${card.videoId}`)); } catch (error) { console.log(`  ! ${row.title}: 작품 페이지 실패 (${error.message})`); }
+    }
+    if (hasHangul(page.titleKo)) row.titleKo = page.titleKo;
+    else {
+      try { const ko = await tmdbTitleKo(row.title, chart.category); if (ko) row.titleKo = ko; } catch (error) { console.log(`  ! ${row.title}: TMDB 실패 (${error.message})`); }
+    }
+    const src = card?.artwork || page.image;
+    if (src && saveImages) {
+      const file = `${IMAGE_DIR}/${card?.videoId ?? row.title.replace(/\W+/g, '-')}.jpg`;
+      try { await download(src, file); row.image = `/${file.replace(/^public\//, '')}`; } catch (error) { console.log(`  ! ${row.title}: ${error.message}`); }
+    }
   }
   return chart;
 }
