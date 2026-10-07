@@ -11,7 +11,7 @@ const detail=fs.readFileSync('app/rankings/[slug]/page.tsx','utf8');
 const map=JSON.parse(detail.match(/export const imageByName[^=]*= (\{[\s\S]*?\n\});/)[1]);
 test('all 35 pages have explicit audit decisions and no broken local row images',()=>{
  assert.equal(pages.length,35);assert.equal(new Set(pages.map(p=>p.slug)).size,35);
- for(const p of pages){assert.ok(p.auditDate,p.slug);const person=fs.readFileSync('app/rankings/portraits.ts','utf8').includes(`'${p.slug}'`);for(const r of p.rows){const src=r.image||map[r.name];if(!src&&person)continue;// 자유 이용 사진이 없는 인물은 이니셜로 보여줍니다
+ for(const p of pages){assert.ok(p.auditDate,p.slug);for(const r of p.rows){const src=r.image||map[r.name];if(!src)continue;// 출처가 확인된 이미지가 없으면 이니셜로 보여줍니다(임시 그림을 만들어 넣지 않음)
  assert.ok(src,`${p.slug}: missing ${r.name}`);if(src.startsWith('/'))assert.ok(fs.statSync('public'+src).size>100,src);assert.ok(!src.includes('unsplash'),`unverified stock image ${p.slug}`);}}
 });
 test('new season rankings and imported brands are complete and linked',()=>{
@@ -67,4 +67,8 @@ test('shared row criteria move up while item-specific details remain',()=>{
 test('local row images have a recorded aspect ratio for poster frames',()=>{
  const shapes=JSON.parse(fs.readFileSync('data/image-shapes.json','utf8'));
  for(const p of pages)for(const r of p.rows){const src=r.image||map[r.name];if(src?.startsWith('/ranking-images/'))assert.ok(shapes[src],`node scripts/image-shapes.mjs 실행 필요: ${src}`);}
+});
+test('row images come from a recorded source, never self-made placeholders',()=>{
+ const assets=JSON.parse(fs.readFileSync('public/ranking-images/complete/sources.json','utf8'));
+ for(const [name,a] of Object.entries(assets))assert.ok(a.source,`${name}: 출처 없는 이미지`);
 });
