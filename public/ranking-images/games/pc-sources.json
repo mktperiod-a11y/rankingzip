@@ -1,0 +1,38 @@
+{
+  "리그 오브 레전드": {
+    "image": "/ranking-images/games/pc-league-of-legends.webp",
+    "source": "https://www.leagueoflegends.com/ko-kr/"
+  },
+  "FC온라인": {
+    "image": "/ranking-images/games/pc-fc-online.webp",
+    "source": "https://events.fconline.nexon.com/260910/Join?utm_source=pc&utm_medium=intro&utm_campaign=260910_join"
+  },
+  "발로란트": {
+    "image": "/ranking-images/games/pc-valorant.webp",
+    "source": "https://playvalorant.com/ko-kr/"
+  },
+  "배틀그라운드": {
+    "image": "/ranking-images/games/pc-pubg.webp",
+    "source": "https://pubg.com/ko/main"
+  },
+  "리니지 클래식": {
+    "image": "/ranking-images/games/pc-lineage-classic.webp",
+    "source": "https://lineageclassic.plaync.com/ko-kr/conts/260909_update"
+  },
+  "오버워치": {
+    "image": "/ranking-images/games/pc-overwatch.webp",
+    "source": "https://overwatch.blizzard.com/ko-kr/"
+  },
+  "서든어택": {
+    "image": "/ranking-images/games/pc-sudden-attack.webp",
+    "source": "https://event.sa.nexon.com/260917/intro"
+  },
+  "메이플 스토리": {
+    "image": "/ranking-images/games/pc-maplestory.webp",
+    "source": "https://maplestory.nexon.com/promotion/event/2026/20260917/intro"
+  },
+  "스타크래프트": {
+    "image": "/ranking-images/games/pc-starcraft.webp",
+    "source": "https://starcraft.blizzard.com/ko-kr"
+  }
+}
