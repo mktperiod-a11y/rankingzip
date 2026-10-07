@@ -21,6 +21,7 @@ const DAY = 86400000;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 const TUDUM = { Films: 'https://www.netflix.com/tudum/top10/south-korea/films', TV: 'https://www.netflix.com/tudum/top10/south-korea/tv' };
 const IMAGE_DIR = 'public/ranking-images/netflix';
+const MANUAL_KO = 'data/rankings/netflix-titles-ko.json';
 
 const isoDay = (ms) => new Date(ms).toISOString().slice(0, 10);
 
@@ -129,7 +130,9 @@ async function enrich(chart, saveImages) {
     if (card) {
       try { page = parseTitlePage(await getText(`https://www.netflix.com/title/${card.videoId}`)); } catch (error) { console.log(`  ! ${row.title}: 작품 페이지 실패 (${error.message})`); }
     }
+    const manual = fs.existsSync(MANUAL_KO) ? JSON.parse(fs.readFileSync(MANUAL_KO, 'utf8'))[row.title] : undefined;
     if (hasHangul(page.titleKo)) row.titleKo = page.titleKo;
+    else if (manual) row.titleKo = manual;
     else {
       try { const ko = await tmdbTitleKo(row.title, chart.category); if (ko) row.titleKo = ko; } catch (error) { console.log(`  ! ${row.title}: TMDB 실패 (${error.message})`); }
     }

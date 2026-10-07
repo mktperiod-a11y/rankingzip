@@ -76,13 +76,16 @@ function leader(slug: string) {
   return { rank: `${top.rank ?? 1}위`, text: value ? `${top.name} · ${value}` : top.name };
 }
 
+/** HOT 띠에 쓰는 짧은 순위 이름: "2026 KBO 팀 순위" → "KBO 팀" */
+const topic = (title: string) => title.replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
+
 /** HOT 띠: 지금 실시간 검색어와 이어진 순위를 먼저, 나머지는 자료가 최근에 바뀐 순위로 채웁니다. */
 function hotRankings(trendSlugs: string[], count = 4) {
   const listed = new Set(Object.values(slugByTitle));
   const recent = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug))
     .map((p) => ({ slug: p.slug, updated: dateParts(p.date, p.auditDate).updated ?? "" }))
     .sort((a, b) => b.updated.localeCompare(a.updated)).map((p) => p.slug);
-  return [...new Set([...trendSlugs.filter((s) => pageBySlug[s] && !pageBySlug[s].noindex), ...recent])].slice(0, count);
+  return [...new Set([...trendSlugs.filter((s) => pageBySlug[s] && !pageBySlug[s].noindex && !pageBySlug[s].unranked && listed.has(s)), ...recent])].slice(0, count);
 }
 
 
@@ -132,7 +135,7 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>인기 순위</strong>{hotRankings(trendSlugs).map((slug,i)=><a key={slug} href={`/rankings/${slug}`}><i>{i+1}</i>{pageBySlug[slug].title}</a>)}</div></section>
+      <section className="ticker"><div><b>HOT</b><strong>지금 1위</strong>{hotRankings(trendSlugs).map((slug)=><a key={slug} href={`/rankings/${slug}`}>{topic(pageBySlug[slug].title)} 1위 <em>{pageBySlug[slug].rows[0]?.name}</em></a>)}</div></section>
 
       <section className="content" id="rankings">
         <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
