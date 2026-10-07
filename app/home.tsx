@@ -55,6 +55,8 @@ const rankings = [
   { category: "스포츠", icon: "🥊", title: "UFC 체급별 랭킹", color: "red" },
   { category: "미디어", icon: "🎥", title: "역대 국내 영화 관객", color: "purple" },
   { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", color: "orange" },
+  { category: "미디어", icon: "🐉", title: "역대 인기 애니메이션 순위", color: "purple" },
+  { category: "미디어", icon: "📺", title: "이번 시즌 인기 애니메이션 순위", color: "rose" },
   { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", color: "cyan" },
   { category: "IT·게임", icon: "📱", title: "국내 OTT 서비스", color: "black" },
   { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", color: "rose" },
