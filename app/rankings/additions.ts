@@ -7,12 +7,12 @@ const art = (key:string) => ({image:assets[key]?.image, imageSource:assets[key]?
 const kbo = 'https://www.koreabaseball.com/Record/History/Top/Hitter.aspx';
 const hrSources:Record<string,string>={
  'Mel_Rojas_Jr.':'https://www.koreabaseball.com/MediaNews/Notice/View.aspx?bdSe=11520',
- 'Matt_Davidson':'https://web1.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=54944',
- 'Kim_Jae-hwan_(baseball)':'https://web1.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=78224',
+ 'Matt_Davidson':'https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=54944',
+ 'Kim_Jae-hwan_(baseball)':'https://www.koreabaseball.com/Record/Player/HitterDetail/Basic.aspx?playerId=78224',
  'Dan_Rohrmeier':'https://star.ohmynews.com/NWS_Web/OhmyStar/at_pg.aspx?CNTN_CD=A0000308427',
  'Jamie_Romak':'https://mykbostats.com/players/1623-Jamie-Romak-SSG-Landers',
  'Tyrone_Woods':'https://www.busan.com/view/busan/view.php?code=19981002001374',
- 'Lewin_Díaz':'https://web1.koreabaseball.com/MediaNews/News/Preview/View.aspx?bdSe=62036',
+ 'Lewin_Díaz':'https://www.koreabaseball.com/MediaNews/News/Preview/View.aspx?bdSe=62036',
 };
 const hr: [string,number,string,number,string][] = [
  ['이승엽',2003,'삼성',56,'Lee_Seung-yuop'],['이승엽',1999,'삼성',54,'Lee_Seung-yuop'],
