@@ -1,15 +1,7 @@
 {
-  "리그 오브 레전드": {
-    "image": "/ranking-images/games/pc-art-league-of-legends.webp",
-    "source": "https://www.leagueoflegends.com/ko-kr/"
-  },
   "FC온라인": {
     "image": "/ranking-images/games/pc-art-fc-online.png",
     "source": "https://fconline.nexon.com/"
-  },
-  "발로란트": {
-    "image": "/ranking-images/games/pc-art-valorant.webp",
-    "source": "https://playvalorant.com/ko-kr/"
   },
   "배틀그라운드": {
     "image": "/ranking-images/games/pc-art-pubg.jpg",
