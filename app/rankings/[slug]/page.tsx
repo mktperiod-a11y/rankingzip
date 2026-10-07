@@ -21,7 +21,7 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
 }
 const CREDIT_LABELS:Record<string,string>={'apps.apple.com':'앱스토어','en.wikipedia.org':'위키백과','commons.wikimedia.org':'위키미디어 공용','www.koreabaseball.com':'KBO','web1.koreabaseball.com':'KBO','www.kaida.co.kr':'KAIDA','monthly.chosun.com':'월간조선','www.hyundaimotorgroup.com':'현대자동차그룹','tour.pc.go.kr':'평창군 관광'};
 type ImageKind = 'flag' | 'logo' | 'photo' | 'photo crest';
-const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly","netflix-korea-films-weekly"];
+const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","ott-content-weekly","netflix-korea-films-weekly"];
 // 넷플릭스 대표 이미지는 가로(16:9)라 세로 포스터 틀 대신 가로 틀에 넣습니다.
 const WIDE_POSTER_SLUGS=["ott-content-weekly","netflix-korea-films-weekly"];
 // 로고·차량처럼 잘리면 안 되는 이미지를 쓰는 순위는 흰 바탕 틀 안에 전체가 보이게 맞춥니다.

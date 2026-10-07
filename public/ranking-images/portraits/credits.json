@@ -293,5 +293,37 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "author": "Gage Skidmore",
     "article": "https://en.wikipedia.org/wiki/Dak_Prescott"
+  },
+  "존 람": {
+    "image": "/ranking-images/portraits/jon-rahm.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jon_Rahm_Ryder_Cup_2025-130_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Bryan Berlin",
+    "article": "https://en.wikipedia.org/wiki/Jon_Rahm"
+  },
+  "카림 벤제마": {
+    "image": "/ranking-images/portraits/karim-benzema.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Karim_Benzema_Pick.jpg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Zack",
+    "article": "https://en.wikipedia.org/wiki/Karim_Benzema"
+  },
+  "케빈 듀랜트": {
+    "image": "/ranking-images/portraits/kevin-durant.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_Durant,_Paris_2024_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Clément Bardot",
+    "article": "https://en.wikipedia.org/wiki/Kevin_Durant"
+  },
+  "루이스 해밀턴": {
+    "image": "/ranking-images/portraits/lewis-hamilton.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Prime_Minister_Keir_Starmer_meets_Sir_Lewis_Hamilton_(54566928382)_(cropped).jpg",
+    "license": "OGL 3",
+    "licenseUrl": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3",
+    "author": "Picture by Lauren Hurley / No 10 Downing Street",
+    "article": "https://en.wikipedia.org/wiki/Lewis_Hamilton"
   }
 }
