@@ -1,0 +1,38 @@
+{
+  "리그 오브 레전드": {
+    "image": "/ranking-images/games/pc-art-league-of-legends.webp",
+    "source": "https://www.leagueoflegends.com/ko-kr/"
+  },
+  "FC온라인": {
+    "image": "/ranking-images/games/pc-art-fc-online.png",
+    "source": "https://fconline.nexon.com/"
+  },
+  "발로란트": {
+    "image": "/ranking-images/games/pc-art-valorant.webp",
+    "source": "https://playvalorant.com/ko-kr/"
+  },
+  "배틀그라운드": {
+    "image": "/ranking-images/games/pc-art-pubg.jpg",
+    "source": "https://pubg.com/ko/main"
+  },
+  "리니지 클래식": {
+    "image": "/ranking-images/games/pc-art-lineage-classic.jpg",
+    "source": "https://lineageclassic.plaync.com/ko-kr"
+  },
+  "오버워치": {
+    "image": "/ranking-images/games/pc-art-overwatch.jpg",
+    "source": "https://overwatch.blizzard.com/ko-kr/"
+  },
+  "메이플 스토리": {
+    "image": "/ranking-images/games/pc-art-maplestory.jpg",
+    "source": "https://maplestory.nexon.com/"
+  },
+  "Roblox": {
+    "image": "/ranking-images/games/pc-art-roblox.jpg",
+    "source": "https://www.roblox.com/"
+  },
+  "스타크래프트": {
+    "image": "/ranking-images/games/pc-art-starcraft.png",
+    "source": "https://starcraft.blizzard.com/ko-kr"
+  }
+}
