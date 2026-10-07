@@ -29,8 +29,8 @@ const portrait=(name:string)=>name==='세르게이 파블로비치'?(assets as R
 export function generateStaticParams(){return pages.map(p=>({slug:p.slug}));}
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{
  const {slug}=await params;const p=pageBySlug[slug];if(!p)return {};
- const firstImage=p.rows[0]?.image||imageByName[p.rows[0]?.name];
- return {title:`${p.title} | 순위ZIP`,description:p.description,robots:p.noindex?{index:false,follow:true}:undefined,alternates:{canonical:`/rankings/${slug}`},openGraph:{title:p.title,description:p.description,type:"article",url:`/rankings/${slug}`,images:firstImage?[{url:firstImage}]:[]},twitter:{card:"summary_large_image",title:p.title,description:p.description,images:firstImage?[firstImage]:[]}};
+ const og=[{url:"og.png",width:1200,height:630,alt:`${p.title} | 순위ZIP`}];
+ return {title:`${p.title} | 순위ZIP`,description:p.description,robots:p.noindex?{index:false,follow:true}:undefined,alternates:{canonical:`rankings/${slug}`},openGraph:{title:p.title,description:p.description,type:"article",locale:"ko_KR",siteName:"순위ZIP",url:`rankings/${slug}`,images:og},twitter:{card:"summary_large_image",title:p.title,description:p.description,images:og}};
 }
 type ImageKind = 'flag' | 'logo' | 'photo';
 const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly"];
