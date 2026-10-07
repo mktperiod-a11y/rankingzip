@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>라프텔 - 해외 접속 차단</title>
+    <script type="module" crossorigin src="https://static.laftel.net/waf-block-page/index.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
