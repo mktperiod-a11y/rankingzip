@@ -16,10 +16,9 @@ const APPS = [
   ['파일시티', 'filecity', '파일시티', /파일시티|filecity/i],
 ];
 const PC = [
-  ['리그 오브 레전드', 'league-of-legends', 'https://www.leagueoflegends.com/ko-kr/'], ['FC온라인', 'fc-online', 'https://fconline.nexon.com/'],
-  ['발로란트', 'valorant', 'https://playvalorant.com/ko-kr/'], ['배틀그라운드', 'pubg', 'https://pubg.com/ko/main'],
+  // 리그 오브 레전드·발로란트·서든어택·메이플 스토리 이미지는 brand-images.ts와 normalize-logos.mjs에서 따로 붙입니다.
+  ['FC온라인', 'fc-online', 'https://fconline.nexon.com/'], ['배틀그라운드', 'pubg', 'https://pubg.com/ko/main'],
   ['리니지 클래식', 'lineage-classic', 'https://lineageclassic.plaync.com/ko-kr'], ['오버워치', 'overwatch', 'https://overwatch.blizzard.com/ko-kr/'],
-  ['서든어택', 'sudden-attack', 'https://sa.nexon.com/'], ['메이플 스토리', 'maplestory', 'https://maplestory.nexon.com/'],
   ['Roblox', 'roblox', 'https://www.roblox.com/'], ['스타크래프트', 'starcraft', 'https://starcraft.blizzard.com/ko-kr'],
 ];
 const ext = (type) => (/png/.test(type) ? 'png' : /webp/.test(type) ? 'webp' : 'jpg');
