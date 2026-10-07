@@ -7,6 +7,6 @@ import { getPicks } from "../lib/trends-server";
 const kst = new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
 
 export default async function Page() {
-  const { picks, trendsAt, keywords } = await getPicks(editorPicks);
-  return <Home picks={picks} trendsAt={trendsAt && kst.format(new Date(trendsAt))} keywords={keywords} />;
+  const { picks, trendsAt, trendSlugs } = await getPicks(editorPicks);
+  return <Home picks={picks} trendsAt={trendsAt && kst.format(new Date(trendsAt))} trendSlugs={trendSlugs} />;
 }

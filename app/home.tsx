@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { slugByTitle, pageBySlug } from "./rankings/data";
+import { slugByTitle, pageBySlug, pages } from "./rankings/data";
+import { dateParts } from "./rankings/date-parts";
 import { editorPicks as hot } from "./rankings/editor-picks";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
@@ -12,43 +13,70 @@ type Category = "전체" | "스포츠" | "미디어" | "라이프" | "서비스"
 const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "서비스", "글로벌"];
 
 const rankings = [
-  { category: "스포츠", icon: "⚾", title: "역대 아시안게임 야구 우승 국가 순위", desc: "한국 통산 7회 우승·대회 5연패", tag: "9.27", color: "blue" },
-  { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", desc: "한국 금 8·은 8·동 25개로 종합 3위", tag: "9.23", color: "gold" },
-  { category: "서비스", icon: "💾", title: "파일 공유 서비스 비교", desc: "인기 웹하드 8곳 · 2일마다 갱신", tag: "2일 갱신", color: "indigo" },
-  { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", desc: "9월 14~20일 · The Warriors 1위", tag: "주간", color: "red" },
-  { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", desc: "오디세이 1,002만·스파이더맨 879만", tag: "9.7", color: "red" },
-  { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", desc: "KT 7연승 단독 1위·삼성과 2.5경기", tag: "9.17", color: "blue" },
-  { category: "스포츠", icon: "💥", title: "2026 KBO 홈런 순위 TOP 5", desc: "김도영 40·오스틴 39·힐리어드 36홈런", tag: "9.17", color: "blue" },
-  { category: "라이프", icon: "🚗", title: "수입차 브랜드 등록 순위 TOP 10", desc: "테슬라 10,400대 · 2026년 8월", tag: "8월", color: "navy" },
-  { category: "스포츠", icon: "🎯", title: "2026 KBO 타점 순위 TOP 5", desc: "오스틴·디아즈·김도영 · 홈런과 다른 타점 경쟁", tag: "NEW", color: "green" },
-  { category: "스포츠", icon: "🏆", title: "KBO 역대 한 시즌 홈런 TOP 20", desc: "이승엽 56홈런부터 · 역대 20개 시즌 기록", tag: "역대", color: "blue" },
-  { category: "미디어", icon: "🎞️", title: "크리스토퍼 놀란 영화 국내 흥행 순위", desc: "인터스텔라부터 오디세이까지 · 관객 비교", tag: "NEW", color: "purple" },
-  { category: "미디어", icon: "🕷️", title: "역대 스파이더맨 영화 흥행 순위", desc: "실사·애니메이션 11편 · 세계 매출 비교", tag: "NEW", color: "red" },
-  { category: "스포츠", icon: "🎟️", title: "2026 KBO 구단 관중", desc: "역대 최소 565경기 만에 1,000만 돌파", tag: "NEW", color: "blue" },
-  { category: "미디어", icon: "📺", title: "OTT 인기 콘텐츠", desc: "나는 SOLO·우리의 끈끈한 사랑", tag: "주간", color: "pink" },
-  { category: "라이프", icon: "🚙", title: "국내 자동차 판매량", desc: "8월 쏘렌토 6,397대 1위", tag: "8월", color: "navy" },
-  { category: "스포츠", icon: "⚽", title: "한국 축구선수 연봉", desc: "이강인 AT마드리드 데뷔골 반영", tag: "8.24", color: "green" },
-  { category: "미디어", icon: "🌏", title: "2026년 세계 영화 흥행", desc: "스파이더맨·오디세이 최신 흥행", tag: "8.27", color: "purple" },
-  { category: "스포츠", icon: "💵", title: "MLB 한국 선수 역대 연봉", desc: "시즌별 최고 연봉과 누적 기록", tag: "역대", color: "blue" },
-  { category: "스포츠", icon: "🥊", title: "UFC 체급별 랭킹", desc: "챔피언부터 한국 선수까지", tag: "주간", color: "red" },
-  { category: "미디어", icon: "🎥", title: "역대 국내 영화 관객", desc: "천만 영화와 흥행 기록 모음", tag: "역대", color: "purple" },
-  { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", desc: "지상파·케이블 최고 기록", tag: "역대", color: "orange" },
-  { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", desc: "해외여행 목적지 관심도", tag: "월간", color: "cyan" },
-  { category: "서비스", icon: "📱", title: "국내 OTT 서비스", desc: "2025년 4월 스마트폰 앱 사용자", tag: "과거 통계", color: "black" },
-  { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", desc: "월간 검색·스트리밍 관심 순위", tag: "19+", color: "rose" },
-  { category: "글로벌", icon: "💸", title: "세계 스포츠 스타 수입", desc: "연봉과 광고 수입 종합", tag: "연간", color: "gold" },
-  { category: "글로벌", icon: "🏙️", title: "세계 최고층 빌딩", desc: "완공 건축물 높이 TOP 6", tag: "역대", color: "blue" },
-  { category: "글로벌", icon: "🌍", title: "세계 인구", desc: "UN 추계로 보는 국가별 인구", tag: "연간", color: "green" },
-  { category: "라이프", icon: "👥", title: "대한민국 시도 인구", desc: "행정안전부 월간 주민등록 인구", tag: "월간", color: "orange" },
-  { category: "라이프", icon: "⛰️", title: "대한민국 높은 산", desc: "대표 정상 해발고도 비교", tag: "역대", color: "cyan" },
-  { category: "글로벌", icon: "💰", title: "세계 GDP", desc: "IMF 전망으로 보는 경제 규모", tag: "연간", color: "gold" },
-  { category: "글로벌", icon: "🗺️", title: "세계에서 가장 큰 나라", desc: "육지 면적 기준 국가 비교", tag: "역대", color: "green" },
-  { category: "글로벌", icon: "🏔️", title: "세계에서 가장 높은 산", desc: "8천 미터급 정상 고도 비교", tag: "역대", color: "navy" },
-  { category: "라이프", icon: "✈️", title: "세계 관광객 방문 국가", desc: "해외 관광객이 많이 찾은 나라", tag: "연간", color: "purple" },
+  { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
+  { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", color: "gold" },
+  { category: "서비스", icon: "💾", title: "파일 공유 서비스 비교", color: "indigo" },
+  { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", color: "red" },
+  { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", color: "red" },
+  { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", color: "blue" },
+  { category: "스포츠", icon: "💥", title: "2026 KBO 홈런 순위 TOP 5", color: "blue" },
+  { category: "라이프", icon: "🚗", title: "수입차 브랜드 등록 순위 TOP 10", color: "navy" },
+  { category: "스포츠", icon: "🎯", title: "2026 KBO 타점 순위 TOP 5", color: "green" },
+  { category: "스포츠", icon: "👑", title: "KBO 역대 한 시즌 홈런 TOP 20", color: "blue" },
+  { category: "미디어", icon: "🎞️", title: "크리스토퍼 놀란 영화 국내 흥행 순위", color: "purple" },
+  { category: "미디어", icon: "🕷️", title: "역대 스파이더맨 영화 흥행 순위", color: "red" },
+  { category: "스포츠", icon: "🎟️", title: "2026 KBO 구단 관중", color: "blue" },
+  { category: "미디어", icon: "📺", title: "OTT 인기 콘텐츠", color: "pink" },
+  { category: "라이프", icon: "🚙", title: "국내 자동차 판매량", color: "navy" },
+  { category: "스포츠", icon: "⚽", title: "한국 축구선수 연봉", color: "green" },
+  { category: "미디어", icon: "🌏", title: "2026년 세계 영화 흥행", color: "purple" },
+  { category: "스포츠", icon: "💵", title: "MLB 한국 선수 역대 연봉", color: "blue" },
+  { category: "스포츠", icon: "🥊", title: "UFC 체급별 랭킹", color: "red" },
+  { category: "미디어", icon: "🎥", title: "역대 국내 영화 관객", color: "purple" },
+  { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", color: "orange" },
+  { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", color: "cyan" },
+  { category: "서비스", icon: "📱", title: "국내 OTT 서비스", color: "black" },
+  { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", color: "rose" },
+  { category: "글로벌", icon: "💸", title: "세계 스포츠 스타 수입", color: "gold" },
+  { category: "글로벌", icon: "🏙️", title: "세계 최고층 빌딩", color: "blue" },
+  { category: "글로벌", icon: "🌍", title: "세계 인구", color: "green" },
+  { category: "라이프", icon: "👥", title: "대한민국 시도 인구", color: "orange" },
+  { category: "라이프", icon: "⛰️", title: "대한민국 높은 산", color: "cyan" },
+  { category: "글로벌", icon: "💰", title: "세계 GDP", color: "gold" },
+  { category: "글로벌", icon: "🗺️", title: "세계에서 가장 큰 나라", color: "green" },
+  { category: "글로벌", icon: "🏔️", title: "세계에서 가장 높은 산", color: "navy" },
+  { category: "라이프", icon: "✈️", title: "세계 관광객 방문 국가", color: "purple" },
 ];
 
 
-const weeklyKeywords = ["한국 야구 5연패", "아시안게임 야구 통산 7회", "아시안게임 한국 3위", "넷플릭스 The Warriors", "오디세이 천만"];
+// 카드 오른쪽 위 라벨: 이 순위가 어떤 기간의 기록인지(=얼마나 자주 바뀌는지)
+const SCOPE: Record<string, string> = {
+  "netflix-korea-films-weekly": "주간", "ott-content-weekly": "주간", "ufc-rankings-by-division": "주간",
+  "file-sharing-services": "2일마다",
+  "kbo-team-standings-2026": "시즌", "kbo-home-runs-2026": "시즌", "kbo-rbi-2026": "시즌", "kbo-attendance-2026": "시즌",
+  "asian-games-medal-table-2026": "대회",
+  "korea-import-car-brands": "월간", "korea-car-sales": "월간", "korea-province-population": "월간", "korean-travel-destinations": "월간", "korea-ott-users": "월간",
+  "korea-box-office-2026": "연간", "worldwide-box-office-2026": "연간", "highest-paid-athletes": "연간", "world-population": "연간", "world-gdp-ranking": "연간", "most-visited-countries": "연간", "korean-football-salary": "연간",
+  "japan-av-actress-ranking": "19+",
+};
+
+/** 카드 가운데 줄: 지금 1위. 순위가 없는 안내형 페이지는 설명 첫 문장을 씁니다. */
+function leader(slug: string) {
+  const p = pageBySlug[slug];
+  const top = p?.rows[0];
+  if (!p || p.unranked || !top) return { rank: "", text: p?.description.split(/(?<=[.다요])\s/)[0] ?? "" };
+  const value = top.value && !/^\d+위$/.test(top.value) ? top.value : "";
+  return { rank: `${top.rank ?? 1}위`, text: value ? `${top.name} · ${value}` : top.name };
+}
+
+/** HOT 띠: 지금 실시간 검색어와 이어진 순위를 먼저, 나머지는 자료가 최근에 바뀐 순위로 채웁니다. */
+function hotRankings(trendSlugs: string[], count = 4) {
+  const listed = new Set(Object.values(slugByTitle));
+  const recent = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug))
+    .map((p) => ({ slug: p.slug, updated: dateParts(p.date, p.auditDate).updated ?? "" }))
+    .sort((a, b) => b.updated.localeCompare(a.updated)).map((p) => p.slug);
+  return [...new Set([...trendSlugs.filter((s) => pageBySlug[s] && !pageBySlug[s].noindex), ...recent])].slice(0, count);
+}
 
 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
@@ -67,7 +95,7 @@ function cardDate(date: string) {
   return date.split(" · ")[0];
 }
 
-export default function Home({ picks, trendsAt, keywords }: { picks: TrendPick[]; trendsAt?: string; keywords?: string[] }) {
+export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: TrendPick[]; trendsAt?: string; trendSlugs?: string[] }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
   // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
@@ -84,7 +112,7 @@ export default function Home({ picks, trendsAt, keywords }: { picks: TrendPick[]
   };
   const filtered = useMemo(() => rankings.filter((item) =>
     !pageBySlug[slugByTitle[item.title]]?.noindex && (active === "전체" || item.category === active) &&
-    (item.title + item.desc).toLowerCase().includes(query.toLowerCase())
+    (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + leader(slugByTitle[item.title]).text).toLowerCase().includes(query.toLowerCase())
   ), [active, query]);
 
   return (
@@ -105,27 +133,28 @@ export default function Home({ picks, trendsAt, keywords }: { picks: TrendPick[]
         </div>
         <div className="hero-board" aria-label="오늘의 인기 순위">
           <div className="board-head"><div><i></i>이번 주 주목할 랭킹</div></div>
-          {hot.slice(0,3).map((item, i) => <a href={`/rankings/${item[3]}`} className="hero-row" key={item[0]}><b>{i+1}</b><div className={`avatar a${i}`}>{["⚾","🏅","🎬"][i]}</div><p><strong>{item[0]}</strong><small>{item[1]}</small></p></a>)}
+          {hot.slice(0,3).map((item, i) => <a href={`/rankings/${item[3]}`} className="hero-row" key={item[0]}><b>{i+1}</b><div className={`avatar a${i}`}>{["🏆","🏅","🎬"][i]}</div><p><strong>{item[0]}</strong><small>{item[1]}</small></p></a>)}
           <div className="board-foot">2026.09.28 자료 점검 <b>↗</b></div>
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>{keywords?.length ? `실시간 검색어 · ${trendsAt}` : "이번 주 관심 키워드"}</strong>{(keywords?.length ? keywords : weeklyKeywords).map((x,i)=><span key={x}><i>{i+1}</i>{x}</span>)}</div></section>
+      <section className="ticker"><div><b>HOT</b><strong>인기 순위</strong>{hotRankings(trendSlugs).map((slug,i)=><a key={slug} href={`/rankings/${slug}`}><i>{i+1}</i>{pageBySlug[slug].title}</a>)}</div></section>
 
       <section className="content" id="rankings">
         <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
           <div className="card-grid">
-            {filtered.map((item) => <article className="rank-card" key={item.title}>
-              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{item.tag}</span>
-              <small>{item.category}</small><h3>{pageBySlug[slugByTitle[item.title]]?.title||item.title}</h3><p className="rank-meta">{cardDate(pageBySlug[slugByTitle[item.title]]?.date??"")}</p>
-              <a className="rank-link" href={`/rankings/${slugByTitle[item.title]}`}>상세 자료 보기 <b>→</b></a>
-            </article>)}
+            {filtered.map((item) => { const slug = slugByTitle[item.title]; const lead = leader(slug); return <article className="rank-card" key={item.title}>
+              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{SCOPE[slug] ?? "역대"}</span>
+              <small>{item.category}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
+              <p className="rank-lead">{lead.rank&&<b>{lead.rank}</b>}{lead.text}</p>
+              <a className="rank-link" href={`/rankings/${slug}`}><span>{cardDate(pageBySlug[slug]?.date??"")}</span>자세히 보기 <b>→</b></a>
+            </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>
           <aside>
-            <div className="aside-title"><div><span>↗</span><p><small>EDITOR'S PICKS</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
+            <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
             <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
             <button className="all-button" type="button" onClick={showAll}>인기 랭킹 전체보기 <b>→</b></button>
