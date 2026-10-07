@@ -10,6 +10,7 @@
       "season": "",
       "weeks": 2,
       "videoId": 81949585,
+      "titleKo": "끝장수사",
       "image": "/ranking-images/netflix/81949585.jpg"
     },
     {
@@ -27,6 +28,7 @@
       "season": "",
       "weeks": 3,
       "videoId": 82735120,
+      "titleKo": "필사의 추격",
       "image": "/ranking-images/netflix/82735120.jpg"
     },
     {
@@ -35,8 +37,8 @@
       "season": "",
       "weeks": 2,
       "videoId": 70119812,
-      "image": "/ranking-images/netflix/70119812.jpg",
-      "titleKo": "타이탄"
+      "titleKo": "타이탄",
+      "image": "/ranking-images/netflix/70119812.jpg"
     },
     {
       "rank": 5,
@@ -44,6 +46,7 @@
       "season": "",
       "weeks": 5,
       "videoId": 81464337,
+      "titleKo": "오케이 마담",
       "image": "/ranking-images/netflix/81464337.jpg"
     },
     {
