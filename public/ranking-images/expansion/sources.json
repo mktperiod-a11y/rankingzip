@@ -2,82 +2,82 @@
   "kbo_Samsung": {
     "image": "/ranking-images/expansion/kbo_Samsung.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_SS.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/Samsung.svg",
+    "width": 320,
+    "height": 241,
+    "checked": "2026-10-07"
   },
   "kbo_Hanwha": {
     "image": "/ranking-images/expansion/kbo_Hanwha.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_HH.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/Hanwha.svg",
+    "width": 320,
+    "height": 273,
+    "checked": "2026-10-07"
   },
   "kbo_SSG": {
     "image": "/ranking-images/expansion/kbo_SSG.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_SK.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/SSG.svg",
+    "width": 320,
+    "height": 189,
+    "checked": "2026-10-07"
   },
   "kbo_LG": {
     "image": "/ranking-images/expansion/kbo_LG.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_LG.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/LG.svg",
+    "width": 320,
+    "height": 256,
+    "checked": "2026-10-07"
   },
   "kbo_KIA": {
     "image": "/ranking-images/expansion/kbo_KIA.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_HT.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/KIA.svg",
+    "width": 320,
+    "height": 239,
+    "checked": "2026-10-07"
   },
   "kbo_KT": {
     "image": "/ranking-images/expansion/kbo_KT.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_KT.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/KT.svg",
+    "width": 320,
+    "height": 290,
+    "checked": "2026-10-07"
   },
   "kbo_Kiwoom": {
     "image": "/ranking-images/expansion/kbo_Kiwoom.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_WO.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/Kiwoom.svg",
+    "width": 320,
+    "height": 235,
+    "checked": "2026-10-07"
   },
   "kbo_NC": {
     "image": "/ranking-images/expansion/kbo_NC.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_NC.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/NC.svg",
+    "width": 320,
+    "height": 216,
+    "checked": "2026-10-07"
   },
   "kbo_Lotte": {
     "image": "/ranking-images/expansion/kbo_Lotte.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_LT.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/Lotte.svg",
+    "width": 320,
+    "height": 240,
+    "checked": "2026-10-07"
   },
   "kbo_Doosan": {
     "image": "/ranking-images/expansion/kbo_Doosan.webp",
     "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx",
-    "original": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/emblem/regular/fixed/emblem_OB.png",
-    "width": 64,
-    "height": 41,
-    "checked": "2026-08-27"
+    "original": "data/logo-sources/kbo/Doosan.svg",
+    "width": 320,
+    "height": 320,
+    "checked": "2026-10-07"
   },
   "tesla": {
     "image": "/ranking-images/expansion/tesla.webp",

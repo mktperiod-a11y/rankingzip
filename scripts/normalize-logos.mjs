@@ -2,12 +2,12 @@
 // 로고 이미지 정리: 파일 안의 흰 여백·투명 여백을 잘라 내 로고가 틀 가운데에 같은 크기로 보이게 합니다.
 //   node scripts/normalize-logos.mjs   (여러 번 돌려도 결과가 같습니다)
 // 앱 아이콘이 없는 서비스는 정사각 타일을 만듭니다(로고 + 흰 바탕 또는 브랜드 색 바탕). 타일 원본 로고는 data/logo-sources/에 있습니다.
+// KBO 구단 로고는 data/logo-sources/kbo/{구단}.svg에서 만듭니다.
 import sharp from 'sharp';
 import fs from 'node:fs';
 
 const TRIM = [
   ...['audi', 'bmw', 'byd', 'lexus', 'mercedes', 'mini', 'porsche', 'tesla', 'toyota', 'volvo'].map((n) => `public/ranking-images/expansion/${n}.webp`),
-  ...['Doosan', 'Hanwha', 'KIA', 'KT', 'Kiwoom', 'LG', 'Lotte', 'NC', 'SSG', 'Samsung'].map((n) => `public/ranking-images/expansion/kbo_${n}.webp`),
 ];
 /** 흰색에 가깝거나 투명한 픽셀을 뺀 실제 로고 영역 */
 async function contentBox(input) {
@@ -64,3 +64,16 @@ async function cover(src, dest, size = 512) {
 }
 await cover('data/logo-sources/league-of-legends-key.jpg', 'public/ranking-images/games/pc-key-league-of-legends.webp');
 await cover('data/logo-sources/valorant-key.jpg', 'public/ranking-images/games/pc-key-valorant.webp');
+
+// KBO 구단 로고: data/logo-sources/kbo/{구단}.svg를 투명 배경 이미지로 만듭니다(긴 변 320px).
+const kboSources = JSON.parse(fs.readFileSync('public/ranking-images/expansion/sources.json', 'utf8'));
+for (const svg of fs.readdirSync('data/logo-sources/kbo').filter((f) => f.endsWith('.svg')).sort()) {
+  const team = svg.replace(/\.svg$/, '');
+  const dest = `public/ranking-images/expansion/kbo_${team}.webp`;
+  const out = await sharp(fs.readFileSync(`data/logo-sources/kbo/${svg}`), { density: 300 }).resize(320, 320, { fit: 'inside' }).webp({ quality: 92, alphaQuality: 100 }).toBuffer();
+  fs.writeFileSync(dest, out);
+  const m = await sharp(out).metadata();
+  kboSources[`kbo_${team}`] = { image: dest.replace(/^public/, ''), source: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx', original: `data/logo-sources/kbo/${svg}`, width: m.width, height: m.height, checked: '2026-10-07' };
+  console.log('kbo', dest, `${m.width}x${m.height}`);
+}
+fs.writeFileSync('public/ranking-images/expansion/sources.json', JSON.stringify(kboSources, null, 2) + '\n');
