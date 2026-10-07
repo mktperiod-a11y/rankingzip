@@ -43,6 +43,10 @@ test('parser refuses unexpected formats instead of saving bad data', () => {
 test('updater writes only newer weeks, and dry-run writes nothing', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'netflix-'));
   fs.cpSync('data', path.join(dir, 'data'), { recursive: true });
+  // 저장된 데이터는 매주 바뀌므로, 테스트용 TSV보다 이전 주간으로 고정해 둡니다.
+  for (const name of ['netflix-korea-films-weekly', 'ott-content-weekly']) {
+    fs.writeFileSync(path.join(dir, `data/rankings/${name}.json`), JSON.stringify({ source: '', weekStart: '2026-09-14', weekEnd: '2026-09-20', checkedAt: '2026-09-24', rows: [] }));
+  }
   const run = (...args) => execFileSync(process.execPath, [path.resolve('scripts/update-netflix.mjs'), '--input', path.resolve('tests/fixtures/netflix-top10.tsv'), ...args], { cwd: dir, encoding: 'utf8' });
   const file = path.join(dir, 'data/rankings/netflix-korea-films-weekly.json');
   const before = fs.readFileSync(file, 'utf8');
@@ -57,8 +61,9 @@ test('updater writes only newer weeks, and dry-run writes nothing', () => {
 
 test('page text is generated from the saved chart', async () => {
   const { filmsContent, tvContent, netflixFilms } = await loadContent();
-  assert.equal(netflixFilms.date, '2026.09.14~09.20 · 9월 24일 확인');
-  assert.equal(netflixFilms.rows[0].note, '한국 영화 주간 차트 · TOP 10 진입 1주');
+  const stored = JSON.parse(fs.readFileSync('data/rankings/netflix-korea-films-weekly.json', 'utf8'));
+  assert.equal(netflixFilms.rows[0].name, stored.rows[0].titleKo || stored.rows[0].title);
+  assert.match(netflixFilms.date, /^\d{4}\.\d{2}\.\d{2}~/);
   const [films, tv] = parseKoreaCharts(fixture);
   const chart = (c) => ({ source: '', checkedAt: '2026-10-01', ...c });
   const f = filmsContent(chart(films));
@@ -80,4 +85,17 @@ test('Korean title and artwork are read from Netflix pages', () => {
   const page = '<meta property="og:title" content="Watch 스캔들 | Netflix Official Site"><meta property="og:image" content="https://img.example/og.jpg"><h1 class="t">스캔들</h1>';
   assert.deepEqual(parseTitlePage(page), { titleKo: '스캔들', image: 'https://img.example/og.jpg' });
   assert.equal(parseTitlePage('<meta property="og:title" content="Watch 포핸즈 | Netflix Official Site">').titleKo, '포핸즈');
+});
+
+test('Korean titles and images are used when saved', async () => {
+  const { tvContent, seasonKo } = await loadContent();
+  assert.equal(seasonKo('Season 2'), '시즌 2');
+  assert.equal(seasonKo('Limited Series'), '리미티드 시리즈');
+  const t = tvContent({ source: '', weekStart: '2026-09-28', weekEnd: '2026-10-04', checkedAt: '2026-10-07', rows: [
+    { rank: 1, title: "Kian's Bizarre B&B", season: 'Season 2', weeks: 2, titleKo: '대환장 기안장', image: '/ranking-images/netflix/1.jpg' },
+    { rank: 2, title: 'Marriage of Convenience', season: 'Season 1', weeks: 1 },
+  ] });
+  assert.deepEqual(t.rows[0], { name: '대환장 기안장', value: '1위', note: '시즌 2 · TOP 10 진입 2주', image: '/ranking-images/netflix/1.jpg' });
+  assert.equal(t.rows[1].name, 'Marriage of Convenience');
+  assert.equal(t.faq[0][1], '9월 28일부터 10월 4일까지 1위는 대환장 기안장 시즌 2입니다.');
 });
