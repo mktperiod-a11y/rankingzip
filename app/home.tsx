@@ -11,8 +11,22 @@ type Category = "전체" | "스포츠" | "미디어" | "라이프" | "IT·게임
 
 const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "IT·게임", "글로벌"];
 
+// 히어로 질문 순서를 숫자 대신 금·은·동 트로피로 보여줍니다. 색은 순위 페이지의 1~3위 메달과 같습니다.
+const TROPHY_COLORS = [["#ffd45a", "#e3a300"], ["#d9dee6", "#9aa4b2"], ["#f0b07a", "#c06a2b"]];
+function Trophy({ rank }: { rank: number }) {
+  const [from, to] = TROPHY_COLORS[rank];
+  const fill = `url(#hero-trophy-${rank})`;
+  return <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+    <defs><linearGradient id={`hero-trophy-${rank}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={from} /><stop offset="1" stopColor={to} /></linearGradient></defs>
+    <path d="M7 5H4.5v1.5A3.5 3.5 0 0 0 8 10M17 5h2.5v1.5A3.5 3.5 0 0 1 16 10" fill="none" stroke={fill} strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M6.5 3h11v5.5a5.5 5.5 0 0 1-11 0Z" fill={fill} />
+    <rect x="10.9" y="13.5" width="2.2" height="3.5" fill={fill} />
+    <rect x="7.5" y="17" width="9" height="3" rx="1" fill={fill} />
+  </svg>;
+}
+
 const heroQuestions = [
-  { icon: "🏆", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
+  { icon: "⚾", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
   { icon: "🍿", question: "이번 주 넷플릭스 영화 1위는?", slug: "netflix-korea-films-weekly" },
   { icon: "🚗", question: "가장 많이 팔린 수입차 브랜드는?", slug: "korea-import-car-brands" },
 ];
@@ -126,7 +140,7 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
           {heroQuestions.map((item, i) => {
             const page = pageBySlug[item.slug];
             return <a href={`/rankings/${item.slug}`} className="hero-row" key={item.slug}>
-              <b>{i + 1}</b>
+              <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
               <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong><small>{page.title}</small></p>
             </a>;
