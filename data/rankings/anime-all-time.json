@@ -1,0 +1,116 @@
+{
+  "source": "https://anilist.co/search/anime/popular",
+  "checkedAt": "2026-10-07",
+  "rows": [
+    {
+      "rank": 1,
+      "title": "Attack on Titan",
+      "popularity": 1062878,
+      "year": 2013,
+      "format": "TV",
+      "id": 16498,
+      "titleKo": "진격의 거인",
+      "image": "/ranking-images/anime/16498.jpg",
+      "url": "https://anilist.co/anime/16498"
+    },
+    {
+      "rank": 2,
+      "title": "Demon Slayer: Kimetsu no Yaiba",
+      "popularity": 1001434,
+      "year": 2019,
+      "format": "TV",
+      "id": 101922,
+      "titleKo": "귀멸의 칼날",
+      "image": "/ranking-images/anime/101922.jpg",
+      "url": "https://anilist.co/anime/101922"
+    },
+    {
+      "rank": 3,
+      "title": "JUJUTSU KAISEN",
+      "popularity": 980742,
+      "year": 2020,
+      "format": "TV",
+      "id": 113415,
+      "titleKo": "주술회전",
+      "image": "/ranking-images/anime/113415.jpg",
+      "url": "https://anilist.co/anime/113415"
+    },
+    {
+      "rank": 4,
+      "title": "Death Note",
+      "popularity": 969140,
+      "year": 2006,
+      "format": "TV",
+      "id": 1535,
+      "titleKo": "데스노트",
+      "image": "/ranking-images/anime/1535.jpg",
+      "url": "https://anilist.co/anime/1535"
+    },
+    {
+      "rank": 5,
+      "title": "My Hero Academia",
+      "popularity": 879894,
+      "year": 2016,
+      "format": "TV",
+      "id": 21459,
+      "titleKo": "나의 히어로 아카데미아",
+      "image": "/ranking-images/anime/21459.jpg",
+      "url": "https://anilist.co/anime/21459"
+    },
+    {
+      "rank": 6,
+      "title": "Hunter x Hunter (2011)",
+      "popularity": 846854,
+      "year": 2011,
+      "format": "TV",
+      "id": 11061,
+      "titleKo": "헌터×헌터",
+      "image": "/ranking-images/anime/11061.png",
+      "url": "https://anilist.co/anime/11061"
+    },
+    {
+      "rank": 7,
+      "title": "One-Punch Man",
+      "popularity": 771958,
+      "year": 2015,
+      "format": "TV",
+      "id": 21087,
+      "titleKo": "원펀맨",
+      "image": "/ranking-images/anime/21087.jpg",
+      "url": "https://anilist.co/anime/21087"
+    },
+    {
+      "rank": 8,
+      "title": "ONE PIECE",
+      "popularity": 757398,
+      "year": 1999,
+      "format": "TV",
+      "id": 21,
+      "titleKo": "원피스",
+      "image": "/ranking-images/anime/21.jpg",
+      "url": "https://anilist.co/anime/21"
+    },
+    {
+      "rank": 9,
+      "title": "Tokyo Ghoul",
+      "popularity": 745188,
+      "year": 2014,
+      "format": "TV",
+      "id": 20605,
+      "titleKo": "도쿄 구울",
+      "image": "/ranking-images/anime/20605.jpg",
+      "url": "https://anilist.co/anime/20605"
+    },
+    {
+      "rank": 10,
+      "title": "Fullmetal Alchemist: Brotherhood",
+      "popularity": 734477,
+      "year": 2009,
+      "format": "TV",
+      "id": 5114,
+      "titleKo": "강철의 연금술사 BROTHERHOOD",
+      "image": "/ranking-images/anime/5114.jpg",
+      "url": "https://anilist.co/anime/5114"
+    }
+  ]
+}
