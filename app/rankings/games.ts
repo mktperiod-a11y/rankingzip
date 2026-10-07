@@ -12,7 +12,7 @@ const pc: [string, number][] = [['리그 오브 레전드', 34.04], ['FC온라�
 
 export const gamePages: RankingPage[] = [
   {
-    slug: 'korea-mobile-games-users', title: '국내 인기 모바일 게임 순위', category: '서비스',
+    slug: 'korea-mobile-games-users', title: '국내 인기 모바일 게임 순위', category: 'IT·게임',
     date: '2026년 8월 · 2026.09.04 발표', basis: '안드로이드+iOS 합산 월간 사용자 수(추정)',
     description: '8월 한 달 동안 국내에서 가장 많은 사람이 이용한 모바일 게임 TOP 10입니다. Roblox가 281만 명으로 1위, 블록 블라스트가 202만 명으로 뒤를 이었습니다. 모바일인덱스 추정치라 실제 이용자 수와 차이가 있을 수 있습니다.',
     source: '모바일인덱스 GAME · 26년 9월 인기 모바일 게임 순위', sourceUrl: 'https://insight-report.mobileindex.com/post/mobilegame-chart-2609',
@@ -25,7 +25,7 @@ export const gamePages: RankingPage[] = [
     auditDate: '2026.10.07', auditNote: '모바일인덱스 GAME 9월 리포트(2026년 8월 AOS+iOS 합산 사용자 기준)의 TOP 10 사용자 수를 대조했습니다.',
   },
   {
-    slug: 'korea-pc-games-share', title: '국내 인기 PC 게임 순위', category: '서비스',
+    slug: 'korea-pc-games-share', title: '국내 인기 PC 게임 순위', category: 'IT·게임',
     date: '2026.10.06 기준', basis: '전국 PC방 게임 이용 시간 점유율',
     description: '전국 PC방에서 이용 시간이 가장 많은 PC 게임 TOP 10입니다. 국내 PC 게임은 사용자 수가 공개되지 않아 PC방 이용 점유율로 비교합니다. 리그 오브 레전드가 34.04%로 1위입니다.',
     source: '게임트릭스 · PC방 게임 순위', sourceUrl: 'https://www.gametrics.com/',
