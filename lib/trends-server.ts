@@ -5,7 +5,7 @@ import { TREND_SOURCES, buildPicks, matchRanking, mergeTrends, type Pick, type T
 const REFRESH_MS = 10 * 60 * 1000;
 const RETRY_MS = 60 * 1000;
 const TIMEOUT_MS = 4000;
-const USER_AGENT = "Mozilla/5.0 (compatible; RankingZipBot/1.0; +https://rankingzip.pidinfo.chatgpt.site)";
+const USER_AGENT = "Mozilla/5.0 (compatible; RankingZipBot/1.0; +https://mktperiod-a11y.github.io/rankingzip)";
 
 type SourceState = { items: TrendItem[]; fetchedAt: string };
 const lastGood = new Map<TrendSourceId, SourceState>();
