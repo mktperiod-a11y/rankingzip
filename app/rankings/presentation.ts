@@ -48,7 +48,7 @@ const VALUE_LABEL: Record<string, string> = {
   'world-population': '인구', 'korea-province-population': '인구', 'korea-highest-mountains': '해발',
   'world-gdp-ranking': '명목 GDP', 'world-largest-countries': '육지 면적', 'world-highest-mountains': '해발',
   'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자', 'korea-pc-games-share': 'PC방 점유율',
-  'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율',
+  'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율', 'best-selling-music-artists': '판매량(추정)',
 };
 
 // 같은 말이 다시 나오는지 볼 때 쓰는 낱말: 괄호 속 설명과 기호는 뺍니다.
