@@ -14,8 +14,8 @@ jobs:
           mkdir -p data/logo-sources
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36"
           get() { curl -sSL -A "$UA" -H "Accept: image/avif,image/webp,image/*,*/*;q=0.8" -H "Accept-Language: ko-KR,ko;q=0.9" -e "$3" -o "$2" -w "$2 %{http_code} %{size_download}\n" "$1" || true; }
-          get "https://static.inven.co.kr/column/2026/07/03/news/i1592210951.jpg" data/logo-sources/league-of-legends-key.jpg "https://www.inven.co.kr/"
-          get "https://i.namu.wiki/i/tb90_xgpeEn_7Q7v8OJ3_BGOki2_NzHMhXIeYP467uA10ABjrc0raosdToqAvcu3WzJJZVSDrbPIaDFSztM9HA.webp" data/logo-sources/valorant-key.webp "https://namu.wiki/w/VALORANT"
+          true
+          get "https://wsrv.nl/?url=i.namu.wiki/i/tb90_xgpeEn_7Q7v8OJ3_BGOki2_NzHMhXIeYP467uA10ABjrc0raosdToqAvcu3WzJJZVSDrbPIaDFSztM9HA.webp&output=webp" data/logo-sources/valorant-key.webp "https://wsrv.nl/"
           for f in data/logo-sources/*-key.*; do file "$f" | grep -q image || rm -f "$f"; done
           ls -la data/logo-sources
       - run: |
