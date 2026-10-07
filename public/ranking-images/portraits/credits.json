@@ -246,14 +246,6 @@
     "author": "Bryan Berlin",
     "article": "https://en.wikipedia.org/wiki/Lionel_Messi"
   },
-  "카넬로 알바레스": {
-    "image": "/ranking-images/portraits/canelo-alvarez.jpg",
-    "source": "https://commons.wikimedia.org/wiki/File:Sa%C3%BAl_%C3%81lvarez.png",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-    "author": "Box Azteca",
-    "article": "https://en.wikipedia.org/wiki/Canelo_%C3%81lvarez"
-  },
   "르브론 제임스": {
     "image": "/ranking-images/portraits/lebron-james.jpg",
     "source": "https://commons.wikimedia.org/wiki/File:LeBron_James_(51959977144)_(cropped2).jpg",
@@ -325,5 +317,80 @@
     "licenseUrl": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3",
     "author": "Picture by Lauren Hurley / No 10 Downing Street",
     "article": "https://en.wikipedia.org/wiki/Lewis_Hamilton"
+  },
+  "비틀스": {
+    "image": "/ranking-images/portraits/the-beatles.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Beatles_1963_Dezo_Hoffman_Capitol_Records_press_photo_2.jpg",
+    "license": "Public domain",
+    "author": "Dezo Hoffmann, Distributed by Capitol Records",
+    "article": "https://en.wikipedia.org/wiki/The_Beatles"
+  },
+  "마이클 잭슨": {
+    "image": "/ranking-images/portraits/michael-jackson.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Michael_Jackson_1983_(3x4_cropped)_(contrast).jpg",
+    "license": "Public domain",
+    "author": "Matthew Rolston; Distributed by Epic Records",
+    "article": "https://en.wikipedia.org/wiki/Michael_Jackson"
+  },
+  "엘비스 프레슬리": {
+    "image": "/ranking-images/portraits/elvis-presley.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Elvis_Presley_promoting_Jailhouse_Rock.jpg",
+    "license": "Public domain",
+    "author": "Metro-Goldwyn-Mayer, Inc. Reproduction Number: LC-USZ6-2067 Location: NYWTS -- BIOG",
+    "article": "https://en.wikipedia.org/wiki/Elvis_Presley"
+  },
+  "마돈나": {
+    "image": "/ranking-images/portraits/madonna.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:MadonnaO2171023_(97_of_133)_(53269593787)_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Raph_PH",
+    "article": "https://en.wikipedia.org/wiki/Madonna"
+  },
+  "엘턴 존": {
+    "image": "/ranking-images/portraits/elton-john.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:EltonDocBFILFF101024_(4_of_17)_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Raph_PH",
+    "article": "https://en.wikipedia.org/wiki/Elton_John"
+  },
+  "퀸": {
+    "image": "/ranking-images/portraits/queen.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Queen_A_Night_At_The_Opera_(1975_Elektra_publicity_photo_02).jpg",
+    "license": "Public domain",
+    "author": "Koh Hasebe; Distributed by Elektra Records",
+    "article": "https://en.wikipedia.org/wiki/Queen_(band)"
+  },
+  "레드 제플린": {
+    "image": "/ranking-images/portraits/led-zeppelin.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Led_Zeppelin_-_promotional_image_(1971).jpg",
+    "license": "Public domain",
+    "author": "Atlantic Records",
+    "article": "https://en.wikipedia.org/wiki/Led_Zeppelin"
+  },
+  "리애나": {
+    "image": "/ranking-images/portraits/rihanna.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Rihanna_Fenty_2018.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "SIGMA",
+    "article": "https://en.wikipedia.org/wiki/Rihanna"
+  },
+  "핑크 플로이드": {
+    "image": "/ranking-images/portraits/pink-floyd.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pink_floyd_live_8_london.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Dave Bushe - https://www.flickr.com/people/davebushe/",
+    "article": "https://ko.wikipedia.org/wiki/%ED%95%91%ED%81%AC_%ED%94%8C%EB%A1%9C%EC%9D%B4%EB%93%9C"
+  },
+  "에미넴": {
+    "image": "/ranking-images/portraits/eminem.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Eminem_2021_Color_Corrected.jpg",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Brendan_linden",
+    "article": "https://en.wikipedia.org/wiki/Eminem"
   }
 }

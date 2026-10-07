@@ -81,3 +81,23 @@
 .ticker-track:hover .ticker-run,.ticker-track:focus-within .ticker-run{animation-play-state:paused}
 @keyframes ticker-run{from{transform:translateX(0)}to{transform:translateX(-25%)}}
 @media(prefers-reduced-motion:reduce){.ticker-run{animation:none}.ticker-track{overflow-x:auto}}
+
+/* 히어로 카드 움직임: 세트가 바뀔 때 줄이 차례로 올라오고 트로피가 반짝입니다. 아래 점은 다음 세트까지 남은 시간입니다. */
+.hero-row{position:relative;border-radius:12px;transition:background .2s,transform .2s;animation:hero-row-in .5s cubic-bezier(.2,.8,.2,1) backwards}
+.hero-row:hover{background:#f6f8fc;transform:translateX(4px)}
+.hero-go{font-style:normal;font-weight:800;color:var(--blue);opacity:0;transform:translateX(-6px);transition:opacity .2s,transform .2s}
+.hero-row:hover .hero-go,.hero-row:focus-visible .hero-go{opacity:1;transform:none}
+.hero-trophy svg{animation:hero-trophy-pop .6s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:inherit}
+.hero-row:first-child .hero-trophy{position:relative;overflow:hidden}
+.hero-row:first-child .hero-trophy::after{content:"";position:absolute;inset:-4px;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.85) 50%,transparent 65%);transform:translateX(-120%);animation:hero-shine 2.4s ease-in-out .6s infinite}
+.hero-dots{display:flex;justify-content:center;gap:6px;padding-top:14px}
+.hero-dots button{width:18px;height:5px;padding:0;border:0;border-radius:3px;background:#e3e8f0;overflow:hidden;transition:width .3s}
+.hero-dots button.on{width:34px}
+.hero-dots button.on span{display:block;height:100%;background:var(--blue);border-radius:3px;animation:hero-dot 5s linear both}
+.hero-dots button.on span.paused{animation-play-state:paused}
+@keyframes hero-row-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes hero-trophy-pop{0%{transform:scale(.4) rotate(-20deg)}100%{transform:none}}
+@keyframes hero-shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@keyframes hero-dot{from{width:0}to{width:100%}}
+@media(prefers-reduced-motion:reduce){.hero-row,.hero-trophy svg{animation:none}.hero-row:first-child .hero-trophy::after{display:none}.hero-dots button.on span{animation:none;width:100%}}
+.rank-card .rank-link i{margin-left:auto;font-style:normal}
