@@ -26,7 +26,7 @@
 @media(max-width:680px){.upcoming-section{padding:0 17px 50px}.idea-chips{grid-template-columns:repeat(2,1fr)}.rank-modal{padding:26px 20px}.rank-modal h2{font-size:22px}.modal-meta{display:block}.modal-meta span{display:block;width:max-content;margin-top:5px}.rank-line em{font-size:12px;max-width:130px;text-align:right}}
 
 /* 홈 화면 글자 넘침 방지: 카드·행 크기는 고정하고, 넘치는 글자는 말줄임표로 자릅니다. */
-.card-grid{align-items:start}
+.card-grid{align-items:start;align-content:start}
 .rank-card{height:230px;min-height:0;overflow:hidden}
 .rank-card .icon{margin-bottom:12px}
 .rank-card>small{display:block;line-height:1.2}
@@ -42,10 +42,17 @@
 .idea-chips span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .idea-chips b{flex-shrink:0}
 
-/* 지금 주목할 랭킹: 제목 글자가 타일처럼 가로축으로 한 장씩 넘어가며 바뀝니다. 헤더의 급상승 칩은 둥글게. */
+/* 지금 주목할 랭킹: 플립 시계처럼 글자 칸의 위쪽 절반이 앞으로 떨어지고, 새 글자의 아래쪽 절반이 펼쳐집니다. */
 .flap{display:inline}
-.flap-ch{display:inline-block;transform-origin:50% 55%;backface-visibility:hidden;animation:flap-in .5s cubic-bezier(.3,.7,.2,1) both}
-@keyframes flap-in{0%{opacity:0;transform:perspective(220px) rotateX(-100deg);filter:blur(1.2px)}55%{opacity:1;transform:perspective(220px) rotateX(18deg);filter:blur(.4px)}80%{transform:perspective(220px) rotateX(-6deg);filter:none}100%{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.flap-ch{animation:none}}
+.fc{position:relative;display:inline-block}
+.fc-size{visibility:hidden}
+.fc-half,.fc-leaf{position:absolute;inset:0;display:block;backface-visibility:hidden}
+.fc-top{clip-path:inset(0 0 50% 0)}
+.fc-bottom{clip-path:inset(50% 0 0 0)}
+.fc-leaf.fc-top{transform-origin:50% 50%;animation:fc-fall 75ms ease-in forwards}
+.fc-leaf.fc-bottom{transform-origin:50% 50%;animation:fc-rise 75ms ease-out 75ms both}
+@keyframes fc-fall{from{transform:perspective(160px) rotateX(0);filter:brightness(1)}to{transform:perspective(160px) rotateX(-90deg);filter:brightness(.6)}}
+@keyframes fc-rise{from{transform:perspective(160px) rotateX(90deg);filter:brightness(.6)}to{transform:perspective(160px) rotateX(0);filter:brightness(1)}}
+@media(prefers-reduced-motion:reduce){.fc-leaf{display:none}}
 .aside-title>em.hot{border-radius:999px;padding:4px 9px}
 .all-button{cursor:pointer}
