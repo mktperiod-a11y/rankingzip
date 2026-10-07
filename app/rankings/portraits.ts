@@ -9,7 +9,7 @@ export type PortraitCredit = { image: string; source: string; license: string; l
 export const PORTRAITS = credits as Record<string, PortraitCredit>;
 
 /** 인물 사진을 쓰는 순위 */
-export const PERSON_SLUGS = ['ufc-rankings-by-division', 'kbo-home-runs-2026', 'kbo-rbi-2026', 'kbo-single-season-home-runs', 'highest-paid-athletes', 'korean-football-salary', 'mlb-korean-career-earnings', 'japan-av-actress-ranking'];
+export const PERSON_SLUGS = ['ufc-rankings-by-division', 'kbo-home-runs-2026', 'kbo-rbi-2026', 'kbo-single-season-home-runs', 'highest-paid-athletes', 'korean-football-salary', 'mlb-korean-career-earnings', 'japan-av-actress-ranking', 'best-selling-music-artists'];
 
 const KBO_LOGO: Record<string, string> = { KIA: 'KIA', LG: 'LG', KT: 'KT', 삼성: 'Samsung', 한화: 'Hanwha', 두산: 'Doosan', NC: 'NC', SSG: 'SSG', 키움: 'Kiwoom', 롯데: 'Lotte' };
 /** 옛 구단명 → 지금 구단 (현대 유니콘스처럼 이어지는 구단이 없으면 로고 없이 이니셜) */

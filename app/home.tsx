@@ -25,11 +25,19 @@ function Trophy({ rank }: { rank: number }) {
   </svg>;
 }
 
+// 히어로 카드 질문 3개씩 3세트. 5초마다 다음 세트로 넘어갑니다(답은 보여주지 않습니다).
 const heroQuestions = [
   { icon: "⚾", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
   { icon: "🍿", question: "이번 주 넷플릭스 영화 1위는?", slug: "netflix-korea-films-weekly" },
   { icon: "🚗", question: "가장 많이 팔린 수입차 브랜드는?", slug: "korea-import-car-brands" },
+  { icon: "🎬", question: "올해 극장 관객 1위 영화는?", slug: "korea-box-office-2026" },
+  { icon: "🐉", question: "전 세계에서 가장 인기 있는 애니는?", slug: "anime-all-time-popular" },
+  { icon: "🏟️", question: "올해 홈 관중이 가장 많은 구단은?", slug: "kbo-attendance-2026" },
+  { icon: "🎮", question: "PC방에서 가장 많이 하는 게임은?", slug: "korea-pc-games-share" },
+  { icon: "🏙️", question: "세계에서 가장 높은 빌딩은?", slug: "world-tallest-buildings" },
+  { icon: "💸", question: "가장 많이 번 스포츠 스타는?", slug: "highest-paid-athletes" },
 ];
+const HERO_SETS = Math.ceil(heroQuestions.length / 3);
 
 const rankings = [
   { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
@@ -57,6 +65,7 @@ const rankings = [
   { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", color: "orange" },
   { category: "미디어", icon: "🐉", title: "역대 인기 애니메이션 순위", color: "purple" },
   { category: "미디어", icon: "📺", title: "이번 시즌 인기 애니메이션 순위", color: "rose" },
+  { category: "미디어", icon: "💿", title: "역대 가수 음반 판매량 순위", color: "indigo" },
   { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", color: "cyan" },
   { category: "IT·게임", icon: "📱", title: "국내 OTT 서비스", color: "black" },
   { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", color: "rose" },
@@ -112,6 +121,14 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
   const [query, setQuery] = useState("");
   // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
   const [flip, setFlip] = useState(0);
+  // 히어로 카드 세트: 5초마다 다음 세트. 마우스를 올리거나 키보드로 고르면 멈춥니다.
+  const [heroSet, setHeroSet] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+  useEffect(() => {
+    if (heroPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = setInterval(() => setHeroSet((n) => (n + 1) % HERO_SETS), 5000);
+    return () => clearInterval(timer);
+  }, [heroPaused]);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = setInterval(() => setFlip((n) => n + 1), 6000);
@@ -138,16 +155,17 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
           <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
         </div>
-        <div className="hero-board" aria-label="궁금한 순위 세 가지">
-          {heroQuestions.map((item, i) => {
+        <div className="hero-board" aria-label="궁금한 순위" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}>
+          {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
             const page = pageBySlug[item.slug];
-            return <a href={`/rankings/${item.slug}`} className="hero-row" key={item.slug}>
+            return <a href={`/rankings/${item.slug}`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
               <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
               <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong><small>{page.title}</small></p>
+              <i className="hero-go" aria-hidden="true">→</i>
             </a>;
           })}
-
+          <div className="hero-dots" role="tablist" aria-label="질문 묶음">{Array.from({ length: HERO_SETS }, (_, n) => <button key={n} type="button" role="tab" aria-selected={n === heroSet} aria-label={`${n + 1}번째 질문 묶음`} className={n === heroSet ? "on" : ""} onClick={() => setHeroSet(n)}><span key={n === heroSet ? `run-${heroSet}` : "idle"} className={heroPaused ? "paused" : ""} /></button>)}</div>
         </div>
       </section>
 
