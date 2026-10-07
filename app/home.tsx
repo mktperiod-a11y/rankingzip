@@ -104,11 +104,6 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
     const timer = setInterval(() => setFlip((n) => n + 1), 6000);
     return () => clearInterval(timer);
   }, []);
-  const showAll = () => {
-    setActive("전체");
-    setQuery("");
-    document.getElementById("rankings")?.scrollIntoView({ behavior: "smooth" });
-  };
   const filtered = useMemo(() => rankings.filter((item) =>
     !pageBySlug[slugByTitle[item.title]]?.noindex && (active === "전체" || item.category === active) &&
     (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + leader(slugByTitle[item.title]).text).toLowerCase().includes(query.toLowerCase())
@@ -131,13 +126,24 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
         </div>
         <div className="hero-board" aria-label="오늘의 인기 순위">
-          <div className="board-head"><div><i></i>이번 주 주목할 랭킹</div></div>
-          {hot.slice(0,3).map((item, i) => <a href={`/rankings/${item[3]}`} className="hero-row" key={item[0]}><b>{i+1}</b><div className={`avatar a${i}`}>{["🏆","🏅","🎬"][i]}</div><p><strong>{item[0]}</strong><small>{item[1]}</small></p></a>)}
-          <div className="board-foot">2026.09.28 자료 점검 <b>↗</b></div>
+          {hot.slice(0, 3).map((item, i) => {
+            const page = pageBySlug[item[3]];
+            const row = page?.rows[0];
+            const image = row?.image;
+            const summary = row ? `${row.name} · ${row.value}` : item[0];
+            return <a href={`/rankings/${item[3]}`} className="hero-row" key={item[3]}>
+              <b>{i + 1}</b>
+              <div className="avatar ranking-thumbnail">
+                {image ? <img src={image} alt={`${row.name} 대표 이미지`} /> : <span>{page?.category ?? "순위"}</span>}
+              </div>
+              <p><strong>{summary}</strong><small>{page?.title ?? item[1]}</small></p>
+            </a>;
+          })}
+
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>지금 1위</strong>{hotRankings(trendSlugs).map((slug)=><a key={slug} href={`/rankings/${slug}`}>{topic(pageBySlug[slug].title)} 1위 <em>{pageBySlug[slug].rows[0]?.name}</em></a>)}</div></section>
+      <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>{hotRankings(trendSlugs).map((slug)=><a key={slug} href={`/rankings/${slug}`}>{topic(pageBySlug[slug].title)} 1위 <em>{pageBySlug[slug].rows[0]?.name}</em></a>)}</div></section>
 
       <section className="content" id="rankings">
         <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
@@ -156,7 +162,6 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
             <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
             <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
-            <button className="all-button btn-sub" type="button" onClick={showAll}>인기 랭킹 전체보기 <b>→</b></button>
           </aside>
         </div>
       </section>
