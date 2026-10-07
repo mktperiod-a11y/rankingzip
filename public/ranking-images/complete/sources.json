@@ -194,16 +194,6 @@
     "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20060340",
     "original": "https://www.kobis.or.kr/upload/up_img/cleansing/x00/03/97/mov_20060340_12938.jpg"
   },
-  "파일몽": {
-    "image": "/ranking-images/complete/6b49787da0db.webp",
-    "source": "https://www.filemong.com/design/img/logo.png",
-    "original": "https://www.filemong.com/design/img/logo.png"
-  },
-  "파일시티": {
-    "image": "/ranking-images/complete/ff36a778f2fc.webp",
-    "source": "https://www.filecity.co.kr/img/logo2.png",
-    "original": "https://www.filecity.co.kr/img/logo2.png"
-  },
   "다울라기리 1봉": {
     "image": "/ranking-images/complete/15ea47bf0278.webp",
     "source": "https://en.wikipedia.org/wiki/Dhaulagiri",
@@ -234,16 +224,6 @@
     "source": "https://en.wikipedia.org/wiki/Taejo_Wang_Geon_(TV_series)",
     "original": "https://upload.wikimedia.org/wikipedia/en/4/4e/Taejo_Wang_Geon_%28TV_series%29_japanese_release_promo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
   },
-  "U+모바일tv": {
-    "image": "/ranking-images/complete/fb9153a4fdf4.webp",
-    "source": "https://www.lguplus.com/favicon.ico",
-    "original": "https://www.lguplus.com/favicon.ico"
-  },
-  "왓챠": {
-    "image": "/ranking-images/complete/0262c895668b.webp",
-    "source": "https://watcha.com/favicon.ico",
-    "original": "https://watcha.com/favicon.ico"
-  },
   "함백산": {
     "image": "/ranking-images/complete/b743f9045feb.svg",
     "source": "",
@@ -266,16 +246,6 @@
   },
   "보고 또 보고": {
     "image": "/ranking-images/complete/223f13c6f46a.svg",
-    "source": "",
-    "note": "사진을 대신하는 자체 제작 항목 아이콘"
-  },
-  "라프텔": {
-    "image": "/ranking-images/complete/0c8e151c4926.svg",
-    "source": "",
-    "note": "사진을 대신하는 자체 제작 항목 아이콘"
-  },
-  "스포티비 나우": {
-    "image": "/ranking-images/complete/46870258128b.svg",
     "source": "",
     "note": "사진을 대신하는 자체 제작 항목 아이콘"
   }

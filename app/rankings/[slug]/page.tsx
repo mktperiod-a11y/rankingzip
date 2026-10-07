@@ -8,7 +8,7 @@ import { BrandLogo } from '../../brand-logo';
 import "./ranking.css";
 
 export const imageByName: Record<string,string> = {
- "첫사랑":"/ranking-images/drama/first-love.jpg","허준":"/ranking-images/drama/hur-jun.jpg","모래시계":"/ranking-images/drama/sandglass.jpg","사랑이 뭐길래":"/ranking-images/drama/what-is-love.jpg","젊은이의 양지":"/ranking-images/drama/sunny-place.jpg","왕과 사는 남자":"/ranking-images/posters/kings-warden.png","나는 SOLO":"/ranking-images/posters/i-am-solo.jpg","우리의 끈끈한 사랑":"/ranking-images/posters/you-everything.jpg","귀신들린 연애":"/ranking-images/posters/possessed-love.jpg","불량연애":"/ranking-images/posters/badly-in-love.jpg","아파트 잡":"/ranking-images/posters/apartment-job.jpg","더 뉴 그랜저":"/ranking-images/cars/grandeur.jpg","셀토스":"/ranking-images/cars/seltos.png","카니발":"/ranking-images/cars/carnival.png","쏘렌토":"/ranking-images/cars/sorento.png","스포티지":"/ranking-images/cars/sportage.png","포터2":"/ranking-images/cars/porter2.png","일본":"/ranking-images/travel/japan.jpg","베트남":"/ranking-images/travel/vietnam.jpg","중국":"/ranking-images/travel/china.jpg","태국":"/ranking-images/travel/thailand.jpg","대만":"/ranking-images/travel/taiwan.jpg","온디스크":"/ranking-images/services/ondisk.png","케이디스크":"/ranking-images/services/kdisk.png","파일스타":"/ranking-images/services/filestar.png","파일마루":"/ranking-images/services/filemaru.png","예스파일":"/ranking-images/services/yesfile.png","파일조":"/ranking-images/services/filejo.png","파일이즈":"/ranking-images/services/fileis.svg","빅파일":"/ranking-images/services/bigfile.png","넷플릭스":"/ranking-images/ott/netflix.svg","쿠팡플레이":"/ranking-images/ott/coupangplay.webp","티빙":"/ranking-images/ott/tving.ico","웨이브":"/ranking-images/ott/wavve.ico","디즈니+":"/ranking-images/ott/disneyplus.png"
+ "첫사랑":"/ranking-images/drama/first-love.jpg","허준":"/ranking-images/drama/hur-jun.jpg","모래시계":"/ranking-images/drama/sandglass.jpg","사랑이 뭐길래":"/ranking-images/drama/what-is-love.jpg","젊은이의 양지":"/ranking-images/drama/sunny-place.jpg","왕과 사는 남자":"/ranking-images/posters/kings-warden.png","나는 SOLO":"/ranking-images/posters/i-am-solo.jpg","우리의 끈끈한 사랑":"/ranking-images/posters/you-everything.jpg","귀신들린 연애":"/ranking-images/posters/possessed-love.jpg","불량연애":"/ranking-images/posters/badly-in-love.jpg","아파트 잡":"/ranking-images/posters/apartment-job.jpg","더 뉴 그랜저":"/ranking-images/cars/grandeur.jpg","셀토스":"/ranking-images/cars/seltos.png","카니발":"/ranking-images/cars/carnival.png","쏘렌토":"/ranking-images/cars/sorento.png","스포티지":"/ranking-images/cars/sportage.png","포터2":"/ranking-images/cars/porter2.png","일본":"/ranking-images/travel/japan.jpg","베트남":"/ranking-images/travel/vietnam.jpg","중국":"/ranking-images/travel/china.jpg","태국":"/ranking-images/travel/thailand.jpg","대만":"/ranking-images/travel/taiwan.jpg"
 };
 
 const portrait=(name:string)=>portraitOf(name)?.image;
@@ -24,7 +24,8 @@ const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide
 // 넷플릭스 대표 이미지는 가로(16:9)라 세로 포스터 틀 대신 가로 틀에 넣습니다.
 const WIDE_POSTER_SLUGS=["ott-content-weekly","netflix-korea-films-weekly"];
 // 로고·차량처럼 잘리면 안 되는 이미지를 쓰는 순위는 흰 바탕 틀 안에 전체가 보이게 맞춥니다.
-const LOGO_SLUGS=["korea-pc-games-share","korea-ott-users","file-sharing-services","korea-import-car-brands","kbo-team-standings-2026","kbo-attendance-2026","korea-car-sales"];
+// 앱 아이콘·게임 대표 이미지를 쓰는 서비스 순위는 사진처럼 틀을 꽉 채웁니다.
+const LOGO_SLUGS=["korea-import-car-brands","kbo-team-standings-2026","kbo-attendance-2026","korea-car-sales"];
 
 /** 이미지 종류마다 틀 비율이 다릅니다. 국기는 3:2, 로고·차량은 흰 바탕에 전체가 보이게, 인물·장소 사진은 정사각형을 꽉 채웁니다. 포스터는 별도 2:3 카드입니다. */
 function imageKind(slug:string,src:string):ImageKind{
