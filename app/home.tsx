@@ -49,16 +49,23 @@ const rankings = [
 ];
 
 
-// 카드 오른쪽 위 라벨: 이 순위가 어떤 기간의 기록인지(=얼마나 자주 바뀌는지)
-const SCOPE: Record<string, string> = {
-  "netflix-korea-films-weekly": "주간", "ott-content-weekly": "주간", "ufc-rankings-by-division": "주간",
+// 카드 아래 줄: 이 순위가 얼마나 자주 업데이트되는지. 없으면 "기록 경신 때"입니다.
+const CYCLE: Record<string, string> = {
+  "netflix-korea-films-weekly": "매주", "ott-content-weekly": "매주", "ufc-rankings-by-division": "매주",
   "file-sharing-services": "2일마다",
-  "kbo-team-standings-2026": "시즌", "kbo-home-runs-2026": "시즌", "kbo-rbi-2026": "시즌", "kbo-attendance-2026": "시즌",
-  "asian-games-medal-table-2026": "대회",
-  "korea-import-car-brands": "월간", "korea-car-sales": "월간", "korea-province-population": "월간", "korean-travel-destinations": "월간", "korea-ott-users": "월간",
-  "korea-box-office-2026": "연간", "worldwide-box-office-2026": "연간", "highest-paid-athletes": "연간", "world-population": "연간", "world-gdp-ranking": "연간", "most-visited-countries": "연간", "korean-football-salary": "연간",
-  "japan-av-actress-ranking": "19+",
+  "kbo-team-standings-2026": "시즌 중", "kbo-home-runs-2026": "시즌 중", "kbo-rbi-2026": "시즌 중", "kbo-attendance-2026": "시즌 중",
+  "asian-games-medal-table-2026": "대회 때",
+  "korea-import-car-brands": "매월", "korea-car-sales": "매월", "korea-province-population": "매월", "korean-travel-destinations": "매월", "korea-ott-users": "매월", "japan-av-actress-ranking": "매월",
+  "korea-box-office-2026": "매년", "worldwide-box-office-2026": "매년", "highest-paid-athletes": "매년", "world-population": "매년", "world-gdp-ranking": "매년", "most-visited-countries": "매년", "korean-football-salary": "매년",
 };
+const ADULT = new Set(["japan-av-actress-ranking"]);
+
+/** 카드 오른쪽 위 라벨: "09.17 갱신". 상세 화면 "업데이트"와 같은 날짜입니다. */
+function updatedLabel(slug: string) {
+  const p = pageBySlug[slug];
+  const updated = p && dateParts(p.date, p.auditDate).updated;
+  return updated ? `${updated.slice(5)} 갱신` : "";
+}
 
 /** 카드 가운데 줄: 지금 1위. 순위가 없는 안내형 페이지는 설명 첫 문장을 씁니다. */
 function leader(slug: string) {
@@ -81,19 +88,6 @@ function hotRankings(trendSlugs: string[], count = 4) {
 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
 
-
-const pad2 = (n: string) => n.padStart(2, "0");
-
-/** 카드용 짧은 날짜: "09.12 갱신", 기간은 "09.14~09.20", 월·연 단위는 "2026.08 기준"·"2025 기준". */
-function cardDate(date: string) {
-  let m: RegExpMatchArray | null;
-  if ((m = date.match(/\d{4}\.(\d{2})\.(\d{2})~(\d{2})\.(\d{2})/))) return `${m[1]}.${m[2]}~${m[3]}.${m[4]}`;
-  if ((m = date.match(/\d{4}\.(\d{2})\.(\d{2})/))) return `${m[1]}.${m[2]} 갱신`;
-  if ((m = date.match(/\d{4}년 (\d{1,2})월 (\d{1,2})일/))) return `${pad2(m[1])}.${pad2(m[2])} 갱신`;
-  if ((m = date.match(/(\d{4})년 (\d{1,2})월/))) return `${m[1]}.${pad2(m[2])} 기준`;
-  if ((m = date.match(/(\d{4})(년|시즌)/))) return `${m[1]} 기준`;
-  return date.split(" · ")[0];
-}
 
 export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: TrendPick[]; trendsAt?: string; trendSlugs?: string[] }) {
   const [active, setActive] = useState<Category>("전체");
@@ -146,10 +140,10 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
         <div className="layout">
           <div className="card-grid">
             {filtered.map((item) => { const slug = slugByTitle[item.title]; const lead = leader(slug); return <article className="rank-card" key={item.title}>
-              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{SCOPE[slug] ?? "역대"}</span>
-              <small>{item.category}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
+              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug)}</span>
+              <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
               <p className="rank-lead">{lead.rank&&<b>{lead.rank}</b>}{lead.text}</p>
-              <a className="rank-link" href={`/rankings/${slug}`}><span>{cardDate(pageBySlug[slug]?.date??"")}</span>자세히 보기 <b>→</b></a>
+              <a className="rank-link" href={`/rankings/${slug}`}><span><em>{CYCLE[slug] ?? "기록 경신 때"}</em> 업데이트돼요</span>자세히 <b>→</b></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>

@@ -31,7 +31,7 @@
 .rank-card p.rank-lead{margin-top:8px;font-size:13px;line-height:1.5;color:#465165;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rank-card p.rank-lead b{margin-right:6px;color:var(--blue);font-weight:800}
 .rank-card .rank-link{display:flex;align-items:center;gap:6px}
-.rank-card .rank-link span{margin-right:auto;font-weight:600;color:#8690a0}
+.rank-card .rank-link{white-space:nowrap}.rank-card .rank-link span{margin-right:auto;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:500;color:#8690a0}.rank-card .rank-link span em{font-style:normal;font-weight:800;color:#465165}
 .rank-card .rank-link b{float:none}
 .rank-card .rank-link::after{content:"";position:absolute;inset:-400px -40px -40px}
 .rank-card .badge{max-width:calc(100% - 100px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
