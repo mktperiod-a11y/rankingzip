@@ -21,7 +21,8 @@ const BRAND: Record<string, Record<string, Img>> = {
   'korea-pc-games-share': {
     ...fromApps(pcArt),
     '리그 오브 레전드': { image: '/ranking-images/games/pc-key-league-of-legends.webp', source: 'https://www.inven.co.kr/' },
-    발로란트: { image: '/ranking-images/games/pc-tile-valorant.png', source: 'https://playvalorant.com/ko-kr/' },
+    발로란트: { image: '/ranking-images/games/pc-key-valorant.webp', source: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvXNehH-w-MHXqQL4ayn3BEx97gWnyy3AJRUgRZ0_AM-uwhiekNmFPyl4&s=10' },
+    '메이플 스토리': { image: '/ranking-images/games/pc-icon-maplestory.png', source: 'https://maplestory.nexon.com/' },
     서든어택: { image: '/ranking-images/games/pc-sudden-attack.webp', source: 'https://sa.nexon.com/' },
   },
 };
