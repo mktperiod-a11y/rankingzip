@@ -58,12 +58,12 @@ export async function getTrends(): Promise<TrendSnapshot> {
 }
 
 /**
- * 홈 화면 "지금 주목할 랭킹" 목록, 상단 키워드 띠에 쓸 실시간 검색어 5개, 기준 시각.
+ * 홈 화면 "지금 주목할 랭킹" 목록, 실시간 검색어와 이어진 우리 순위(slug), 기준 시각.
  * 실시간 검색어를 못 받으면 편집 선정 목록을 그대로 돌려주고 기준 시각은 비워 둡니다.
  */
-export async function getPicks(fallback: Pick[]): Promise<{ picks: TrendPick[]; trendsAt?: string; keywords: string[] }> {
+export async function getPicks(fallback: Pick[]): Promise<{ picks: TrendPick[]; trendsAt?: string; trendSlugs: string[] }> {
   const snapshot = await getTrends();
   const picks = buildPicks(snapshot, fallback);
   const live = picks.some((p) => p.live);
-  return { picks, trendsAt: live ? snapshot.updatedAt : undefined, keywords: live ? snapshot.trends.slice(0, 5).map((t) => t.keyword) : [] };
+  return { picks, trendsAt: live ? snapshot.updatedAt : undefined, trendSlugs: [...new Set(snapshot.trends.flatMap((t) => (t.ranking ? [t.ranking.slug] : [])))] };
 }
