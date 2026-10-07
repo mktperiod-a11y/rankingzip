@@ -9,7 +9,8 @@
       "title": "The Ultimate Duo",
       "season": "",
       "weeks": 2,
-      "videoId": 81949585
+      "videoId": 81949585,
+      "image": "/ranking-images/netflix/81949585.jpg"
     },
     {
       "rank": 2,
@@ -25,7 +26,8 @@
       "title": "The Desperate Chase",
       "season": "",
       "weeks": 3,
-      "videoId": 82735120
+      "videoId": 82735120,
+      "image": "/ranking-images/netflix/82735120.jpg"
     },
     {
       "rank": 4,
@@ -33,7 +35,6 @@
       "season": "",
       "weeks": 2,
       "videoId": 70119812,
-      "titleKo": "타이탄",
       "image": "/ranking-images/netflix/70119812.jpg"
     },
     {
@@ -41,7 +42,8 @@
       "title": "OK! Madam",
       "season": "",
       "weeks": 5,
-      "videoId": 81464337
+      "videoId": 81464337,
+      "image": "/ranking-images/netflix/81464337.jpg"
     },
     {
       "rank": 6,
@@ -66,7 +68,8 @@
       "title": "Shelter",
       "season": "",
       "weeks": 6,
-      "videoId": 82676951
+      "videoId": 82676951,
+      "image": "/ranking-images/netflix/82676951.jpg"
     },
     {
       "rank": 9,
