@@ -6,7 +6,7 @@
 .dp-all:hover{color:var(--blue)}
 
 /* 상단 소개: 분야 표시 · 제목 · 설명 · 기준 칩 · 항목 수, 그 아래 자료 점검 상자 */
-.dp-hero{padding:56px 0 40px}
+.dp-hero{padding:40px 0 24px}
 .dp-hero-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .dp-eyebrow{margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
 .dp-hero h1{margin:0;font-size:43px;line-height:1.2;letter-spacing:-2.2px;font-weight:600;word-break:keep-all}
@@ -23,7 +23,7 @@
 .dp-head span{font-size:13px;color:#8a94a4}
 
 /* 본문: 순위 + 옆 정보 */
-.dp-body{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;margin-top:32px}
+.dp-body{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;margin-top:12px}
 .dp-main{background:white;border:1px solid var(--line);border-radius:18px;padding:26px}
 .dp-empty{margin:0;padding:30px 0;text-align:center;font-size:15px;color:#687386}
 .dp-credit{margin:18px 0 0;font-size:11px;line-height:1.6;color:#a1a9b5}
@@ -152,7 +152,7 @@
 }
 @media(max-width:680px){
  .dp-wrap{padding:0 16px}
- .dp-hero{padding:34px 0 26px}
+ .dp-hero{padding:26px 0 16px}
  .dp-hero h1{font-size:31px;letter-spacing:-1.4px}
  .dp-desc{font-size:15px}
  .dp-audit{padding:14px 16px;font-size:13px}
