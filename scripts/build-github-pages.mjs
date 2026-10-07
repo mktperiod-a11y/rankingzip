@@ -25,7 +25,8 @@ fs.writeFileSync(path.join(outDir, '.nojekyll'), '');
 const roots = new Set(['assets', 'rankings', '_vinext_fonts', ...fs.readdirSync('public')]);
 const escaped = [...roots].map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
 const absolute = new RegExp(`(["'\`(=])/(${escaped})(?=[/"'\`)?#]|$)`, 'g');
-const homeLink = /(href=\\?["'`])\/(\\?["'`])/g;
+// 홈·홈 안 위치로 가는 링크("/", "/#rankings"). HTML 속성과 RSC 데이터("href":"/") 모두 바꿉니다.
+const homeLink = /((?:href=|\\?"href\\?":)\\?["'`])\/(\\?["'`#?])/g;
 // Vite의 동적 import 미리 불러오기 도우미: function(e){return`/`+e}
 const preloadBase = /(return\s*)(["'`])\/\2\+/g;
 
