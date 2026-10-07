@@ -16,6 +16,8 @@ const rankings = [
   { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
   { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", color: "gold" },
   { category: "서비스", icon: "💾", title: "파일 공유 서비스 비교", color: "indigo" },
+  { category: "서비스", icon: "📱", title: "국내 인기 모바일 게임 순위", color: "purple" },
+  { category: "서비스", icon: "🖥️", title: "국내 인기 PC 게임 순위", color: "navy" },
   { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", color: "red" },
   { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", color: "red" },
   { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", color: "blue" },
@@ -55,7 +57,7 @@ const CYCLE: Record<string, string> = {
   "file-sharing-services": "2일마다",
   "kbo-team-standings-2026": "시즌 중", "kbo-home-runs-2026": "시즌 중", "kbo-rbi-2026": "시즌 중", "kbo-attendance-2026": "시즌 중",
   "asian-games-medal-table-2026": "대회 때",
-  "korea-import-car-brands": "매월", "korea-car-sales": "매월", "korea-province-population": "매월", "korean-travel-destinations": "매월", "korea-ott-users": "매월", "japan-av-actress-ranking": "매월",
+  "korea-import-car-brands": "매월", "korea-mobile-games-users": "매월", "korea-pc-games-share": "매월", "korea-car-sales": "매월", "korea-province-population": "매월", "korean-travel-destinations": "매월", "korea-ott-users": "매월", "japan-av-actress-ranking": "매월",
   "korea-box-office-2026": "매년", "worldwide-box-office-2026": "매년", "highest-paid-athletes": "매년", "world-population": "매년", "world-gdp-ranking": "매년", "most-visited-countries": "매년", "korean-football-salary": "매년",
 };
 const ADULT = new Set(["japan-av-actress-ranking"]);

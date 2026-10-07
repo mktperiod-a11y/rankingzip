@@ -1,13 +1,22 @@
-name: Probe (temporary)
+name: Fetch game icons (temporary)
 on:
   push:
     branches: [claude/affectionate-einstein-6myk2z]
-    paths: [scripts/probe-games.mjs, .github/workflows/probe.yml]
+    paths: [scripts/fetch-game-icons.mjs, .github/workflows/probe.yml]
+permissions:
+  contents: write
 jobs:
-  probe:
+  fetch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: node scripts/probe-games.mjs https://insight-report.mobileindex.com/post/mobilegame-chart-2609 https://www.igaworksblog.com/post/mobilegame-chart-2609-1 https://www.gametrics.com/ https://www.thelog.co.kr/index.do
+      - run: node scripts/fetch-game-icons.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/ranking-images/games
+          git commit -m "게임 아이콘: 앱스토어 공식 아이콘" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
