@@ -1,13 +1,62 @@
 {
-  "updatedAt": "2026-10-06",
+  "updatedAt": "2026-10-07",
   "items": [
-    { "name": "온디스크", "url": "https://www.ondisk.co.kr/", "base": 1, "rank": 1, "prevRank": 1, "maxRank": 3 },
-    { "name": "예스파일", "url": "https://www.yesfile.com/", "base": 2, "rank": 2, "prevRank": 2 },
-    { "name": "파일조", "url": "https://www.filejo.com/", "base": 3, "rank": 3, "prevRank": 3 },
-    { "name": "케이디스크", "url": "https://www.kdisk.co.kr/", "base": 4, "rank": 4, "prevRank": 4 },
-    { "name": "파일이즈", "url": "https://www.fileis.com/", "base": 5, "rank": 5, "prevRank": 5 },
-    { "name": "파일스타", "url": "https://www.filestar.co.kr/", "base": 6, "rank": 6, "prevRank": 6 },
-    { "name": "파일마루", "url": "https://www.filemaru.com/", "base": 7, "rank": 7, "prevRank": 7 },
-    { "name": "빅파일", "url": "https://www.bigfile.co.kr/", "base": 8, "rank": 8, "prevRank": 8 }
+    {
+      "name": "온디스크",
+      "url": "https://www.ondisk.co.kr/",
+      "base": 1,
+      "rank": 1,
+      "prevRank": 1,
+      "maxRank": 3
+    },
+    {
+      "name": "예스파일",
+      "url": "https://www.yesfile.com/",
+      "base": 2,
+      "rank": 2,
+      "prevRank": 2
+    },
+    {
+      "name": "파일조",
+      "url": "https://www.filejo.com/",
+      "base": 3,
+      "rank": 3,
+      "prevRank": 3
+    },
+    {
+      "name": "케이디스크",
+      "url": "https://www.kdisk.co.kr/",
+      "base": 4,
+      "rank": 4,
+      "prevRank": 4
+    },
+    {
+      "name": "파일이즈",
+      "url": "https://www.fileis.com/",
+      "base": 5,
+      "rank": 5,
+      "prevRank": 5
+    },
+    {
+      "name": "파일스타",
+      "url": "https://www.filestar.co.kr/",
+      "base": 6,
+      "rank": 6,
+      "prevRank": 6
+    },
+    {
+      "name": "파일마루",
+      "url": "https://www.filemaru.com/",
+      "base": 7,
+      "rank": 7,
+      "prevRank": 7
+    },
+    {
+      "name": "빅파일",
+      "url": "https://www.bigfile.co.kr/",
+      "base": 8,
+      "rank": 8,
+      "prevRank": 8
+    }
   ]
 }
