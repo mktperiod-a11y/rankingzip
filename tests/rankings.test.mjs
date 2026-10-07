@@ -4,11 +4,10 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
 
-const assets=JSON.parse(fs.readFileSync('public/ranking-images/updates/sources.json','utf8'));
-const compiled=ts.transpileModule(fs.readFileSync('app/rankings/additions.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,esModuleInterop:true}}).outputText;
-const scope={exports:{},require:()=>assets};
-vm.runInNewContext(compiled,scope);
-const pages=scope.exports.extraPages;
+import path from 'node:path';
+const cache=new Map();
+function load(file){file=path.resolve(file);if(cache.has(file))return cache.get(file);if(file.endsWith('.json'))return JSON.parse(fs.readFileSync(file,'utf8'));const scope={exports:{},require:(name)=>load(path.resolve(path.dirname(file),name)+(name.endsWith('.json')?'':'.ts'))};cache.set(file,scope.exports);vm.runInNewContext(ts.transpileModule(fs.readFileSync(file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,esModuleInterop:true}}).outputText,scope);return scope.exports;}
+const {extraPages:pages}=load('app/rankings/additions.ts');
 test('four complete new ranking datasets and local media',()=>{
  assert.equal(pages.length,4);
  assert.deepEqual(Array.from(pages,p=>p.rows.length),[20,8,11,10]);

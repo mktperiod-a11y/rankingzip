@@ -23,7 +23,7 @@ const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide
 // 넷플릭스 대표 이미지는 가로(16:9)라 세로 포스터 틀 대신 가로 틀에 넣습니다.
 const WIDE_POSTER_SLUGS=["ott-content-weekly","netflix-korea-films-weekly"];
 // 로고·차량처럼 잘리면 안 되는 이미지를 쓰는 순위는 흰 바탕 틀 안에 전체가 보이게 맞춥니다.
-const LOGO_SLUGS=["korea-ott-users","file-sharing-services","korea-import-car-brands","kbo-team-standings-2026","kbo-attendance-2026","korea-car-sales"];
+const LOGO_SLUGS=["korea-pc-games-share","korea-ott-users","file-sharing-services","korea-import-car-brands","kbo-team-standings-2026","kbo-attendance-2026","korea-car-sales"];
 
 /** 이미지 종류마다 틀 비율이 다릅니다. 국기는 3:2, 로고·차량은 흰 바탕에 전체가 보이게, 인물·장소 사진은 정사각형을 꽉 채웁니다. 포스터는 별도 2:3 카드입니다. */
 function imageKind(slug:string,src:string):ImageKind{
