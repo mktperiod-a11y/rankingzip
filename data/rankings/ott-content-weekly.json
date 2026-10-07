@@ -1,68 +1,91 @@
 {
   "source": "https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv",
-  "weekStart": "2026-09-14",
-  "weekEnd": "2026-09-20",
-  "checkedAt": "2026-09-24",
+  "weekStart": "2026-09-28",
+  "weekEnd": "2026-10-04",
+  "checkedAt": "2026-10-07",
   "rows": [
     {
       "rank": 1,
-      "title": "The Scandal",
-      "season": "Limited Series",
-      "weeks": null
+      "title": "Kian’s Bizarre B&B",
+      "season": "Season 2",
+      "weeks": 2,
+      "videoId": 81948520,
+      "titleKo": "대환장 기안장",
+      "image": "/ranking-images/netflix/81948520.jpg"
     },
     {
       "rank": 2,
-      "title": "Four Hands, Two Sonatas",
-      "season": "Limited Series",
-      "weeks": null
+      "title": "Marriage of Convenience",
+      "season": "Season 1",
+      "weeks": 1,
+      "videoId": 83193406
     },
     {
       "rank": 3,
-      "title": "Mousetrap",
+      "title": "The Scandal",
       "season": "Limited Series",
-      "weeks": null
+      "weeks": 3,
+      "videoId": 81911391,
+      "titleKo": "스캔들",
+      "image": "/ranking-images/netflix/81911391.jpg"
     },
     {
       "rank": 4,
-      "title": "I am Solo",
-      "season": "Part 33",
-      "weeks": null
+      "title": "Four Hands, Two Sonatas",
+      "season": "Limited Series",
+      "weeks": 6,
+      "videoId": 82682405,
+      "titleKo": "포핸즈",
+      "image": "/ranking-images/netflix/82682405.jpg"
     },
     {
       "rank": 5,
-      "title": "K-Shaman: True Horror Stories",
-      "season": "Season 2",
-      "weeks": null
+      "title": "I am Solo",
+      "season": "Part 33",
+      "weeks": 9,
+      "videoId": 83124393
     },
     {
       "rank": 6,
-      "title": "My Secretary: My Genie Secretary",
-      "season": "My Genie Secretary",
-      "weeks": null
+      "title": "Your Personal Taxi",
+      "season": "Season 1",
+      "weeks": 1,
+      "videoId": 83036522
     },
     {
       "rank": 7,
-      "title": "I'm SOLO, Love goes on",
-      "season": "2026 Part 2",
-      "weeks": null
+      "title": "Kian’s Bizarre B&B",
+      "season": "Season 1",
+      "weeks": 7,
+      "videoId": 81902048,
+      "titleKo": "대환장 기안장",
+      "image": "/ranking-images/netflix/81902048.jpg"
     },
     {
       "rank": 8,
-      "title": "The Early Spring",
-      "season": "Season 1",
-      "weeks": null
+      "title": "Mousetrap",
+      "season": "Limited Series",
+      "weeks": 6,
+      "videoId": 81991750,
+      "titleKo": "들쥐",
+      "image": "/ranking-images/netflix/81991750.jpg"
     },
     {
       "rank": 9,
-      "title": "Teach You a Lesson",
-      "season": "Limited Series",
-      "weeks": null
+      "title": "I'm SOLO, Love goes on",
+      "season": "2026 Part 2",
+      "weeks": 8,
+      "videoId": 83134802,
+      "image": "/ranking-images/netflix/83134802.jpg"
     },
     {
       "rank": 10,
-      "title": "Physical 100: Italy",
-      "season": "Season 1",
-      "weeks": null
+      "title": "Teach You a Lesson",
+      "season": "Limited Series",
+      "weeks": 12,
+      "videoId": 81947301,
+      "titleKo": "참교육",
+      "image": "/ranking-images/netflix/81947301.jpg"
     }
   ]
 }
