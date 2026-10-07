@@ -23,7 +23,7 @@ const review:Record<string,string>={
  'ott-content-weekly':'Netflix 공식 한국 TV 차트와 대조했습니다. 확인되지 않은 번역 제목 대신 공식 영문명을 표시하고 작품 이미지를 교체했습니다.',
  'korea-car-sales':'다나와자동차의 2026년 8월 국산 모델 TOP 5와 대조했습니다. 수입차는 포함하지 않습니다.',
  'korean-travel-destinations':'국가별 집계기간·입국자 정의가 통일되지 않아 기존 방문자 수와 순위를 보류했습니다.',
- 'file-sharing-services':'구글 트렌드 비교 화면(대한민국 · 지난 24시간, 2026년 10월 6일 확인)의 검색어별 평균 관심도를 옮겼습니다. 편집 배치였던 기존 순서를 검색 관심도 순으로 바꿨습니다.',
+ 'file-sharing-services':'순위ZIP 선정 순위입니다. scripts/update-webhard.mjs가 2일마다 기본 순서에서 ±2칸 안으로 바꿉니다.',
  'korea-ott-users':'2025년 4월 와이즈앱 조사 보도와 대조했습니다. 과거 자료이며 현재 가입자 순위가 아닙니다.',
  'japan-av-actress-ranking':'차트 날짜·측정치·가중치를 재현할 근거가 없어 기존 인기 순위 공개를 보류했습니다.',
  'highest-paid-athletes':'Forbes 2026년 발표 TOP 5로 교체했습니다. 실제 세후 수령액이 아닌 연간 수입 추정치입니다.',

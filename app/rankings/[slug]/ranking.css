@@ -12,8 +12,8 @@
 .dp-hero h1{margin:0;font-size:43px;line-height:1.2;letter-spacing:-2.2px;font-weight:600;word-break:keep-all}
 .dp-desc{max-width:720px;margin:14px 0 0;font-size:16px;line-height:1.75;color:#5d6879;word-break:keep-all}
 .dp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.dp-chips b{display:inline-flex;align-items:baseline;gap:7px;max-width:100%;font-size:12px;font-weight:700;line-height:1.5;color:#2f3a4c;background:white;border:1px solid #e3e9f1;border-radius:8px;padding:7px 10px;word-break:keep-all}
-.dp-chips b i{flex-shrink:0;font-style:normal;font-weight:800;color:#5b9bff}
+.dp-chips b{display:inline-flex;align-items:baseline;gap:7px;max-width:100%;font-size:12px;line-height:1.5;color:#374151;font-weight:500;background:white;border:1px solid #e3e9f1;border-radius:8px;padding:7px 10px;word-break:keep-all}
+.dp-chips b i{flex-shrink:0;font-style:normal;font-weight:700;color:#111}
 .dp-count{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;font-size:13px;font-weight:800;letter-spacing:1px;color:#b9c8e4;line-height:1}
 .dp-count strong{font-size:85px;font-weight:900;letter-spacing:-4px;color:var(--blue)}
 .dp-audit{padding:18px 22px;border:1px solid #dbe5f5;border-radius:14px;background:#edf4ff;font-size:14px;line-height:1.7}
