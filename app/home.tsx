@@ -134,7 +134,10 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>{hotRankings(trendSlugs).map((slug)=><a key={slug} href={`/rankings/${slug}`}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>)}</div></section>
+      <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
+        {/* 주식 전광판처럼 왼쪽으로 계속 흐릅니다. 같은 목록을 두 번 이어 붙여 끊김 없이 돌고, 마우스를 올리면 멈춥니다. */}
+        <div className="ticker-track"><div className="ticker-run">{[0, 1].map((copy) => hotRankings(trendSlugs, 8).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy === 1 || undefined} tabIndex={copy === 1 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
+      </div></section>
 
       <section className="content" id="rankings">
         <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>

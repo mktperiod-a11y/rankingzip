@@ -38,7 +38,7 @@
 .hero-row p,.trend p{min-width:0}
 .hero-row strong,.hero-row small,.trend strong,.trend small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hero-row em,.trend em{flex-shrink:0}
-.ticker>div{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 64px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 64px),transparent)}
+
 .ticker div>b,.ticker strong,.ticker a{flex-shrink:0}
 .idea-chips span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .idea-chips b{flex-shrink:0}
@@ -73,3 +73,11 @@
 .aside-title>div{flex:1;min-width:0}
 .aside-title>div>span,.aside-title>em{flex-shrink:0}
 .aside-title .aside-sub{margin-top:0}
+
+/* HOT 띠: 한 방향으로 흐르는 전광판 */
+.ticker-track{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.ticker-run{display:inline-flex;align-items:center;animation:ticker-run 45s linear infinite;will-change:transform}
+.ticker-run a{margin-right:36px}
+.ticker-track:hover .ticker-run,.ticker-track:focus-within .ticker-run{animation-play-state:paused}
+@keyframes ticker-run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-run{animation:none}.ticker-track{overflow-x:auto}}
