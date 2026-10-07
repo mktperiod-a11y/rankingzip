@@ -93,8 +93,6 @@
 .dp-list li.top .dp-bar i{background:var(--blue)}
 .dp-info>p{margin:7px 0 0;font-size:13px;line-height:1.55;color:#7a8597;word-break:keep-all}
 .dp-row-links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
-.dp-row-links a{font-size:12px;font-weight:700;color:#8a94a4;text-decoration:underline;text-underline-offset:2px}
-.dp-row-links a:hover{color:var(--blue)}
 .dp-row-links a.dp-visit{display:inline-block;margin-top:2px;padding:6px 12px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;font-weight:800;text-decoration:none;transition:background .15s}
 .dp-row-links a.dp-visit:hover{background:#0647d6;color:#fff}
 
@@ -183,3 +181,7 @@
  .dp-points li{font-size:13px}
  .dp-footer .dp-wrap{flex-direction:column;align-items:flex-start}
 }
+
+.dp-credit-links{display:flex;flex-wrap:wrap;gap:4px 10px;margin-bottom:6px;font-weight:700;color:#687386}
+.dp-credit-links a{color:#687386;text-decoration:underline;text-underline-offset:2px}
+.dp-credit-links a:hover{color:var(--blue)}
