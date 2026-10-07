@@ -67,7 +67,7 @@ function cardDate(date: string) {
   return date.split(" · ")[0];
 }
 
-export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt?: string }) {
+export default function Home({ picks, trendsAt, keywords }: { picks: TrendPick[]; trendsAt?: string; keywords?: string[] }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
   // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
@@ -104,13 +104,13 @@ export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a><span>매주 새로운 랭킹 업데이트</span></div>
         </div>
         <div className="hero-board" aria-label="오늘의 인기 순위">
-          <div className="board-head"><div><i></i>이번 주 주목할 랭킹</div><span>편집 선정</span></div>
-          {hot.slice(0,3).map((item, i) => <a href={`/rankings/${item[3]}`} className="hero-row" key={item[0]}><b>{i+1}</b><div className={`avatar a${i}`}>{["⚾","🏅","🎬"][i]}</div><p><strong>{item[0]}</strong><small>{item[1]}</small></p><em>{item[2]}</em></a>)}
-          <div className="board-foot">2026.09.28 자료 점검 · 편집 선정 <b>↗</b></div>
+          <div className="board-head"><div><i></i>이번 주 주목할 랭킹</div></div>
+          {hot.slice(0,3).map((item, i) => <a href={`/rankings/${item[3]}`} className="hero-row" key={item[0]}><b>{i+1}</b><div className={`avatar a${i}`}>{["⚾","🏅","🎬"][i]}</div><p><strong>{item[0]}</strong><small>{item[1]}</small></p></a>)}
+          <div className="board-foot">2026.09.28 자료 점검 <b>↗</b></div>
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>이번 주 관심 키워드 · 9월 28일</strong>{weeklyKeywords.map((x,i)=><span key={x}><i>{i+1}</i>{x}</span>)}</div></section>
+      <section className="ticker"><div><b>HOT</b><strong>{keywords?.length ? `실시간 검색어 · ${trendsAt}` : "이번 주 관심 키워드"}</strong>{(keywords?.length ? keywords : weeklyKeywords).map((x,i)=><span key={x}><i>{i+1}</i>{x}</span>)}</div></section>
 
       <section className="content" id="rankings">
         <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div><span>관심 있는 분야를 선택해 보세요</span></div>
