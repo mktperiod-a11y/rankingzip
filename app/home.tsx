@@ -75,22 +75,23 @@ function updatedLabel(slug: string) {
 }
 
 /** HOT 띠에 쓰는 짧은 순위 이름: "2026 KBO 팀 순위" → "KBO 팀" */
-const topic = (title: string) => title.replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
+const topic = (title: string) => title.replace(/\s*·\s*\d{4}년 \d+월$/, "").replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
 
-/** HOT 띠: 지금 실시간 검색어와 이어진 순위를 먼저, 나머지는 자료가 최근에 바뀐 순위로 채웁니다. */
-function hotRankings(trendSlugs: string[], count = 4) {
+// HOT 줄은 공개 순위 중 5개를 사이트를 만든 날(한국 시간) 기준으로 무작위로 고릅니다. 같은 날에는 같은 5개가 나옵니다.
+function hotRankings(day: string, count = 5) {
   const listed = new Set(Object.values(slugByTitle));
-  const recent = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug))
-    .map((p) => ({ slug: p.slug, updated: dateParts(p.date, p.auditDate).updated ?? "" }))
-    .sort((a, b) => b.updated.localeCompare(a.updated)).map((p) => p.slug);
-  return [...new Set([...trendSlugs.filter((s) => pageBySlug[s] && !pageBySlug[s].noindex && !pageBySlug[s].unranked && listed.has(s)), ...recent])].slice(0, count);
+  const pool = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug)).map((p) => p.slug).sort();
+  let seed = [...day].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261) >>> 0;
+  const random = () => { seed = (seed + 0x6d2b79f5) >>> 0; let t = seed; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+  return pool.slice(0, count);
 }
 
 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
 
 
-export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: TrendPick[]; trendsAt?: string; trendSlugs?: string[] }) {
+export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; trendsAt?: string; hotDay: string }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
   // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
@@ -136,7 +137,7 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
 
       <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
         {/* 주식 전광판처럼 왼쪽으로 계속 흐릅니다. 같은 목록을 두 번 이어 붙여 끊김 없이 돌고, 마우스를 올리면 멈춥니다. */}
-        <div className="ticker-track"><div className="ticker-run">{[0, 1].map((copy) => hotRankings(trendSlugs, 8).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy === 1 || undefined} tabIndex={copy === 1 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
+        <div className="ticker-track"><div className="ticker-run">{[0, 1, 2, 3].map((copy) => hotRankings(hotDay).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
       </div></section>
 
       <section className="content" id="rankings">

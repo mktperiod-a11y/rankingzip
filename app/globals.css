@@ -76,8 +76,8 @@
 
 /* HOT 띠: 한 방향으로 흐르는 전광판 */
 .ticker-track{flex:1;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(to right,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
-.ticker-run{display:inline-flex;align-items:center;animation:ticker-run 45s linear infinite;will-change:transform}
+.ticker-run{display:inline-flex;align-items:center;animation:ticker-run 30s linear infinite;will-change:transform}
 .ticker-run a{margin-right:36px}
 .ticker-track:hover .ticker-run,.ticker-track:focus-within .ticker-run{animation-play-state:paused}
-@keyframes ticker-run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ticker-run{from{transform:translateX(0)}to{transform:translateX(-25%)}}
 @media(prefers-reduced-motion:reduce){.ticker-run{animation:none}.ticker-track{overflow-x:auto}}

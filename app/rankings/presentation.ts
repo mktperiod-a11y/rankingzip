@@ -38,6 +38,18 @@ const DATA_LABEL: Record<string, string> = {
 };
 const WEEKLY_SOURCE: Record<string, string> = { 'netflix-korea-films-weekly': 'Netflix', 'ott-content-weekly': 'Netflix' };
 
+// 숫자만 보고는 무엇인지 알기 어려운 값 앞에 붙이는 짧은 이름입니다.
+// "금메달 7회", "33홈런", "승률 0.544"처럼 값에 이미 이름이 있으면 넣지 않습니다.
+const VALUE_LABEL: Record<string, string> = {
+  'korea-import-car-brands': '신규등록', 'christopher-nolan-korea-box-office': '관객', 'spider-man-worldwide-box-office': '세계 매출',
+  'kbo-attendance-2026': '홈 관중', 'korean-movie-admissions': '누적 관객', 'korea-box-office-2026': '올해 관객',
+  'worldwide-box-office-2026': '세계 매출', 'korean-drama-ratings': '최고 시청률', 'korea-car-sales': '월 판매',
+  'korea-ott-users': '월 사용자', 'highest-paid-athletes': '연 수입', 'world-tallest-buildings': '높이',
+  'world-population': '인구', 'korea-province-population': '인구', 'korea-highest-mountains': '해발',
+  'world-gdp-ranking': '명목 GDP', 'world-largest-countries': '육지 면적', 'world-highest-mountains': '해발',
+  'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자', 'korea-pc-games-share': 'PC방 점유율',
+};
+
 // 같은 말이 다시 나오는지 볼 때 쓰는 낱말: 괄호 속 설명과 기호는 뺍니다.
 // "순위·기준·공식·차트·한국"처럼 어디에나 붙는 말은 비교에서 뺍니다.
 const FILLER = new Set(['순위', '기준', '공식', '차트', '데이터', '자료', '한국', '대한민국']);
@@ -65,6 +77,7 @@ export function rankingPresentation(p: RankingPage) {
     });
   return {
     basis: criteria.join(' · '),
+    valueLabel: VALUE_LABEL[p.slug],
     updated: dates.updated,
     notes: parts.map(row => row.filter(s => !shared.includes(s) && !/^\d+위(?:권)?$/.test(s)).join(' · ')),
   };
