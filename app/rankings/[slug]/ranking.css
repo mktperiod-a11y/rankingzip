@@ -11,11 +11,6 @@
 .dp-eyebrow{margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
 .dp-hero h1{margin:0;font-size:43px;line-height:1.2;letter-spacing:-2.2px;font-weight:600;word-break:keep-all}
 .dp-desc{max-width:720px;margin:14px 0 0;font-size:16px;line-height:1.75;color:#5d6879;word-break:keep-all}
-.dp-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.dp-chips b{display:inline-flex;align-items:baseline;gap:7px;max-width:100%;font-size:12px;line-height:1.5;color:#374151;font-weight:500;background:white;border:1px solid #e3e9f1;border-radius:8px;padding:7px 10px;word-break:keep-all}
-.dp-chips b i{flex-shrink:0;font-style:normal;font-weight:700;color:#111}
-.dp-count{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;font-size:13px;font-weight:800;letter-spacing:1px;color:#b9c8e4;line-height:1}
-.dp-count strong{font-size:85px;font-weight:900;letter-spacing:-4px;color:var(--blue)}
 .dp-audit{padding:18px 22px;border:1px solid #dbe5f5;border-radius:14px;background:#edf4ff;font-size:14px;line-height:1.7}
 .dp-audit b{font-size:14px}
 .dp-audit p{margin:4px 0 0;color:#526780;word-break:keep-all}
@@ -34,9 +29,6 @@
 .dp-credit{margin:18px 0 0;font-size:11px;line-height:1.6;color:#a1a9b5}
 
 /* 한 줄 포인트 */
-.dp-points{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.dp-points li{display:flex;align-items:center;gap:8px;padding:9px 13px;border-radius:12px;background:#f3f7ff;border:1px solid #e1eafa;font-size:14px;font-weight:700;color:#24324a;word-break:keep-all}
-.dp-points b{font-size:10px;font-weight:900;letter-spacing:1px;color:var(--blue)}
 
 /* 1~3위 시상대: 2위 · 1위 · 3위 순서, 1위가 가장 높습니다. */
 .dp-podium{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:end}
@@ -156,7 +148,6 @@
 @media(max-width:960px){
  .dp-body{grid-template-columns:1fr}
  .detail-page .dp-side{display:flex;position:static}
- .dp-count{display:none}
 }
 @media(max-width:680px){
  .dp-wrap{padding:0 16px}
@@ -179,7 +170,6 @@
  .dp-podium .dp-thumb.logo,.dp-podium .place-1 .dp-thumb.logo{width:76px;height:58px}
  .dp-podium h3{font-size:14px}
  .dp-podium strong{font-size:13px}
- .dp-points li{font-size:13px}
  .dp-footer .dp-wrap{flex-direction:column;align-items:flex-start}
 }
 
@@ -190,3 +180,11 @@
 .dp-posters.wide{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .dp-posters.wide .dp-poster{aspect-ratio:16/9}
 @media(max-width:640px){.dp-posters.wide{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dp-meta{display:flex;flex-wrap:wrap;gap:6px 0;margin:20px 0 0;font-size:13px;line-height:1.5;color:#374151;word-break:keep-all}
+.dp-meta span{display:inline-flex;gap:6px;align-items:baseline}
+.dp-meta span+span::before{content:"";align-self:center;width:1px;height:11px;margin:0 12px;background:#d5dbe4}
+.dp-meta b{font-weight:700;color:#111}
+.dp-lede{margin:0 0 22px;font-size:17px;font-weight:600;line-height:1.5;letter-spacing:-.3px;color:var(--ink);word-break:keep-all}
+.dp-card>.dp-check{display:block;margin-top:2px;font-size:12px;line-height:1.6;color:#8a94a4;word-break:keep-all}
+.dp-check b{display:block;margin-bottom:2px;font-weight:700;color:#374151}
+@media(max-width:640px){.dp-meta{flex-direction:column}.dp-meta span+span::before{display:none}.dp-lede{font-size:16px}}
