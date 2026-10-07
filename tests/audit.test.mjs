@@ -9,8 +9,8 @@ function load(file){file=path.resolve(file);if(cache.has(file))return cache.get(
 const {pages}=load('app/rankings/data.ts');
 const detail=fs.readFileSync('app/rankings/[slug]/page.tsx','utf8');
 const map=JSON.parse(detail.match(/export const imageByName[^=]*= (\{[\s\S]*?\n\});/)[1]);
-test('all 35 pages have explicit audit decisions and no broken local row images',()=>{
- assert.equal(pages.length,35);assert.equal(new Set(pages.map(p=>p.slug)).size,35);
+test('all 37 pages have explicit audit decisions and no broken local row images',()=>{
+ assert.equal(pages.length,37);assert.equal(new Set(pages.map(p=>p.slug)).size,37);
  for(const p of pages){assert.ok(p.auditDate,p.slug);for(const r of p.rows){const src=r.image||map[r.name];if(!src)continue;// 출처가 확인된 이미지가 없으면 이니셜로 보여줍니다(임시 그림을 만들어 넣지 않음)
  assert.ok(src,`${p.slug}: missing ${r.name}`);if(src.startsWith('/'))assert.ok(fs.statSync('public'+src).size>100,src);assert.ok(!src.includes('unsplash'),`unverified stock image ${p.slug}`);}}
 });
@@ -55,7 +55,7 @@ test('public lists reach ten or declare a real source limitation',()=>{
   if(p.rows.length<10)assert.ok(rankingCountExceptions[p.slug],p.slug);
   assert.equal(new Set(p.rows.map(r=>r.name+" · "+r.note)).size,p.rows.length,p.slug);
  }
- assert.equal(pages.filter(p=>!p.noindex&&p.rows.length===10).length,28);
+ assert.equal(pages.filter(p=>!p.noindex&&p.rows.length===10).length,30);
 });
 test('shared row criteria move up while item-specific details remain',()=>{
  const {rankingPresentation}=load('app/rankings/presentation.ts');
