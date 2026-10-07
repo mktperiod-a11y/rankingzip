@@ -26,10 +26,10 @@ const rankings = [
   { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", color: "red" },
   { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", color: "red" },
   { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", color: "blue" },
-  { category: "스포츠", icon: "💥", title: "2026 KBO 홈런 순위 TOP 5", color: "blue" },
+  { category: "스포츠", icon: "💥", title: "2026 KBO 홈런 순위 TOP 10", color: "blue" },
   { category: "라이프", icon: "🚗", title: "수입차 브랜드 등록 순위 TOP 10", color: "navy" },
-  { category: "스포츠", icon: "🎯", title: "2026 KBO 타점 순위 TOP 5", color: "green" },
-  { category: "스포츠", icon: "👑", title: "KBO 역대 한 시즌 홈런 TOP 20", color: "blue" },
+  { category: "스포츠", icon: "🎯", title: "2026 KBO 타점 순위 TOP 10", color: "green" },
+  { category: "스포츠", icon: "👑", title: "KBO 역대 한 시즌 홈런 TOP 10", color: "blue" },
   { category: "미디어", icon: "🎞️", title: "크리스토퍼 놀란 영화 국내 흥행 순위", color: "purple" },
   { category: "미디어", icon: "🕷️", title: "역대 스파이더맨 영화 흥행 순위", color: "red" },
   { category: "스포츠", icon: "🎟️", title: "2026 KBO 구단 관중", color: "blue" },
@@ -74,15 +74,6 @@ function updatedLabel(slug: string) {
   return updated ? `${updated.slice(5)} 갱신` : "";
 }
 
-/** 카드 가운데 줄: 지금 1위. 순위가 없는 안내형 페이지는 설명 첫 문장을 씁니다. */
-function leader(slug: string) {
-  const p = pageBySlug[slug];
-  const top = p?.rows[0];
-  if (!p || p.unranked || !top) return { rank: "", text: p?.description.split(/(?<=[.다요])\s/)[0] ?? "" };
-  const value = top.value && !/^\d+위$/.test(top.value) ? top.value : "";
-  return { rank: `${top.rank ?? 1}위`, text: value ? `${top.name} · ${value}` : top.name };
-}
-
 /** HOT 띠에 쓰는 짧은 순위 이름: "2026 KBO 팀 순위" → "KBO 팀" */
 const topic = (title: string) => title.replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
 
@@ -111,7 +102,7 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
   }, []);
   const filtered = useMemo(() => rankings.filter((item) =>
     !pageBySlug[slugByTitle[item.title]]?.noindex && (active === "전체" || item.category === active) &&
-    (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + leader(slugByTitle[item.title]).text).toLowerCase().includes(query.toLowerCase())
+    (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).toLowerCase().includes(query.toLowerCase())
   ), [active, query]);
 
   return (
@@ -143,17 +134,17 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>{hotRankings(trendSlugs).map((slug)=><a key={slug} href={`/rankings/${slug}`}>{topic(pageBySlug[slug].title)} 1위 <em>{pageBySlug[slug].rows[0]?.name}</em></a>)}</div></section>
+      <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>{hotRankings(trendSlugs).map((slug)=><a key={slug} href={`/rankings/${slug}`}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>)}</div></section>
 
       <section className="content" id="rankings">
         <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
           <div className="card-grid">
-            {filtered.map((item) => { const slug = slugByTitle[item.title]; const lead = leader(slug); return <article className="rank-card" key={item.title}>
+            {filtered.map((item) => { const slug = slugByTitle[item.title]; return <article className="rank-card" key={item.title}>
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
-              <p className="rank-lead">{lead.rank&&<b>{lead.rank}</b>}{lead.text}</p>
+              <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목을 한눈에 비교해 보세요</p>
               <a className="rank-link" href={`/rankings/${slug}`}><span><em>{CYCLE[slug] ?? "기록 경신 때"}</em> 업데이트돼요</span>자세히 <b>→</b></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}

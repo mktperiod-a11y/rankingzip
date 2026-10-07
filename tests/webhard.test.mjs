@@ -11,7 +11,7 @@ test('reshuffle keeps every rule over many rounds', () => {
   for (let round = 0; round < 3000; round++) {
     items = reshuffle(items);
     const ranks = items.map((it) => it.rank).sort((a, b) => a - b);
-    assert.deepEqual(ranks, [1, 2, 3, 4, 5, 6, 7, 8]);
+    assert.deepEqual(ranks, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     for (const it of items) {
       assert.ok(Math.abs(it.rank - it.base) <= 2, `${it.name} ${it.rank} vs base ${it.base}`);
       if (it.maxRank) assert.ok(it.rank <= it.maxRank, `${it.name} below ${it.maxRank}`);

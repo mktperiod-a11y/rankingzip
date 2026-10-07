@@ -40,6 +40,11 @@ test("renders the public ranking site without starter preview metadata", async (
   const html=await response.text();
   assert.doesNotMatch(html, developmentPreviewMeta);
   assert.match(html,/순위ZIP/);
+  const cards=html.match(/<article class="rank-card"[\s\S]*?<\/article>/g) ?? [];
+  assert.ok(cards.length>20);
+  for(const card of cards){assert.match(card,/개 항목을 한눈에 비교해 보세요/);assert.doesNotMatch(card,/<b>1위<\/b>/);}
+  const ticker=html.match(/<section class="ticker">[\s\S]*?<\/section>/)?.[0];
+  assert.ok(ticker);assert.match(ticker,/순위 보기/);assert.doesNotMatch(ticker,/ 1위 /);
   assert.match(html,/kbo-single-season-home-runs/);
   assert.match(html,/netflix-korea-films-weekly/);
   assert.match(html,/christopher-nolan-korea-box-office/);
