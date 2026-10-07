@@ -53,7 +53,7 @@ const spider: [string,number,number,string][] = [
 
 export const extraPages: RankingPage[] = [
  {slug:'kbo-single-season-home-runs',title:'KBO 역대 한 시즌 홈런 TOP 20',category:'스포츠',date:'2025시즌 종료 · 2026.08.27 확인',basis:'1982~2025 KBO 정규시즌 · 선수-시즌별 홈런 · 동률 공동 순위',description:'이승엽의 56홈런부터 우즈의 42홈런까지, 한 시즌을 수놓은 20개 홈런 기록을 비교합니다. 동일 선수가 여러 시즌에 등장하며 진행 중인 2026시즌과 포스트시즌은 제외합니다.',source:'KBO 역대 기록실',sourceUrl:kbo,
- rows:hr.map(([name,year,team,value,key])=>({name:`${name} · ${year}`,value:`${value}홈런`,note:`${team} · ${year} 정규시즌${assets[key]?' · 사진은 기록 당시와 다를 수 있음':' · 사진 확보 중'}`,rank:hr.findIndex(x=>x[3]===value)+1,sourceUrl:hrSources[key]||'https://ko.wikipedia.org/wiki/KBO_리그_홈런_관련_기록_-_개인',...art(key)})),
+ rows:hr.map(([name,year,team,value,key])=>({name:`${name} · ${year}`,value:`${value}홈런`,note:`${team} · ${year} 정규시즌`,rank:hr.findIndex(x=>x[3]===value)+1,sourceUrl:hrSources[key]||'https://ko.wikipedia.org/wiki/KBO_리그_홈런_관련_기록_-_개인'})),
  faq:[['왜 이승엽과 박병호가 여러 번 나오나요?','선수별 통산 기록이 아니라 선수 한 명이 특정 시즌에 기록한 홈런을 비교하기 때문입니다.'],['동률은 어떻게 표시하나요?','같은 홈런 수는 공동 순위입니다. 53홈런 두 기록은 공동 3위이며 다음 기록은 5위입니다.'],['김도영의 2026시즌도 포함되나요?','아니요. 이 표는 2025년까지 종료된 시즌 기록만 비교합니다. 진행 중인 시즌은 종료 후 반영합니다.']]},
  {slug:'christopher-nolan-korea-box-office',title:'크리스토퍼 놀란 영화 국내 흥행 순위',category:'미디어',date:'2026.08.27 자료 확인',basis:'국내 누적 관객 · 공개 보도 기준 TOP 8 · 작품별 집계 시점 표시',posterLayout:true,description:'오디세이는 놀란 감독의 국내 흥행작 중 어디까지 올라왔을까요? 전작과 신작을 국내 관객 수로 비교합니다. 전작은 확인 가능한 보도 수치이며, 같은 날짜의 KOBIS 전수 집계가 아닙니다. 재개봉·보정에 따라 최신 합계와 차이가 있을 수 있습니다.',source:'국내 흥행 TOP 5·전작 관객 보도 (2026.08.16)',sourceUrl:nolanSource,
  rows:nolan.map(([name,value,note,key,sourceUrl])=>({name,value,note,sourceUrl,...art(key)})),
