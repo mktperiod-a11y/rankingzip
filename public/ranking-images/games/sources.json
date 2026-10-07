@@ -1,0 +1,52 @@
+{
+  "Roblox": {
+    "image": "/ranking-images/games/roblox.png",
+    "source": "https://apps.apple.com/kr/app/%EB%A1%9C%EB%B8%94%EB%A1%9D%EC%8A%A4-roblox/id431946152",
+    "app": "로블록스(Roblox)"
+  },
+  "블록 블라스트": {
+    "image": "/ranking-images/games/블록-블라스트.png",
+    "source": "https://apps.apple.com/kr/app/%EB%B8%94%EB%A1%9D-%EB%B8%94%EB%9D%BC%EC%8A%A4%ED%8A%B8-block-blast/id1617391485",
+    "app": "블록 블라스트 (Block Blast)"
+  },
+  "Pokemon GO": {
+    "image": "/ranking-images/games/pokemon-go.png",
+    "source": "https://apps.apple.com/kr/app/pok%C3%A9mon-go/id1094591345",
+    "app": "Pokémon GO"
+  },
+  "브롤스타즈": {
+    "image": "/ranking-images/games/브롤스타즈.png",
+    "source": "https://apps.apple.com/kr/app/%EB%B8%8C%EB%A1%A4%EC%8A%A4%ED%83%80%EC%A6%88/id1229016807",
+    "app": "브롤스타즈"
+  },
+  "로얄 매치": {
+    "image": "/ranking-images/games/로얄-매치.png",
+    "source": "https://apps.apple.com/kr/app/%EB%A1%9C%EC%96%84-%EB%A7%A4%EC%B9%98-royal-match/id1482155847",
+    "app": "로얄 매치 (Royal Match)"
+  },
+  "Minecraft": {
+    "image": "/ranking-images/games/minecraft.png",
+    "source": "https://apps.apple.com/kr/app/minecraft-%EC%98%A8%EB%9D%BC%EC%9D%B8%EC%9C%BC%EB%A1%9C-%EC%B9%9C%EA%B5%AC%EB%93%A4%EA%B3%BC-%ED%95%A8%EA%BB%98-%ED%94%8C%EB%A0%88%EC%9D%B4%ED%95%98%EC%84%B8%EC%9A%94/id479516143",
+    "app": "Minecraft 온라인으로 친구들과 함께 플레이하세요"
+  },
+  "전략적 팀 전투": {
+    "image": "/ranking-images/games/전략적-팀-전투.png",
+    "source": "https://apps.apple.com/kr/app/%EC%A0%84%EB%9E%B5%EC%A0%81-%ED%8C%80-%EC%A0%84%ED%88%AC-%EB%A6%AC%EA%B7%B8-%EC%98%A4%EB%B8%8C-%EB%A0%88%EC%A0%84%EB%93%9C-%EC%A0%84%EB%9E%B5-%EA%B2%8C%EC%9E%84/id1480616748",
+    "app": "전략적 팀 전투: 리그 오브 레전드 전략 게임"
+  },
+  "좀비고등학교": {
+    "image": "/ranking-images/games/좀비고등학교.png",
+    "source": "https://apps.apple.com/kr/app/%EC%A2%80%EB%B9%84%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90/id898986747",
+    "app": "좀비고등학교"
+  },
+  "피망 뉴맞고": {
+    "image": "/ranking-images/games/피망-뉴맞고.png",
+    "source": "https://apps.apple.com/kr/app/%ED%94%BC%EB%A7%9D-%EB%89%B4%EB%A7%9E%EA%B3%A0-%EA%B3%A0%EC%8A%A4%ED%86%B1%EC%9C%BC%EB%A1%9C-%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD-1%EB%93%B1/id1458568643",
+    "app": "피망 뉴맞고 : 고스톱으로 대한민국 1등"
+  },
+  "쿠키런 키우기": {
+    "image": "/ranking-images/games/쿠키런-키우기.png",
+    "source": "https://apps.apple.com/kr/app/%EC%BF%A0%ED%82%A4%EB%9F%B0-%ED%82%A4%EC%9A%B0%EA%B8%B0-%EC%BF%A0%ED%82%A4%EB%9F%B0-%ED%81%AC%EB%9F%BC%EB%B8%94/id6749251466",
+    "app": "쿠키런 키우기 - 쿠키런: 크럼블"
+  }
+}
