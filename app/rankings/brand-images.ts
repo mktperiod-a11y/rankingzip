@@ -20,7 +20,7 @@ const BRAND: Record<string, Record<string, Img>> = {
   },
   'korea-pc-games-share': {
     ...fromApps(pcArt),
-    '리그 오브 레전드': { image: '/ranking-images/games/pc-tile-league-of-legends.png', source: 'https://www.leagueoflegends.com/ko-kr/' },
+    '리그 오브 레전드': { image: '/ranking-images/games/pc-key-league-of-legends.webp', source: 'https://www.inven.co.kr/' },
     발로란트: { image: '/ranking-images/games/pc-tile-valorant.png', source: 'https://playvalorant.com/ko-kr/' },
     서든어택: { image: '/ranking-images/games/pc-sudden-attack.webp', source: 'https://sa.nexon.com/' },
   },
