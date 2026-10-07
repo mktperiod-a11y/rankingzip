@@ -5,6 +5,7 @@ import { slugByTitle, pageBySlug, pages } from "./rankings/data";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
+import { FRESHNESS } from "./rankings/freshness";
 import type { TrendPick } from "../lib/trends";
 
 type Category = "전체" | "스포츠" | "미디어" | "라이프" | "IT·게임" | "글로벌";
@@ -25,11 +26,19 @@ function Trophy({ rank }: { rank: number }) {
   </svg>;
 }
 
+// 히어로 카드 질문 3개씩 3세트. 5초마다 다음 세트로 넘어갑니다(답은 보여주지 않습니다).
 const heroQuestions = [
   { icon: "⚾", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
   { icon: "🍿", question: "이번 주 넷플릭스 영화 1위는?", slug: "netflix-korea-films-weekly" },
   { icon: "🚗", question: "가장 많이 팔린 수입차 브랜드는?", slug: "korea-import-car-brands" },
+  { icon: "🎬", question: "올해 극장 관객 1위 영화는?", slug: "korea-box-office-2026" },
+  { icon: "🐉", question: "전 세계에서 가장 인기 있는 애니는?", slug: "anime-all-time-popular" },
+  { icon: "🏟️", question: "올해 홈 관중이 가장 많은 구단은?", slug: "kbo-attendance-2026" },
+  { icon: "🎮", question: "PC방에서 가장 많이 하는 게임은?", slug: "korea-pc-games-share" },
+  { icon: "🏙️", question: "세계에서 가장 높은 빌딩은?", slug: "world-tallest-buildings" },
+  { icon: "💸", question: "가장 많이 번 스포츠 스타는?", slug: "highest-paid-athletes" },
 ];
+const HERO_SETS = Math.ceil(heroQuestions.length / 3);
 
 const rankings = [
   { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
@@ -57,6 +66,7 @@ const rankings = [
   { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", color: "orange" },
   { category: "미디어", icon: "🐉", title: "역대 인기 애니메이션 순위", color: "purple" },
   { category: "미디어", icon: "📺", title: "이번 시즌 인기 애니메이션 순위", color: "rose" },
+  { category: "미디어", icon: "💿", title: "역대 가수 음반 판매량 순위", color: "indigo" },
   { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", color: "cyan" },
   { category: "IT·게임", icon: "📱", title: "국내 OTT 서비스", color: "black" },
   { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", color: "rose" },
@@ -73,21 +83,22 @@ const rankings = [
 
 
 // 카드 아래 줄: 이 순위가 얼마나 자주 업데이트되는지. 없으면 "기록 경신 때"입니다.
-const CYCLE: Record<string, string> = {
-  "netflix-korea-films-weekly": "매주", "ott-content-weekly": "매주", "ufc-rankings-by-division": "매주",
-  "file-sharing-services": "2일마다",
-  "kbo-team-standings-2026": "시즌 중", "kbo-home-runs-2026": "시즌 중", "kbo-rbi-2026": "시즌 중", "kbo-attendance-2026": "시즌 중",
-  "asian-games-medal-table-2026": "대회 때",
-  "korea-import-car-brands": "매월", "korea-mobile-games-users": "매월", "korea-pc-games-share": "매월", "korea-car-sales": "매월", "korea-province-population": "매월", "korean-travel-destinations": "매월", "korea-ott-users": "매월", "japan-av-actress-ranking": "매월",
-  "korea-box-office-2026": "매년", "worldwide-box-office-2026": "매년", "highest-paid-athletes": "매년", "world-population": "매년", "world-gdp-ranking": "매년", "most-visited-countries": "매년", "korean-football-salary": "매년",
-};
 const ADULT = new Set(["japan-av-actress-ranking"]);
 
-/** 카드 오른쪽 위 라벨: "09.17 갱신". 상세 화면 "업데이트"와 같은 날짜입니다. */
+/** 카드 오른쪽 위 라벨: 자동 갱신은 "10.04 갱신", 직접 확인은 "10.07 확인", 바뀌지 않는 순위는 "변동 없음" */
 function updatedLabel(slug: string) {
   const p = pageBySlug[slug];
+  const f = FRESHNESS[slug];
+  if (f?.kind === "fixed") return "변동 없음";
   const updated = p && dateParts(p.date, p.auditDate).updated;
-  return updated ? `${updated.slice(5)} 갱신` : "";
+  return updated ? `${updated.slice(5)} ${f?.kind === "auto" ? "갱신" : "확인"}` : "";
+}
+
+/** 카드 아래 문구: 자동 갱신은 실제 실행 주기, 직접 확인은 원자료 발표 주기 */
+function cycleText(slug: string) {
+  const f = FRESHNESS[slug];
+  if (!f || f.kind === "fixed") return null;
+  return <span><em>{f.cycle}</em> {f.kind === "auto" ? "자동 업데이트돼요" : "업데이트돼요"}</span>;
 }
 
 /** HOT 띠에 쓰는 짧은 순위 이름: "2026 KBO 팀 순위" → "KBO 팀" */
@@ -112,6 +123,14 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
   const [query, setQuery] = useState("");
   // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
   const [flip, setFlip] = useState(0);
+  // 히어로 카드 세트: 5초마다 다음 세트. 마우스를 올리거나 키보드로 고르면 멈춥니다.
+  const [heroSet, setHeroSet] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+  useEffect(() => {
+    if (heroPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = setInterval(() => setHeroSet((n) => (n + 1) % HERO_SETS), 5000);
+    return () => clearInterval(timer);
+  }, [heroPaused]);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = setInterval(() => setFlip((n) => n + 1), 6000);
@@ -138,16 +157,17 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
           <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
         </div>
-        <div className="hero-board" aria-label="궁금한 순위 세 가지">
-          {heroQuestions.map((item, i) => {
+        <div className="hero-board" aria-label="궁금한 순위" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}>
+          {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
             const page = pageBySlug[item.slug];
-            return <a href={`/rankings/${item.slug}`} className="hero-row" key={item.slug}>
+            return <a href={`/rankings/${item.slug}`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
               <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
               <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong><small>{page.title}</small></p>
+              <i className="hero-go" aria-hidden="true">→</i>
             </a>;
           })}
-
+          <div className="hero-dots" role="tablist" aria-label="질문 묶음">{Array.from({ length: HERO_SETS }, (_, n) => <button key={n} type="button" role="tab" aria-selected={n === heroSet} aria-label={`${n + 1}번째 질문 묶음`} className={n === heroSet ? "on" : ""} onClick={() => setHeroSet(n)}><span key={n === heroSet ? `run-${heroSet}` : "idle"} className={heroPaused ? "paused" : ""} /></button>)}</div>
         </div>
       </section>
 
@@ -165,7 +185,7 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
               <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목을 한눈에 비교해 보세요</p>
-              <a className="rank-link" href={`/rankings/${slug}`}><span><em>{CYCLE[slug] ?? "기록 경신 때"}</em> 업데이트돼요</span>자세히 <b>→</b></a>
+              <a className="rank-link" href={`/rankings/${slug}`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>
