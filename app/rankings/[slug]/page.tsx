@@ -35,7 +35,9 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
 }
 const CREDIT_LABELS:Record<string,string>={'en.wikipedia.org':'위키백과','commons.wikimedia.org':'위키미디어 공용','www.koreabaseball.com':'KBO','web1.koreabaseball.com':'KBO','www.kaida.co.kr':'KAIDA','monthly.chosun.com':'월간조선','www.hyundaimotorgroup.com':'현대자동차그룹','tour.pc.go.kr':'평창군 관광'};
 type ImageKind = 'flag' | 'logo' | 'photo';
-const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly"];
+const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly","netflix-korea-films-weekly"];
+// 넷플릭스 대표 이미지는 가로(16:9)라 세로 포스터 틀 대신 가로 틀에 넣습니다.
+const WIDE_POSTER_SLUGS=["ott-content-weekly","netflix-korea-films-weekly"];
 // 로고·차량처럼 잘리면 안 되는 이미지를 쓰는 순위는 흰 바탕 틀 안에 전체가 보이게 맞춥니다.
 const LOGO_SLUGS=["korea-ott-users","file-sharing-services","korea-import-car-brands","kbo-team-standings-2026","kbo-attendance-2026","korea-car-sales"];
 
@@ -76,6 +78,7 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  const faqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:p.faq.map(([q,a])=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:a}}))};
  const json=(value:unknown)=>JSON.stringify(value).replace(/</g,'\\u003c');
  const poster=p.posterLayout||POSTER_SLUGS.includes(p.slug);
+ const wide=poster&&WIDE_POSTER_SLUGS.includes(p.slug)?' wide':'';
  const values=p.unranked||p.hideBars?null:numericValues(p.rows);
  const max=values?Math.max(...values):0;
  // 1~3위는 시상대로 따로 보여주고, 목록은 4위부터 이어갑니다.
@@ -105,8 +108,8 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
    <div className="dp-head"><p>{p.unranked?"REFERENCE":"RANKING"}</p><h2>{p.divisions?"체급을 대표하는 주요 선수":p.unranked?"자료 안내":"순위 한눈에 보기"}</h2>{!p.unranked&&p.rows.length>0&&<span>{p.rows.length}개 항목</span>}</div>
    {!p.rows.length&&<p className="dp-empty">확인되지 않은 수치와 순위는 공개하지 않습니다. 검증 가능한 원자료 확보 후 다시 제공합니다.</p>}
    {points.length>0&&<ul className="dp-points">{points.map(t=><li key={t}><b>POINT</b>{t}</li>)}</ul>}
-   {podium&&<ol className={`dp-podium ${poster?'poster':''}`}>{[1,0,2].map(i=>{const r=p.rows[i];const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={`place-${i+1}`}><div className={poster?'dp-podium-poster':`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-step"><b className="dp-medal">{rank}</b><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}{rowSources(r)}</div></li>})}</ol>}
-   {poster?<ol className="dp-posters" start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}{changeBadge(r)}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
+   {podium&&<ol className={`dp-podium ${poster?'poster':''}${wide}`}>{[1,0,2].map(i=>{const r=p.rows[i];const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={`place-${i+1}`}><div className={poster?'dp-podium-poster':`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-step"><b className="dp-medal">{rank}</b><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}{rowSources(r)}</div></li>})}</ol>}
+   {poster?<ol className={`dp-posters${wide}`} start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}{changeBadge(r)}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
    :<ol className="dp-list" start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}</div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${values[i]?Math.max(2,values[i]/max*100):0}%`}}/></div>}{r.note&&<p>{r.note}</p>}{rowSources(r)}</div></li>})}</ol>}
    {p.rows.length>0&&<p className="dp-credit">{imageCredits.length>0&&<span className="dp-credit-links">이미지 출처 {imageCredits.map(([label,url])=><a key={label} href={url} target="_blank" rel="noreferrer">{label} ↗</a>)}</span>}이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
   </div>
