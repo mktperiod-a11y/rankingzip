@@ -7,9 +7,9 @@ import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
 import type { TrendPick } from "../lib/trends";
 
-type Category = "전체" | "스포츠" | "미디어" | "라이프" | "서비스" | "글로벌";
+type Category = "전체" | "스포츠" | "미디어" | "라이프" | "IT·게임" | "글로벌";
 
-const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "서비스", "글로벌"];
+const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "IT·게임", "글로벌"];
 
 const heroQuestions = [
   { icon: "🏆", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
@@ -20,9 +20,9 @@ const heroQuestions = [
 const rankings = [
   { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
   { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", color: "gold" },
-  { category: "서비스", icon: "💾", title: "파일 공유 서비스 비교", color: "indigo" },
-  { category: "서비스", icon: "🎮", title: "국내 인기 모바일 게임 순위", color: "purple" },
-  { category: "서비스", icon: "🖥️", title: "국내 인기 PC 게임 순위", color: "navy" },
+  { category: "IT·게임", icon: "💾", title: "파일 공유 서비스 비교", color: "indigo" },
+  { category: "IT·게임", icon: "🎮", title: "국내 인기 모바일 게임 순위", color: "purple" },
+  { category: "IT·게임", icon: "🖥️", title: "국내 인기 PC 게임 순위", color: "navy" },
   { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", color: "red" },
   { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", color: "red" },
   { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", color: "blue" },
@@ -42,7 +42,7 @@ const rankings = [
   { category: "미디어", icon: "🎥", title: "역대 국내 영화 관객", color: "purple" },
   { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", color: "orange" },
   { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", color: "cyan" },
-  { category: "서비스", icon: "📱", title: "국내 OTT 서비스", color: "black" },
+  { category: "IT·게임", icon: "📱", title: "국내 OTT 서비스", color: "black" },
   { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", color: "rose" },
   { category: "글로벌", icon: "💸", title: "세계 스포츠 스타 수입", color: "gold" },
   { category: "글로벌", icon: "🏙️", title: "세계 최고층 빌딩", color: "blue" },
