@@ -154,7 +154,7 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
             <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
             <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
-            <button className="all-button" type="button" onClick={showAll}>인기 랭킹 전체보기 <b>→</b></button>
+            <button className="all-button btn-sub" type="button" onClick={showAll}>인기 랭킹 전체보기 <b>→</b></button>
           </aside>
         </div>
       </section>
