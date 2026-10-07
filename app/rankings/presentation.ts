@@ -48,6 +48,7 @@ const VALUE_LABEL: Record<string, string> = {
   'world-population': '인구', 'korea-province-population': '인구', 'korea-highest-mountains': '해발',
   'world-gdp-ranking': '명목 GDP', 'world-largest-countries': '육지 면적', 'world-highest-mountains': '해발',
   'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자', 'korea-pc-games-share': 'PC방 점유율',
+  'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율',
 };
 
 // 같은 말이 다시 나오는지 볼 때 쓰는 낱말: 괄호 속 설명과 기호는 뺍니다.
@@ -62,7 +63,7 @@ export function rankingPresentation(p: RankingPage) {
   const shared = parts.length > 1
     ? [...new Set(parts[0])].filter(s => parts.every(row => row.includes(s)))
     : [];
-  const label = DATA_LABEL[p.slug]
+  const label = p.dataLabel ?? DATA_LABEL[p.slug]
     ?? (WEEKLY_SOURCE[p.slug] && dates.reference ? `${WEEKLY_SOURCE[p.slug]} ${dates.reference} 주간 데이터` : dates.reference);
   // 출처·시기 뒤에는 집계 방식만 붙입니다. 앞에 나온 낱말로 다 설명되는 항목은 뺍니다.
   const seen = new Set(words(label ?? ''));

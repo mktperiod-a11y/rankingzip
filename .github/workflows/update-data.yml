@@ -1,11 +1,15 @@
-# 순위 데이터 자동 갱신. 지금은 넷플릭스 대한민국 주간 TOP 10(영화·TV)을 한국어 제목·대표 이미지와 함께 갱신합니다.
-# - 매주 수요일 12:00(KST): 새 주간이 있으면 데이터를 저장하고 GitHub Pages를 다시 배포합니다.
+# 순위 데이터 자동 갱신.
+# - 넷플릭스 대한민국 주간 TOP 10(영화·TV): 한국어 제목·대표 이미지와 함께 갱신
+# - 애니메이션: AniList 역대 인기 TOP 10, Anime Corner 최신 주간 투표 TOP 10
+# - 매주 수요일·토요일 12:00(KST): 바뀐 데이터가 있으면 저장하고 GitHub Pages를 다시 배포합니다.
+#   (Anime Corner 주간 투표는 보통 목·금요일에 발표돼 토요일에 반영됩니다)
 # - 직접 실행(Run workflow): 기본은 "미리보기"라서 결과만 보여주고 저장하지 않습니다.
 name: Update ranking data
 
 on:
   schedule:
     - cron: "0 3 * * 3"
+    - cron: "0 3 * * 6"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -43,5 +47,30 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/rankings public/ranking-images/netflix
           git commit -m "Update Netflix Korea weekly Top 10"
+          git push
+          gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
+
+  anime:
+    needs: netflix
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: 애니메이션 순위 갱신
+        run: node scripts/update-anime.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
+      - name: 바뀐 데이터 저장 후 사이트 재배포
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- data/rankings && [ -z "$(git status --porcelain public/ranking-images/anime)" ]; then echo "바뀐 데이터가 없습니다"; exit 0; fi
+          node scripts/image-shapes.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rankings data/image-shapes.json public/ranking-images/anime
+          git commit -m "Update anime rankings"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
