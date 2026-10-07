@@ -1,10 +1,13 @@
-# GitHub Pages 배포: main에 올라오면 사이트를 만들어 올립니다.
+# GitHub Pages 배포: main에 올라오면, 그리고 6시간마다 사이트를 만들어 올립니다.
+# 6시간마다 다시 만들 때 "지금 주목할 랭킹"의 실시간 검색어도 새로 받습니다.
 # Actions 탭에서 "Run workflow"를 눌러 직접 다시 만들 수도 있습니다.
 name: GitHub Pages
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 permissions:
