@@ -32,6 +32,7 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
  const og=[{url:"og.png",width:1200,height:630,alt:`${p.title} | 순위ZIP`}];
  return {title:`${p.title} | 순위ZIP`,description:p.description,robots:p.noindex?{index:false,follow:true}:undefined,alternates:{canonical:`rankings/${slug}`},openGraph:{title:p.title,description:p.description,type:"article",locale:"ko_KR",siteName:"순위ZIP",url:`rankings/${slug}`,images:og},twitter:{card:"summary_large_image",title:p.title,description:p.description,images:og}};
 }
+const CREDIT_LABELS:Record<string,string>={'en.wikipedia.org':'위키백과','commons.wikimedia.org':'위키미디어 공용','www.koreabaseball.com':'KBO','web1.koreabaseball.com':'KBO','www.kaida.co.kr':'KAIDA','monthly.chosun.com':'월간조선','www.hyundaimotorgroup.com':'현대자동차그룹','tour.pc.go.kr':'평창군 관광'};
 type ImageKind = 'flag' | 'logo' | 'photo';
 const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly"];
 // 로고·차량처럼 잘리면 안 되는 이미지를 쓰는 순위는 흰 바탕 틀 안에 전체가 보이게 맞춥니다.
@@ -81,7 +82,9 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  const start=podium?3:0;
  const points=rankingPoints(p.rows,p.unranked?null:numericValues(p.rows));
  const related=pages.filter(x=>!x.noindex&&x.category===p.category&&x.slug!==p.slug).slice(0,4);
- const rowSources=(r:typeof p.rows[number])=>(r.sourceUrl||r.imageSource)&&<span className="dp-row-links">{r.sourceUrl&&(p.rowLinkLabel?<a className="dp-visit" href={r.sourceUrl} target="_blank" rel="noreferrer">{p.rowLinkLabel} →</a>:<a href={r.sourceUrl} target="_blank" rel="noreferrer">{p.unranked?"공식·참고 안내":"자료 출처"} ↗</a>)}{r.imageSource&&<a href={r.imageSource} target="_blank" rel="noreferrer">이미지 출처 ↗</a>}</span>;
+ // 행마다 출처를 반복하지 않습니다. 자료 출처는 오른쪽 DATA SOURCE 카드, 이미지 출처는 목록 아래에 한 번만 모읍니다.
+ const rowSources=(r:typeof p.rows[number])=>p.rowLinkLabel&&r.sourceUrl&&<span className="dp-row-links"><a className="dp-visit" href={r.sourceUrl} target="_blank" rel="noreferrer">{p.rowLinkLabel} →</a></span>;
+ const imageCredits=[...new Map(p.rows.filter(r=>r.imageSource).map(r=>{const host=new URL(r.imageSource!).host;return [CREDIT_LABELS[host]??host.replace(/^www\./,''),r.imageSource!] as const})).entries()];
  return <main className={`detail-page page-${p.slug}`}>
  {!p.noindex&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(schema)}}/>}
  {p.faq.length>0&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>}
@@ -103,7 +106,7 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
    {podium&&<ol className={`dp-podium ${poster?'poster':''}`}>{[1,0,2].map(i=>{const r=p.rows[i];const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={`place-${i+1}`}><div className={poster?'dp-podium-poster':`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-step"><b className="dp-medal">{rank}</b><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}{rowSources(r)}</div></li>})}</ol>}
    {poster?<ol className="dp-posters" start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];return <li key={r.name}><div className="dp-poster">{image?<img src={image} alt={`${r.name} 포스터`} loading="lazy"/>:<span className="dp-noimg">이미지 준비 중</span>}{!p.unranked&&<b className={`dp-rank ${(r.rank??i+1)<=3?'top':''}`}>{r.rank??i+1}</b>}</div><h3>{r.name}{changeBadge(r)}</h3><strong>{r.value}</strong><p>{r.note}</p>{rowSources(r)}</li>})}</ol>
    :<ol className="dp-list" start={start+1}>{p.rows.slice(start).map((r,k)=>{const i=k+start;const image=r.image||imageByName[r.name];const rank=r.rank??i+1;return <li key={r.name} className={!p.unranked&&rank<=3?'top':''}>{!p.unranked&&<b className="dp-rank">{rank}</b>}<div className={`dp-thumb ${imageKind(p.slug,image||'')}${image?'':' none'}`}>{image?<img src={image} alt={`${r.name} 대표 이미지`} loading="lazy"/>:<span>{r.name.slice(0,1)}</span>}</div><div className="dp-info"><div className="dp-line"><h3>{r.name}{changeBadge(r)}</h3>{r.value&&<strong>{r.value}</strong>}</div>{values&&<div className="dp-bar" aria-hidden="true"><i style={{width:`${values[i]?Math.max(2,values[i]/max*100):0}%`}}/></div>}{r.note&&<p>{r.note}</p>}{rowSources(r)}</div></li>})}</ol>}
-   {p.rows.length>0&&<p className="dp-credit">이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
+   {p.rows.length>0&&<p className="dp-credit">{imageCredits.length>0&&<span className="dp-credit-links">이미지 출처 {imageCredits.map(([label,url])=><a key={label} href={url} target="_blank" rel="noreferrer">{label} ↗</a>)}</span>}이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영 시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게 있습니다.</p>}
   </div>
   <aside className="dp-side">
    <div className="dp-card"><small>DATA SOURCE</small><h3>자료와 집계 기준</h3><p>{p.basis}</p>{p.sourceUrl?<a className="dp-source" href={p.sourceUrl} target="_blank" rel="noreferrer">{p.source} ↗</a>:<span className="dp-source static">{p.source}</span>}<span>자료 기준일과 사이트 점검일은 다릅니다. 과거 통계는 현재 순위로 해석하지 마세요.</span></div>

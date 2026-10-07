@@ -101,7 +101,7 @@ export default function Home({ picks, trendsAt, keywords }: { picks: TrendPick[]
           <p className="eyebrow">대한민국 모든 순위를 한곳에</p>
           <h1>지금 사람들이<br/><em>가장 궁금한 순위</em></h1>
           <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
-          <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a><span>매주 새로운 랭킹 업데이트</span></div>
+          <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
         </div>
         <div className="hero-board" aria-label="오늘의 인기 순위">
           <div className="board-head"><div><i></i>이번 주 주목할 랭킹</div></div>
@@ -113,7 +113,7 @@ export default function Home({ picks, trendsAt, keywords }: { picks: TrendPick[]
       <section className="ticker"><div><b>HOT</b><strong>{keywords?.length ? `실시간 검색어 · ${trendsAt}` : "이번 주 관심 키워드"}</strong>{(keywords?.length ? keywords : weeklyKeywords).map((x,i)=><span key={x}><i>{i+1}</i>{x}</span>)}</div></section>
 
       <section className="content" id="rankings">
-        <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div><span>관심 있는 분야를 선택해 보세요</span></div>
+        <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
           <div className="card-grid">
