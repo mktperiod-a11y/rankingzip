@@ -1,8 +1,8 @@
-name: Probe anime source (temporary)
+name: First anime update (temporary)
 on:
   push:
     branches: [claude/affectionate-einstein-6myk2z]
-    paths: [scripts/probe-anime.mjs, .github/workflows/probe.yml]
+    paths: [scripts/update-anime.mjs, .github/workflows/probe.yml]
 permissions:
   contents: write
 jobs:
@@ -12,11 +12,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: node scripts/probe-anime.mjs
+      - run: node scripts/update-anime.mjs
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/probe
-          git commit -m "애니 소스 확인" || exit 0
+          git add data/rankings public/ranking-images/anime
+          git commit -m "애니메이션 순위 첫 수집" || exit 0
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
