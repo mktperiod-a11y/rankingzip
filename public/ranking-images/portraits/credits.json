@@ -1,0 +1,417 @@
+{
+  "조슈아 반": {
+    "image": "/ranking-images/portraits/joshua-van.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Joshua_Van_1.png",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "author": "AlfredoMMA",
+    "article": "https://en.wikipedia.org/wiki/Joshua_Van"
+  },
+  "알렉산드레 판토자": {
+    "image": "/ranking-images/portraits/alexandre-pantoja.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pantoja_2025.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Sexto Round",
+    "article": "https://en.wikipedia.org/wiki/Alexandre_Pantoja"
+  },
+  "마넬 케이프": {
+    "image": "/ranking-images/portraits/manel-kape.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:ManelKape2017.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Bruno Massami",
+    "article": "https://en.wikipedia.org/wiki/Manel_Kape"
+  },
+  "페트르 얀": {
+    "image": "/ranking-images/portraits/petr-yan.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Vladimir_Putin_at_award_ceremonies_(2026-04-22)_24(cropped).jpg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "author": "kremlin.ru",
+    "article": "https://en.wikipedia.org/wiki/Petr_Yan"
+  },
+  "메랍 드발리시빌리": {
+    "image": "/ranking-images/portraits/merab-dvalishvili.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Merab_Dvalishvili_at_UFC_316_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Margo Martin",
+    "article": "https://en.wikipedia.org/wiki/Merab_Dvalishvili"
+  },
+  "션 오말리": {
+    "image": "/ranking-images/portraits/sean-o-malley.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:UFC_Freedom_250_on_the_South_Lawn_of_the_White_House_in_Washington,_D.C._on_June_14,_2026_-_29(cropped).png",
+    "license": "Public domain",
+    "author": "U.S. Department of the Interior",
+    "article": "https://en.wikipedia.org/wiki/Sean_O'Malley_(fighter)"
+  },
+  "우마르 누르마고메도프": {
+    "image": "/ranking-images/portraits/umar-nurmagomedov.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:UmarNurmagomedov.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Новости ННТ",
+    "article": "https://en.wikipedia.org/wiki/Umar_Nurmagomedov"
+  },
+  "알렉산더 볼카노프스키": {
+    "image": "/ranking-images/portraits/alexander-volkanovski.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Alexander_Volkanovski_at_UFC_232.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "MMAnytt",
+    "article": "https://ko.wikipedia.org/wiki/%EC%95%8C%EB%A0%89%EC%82%B0%EB%8D%94_%EB%B3%BC%EC%B9%B4%EB%85%B8%ED%94%84%EC%8A%A4%ED%82%A4"
+  },
+  "모브사르 에블로예프": {
+    "image": "/ranking-images/portraits/movsar-evloev.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Movsar_Evloev_M-1_Challenge_2018.jpg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Press Service of the Head and Government of the Republic of Ingushetia",
+    "article": "https://en.wikipedia.org/wiki/Movsar_Evloev"
+  },
+  "디에고 로페스": {
+    "image": "/ranking-images/portraits/diego-lopes.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:UFC_Freedom_250,_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship,_Sunday,_June_14,_2026,_in_the_Grand_Foyer_of_the_White_House_-_31(cropped).jpg",
+    "license": "Public domain",
+    "author": "The White House",
+    "article": "https://en.wikipedia.org/wiki/Diego_Lopes_(fighter)"
+  },
+  "저스틴 게이치": {
+    "image": "/ranking-images/portraits/justin-gaethje.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:UFC_Freedom_250,_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship,_Sunday,_June_14,_2026,_in_the_Grand_Foyer_of_the_White_House_-_67(cropped).jpg",
+    "license": "Public domain",
+    "author": "The White House",
+    "article": "https://en.wikipedia.org/wiki/Justin_Gaethje"
+  },
+  "일리아 토푸리아": {
+    "image": "/ranking-images/portraits/ilia-topuria.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:UFC_Freedom_250_Ceremonial_Weigh_In_(9748627)(cropped).jpg",
+    "license": "Public domain",
+    "author": "U.S. Army photo by Sgt. 1st Class Brittany Primavera",
+    "article": "https://en.wikipedia.org/wiki/Ilia_Topuria"
+  },
+  "아르만 사루키안": {
+    "image": "/ranking-images/portraits/arman-tsarukyan.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Arman_Tsarukyan_2019.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "inFocus media",
+    "article": "https://en.wikipedia.org/wiki/Arman_Tsarukyan"
+  },
+  "찰스 올리베이라": {
+    "image": "/ranking-images/portraits/charles-oliveira.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Charles_Oliveira_do_Bronxs.jpg",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Renan Silva",
+    "article": "https://en.wikipedia.org/wiki/Charles_Oliveira"
+  },
+  "이슬람 마카체프": {
+    "image": "/ranking-images/portraits/islam-makhachev.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Islam_Makhachev_and_Sergey_Melikov_2025_(cropped).jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Unknown authorUnknown author",
+    "article": "https://en.wikipedia.org/wiki/Islam_Makhachev"
+  },
+  "이안 마차도 개리": {
+    "image": "/ranking-images/portraits/ian-machado-garry.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:IanGarry.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Oisinvg",
+    "article": "https://en.wikipedia.org/wiki/Ian_Machado_Garry"
+  },
+  "카를로스 프라치스": {
+    "image": "/ranking-images/portraits/carlos-prates.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Carlos_Prates_2026.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Sexto Round",
+    "article": "https://en.wikipedia.org/wiki/Carlos_Prates"
+  },
+  "마이클 모랄레스": {
+    "image": "/ranking-images/portraits/michael-morales.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Michael_Morales._QUITO,_27_DE_MAYO_DEL_2025_(cropped).jpg",
+    "license": "Public domain",
+    "author": "Presidencia de la República del Ecuador",
+    "article": "https://en.wikipedia.org/wiki/Michael_Morales_(fighter)"
+  },
+  "션 스트릭랜드": {
+    "image": "/ranking-images/portraits/sean-strickland.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sean_Strickland_at_UFN_200.png",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "MMAnytt",
+    "article": "https://en.wikipedia.org/wiki/Sean_Strickland"
+  },
+  "함자트 치마예프": {
+    "image": "/ranking-images/portraits/khamzat-chimaev.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Khamzat_Chimaev_2022_(cropped).png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "MMAnytt",
+    "article": "https://en.wikipedia.org/wiki/Khamzat_Chimaev"
+  },
+  "드리커스 뒤 플레시": {
+    "image": "/ranking-images/portraits/dricus-du-plessis.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:IMG-Dricus-Duplessis(cropped).jpg",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "User:Philippe3017",
+    "article": "https://en.wikipedia.org/wiki/Dricus_du_Plessis"
+  },
+  "나수르딘 이마보프": {
+    "image": "/ranking-images/portraits/nassourdine-imavov.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Nassourdine_Imavov.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "JoeKhanMMA",
+    "article": "https://en.wikipedia.org/wiki/Nassourdine_Imavov"
+  },
+  "카를로스 울버그": {
+    "image": "/ranking-images/portraits/carlos-ulberg.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Motorcycle_stunts_on_the_South_Lawn_of_the_White_House_ahead_of_UFC_Freedom_250,_Saturday,_June_13,_2026_-_11(cropped).jpg",
+    "license": "Public domain",
+    "author": "The White House",
+    "article": "https://en.wikipedia.org/wiki/Carlos_Ulberg"
+  },
+  "마고메드 안칼라예프": {
+    "image": "/ranking-images/portraits/magomed-ankalaev.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Magomed_Ankalaev_at_UFC_Fight_Night_136_in_Moscow,_Russia.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "MMAnytt",
+    "article": "https://en.wikipedia.org/wiki/Magomed_Ankalaev"
+  },
+  "유리 프로하스카": {
+    "image": "/ranking-images/portraits/jiri-prochazka.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:JiriProchazka2022.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Show Jana Krause",
+    "article": "https://en.wikipedia.org/wiki/Ji%C5%99%C3%AD_Proch%C3%A1zka"
+  },
+  "알렉스 페레이라": {
+    "image": "/ranking-images/portraits/alex-pereira.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Freedom_250_press_conference_at_the_Lincoln_Memorial_on_June_12,_2026_-_26(cropped).jpg",
+    "license": "Public domain",
+    "author": "U.S. Department of the Interior",
+    "article": "https://en.wikipedia.org/wiki/Alex_Pereira"
+  },
+  "시릴 간": {
+    "image": "/ranking-images/portraits/ciryl-gane.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:UFC_Freedom_250,_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship,_Sunday,_June_14,_2026,_in_the_Grand_Foyer_of_the_White_House_-_64(cropped).jpg",
+    "license": "Public domain",
+    "author": "The White House",
+    "article": "https://en.wikipedia.org/wiki/Ciryl_Gane"
+  },
+  "알렉산더 볼코프": {
+    "image": "/ranking-images/portraits/alexander-volkov.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sergei_Pavlovich_vs_Alexander_Volkov_face_off_(cropped).png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Sexto Round",
+    "article": "https://en.wikipedia.org/wiki/Alexander_Volkov_(fighter)"
+  },
+  "커티스 블레이즈": {
+    "image": "/ranking-images/portraits/curtis-blaydes.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Curtis_Blaydes_2018.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "MMA Zone",
+    "article": "https://en.wikipedia.org/wiki/Curtis_Blaydes"
+  },
+  "세르게이 파블로비치": {
+    "image": "/ranking-images/portraits/sergei-pavlovich.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:SergeiPavlovich2018.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Страна FM",
+    "article": "https://en.wikipedia.org/wiki/Sergei_Pavlovich"
+  },
+  "이승엽": {
+    "image": "/ranking-images/portraits/lee-seung-yuop.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lee_Seung-Yeop_%EC%9D%B4%EC%8A%B9%EC%97%BD_%EC%9D%BC%EA%B5%AC%EC%83%81_2016.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "KBS 뷰",
+    "article": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%8A%B9%EC%97%BD"
+  },
+  "박병호": {
+    "image": "/ranking-images/portraits/park-byung-ho.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Park_Byung-ho_2025.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Seohae1999",
+    "article": "https://en.wikipedia.org/wiki/Byung-ho_Park"
+  },
+  "르윈 디아즈": {
+    "image": "/ranking-images/portraits/lewin-diaz.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lewin_Diaz.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Bryan Green",
+    "article": "https://ko.wikipedia.org/wiki/%EB%A5%B4%EC%9C%88_%EB%94%94%EC%95%84%EC%A6%88"
+  },
+  "야마이코 나바로": {
+    "image": "/ranking-images/portraits/yamaico-navarro.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Yamaico_Navarro_on_May_18,_2013.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Keith Allison on Flickr",
+    "article": "https://ko.wikipedia.org/wiki/%EC%95%BC%EB%A7%88%EC%9D%B4%EC%BD%94_%EB%82%98%EB%B0%94%EB%A1%9C"
+  },
+  "에릭 테임즈": {
+    "image": "/ranking-images/portraits/eric-thames.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Eric_Thames_on_August_6,_2012.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Keith Allison on Flickr (Original version) UCinternational (Crop)",
+    "article": "https://ko.wikipedia.org/wiki/%EC%97%90%EB%A6%AD_%ED%85%8C%EC%9E%84%EC%A6%88"
+  },
+  "멜 로하스 주니어": {
+    "image": "/ranking-images/portraits/mel-rojas-jr.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Rojas_Jr_Hanshin_Tigers_20220521.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Orixbaseballclub",
+    "article": "https://ko.wikipedia.org/wiki/%EB%A9%9C_%EB%A1%9C%ED%95%98%EC%8A%A4_%EC%A3%BC%EB%8B%88%EC%96%B4"
+  },
+  "최정": {
+    "image": "/ranking-images/portraits/choi-jeong.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jeong_Choi_on_March_2,_2013.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Trevor Grieve on Picasa Web Albums (Original version) UCinternational (Crop)",
+    "article": "https://ko.wikipedia.org/wiki/%EC%B5%9C%EC%A0%95"
+  },
+  "맷 데이비슨": {
+    "image": "/ranking-images/portraits/matt-davidson.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Matt_Davidson,_2015_Triple-A_All-Star_Game.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Minda Haas on Flickr (Original version) UCinternational (Crop)",
+    "article": "https://ko.wikipedia.org/wiki/%EB%A7%B7_%EB%8D%B0%EC%9D%B4%EB%B9%84%EC%8A%A8"
+  },
+  "이대호": {
+    "image": "/ranking-images/portraits/lee-dae-ho.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:2017_03_27_%ED%94%84%EB%A1%9C%EC%95%BC%EA%B5%AC_%EB%AF%B8%EB%94%94%EC%96%B4%EB%8D%B0%EC%9D%B4_1_(10).jpg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "author": "WiiWii",
+    "article": "https://ko.wikipedia.org/wiki/%EC%9D%B4%EB%8C%80%ED%98%B8"
+  },
+  "김재환": {
+    "image": "/ranking-images/portraits/kim-jae-hwan.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kim_Jae-hwan_%EA%B9%80%EC%9E%AC%ED%99%98_2016_%EA%B3%A8%EB%93%A0%EA%B8%80%EB%9F%AC%EB%B8%8C.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "KBS 뷰",
+    "article": "https://en.wikipedia.org/wiki/Kim_Jae-hwan_(baseball)"
+  },
+  "제이미 로맥": {
+    "image": "/ranking-images/portraits/jamie-romak.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:James_Robert_Romak_infielder_of_the_Yokohama_DeNA_BayStars,_at_Yokohama_Stadium.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "ぽこ太郎",
+    "article": "https://ko.wikipedia.org/wiki/%EC%A0%9C%EC%9D%B4%EB%AF%B8_%EB%A1%9C%EB%A7%A5"
+  },
+  "타이론 우즈": {
+    "image": "/ranking-images/portraits/tyrone-woods.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:IMG_1874_Tyrone_Woods.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "sun_summer on Flickr (Original version) UCinternational (Crop)",
+    "article": "https://ko.wikipedia.org/wiki/%ED%83%80%EC%9D%B4%EB%A1%A0_%EC%9A%B0%EC%A6%88"
+  },
+  "오스틴 딘": {
+    "image": "/ranking-images/portraits/austin-dean.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Austin_Dean_(cropped).jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "Ian D'Andrea",
+    "article": "https://ko.wikipedia.org/wiki/%EC%98%A4%EC%8A%A4%ED%8B%B4_%EB%94%98"
+  },
+  "샘 힐리어드": {
+    "image": "/ranking-images/portraits/sam-hilliard.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sam_Hilliard_(48915675438)_(cropped).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Jennifer Linnea on Flickr",
+    "article": "https://ko.wikipedia.org/wiki/%EC%83%98_%ED%9E%90%EB%A6%AC%EC%96%B4%EB%93%9C"
+  },
+  "강백호": {
+    "image": "/ranking-images/portraits/kang-baek-ho.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kang_Baek-Ho_2019_Premier_12.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Trainholic",
+    "article": "https://ko.wikipedia.org/wiki/%EA%B0%95%EB%B0%B1%ED%98%B8_(%EC%95%BC%EA%B5%AC_%EC%84%A0%EC%88%98)"
+  },
+  "크리스티아누 호날두": {
+    "image": "/ranking-images/portraits/cristiano-ronaldo.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Bryan Berlin",
+    "article": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo"
+  },
+  "리오넬 메시": {
+    "image": "/ranking-images/portraits/lionel-messi.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Leo_Messi_Argentina_v_Egypt_7_July_2026-1.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Bryan Berlin",
+    "article": "https://en.wikipedia.org/wiki/Lionel_Messi"
+  },
+  "카넬로 알바레스": {
+    "image": "/ranking-images/portraits/canelo-alvarez.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Sa%C3%BAl_%C3%81lvarez.png",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "author": "Box Azteca",
+    "article": "https://en.wikipedia.org/wiki/Canelo_%C3%81lvarez"
+  },
+  "르브론 제임스": {
+    "image": "/ranking-images/portraits/lebron-james.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:LeBron_James_(51959977144)_(cropped2).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Erik Drost",
+    "article": "https://en.wikipedia.org/wiki/LeBron_James"
+  },
+  "오타니 쇼헤이": {
+    "image": "/ranking-images/portraits/shohei-ohtani.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dodgers_at_Nationals_(53677192000)_(cropped).jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "author": "All-Pro Reels from District of Columbia, USA",
+    "article": "https://en.wikipedia.org/wiki/Shohei_Ohtani"
+  },
+  "스테픈 커리": {
+    "image": "/ranking-images/portraits/stephen-curry.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Stephen_Curry,_Olympic_Games_2024_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Clément Bardot",
+    "article": "https://en.wikipedia.org/wiki/Stephen_Curry"
+  },
+  "타이슨 퓨리": {
+    "image": "/ranking-images/portraits/tyson-fury.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Tyson_Fury_at_Place_Bell,_Laval_Quebec,_Canada_-_Dec_16_2017_(cropped).jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Mike DiDomizio",
+    "article": "https://en.wikipedia.org/wiki/Tyson_Fury"
+  },
+  "닥 프레스콧": {
+    "image": "/ranking-images/portraits/dak-prescott.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dak_Prescott_by_Gage_Skidmore.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "author": "Gage Skidmore",
+    "article": "https://en.wikipedia.org/wiki/Dak_Prescott"
+  }
+}
