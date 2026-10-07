@@ -17,7 +17,7 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
  const og=[{url:"og.png",width:1200,height:630,alt:`${p.title} | 순위ZIP`}];
  return {title:`${p.title} | 순위ZIP`,description:p.description,robots:p.noindex?{index:false,follow:true}:undefined,alternates:{canonical:`rankings/${slug}`},openGraph:{title:p.title,description:p.description,type:"article",locale:"ko_KR",siteName:"순위ZIP",url:`rankings/${slug}`,images:og},twitter:{card:"summary_large_image",title:p.title,description:p.description,images:og}};
 }
-const CREDIT_LABELS:Record<string,string>={'en.wikipedia.org':'위키백과','commons.wikimedia.org':'위키미디어 공용','www.koreabaseball.com':'KBO','web1.koreabaseball.com':'KBO','www.kaida.co.kr':'KAIDA','monthly.chosun.com':'월간조선','www.hyundaimotorgroup.com':'현대자동차그룹','tour.pc.go.kr':'평창군 관광'};
+const CREDIT_LABELS:Record<string,string>={'apps.apple.com':'앱스토어','en.wikipedia.org':'위키백과','commons.wikimedia.org':'위키미디어 공용','www.koreabaseball.com':'KBO','web1.koreabaseball.com':'KBO','www.kaida.co.kr':'KAIDA','monthly.chosun.com':'월간조선','www.hyundaimotorgroup.com':'현대자동차그룹','tour.pc.go.kr':'평창군 관광'};
 type ImageKind = 'flag' | 'logo' | 'photo' | 'photo crest';
 const POSTER_SLUGS=["korean-movie-admissions","korea-box-office-2026","worldwide-box-office-2026","korean-drama-ratings","ott-content-weekly","netflix-korea-films-weekly"];
 // 넷플릭스 대표 이미지는 가로(16:9)라 세로 포스터 틀 대신 가로 틀에 넣습니다.
