@@ -88,6 +88,7 @@
 .dp-row-links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
 .dp-row-links a.dp-visit{display:inline-block;margin-top:2px;padding:6px 12px;border-radius:8px;background:var(--blue);color:#fff;font-size:13px;font-weight:800;text-decoration:none;transition:background .15s}
 .dp-row-links a.dp-visit:hover{background:#0647d6;color:#fff}
+.dp-row-links a.btn-sub{margin-top:2px}
 
 /* 포스터형 순위 */
 .dp-posters{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:22px 16px}
