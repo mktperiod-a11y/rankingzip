@@ -11,7 +11,8 @@ const detail=fs.readFileSync('app/rankings/[slug]/page.tsx','utf8');
 const map=JSON.parse(detail.match(/export const imageByName[^=]*= (\{[\s\S]*?\n\});/)[1]);
 test('all 33 pages have explicit audit decisions and no broken local row images',()=>{
  assert.equal(pages.length,33);assert.equal(new Set(pages.map(p=>p.slug)).size,33);
- for(const p of pages){assert.ok(p.auditDate,p.slug);for(const r of p.rows){const src=r.image||map[r.name];assert.ok(src,`${p.slug}: missing ${r.name}`);if(src.startsWith('/'))assert.ok(fs.statSync('public'+src).size>100,src);assert.ok(!src.includes('unsplash'),`unverified stock image ${p.slug}`);}}
+ for(const p of pages){assert.ok(p.auditDate,p.slug);const person=fs.readFileSync('app/rankings/portraits.ts','utf8').includes(`'${p.slug}'`);for(const r of p.rows){const src=r.image||map[r.name];if(!src&&person)continue;// 자유 이용 사진이 없는 인물은 이니셜로 보여줍니다
+ assert.ok(src,`${p.slug}: missing ${r.name}`);if(src.startsWith('/'))assert.ok(fs.statSync('public'+src).size>100,src);assert.ok(!src.includes('unsplash'),`unverified stock image ${p.slug}`);}}
 });
 test('new season rankings and imported brands are complete and linked',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));
@@ -22,7 +23,11 @@ test('new season rankings and imported brands are complete and linked',()=>{
  assert.equal(cars.rows[0].value,'10,400대');assert.match(cars.rows[0].note,/34.9%/);
  const {slugByTitle}=load('app/rankings/data.ts');
  const home=fs.readFileSync('app/home.tsx','utf8');
- for(const p of [hr,rbi,cars]){assert.equal(slugByTitle[p.title],p.slug);assert.ok(home.includes(p.title));assert.ok(p.faq.length>=3);for(const r of p.rows){assert.ok(r.imageSource&&r.sourceUrl);assert.ok(r.image.startsWith('/ranking-images/expansion/'));}}
+ for(const p of [hr,rbi,cars]){assert.equal(slugByTitle[p.title],p.slug);assert.ok(home.includes(p.title));assert.ok(p.faq.length>=3);}
+ for(const r of cars.rows){assert.ok(r.imageSource&&r.sourceUrl);assert.ok(r.image.startsWith('/ranking-images/expansion/'));}
+ // 선수 사진: 위키미디어 자유 이용 사진(작가·라이선스 기록)이 있으면 그 사진, 없으면 구단 로고. 공식 사이트 사진은 쓰지 않습니다.
+ const credits=JSON.parse(fs.readFileSync('public/ranking-images/portraits/credits.json','utf8'));
+ for(const r of [...hr.rows,...rbi.rows]){assert.ok(r.sourceUrl);const c=credits[r.name];if(c){assert.equal(r.image,c.image);assert.ok(c.author&&c.license&&c.source);}else assert.match(r.image,/^\/ranking-images\/expansion\/kbo_\w+\.webp$/);assert.ok(fs.existsSync(`public${r.image}`));}
 });
 test('current KBO standings and box office changes are reflected',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));

@@ -62,7 +62,8 @@ test('updater writes only newer weeks, and dry-run writes nothing', () => {
 test('page text is generated from the saved chart', async () => {
   const { filmsContent, tvContent, netflixFilms } = await loadContent();
   const stored = JSON.parse(fs.readFileSync('data/rankings/netflix-korea-films-weekly.json', 'utf8'));
-  assert.equal(netflixFilms.rows[0].name, stored.rows[0].titleKo || stored.rows[0].title);
+  const manual = JSON.parse(fs.readFileSync('data/rankings/netflix-titles-ko.json', 'utf8'));
+  assert.equal(netflixFilms.rows[0].name, stored.rows[0].titleKo || manual[stored.rows[0].title] || stored.rows[0].title);
   assert.match(netflixFilms.date, /^\d{4}\.\d{2}\.\d{2}~/);
   const [films, tv] = parseKoreaCharts(fixture);
   const chart = (c) => ({ source: '', checkedAt: '2026-10-01', ...c });

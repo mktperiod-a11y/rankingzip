@@ -189,3 +189,13 @@
 .dp-card>.dp-check{display:block;margin-top:2px;font-size:12px;line-height:1.6;color:#8a94a4;word-break:keep-all}
 .dp-check b{display:block;margin-bottom:2px;font-weight:700;color:#374151}
 @media(max-width:640px){.dp-meta{flex-direction:column}.dp-meta span+span::before{display:none}.dp-lede{font-size:16px}}
+.dp-photo-credits{margin-top:18px;font-size:11px;line-height:1.6;color:#8a94a4}
+.dp-photo-credits summary{cursor:pointer;font-weight:700;color:#687386}
+.dp-photo-credits ul{margin:6px 0 0;padding-left:16px;columns:2;column-gap:24px}
+.dp-photo-credits a{color:#687386;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:640px){.dp-photo-credits ul{columns:1}}
+.dp-thumb.crest{background:white;border:1px solid #e7ebf1}
+.dp-thumb.crest img{object-fit:contain;object-position:center;padding:8px}
+.dp-initial{flex-shrink:0;display:grid;place-items:center;background:#eef3fb;color:#9fb3d6;font-weight:900}
+.dp-champion .dp-initial{width:64px;height:64px;border-radius:14px;font-size:22px}
+.dp-division li .dp-initial{width:32px;height:32px;border-radius:50%;font-size:13px}

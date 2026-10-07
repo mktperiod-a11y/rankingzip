@@ -5,7 +5,7 @@ const kbo='https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx';
 const kboTeams='https://www.koreabaseball.com/Record/TeamRank/TeamRankDaily.aspx';
 const cars='https://www.kaida.co.kr/';
 const players:Record<string,[string,string]>={52605:['김도영','KIA'],53123:['오스틴 딘','LG'],56034:['샘 힐리어드','KT'],68050:['강백호','한화'],69737:['노시환','한화'],54400:['르윈 디아즈','삼성']};
-function playerRows(entries:[string,number][],unit:string):RankingRow[]{return entries.map(([id,value])=>({name:players[id][0],value:`${value}${unit}`,note:`${players[id][1]} · 2026 정규시즌 · 9월 16일까지`,rank:entries.findIndex(x=>x[1]===value)+1,image:images[id].image,imageSource:images[id].source,sourceUrl:kbo}));}
+function playerRows(entries:[string,number][],unit:string):RankingRow[]{return entries.map(([id,value])=>({name:players[id][0],value:`${value}${unit}`,note:`${players[id][1]} · 2026 정규시즌 · 9월 16일까지`,rank:entries.findIndex(x=>x[1]===value)+1,sourceUrl:kbo}));}
 const brands:[string,string,number][]=[['테슬라','tesla',10400],['BMW','bmw',6180],['메르세데스-벤츠','mercedes',4037],['BYD','byd',3002],['토요타','toyota',1015],['렉서스','lexus',840],['아우디','audi',810],['볼보','volvo',770],['포르쉐','porsche',739],['미니','mini',702]];
 const standings:[string,string,number,number,number,string,string][]=[['KT','kbo_KT',76,46,4,'0.623','0'],['삼성','kbo_Samsung',75,50,3,'0.600','2.5'],['LG','kbo_LG',72,55,1,'0.567','6.5'],['KIA','kbo_KIA',68,57,2,'0.544','9.5'],['두산','kbo_Doosan',65,60,4,'0.520','12.5'],['NC','kbo_NC',59,63,2,'0.484','17'],['SSG','kbo_SSG',56,69,5,'0.448','21.5'],['한화','kbo_Hanwha',54,69,4,'0.439','22.5'],['롯데','kbo_Lotte',53,71,2,'0.427','24'],['키움','kbo_Kiwoom',45,83,3,'0.352','34']];
 export const expansionPages:RankingPage[]=[
