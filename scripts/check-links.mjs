@@ -28,6 +28,8 @@ for (const file of htmlFiles) {
     const href = decode(raw);
     if (/^https?:\/\//.test(href)) { if (!external.has(href)) external.set(href, page); continue; }
     if (!href.startsWith('/') || href.startsWith('//')) continue;
+    // GitHub Pages는 /<저장소>/ 아래에서 열리므로 기본 경로가 빠진 링크는 사이트 밖(404)으로 나갑니다.
+    if (base && !(href === base || href.startsWith(`${base}/`) || href.startsWith(`${base}#`) || href.startsWith(`${base}?`))) { internalBroken.push(`${page} → ${href} (기본 경로 없음)`); continue; }
     const local = href.split(/[?#]/)[0].replace(new RegExp(`^${base}(?=/|$)`), '') || '/';
     const target = path.join(outDir, decodeURIComponent(local));
     const exists = [target, path.join(target, 'index.html'), `${target}.html`].some((t) => fs.existsSync(t) && fs.statSync(t).isFile());
