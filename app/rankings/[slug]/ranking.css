@@ -180,6 +180,10 @@
 .dp-podium.wide .dp-podium-poster{aspect-ratio:16/9;max-width:240px}
 .dp-posters.wide{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .dp-posters.wide .dp-poster{aspect-ratio:16/9}
+.dp-podium+.dp-list.media-list{margin-top:24px;padding-top:16px;border-top:2px solid #e7ebf1}
+.media-list .dp-thumb{width:64px;height:96px;border-radius:8px}
+.media-list.wide .dp-thumb{width:112px;height:63px}
+@media(max-width:640px){.media-list.wide .dp-thumb{width:88px;height:50px}.media-list .dp-thumb{width:52px;height:78px}}
 @media(max-width:640px){.dp-posters.wide{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .dp-meta{display:flex;flex-wrap:wrap;gap:6px 0;margin:20px 0 0;font-size:13px;line-height:1.5;color:#374151;word-break:keep-all}
 .dp-meta span{display:inline-flex;gap:6px;align-items:baseline}
