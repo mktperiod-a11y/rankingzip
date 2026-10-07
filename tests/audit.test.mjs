@@ -11,7 +11,7 @@ const detail=fs.readFileSync('app/rankings/[slug]/page.tsx','utf8');
 const map=JSON.parse(detail.match(/export const imageByName[^=]*= (\{[\s\S]*?\n\});/)[1]);
 test('all 35 pages have explicit audit decisions and no broken local row images',()=>{
  assert.equal(pages.length,35);assert.equal(new Set(pages.map(p=>p.slug)).size,35);
- for(const p of pages){assert.ok(p.auditDate,p.slug);const person=fs.readFileSync('app/rankings/portraits.ts','utf8').includes(`'${p.slug}'`);for(const r of p.rows){const src=r.image||map[r.name];if(!src&&person)continue;// 자유 이용 사진이 없는 인물은 이니셜로 보여줍니다
+ for(const p of pages){assert.ok(p.auditDate,p.slug);const person=fs.readFileSync('app/rankings/portraits.ts','utf8').includes(`'${p.slug}'`);for(const r of p.rows){const src=r.image||map[r.name];if(!src&&(person||p.slug==='korea-pc-games-share'))continue;// 자유 이용 사진이 없는 인물, 공식 아이콘 출처가 없는 PC 게임은 이니셜로 보여줍니다
  assert.ok(src,`${p.slug}: missing ${r.name}`);if(src.startsWith('/'))assert.ok(fs.statSync('public'+src).size>100,src);assert.ok(!src.includes('unsplash'),`unverified stock image ${p.slug}`);}}
 });
 test('new season rankings and imported brands are complete and linked',()=>{
