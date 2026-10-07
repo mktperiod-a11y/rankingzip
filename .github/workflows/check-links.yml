@@ -1,0 +1,24 @@
+# 사이트의 모든 링크(자료 출처, 사이트로 이동 등)가 제대로 열리는지 매주 확인합니다.
+# Actions 탭에서 "Run workflow"로 바로 실행할 수도 있습니다. 실패한 링크는 실행 로그에 ❌로 표시됩니다.
+name: Check links
+
+on:
+  schedule:
+    - cron: "0 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-github-pages.mjs /rankingzip out
+      - run: node scripts/check-links.mjs out /rankingzip

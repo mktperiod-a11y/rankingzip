@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { pageBySlug, pages } from "../data";
+import { dateParts } from "../date-parts";
 import assets from '../../../public/ranking-images/updates/sources.json';
 import { notFound } from 'next/navigation';
 import { BrandLogo } from '../../brand-logo';
@@ -85,13 +86,14 @@ export default async function RankingDetail({params}:{params:Promise<{slug:strin
  // 행마다 출처를 반복하지 않습니다. 자료 출처는 오른쪽 DATA SOURCE 카드, 이미지 출처는 목록 아래에 한 번만 모읍니다.
  const rowSources=(r:typeof p.rows[number])=>p.rowLinkLabel&&r.sourceUrl&&<span className="dp-row-links"><a className="dp-visit" href={r.sourceUrl} target="_blank" rel="noreferrer">{p.rowLinkLabel} →</a></span>;
  const imageCredits=[...new Map(p.rows.filter(r=>r.imageSource).map(r=>{const host=new URL(r.imageSource!).host;return [CREDIT_LABELS[host]??host.replace(/^www\./,''),r.imageSource!] as const})).entries()];
+ const dates=dateParts(p.date,p.auditDate);
  return <main className={`detail-page page-${p.slug}`}>
  {!p.noindex&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(schema)}}/>}
  {p.faq.length>0&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:json(faqSchema)}}/>}
  <header className="site-header"><div className="header-inner"><BrandLogo href="/"/><a className="dp-all" href="/#rankings">전체 랭킹 <b>→</b></a></div></header>
 
  <section className="dp-hero"><div className="dp-wrap dp-hero-inner">
-  <div><p className="dp-eyebrow">{p.category} {p.unranked?"GUIDE":"RANKING"}</p><h1>{p.title}</h1><p className="dp-desc">{p.description}</p><div className="dp-chips"><b>자료 기준 {p.date}</b><b>{p.basis}</b></div></div>
+  <div><p className="dp-eyebrow">{p.category} {p.unranked?"GUIDE":"RANKING"}</p><h1>{p.title}</h1><p className="dp-desc">{p.description}</p><div className="dp-chips">{dates.reference&&<b><i>기준</i>{dates.reference}</b>}{dates.updated&&<b><i>업데이트</i>{dates.updated}</b>}<b><i>집계</i>{p.basis}</b></div></div>
   {!p.unranked&&p.rows.length>0&&<div className="dp-count">TOP<strong>{p.rows.length}</strong></div>}
  </div></section>
  {p.auditNote&&<div className="dp-wrap"><section className={`dp-audit ${p.noindex?'pending':''}`}><b>{p.auditDate} {p.noindex?'검증 보류':'자료 점검'}</b><p>{p.auditNote}</p></section></div>}
