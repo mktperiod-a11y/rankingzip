@@ -1,0 +1,24 @@
+name: Fetch key art (temporary)
+on:
+  push:
+    branches: [claude/affectionate-einstein-6myk2z]
+    paths: [.github/workflows/probe.yml]
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p data/logo-sources
+          curl -fsSL -A "Mozilla/5.0" -e "https://namu.wiki/" -o data/logo-sources/valorant-key.webp "https://i.namu.wiki/i/tb90_xgpeEn_7Q7v8OJ3_BGOki2_NzHMhXIeYP467uA10ABjrc0raosdToqAvcu3WzJJZVSDrbPIaDFSztM9HA.webp"
+          curl -fsSL -A "Mozilla/5.0" -e "https://www.inven.co.kr/" -o data/logo-sources/league-of-legends-key.jpg "https://static.inven.co.kr/column/2026/07/03/news/i1592210951.jpg"
+          file data/logo-sources/*-key.*
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/logo-sources
+          git commit -m "롤·발로란트 키 아트 원본 수집" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
