@@ -32,13 +32,20 @@ async function api(host, params) {
   return res.json();
 }
 
-/** 위키백과에서 종목이 맞는 문서를 찾아 대표 사진 파일 이름을 돌려줍니다. */
-async function leadImage(lang, query, kind) {
-  const data = await api(`${lang}.wikipedia.org`, { action: 'query', generator: 'search', gsrsearch: query, gsrlimit: '5', prop: 'pageimages|description|extracts', piprop: 'name', exintro: '1', explaintext: '1', exchars: '400' });
-  const pages = (data.query?.pages ?? []).sort((a, b) => a.index - b.index);
+/**
+ * 위키백과에서 정확한 제목의 문서만 찾습니다(검색 결과의 엉뚱한 사람을 막기 위해). 동명이인은 "(야구 선수)" 같은 제목을 함께 시도하고,
+ * 문서 설명이 종목과 맞는 경우만 받아들입니다.
+ */
+async function leadImage(lang, titles, kind) {
+  const data = await api(`${lang}.wikipedia.org`, { action: 'query', titles: titles.join('|'), redirects: '1', prop: 'pageimages|description|extracts', piprop: 'name', exintro: '1', explaintext: '1', exchars: '400' });
+  const q = data.query ?? {};
+  const resolve = (t) => { let x = t; for (const m of [...(q.normalized ?? []), ...(q.redirects ?? [])]) if (m.from === x) x = m.to; return x; };
   const re = KIND[kind][lang];
-  const page = pages.find((p) => p.pageimage && re.test(`${p.description ?? ''} ${p.extract ?? ''}`));
-  return page && { file: page.pageimage, article: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, '_'))}`, title: page.title };
+  for (const t of titles) {
+    const page = (q.pages ?? []).find((p) => p.title === resolve(t) && !p.missing);
+    if (page?.pageimage && re.test(`${page.description ?? ''} ${page.extract ?? ''}`)) return { file: page.pageimage, article: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, '_'))}`, title: page.title };
+  }
+  return null;
 }
 
 /** 공용(Commons)에 있는 자유 이용 사진만 정보와 함께 돌려줍니다. */
@@ -57,9 +64,12 @@ async function main() {
   const credits = {};
   for (const [name, en, kind, koFirst] of PEOPLE) {
     let found = null, reason = '';
-    for (const [lang, q] of koFirst ? [['ko', `${name} ${KIND[kind].ko.source.split('|')[0]}`], ['en', en]] : [['en', en], ['ko', name]]) {
+    const base = en.replace(/\s*\([^)]*\)$/, '');
+    const enTitles = [en, `${base} (fighter)`, `${base} (baseball)`, `${base} (baseball player)`, base];
+    const koTitles = [`${name} (야구 선수)`, `${name} (격투기 선수)`, name];
+    for (const [lang, titles] of koFirst ? [['ko', koTitles], ['en', enTitles]] : [['en', enTitles], ['ko', koTitles]]) {
       try {
-        const lead = await leadImage(lang, q, kind);
+        const lead = await leadImage(lang, titles, kind);
         if (!lead) { reason = `${lang}: 문서·사진 없음`; continue; }
         const info = await commonsInfo(lead.file);
         if (!info) { reason = `${lang}: 공용에 없는 사진(비자유)`; continue; }
