@@ -1,0 +1,29 @@
+drama-geudae ko:그대 그리고 나 200 no image https://ko.wikipedia.org/wiki/%EA%B7%B8%EB%8C%80_%EA%B7%B8%EB%A6%AC%EA%B3%A0_%EB%82%98
+drama-geudae en:You and I (1997 TV series) 404 no image 
+drama-geudae -> 없음
+drama-adeul ko:아들과 딸 (드라마) 404 no image 
+drama-adeul en:Sons and Daughters (1992 TV series) 404 no image 
+drama-adeul -> 없음
+drama-bogo ko:보고 또 보고 200 no image https://ko.wikipedia.org/wiki/%EB%B3%B4%EA%B3%A0_%EB%98%90_%EB%B3%B4%EA%B3%A0
+drama-bogo en:See and See Again 404 no image 
+drama-bogo -> 없음
+mt-hambaek ko:함백산 200 no image https://ko.wikipedia.org/wiki/%ED%95%A8%EB%B0%B1%EC%82%B0
+mt-hambaek en:Hambaeksan 200 no image https://en.wikipedia.org/wiki/Hambaeksan
+mt-hambaek -> 없음
+mt-gariwang ko:가리왕산 200 no image https://ko.wikipedia.org/wiki/%EA%B0%80%EB%A6%AC%EC%99%95%EC%82%B0
+mt-gariwang en:Gariwangsan 200 no image https://en.wikipedia.org/wiki/Gariwangsan
+mt-gariwang -> 없음
+p-jon-rahm en:Jon Rahm ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-jon-rahm -> 없음
+p-benzema en:Karim Benzema ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-benzema -> 없음
+p-durant en:Kevin Durant ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-durant -> 없음
+p-hamilton en:Lewis Hamilton 200 https://upload.wikimedia.org/wikipedia/commons/d/d3/Prime_Minister_Keir_Starmer_meets_Sir_Lewis_Hamilton_%2854566928382%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled https://en.wikipedia.org/wiki/Lewis_Hamilton
+p-hamilton en:Lewis Hamilton ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-hamilton -> 없음
+p-sim-jeongsu ko:심정수 ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-sim-jeongsu en:Shim Jeong-soo ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-sim-jeongsu -> 없음
+p-aspinall en:Tom Aspinall ERR Unexpected token 'Y', "You are ma"... is not valid JSON
+p-aspinall -> 없음
