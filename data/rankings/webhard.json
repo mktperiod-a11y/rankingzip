@@ -57,6 +57,20 @@
       "base": 8,
       "rank": 8,
       "prevRank": 8
+    },
+    {
+      "name": "파일몽",
+      "url": "https://www.filemong.com/",
+      "base": 9,
+      "rank": 9,
+      "prevRank": null
+    },
+    {
+      "name": "파일시티",
+      "url": "https://www.filecity.co.kr/",
+      "base": 10,
+      "rank": 10,
+      "prevRank": null
     }
   ]
 }
