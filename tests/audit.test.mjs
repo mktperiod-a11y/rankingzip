@@ -72,3 +72,7 @@ test('row images come from a recorded source, never self-made placeholders',()=>
  const assets=JSON.parse(fs.readFileSync('public/ranking-images/complete/sources.json','utf8'));
  for(const [name,a] of Object.entries(assets))assert.ok(a.source,`${name}: 출처 없는 이미지`);
 });
+test('every public ranking declares how it stays fresh',()=>{
+ const {FRESHNESS}=load('app/rankings/freshness.ts');
+ for(const p of pages.filter(p=>!p.noindex))assert.ok(FRESHNESS[p.slug],`${p.slug}: freshness.ts에 갱신 방식 없음`);
+});

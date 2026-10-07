@@ -5,6 +5,7 @@ import { slugByTitle, pageBySlug, pages } from "./rankings/data";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
+import { FRESHNESS } from "./rankings/freshness";
 import type { TrendPick } from "../lib/trends";
 
 type Category = "전체" | "스포츠" | "미디어" | "라이프" | "IT·게임" | "글로벌";
@@ -82,21 +83,22 @@ const rankings = [
 
 
 // 카드 아래 줄: 이 순위가 얼마나 자주 업데이트되는지. 없으면 "기록 경신 때"입니다.
-const CYCLE: Record<string, string> = {
-  "netflix-korea-films-weekly": "매주", "ott-content-weekly": "매주", "ufc-rankings-by-division": "매주",
-  "file-sharing-services": "2일마다",
-  "kbo-team-standings-2026": "시즌 중", "kbo-home-runs-2026": "시즌 중", "kbo-rbi-2026": "시즌 중", "kbo-attendance-2026": "시즌 중",
-  "asian-games-medal-table-2026": "대회 때",
-  "korea-import-car-brands": "매월", "korea-mobile-games-users": "매월", "korea-pc-games-share": "매월", "korea-car-sales": "매월", "korea-province-population": "매월", "korean-travel-destinations": "매월", "korea-ott-users": "매월", "japan-av-actress-ranking": "매월",
-  "korea-box-office-2026": "매년", "worldwide-box-office-2026": "매년", "highest-paid-athletes": "매년", "world-population": "매년", "world-gdp-ranking": "매년", "most-visited-countries": "매년", "korean-football-salary": "매년",
-};
 const ADULT = new Set(["japan-av-actress-ranking"]);
 
-/** 카드 오른쪽 위 라벨: "09.17 갱신". 상세 화면 "업데이트"와 같은 날짜입니다. */
+/** 카드 오른쪽 위 라벨: 자동 갱신은 "10.04 갱신", 직접 확인은 "10.07 확인", 바뀌지 않는 순위는 "변동 없음" */
 function updatedLabel(slug: string) {
   const p = pageBySlug[slug];
+  const f = FRESHNESS[slug];
+  if (f?.kind === "fixed") return "변동 없음";
   const updated = p && dateParts(p.date, p.auditDate).updated;
-  return updated ? `${updated.slice(5)} 갱신` : "";
+  return updated ? `${updated.slice(5)} ${f?.kind === "auto" ? "갱신" : "확인"}` : "";
+}
+
+/** 카드 아래 문구: 자동 갱신은 실제 실행 주기, 직접 확인은 원자료 발표 주기 */
+function cycleText(slug: string) {
+  const f = FRESHNESS[slug];
+  if (!f || f.kind === "fixed") return null;
+  return <span><em>{f.cycle}</em> {f.kind === "auto" ? "자동 업데이트돼요" : "업데이트돼요"}</span>;
 }
 
 /** HOT 띠에 쓰는 짧은 순위 이름: "2026 KBO 팀 순위" → "KBO 팀" */
@@ -183,7 +185,7 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
               <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목을 한눈에 비교해 보세요</p>
-              <a className="rank-link" href={`/rankings/${slug}`}><span><em>{CYCLE[slug] ?? "기록 경신 때"}</em> 업데이트돼요</span>자세히 <b>→</b></a>
+              <a className="rank-link" href={`/rankings/${slug}`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>

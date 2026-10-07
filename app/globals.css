@@ -100,3 +100,4 @@
 @keyframes hero-shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 @keyframes hero-dot{from{width:0}to{width:100%}}
 @media(prefers-reduced-motion:reduce){.hero-row,.hero-trophy svg{animation:none}.hero-row:first-child .hero-trophy::after{display:none}.hero-dots button.on span{animation:none;width:100%}}
+.rank-card .rank-link i{margin-left:auto;font-style:normal}
