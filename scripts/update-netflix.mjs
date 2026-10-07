@@ -163,6 +163,11 @@ async function main() {
     const missingKo = chart.weekEnd === current.weekEnd && current.rows.some((r) => !r.titleKo);
     if (chart.weekEnd < current.weekEnd || (chart.weekEnd === current.weekEnd && !(missingKo && online))) { console.log('  → 새 주간이 아니어서 그대로 둡니다'); continue; }
     if (online) await enrich(chart, !dryRun);
+    // 이번에 못 받은 한국어 제목·이미지는 같은 작품의 이전 값으로 채웁니다.
+    for (const r of chart.rows) {
+      const prev = current.rows.find((p) => p.title === r.title && p.season === r.season);
+      if (prev) { r.titleKo ??= prev.titleKo; r.image ??= prev.image; r.videoId ??= prev.videoId; }
+    }
     for (const r of chart.rows) console.log(`  ${String(r.rank).padStart(2)}. ${r.titleKo ? `${r.titleKo} (${r.title})` : r.title}${r.season ? ` · ${r.season}` : ''}${r.weeks ? ` (${r.weeks}주)` : ''}${r.image ? ' 🖼' : ''}`);
     if (dryRun) { console.log('  → 미리보기: 저장하지 않습니다'); continue; }
     const next = { source: SOURCE_URL, weekStart: chart.weekStart, weekEnd: chart.weekEnd, checkedAt: todayKst(), rows: chart.rows };
