@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { slugByTitle, pageBySlug, pages } from "./rankings/data";
 import { dateParts } from "./rankings/date-parts";
-import { editorPicks as hot } from "./rankings/editor-picks";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
 import type { TrendPick } from "../lib/trends";
@@ -11,6 +10,12 @@ import type { TrendPick } from "../lib/trends";
 type Category = "전체" | "스포츠" | "미디어" | "라이프" | "서비스" | "글로벌";
 
 const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "서비스", "글로벌"];
+
+const heroQuestions = [
+  { icon: "🏆", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
+  { icon: "🍿", question: "이번 주 넷플릭스 영화 1위는?", slug: "netflix-korea-films-weekly" },
+  { icon: "🚗", question: "가장 많이 팔린 수입차 브랜드는?", slug: "korea-import-car-brands" },
+];
 
 const rankings = [
   { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
@@ -125,18 +130,13 @@ export default function Home({ picks, trendsAt, trendSlugs = [] }: { picks: Tren
           <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
         </div>
-        <div className="hero-board" aria-label="오늘의 인기 순위">
-          {hot.slice(0, 3).map((item, i) => {
-            const page = pageBySlug[item[3]];
-            const row = page?.rows[0];
-            const image = row?.image;
-            const summary = row ? `${row.name} · ${row.value}` : item[0];
-            return <a href={`/rankings/${item[3]}`} className="hero-row" key={item[3]}>
+        <div className="hero-board" aria-label="궁금한 순위 세 가지">
+          {heroQuestions.map((item, i) => {
+            const page = pageBySlug[item.slug];
+            return <a href={`/rankings/${item.slug}`} className="hero-row" key={item.slug}>
               <b>{i + 1}</b>
-              <div className="avatar ranking-thumbnail">
-                {image ? <img src={image} alt={`${row.name} 대표 이미지`} /> : <span>{page?.category ?? "순위"}</span>}
-              </div>
-              <p><strong>{summary}</strong><small>{page?.title ?? item[1]}</small></p>
+              <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
+              <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong><small>{page.title}</small></p>
             </a>;
           })}
 
