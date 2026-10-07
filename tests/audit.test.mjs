@@ -64,3 +64,7 @@ test('shared row criteria move up while item-specific details remain',()=>{
  assert.equal(result.basis,'2026년 7월 · 주민등록인구');
  assert.deepEqual(Array.from(result.notes),['첫 번째 설명','두 번째 설명']);
 });
+test('local row images have a recorded aspect ratio for poster frames',()=>{
+ const shapes=JSON.parse(fs.readFileSync('data/image-shapes.json','utf8'));
+ for(const p of pages)for(const r of p.rows){const src=r.image||map[r.name];if(src?.startsWith('/ranking-images/'))assert.ok(shapes[src],`node scripts/image-shapes.mjs 실행 필요: ${src}`);}
+});
