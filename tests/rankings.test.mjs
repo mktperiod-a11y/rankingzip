@@ -31,5 +31,5 @@ test('webhard comparison is third, appears only once in homepage cards',()=>{
  const titles=Array.from(home.matchAll(/title: "([^"]+)"/g),m=>m[1]);
  assert.equal(titles[2],'파일 공유 서비스 비교');
  assert.equal(titles.filter(t=>t==='파일 공유 서비스 비교').length,1);
- for(const p of pages)assert.ok(titles.includes(p.title));
+ const {slugByTitle}=load('app/rankings/data.ts');for(const p of pages)assert.ok(titles.some(t=>slugByTitle[t]===p.slug));
 });

@@ -4,6 +4,7 @@ import { applyPortraits } from './portraits';
 import { expansionPages } from './expansion';
 import { asianGamesPages } from './asian-games';
 import { gamePages } from './games';
+import { applyCompletion } from './completion';
 export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string; /** 지난 갱신 대비 순위 변화(+는 상승) 또는 새로 진입 */ change?: number | 'new' };
 export type Division = { name: string; champion: string; contenders: string[] };
 export type RankingPage = {
@@ -42,9 +43,10 @@ const originalPages: RankingPage[] = [
  {slug:"most-visited-countries",title:"세계 관광객 방문 국가 순위",category:"라이프",date:"2024년",basis:"1박 이상 국제 관광객 입국자",description:"UN Tourism과 각국 공표자료를 바탕으로 해외 관광객이 많이 방문한 국가를 정리합니다. 잠정치와 최종치가 다를 수 있습니다.",source:"UN Tourism World Tourism Barometer",sourceUrl:"https://www.unwto.org/un-tourism-world-tourism-barometer-data",rows:[{name:"프랑스",value:"약 1억명",note:"최상위",image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=85"},{name:"스페인",value:"약 9,380만명",note:"최상위",image:"https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1000&q=85"},{name:"미국",value:"약 7,240만명",note:"상위권",image:"https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1000&q=85"},{name:"튀르키예",value:"약 6,060만명",note:"상위권",image:"https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=85"},{name:"이탈리아",value:"약 5,800만명",note:"상위권",image:"https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1000&q=85"}],faq:[["가장 많이 방문한 나라는 어디인가요?","UN Tourism 공개자료에서 프랑스가 세계 최대 방문국으로 소개됩니다."],["당일 방문객도 포함되나요?","이 표는 원칙적으로 1박 이상 체류한 국제 관광객을 기준으로 합니다."]]}
 ];
 
-export const pages = applyPortraits([...applyAudit([...asianGamesPages, ...expansionPages, ...originalPages]), ...gamePages]);
+export const pages = applyPortraits(applyCompletion([...applyAudit([...asianGamesPages, ...expansionPages, ...originalPages]), ...gamePages]));
 export const pageBySlug = Object.fromEntries(pages.map(p=>[p.slug,p]));
 Object.assign(extraSlugs,Object.fromEntries(expansionPages.map(p=>[p.title,p.slug])));
 Object.assign(extraSlugs,Object.fromEntries(asianGamesPages.map(p=>[p.title,p.slug])));
 Object.assign(extraSlugs,Object.fromEntries(gamePages.map(p=>[p.title,p.slug])));
+Object.assign(extraSlugs,Object.fromEntries(pages.map(p=>[p.title,p.slug])));
 export const slugByTitle: Record<string,string> = {...extraSlugs,"2026 KBO 구단 관중":"kbo-attendance-2026","MLB 한국 선수 역대 연봉":"mlb-korean-career-earnings","한국 축구선수 연봉":"korean-football-salary","UFC 체급별 랭킹":"ufc-rankings-by-division","역대 국내 영화 관객":"korean-movie-admissions","2026년 국내 영화 흥행":"korea-box-office-2026","2026년 세계 영화 흥행":"worldwide-box-office-2026","역대 드라마 시청률":"korean-drama-ratings","OTT 인기 콘텐츠":"ott-content-weekly","국내 자동차 판매량":"korea-car-sales","한국인이 찾는 여행지":"korean-travel-destinations","파일 공유 서비스 비교":"file-sharing-services","국내 OTT 서비스":"korea-ott-users","일본 AV 배우 인기":"japan-av-actress-ranking","세계 스포츠 스타 수입":"highest-paid-athletes","세계 최고층 빌딩":"world-tallest-buildings","세계 인구":"world-population","대한민국 시도 인구":"korea-province-population","대한민국 높은 산":"korea-highest-mountains","세계 GDP":"world-gdp-ranking","세계에서 가장 큰 나라":"world-largest-countries","세계에서 가장 높은 산":"world-highest-mountains","세계 관광객 방문 국가":"most-visited-countries"};
