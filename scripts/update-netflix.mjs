@@ -2,8 +2,10 @@
 // 넷플릭스 대한민국 주간 TOP 10(영화·TV)을 넷플릭스 공개 데이터로 갱신합니다. API 키가 필요 없습니다.
 //   node scripts/update-netflix.mjs            갱신해서 data/rankings/*.json에 저장
 //   node scripts/update-netflix.mjs --dry-run  저장하지 않고 결과만 출력
-//   node scripts/update-netflix.mjs --input 파일.tsv   내려받는 대신 로컬 파일 사용
+//   node scripts/update-netflix.mjs --input 파일.tsv   내려받는 대신 로컬 파일 사용(한국어 제목·이미지는 받지 않음)
 // 새 주간이 없으면 아무것도 바꾸지 않습니다. 데이터 형식이 예상과 다르면 저장하지 않고 실패합니다.
+// 순위 데이터(TSV)는 영문 제목뿐이라, 넷플릭스 Tudum 국가 페이지에서 작품 번호·대표 이미지를,
+// 작품 페이지(한국어)에서 한국어 제목을 가져와 덧붙입니다. 이 단계가 실패해도 순위는 영문 제목으로 저장합니다.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,6 +18,9 @@ const CHARTS = [
 ];
 const REQUIRED = ['country_iso2', 'week', 'category', 'weekly_rank', 'show_title', 'season_title', 'cumulative_weeks_in_top_10'];
 const DAY = 86400000;
+const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
+const TUDUM = { Films: 'https://www.netflix.com/tudum/top10/south-korea/films', TV: 'https://www.netflix.com/tudum/top10/south-korea/tv' };
+const IMAGE_DIR = 'public/ranking-images/netflix';
 
 const isoDay = (ms) => new Date(ms).toISOString().slice(0, 10);
 
@@ -58,10 +63,64 @@ export function parseKoreaCharts(tsv) {
 
 const todayKst = () => isoDay(Date.now() + 9 * 3600000);
 
+const decodeHtml = (s = '') => s.replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(Number(d)))
+  .replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').trim();
+
+async function getText(url) {
+  const res = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9' }, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`${url} 응답 ${res.status}`);
+  return res.text();
+}
+
+/** Tudum 국가 페이지의 카드: 영문 제목(시즌 포함) → 작품 번호, 가로 대표 이미지(1200×675) */
+export function parseTudumCards(html) {
+  return html.split('data-uia="top10-card"').slice(1).map((card) => ({
+    alt: decodeHtml(card.match(/top10-card-logo[\s\S]*?alt="([^"]*)"/)?.[1]),
+    videoId: card.match(/data-id="[^"]*-(\d+)"/)?.[1],
+    artwork: card.match(/background-image:url\((https:[^)]+)\)/)?.[1],
+  })).filter((c) => c.alt && c.videoId);
+}
+
+/** 작품 페이지(한국어)의 제목과 대표 이미지 */
+export function parseTitlePage(html) {
+  const meta = (p) => html.match(new RegExp(`<meta[^>]+property="${p}"[^>]+content="([^"]*)"`))?.[1];
+  const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, '');
+  const og = meta('og:title')?.replace(/^Watch\s+/, '').replace(/\s*\|\s*Netflix.*$/, '');
+  return { titleKo: decodeHtml(h1 || og) || undefined, image: decodeHtml(meta('og:image')) || undefined };
+}
+
+/** 차트 행마다 한국어 제목(titleKo)과 이미지(image)를 붙입니다. 실패한 행은 그대로 둡니다. */
+async function enrich(chart, saveImages) {
+  let cards = [];
+  try { cards = parseTudumCards(await getText(TUDUM[chart.category])); } catch (error) { console.log(`  ! Tudum 페이지 실패: ${error.message}`); }
+  if (saveImages) fs.mkdirSync(IMAGE_DIR, { recursive: true });
+  for (const row of chart.rows) {
+    const names = [row.season ? `${row.title}: ${row.season}` : '', row.title].filter(Boolean);
+    const card = cards.find((c) => names.includes(c.alt)) ?? cards.find((c) => c.alt.startsWith(`${row.title}:`));
+    if (!card) { console.log(`  ! ${row.title}: Tudum 카드 없음`); continue; }
+    row.videoId = Number(card.videoId);
+    try {
+      const page = parseTitlePage(await getText(`https://www.netflix.com/title/${card.videoId}`));
+      if (page.titleKo) row.titleKo = page.titleKo;
+      const src = card.artwork || page.image;
+      if (src && saveImages) {
+        const res = await fetch(src, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
+        if (res.ok) {
+          const file = `${IMAGE_DIR}/${card.videoId}.jpg`;
+          fs.writeFileSync(file, Buffer.from(await res.arrayBuffer()));
+          row.image = `/${file.replace(/^public\//, '')}`;
+        }
+      }
+    } catch (error) { console.log(`  ! ${row.title}: 작품 페이지 실패 (${error.message})`); }
+  }
+  return chart;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry-run');
   const inputIndex = args.indexOf('--input');
+  const online = inputIndex < 0 || args.includes('--enrich');
   const tsv = inputIndex >= 0
     ? fs.readFileSync(args[inputIndex + 1], 'utf8')
     : await fetch(SOURCE_URL, { signal: AbortSignal.timeout(60000) }).then((res) => {
@@ -74,8 +133,11 @@ async function main() {
     const file = path.resolve(chart.file);
     const current = JSON.parse(fs.readFileSync(file, 'utf8'));
     console.log(`\n[${chart.category}] ${chart.weekStart} ~ ${chart.weekEnd} (현재 저장: ${current.weekStart} ~ ${current.weekEnd})`);
-    for (const r of chart.rows) console.log(`  ${String(r.rank).padStart(2)}. ${r.title}${r.season ? ` · ${r.season}` : ''}${r.weeks ? ` (${r.weeks}주)` : ''}`);
-    if (chart.weekEnd <= current.weekEnd) { console.log('  → 새 주간이 아니어서 그대로 둡니다'); continue; }
+    // 같은 주간이라도 한국어 제목이 빠져 있으면 다시 받아 채웁니다.
+    const missingKo = chart.weekEnd === current.weekEnd && current.rows.some((r) => !r.titleKo);
+    if (chart.weekEnd < current.weekEnd || (chart.weekEnd === current.weekEnd && !(missingKo && online))) { console.log('  → 새 주간이 아니어서 그대로 둡니다'); continue; }
+    if (online) await enrich(chart, !dryRun);
+    for (const r of chart.rows) console.log(`  ${String(r.rank).padStart(2)}. ${r.titleKo ? `${r.titleKo} (${r.title})` : r.title}${r.season ? ` · ${r.season}` : ''}${r.weeks ? ` (${r.weeks}주)` : ''}${r.image ? ' 🖼' : ''}`);
     if (dryRun) { console.log('  → 미리보기: 저장하지 않습니다'); continue; }
     const next = { source: SOURCE_URL, weekStart: chart.weekStart, weekEnd: chart.weekEnd, checkedAt: todayKst(), rows: chart.rows };
     fs.writeFileSync(file, `${JSON.stringify(next, null, 2)}\n`);

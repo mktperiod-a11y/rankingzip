@@ -1,4 +1,4 @@
-# 순위 데이터 자동 갱신. 지금은 넷플릭스 대한민국 주간 TOP 10(영화·TV)을 갱신합니다.
+# 순위 데이터 자동 갱신. 지금은 넷플릭스 대한민국 주간 TOP 10(영화·TV)을 한국어 제목·대표 이미지와 함께 갱신합니다.
 # - 매주 수요일 12:00(KST): 새 주간이 있으면 데이터를 저장하고 GitHub Pages를 다시 배포합니다.
 # - 직접 실행(Run workflow): 기본은 "미리보기"라서 결과만 보여주고 저장하지 않습니다.
 name: Update ranking data
@@ -35,10 +35,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if git diff --quiet -- data/rankings; then echo "바뀐 데이터가 없습니다"; exit 0; fi
+          if git diff --quiet -- data/rankings && [ -z "$(git status --porcelain public/ranking-images/netflix)" ]; then echo "바뀐 데이터가 없습니다"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/rankings
+          git add data/rankings public/ranking-images/netflix
           git commit -m "Update Netflix Korea weekly Top 10"
           git push
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"

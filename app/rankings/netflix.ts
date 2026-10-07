@@ -9,7 +9,7 @@ export type WeeklyChart = {
   weekStart: string;
   weekEnd: string;
   checkedAt: string;
-  rows: { rank: number; title: string; season: string; weeks: number | null }[];
+  rows: { rank: number; title: string; season: string; weeks: number | null; titleKo?: string; videoId?: number; image?: string }[];
 };
 
 type ChartContent = Pick<RankingPage, 'date' | 'description' | 'rows' | 'faq'>;
@@ -31,13 +31,20 @@ function spanKo(c: WeeklyChart, repeatMonth = false) {
 }
 
 const fullTitle = (r: WeeklyChart['rows'][number]) => (r.season ? `${r.title}: ${r.season}` : r.title);
+const nameOf = (r: WeeklyChart['rows'][number]) => r.titleKo || r.title;
+
+/** "Season 2" → "시즌 2", "Limited Series" → "리미티드 시리즈", "Part 33" → "파트 33" */
+export function seasonKo(season: string) {
+  return season.replace(/\bLimited Series\b/i, '리미티드 시리즈').replace(/\bSeason (\d+)/i, '시즌 $1').replace(/\bPart (\d+)/i, '파트 $1').replace(/\bVolume (\d+)/i, '볼륨 $1');
+}
+const row = (r: WeeklyChart['rows'][number], note: string) => ({ name: nameOf(r), value: `${r.rank}위`, note, ...(r.image ? { image: r.image } : {}) });
 
 export function filmsContent(c: WeeklyChart): ChartContent {
-  const s = parts(c.weekStart), top = c.rows[0].title;
+  const s = parts(c.weekStart), top = nameOf(c.rows[0]);
   return {
     date: dateLine(c),
     description: `넷플릭스가 공개한 대한민국 영화 최신 완료 주간 순위입니다. 1위는 ${top}이며, TV 프로그램 순위나 오늘의 앱 순위와는 다릅니다. 한국 시청수는 공개하지 않아 별도로 추정하지 않습니다.`,
-    rows: c.rows.map((r) => ({ name: r.title, value: `${r.rank}위`, note: r.weeks ? `한국 영화 주간 차트 · TOP 10 진입 ${r.weeks}주` : '한국 영화 주간 차트' })),
+    rows: c.rows.map((r) => row(r, r.weeks ? `한국 영화 주간 차트 · TOP 10 진입 ${r.weeks}주` : '한국 영화 주간 차트')),
     faq: [
       ['이번 주는 정확히 언제인가요?', `${s.y}년 ${spanKo(c, true)}입니다. 확인 시점에 공개된 최신 완료 주간 차트입니다.`],
       ['이번 주 넷플릭스 한국 영화 1위는?', `${spanKo(c)} 한국 영화 차트 1위는 ${top}입니다.`],
@@ -50,10 +57,10 @@ export function tvContent(c: WeeklyChart): ChartContent {
   const s = parts(c.weekStart), e = parts(c.weekEnd);
   return {
     date: dateLine(c),
-    description: `Netflix의 ${s.y}년 ${s.m}월 ${s.d}일~${e.m}월 ${e.d}일 대한민국 TV 차트입니다. 전체 OTT 통합 순위가 아닙니다. 공식 차트의 영문명을 유지합니다.`,
-    rows: c.rows.map((r) => ({ name: r.title, value: `${r.rank}위`, note: r.season })),
+    description: `Netflix의 ${s.y}년 ${s.m}월 ${s.d}일~${e.m}월 ${e.d}일 대한민국 TV 차트입니다. 전체 OTT 통합 순위가 아닙니다.${c.rows.every((r) => r.titleKo) ? '' : ' 한국어 제목을 확인하지 못한 작품은 공식 차트의 영문명을 씁니다.'}`,
+    rows: c.rows.map((r) => row(r, [r.titleKo && r.season ? seasonKo(r.season) : r.season, r.weeks ? `TOP 10 진입 ${r.weeks}주` : ''].filter(Boolean).join(' · '))),
     faq: [
-      ['이번 주 넷플릭스 한국 TV 1위는?', `${spanKo(c, true)} 1위는 ${fullTitle(c.rows[0])}입니다.`],
+      ['이번 주 넷플릭스 한국 TV 1위는?', `${spanKo(c, true)} 1위는 ${c.rows[0].titleKo ? `${c.rows[0].titleKo}${c.rows[0].season ? ` ${seasonKo(c.rows[0].season)}` : ''}` : fullTitle(c.rows[0])}입니다.`],
       ['순위는 언제 바뀌나요?', '넷플릭스가 매주 발표하는 공식 국가별 Top 10에 맞춰 갱신됩니다.'],
       ['모든 OTT를 합친 순위인가요?', '아니요. 현재 표는 넷플릭스 한국 TV 차트입니다.'],
     ],

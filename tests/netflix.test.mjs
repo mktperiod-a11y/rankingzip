@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import ts from 'typescript';
-import { parseKoreaCharts, weekRange } from '../scripts/update-netflix.mjs';
+import { parseKoreaCharts, parseTitlePage, parseTudumCards, weekRange } from '../scripts/update-netflix.mjs';
 
 const fixture = fs.readFileSync('tests/fixtures/netflix-top10.tsv', 'utf8');
 
@@ -68,4 +68,16 @@ test('page text is generated from the saved chart', async () => {
   const t = tvContent(chart({ ...tv, weekStart: '2026-09-28', weekEnd: '2026-10-04' }));
   assert.equal(t.date, '2026.09.28~10.04 · 10월 1일 확인');
   assert.equal(t.faq[0][1], '9월 28일부터 10월 4일까지 1위는 The Scandal: Limited Series입니다.');
+});
+
+test('Korean title and artwork are read from Netflix pages', () => {
+  const tudum = '<li><div data-uia="top10-card" data-id="top10-abc-81911391" style="background-image:url(https://img.example/a.jpg?r=1);--x:1"><div data-uia="top10-card-logo"><img src="x.png" alt="The Scandal: Limited Series"/></div></div></li>'
+    + '<li><div data-uia="top10-card" data-id="top10-abc-82682405" style="background-image:url(undefined)"><div data-uia="top10-card-logo"><img alt="Four Hands, Two Sonatas: Limited Series"/></div></div></li>';
+  assert.deepEqual(parseTudumCards(tudum), [
+    { alt: 'The Scandal: Limited Series', videoId: '81911391', artwork: 'https://img.example/a.jpg?r=1' },
+    { alt: 'Four Hands, Two Sonatas: Limited Series', videoId: '82682405', artwork: undefined },
+  ]);
+  const page = '<meta property="og:title" content="Watch 스캔들 | Netflix Official Site"><meta property="og:image" content="https://img.example/og.jpg"><h1 class="t">스캔들</h1>';
+  assert.deepEqual(parseTitlePage(page), { titleKo: '스캔들', image: 'https://img.example/og.jpg' });
+  assert.equal(parseTitlePage('<meta property="og:title" content="Watch 포핸즈 | Netflix Official Site">').titleKo, '포핸즈');
 });
