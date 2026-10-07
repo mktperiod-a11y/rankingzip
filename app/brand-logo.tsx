@@ -4,10 +4,10 @@ export function BrandLogo({ footer = false, href = "#top" }: { footer?: boolean;
     <a className={`logo${footer ? " footer-logo" : ""}`} href={href} aria-label="순위ZIP 홈">
       <span className="logo-mark" aria-hidden="true">
         <svg viewBox="0 0 40 40">
-          <path className="house" d="M5.5 18.4 20 6.5l14.5 11.9v14.1a2 2 0 0 1-2 2h-25a2 2 0 0 1-2-2Z" />
-          <path className="roof" d="m3.8 19.2 16.2-13 16.2 13" />
-          <path className="bars" d="M12 29v-6m8 6V18m8 11V13" />
-          <path className="arrow" d="m23.8 13 4.2-4 4.2 4M28 9v7" />
+          <path d="M8 18.6 18.4 9.7a2.5 2.5 0 0 1 3.2 0L32 18.6V30a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 8 30Z" fill="#fff"/>
+          <rect x="12.6" y="22" width="4.4" height="7.5" rx="1.3" fill="#0a5cff" fillOpacity=".5"/>
+          <rect x="17.8" y="17" width="4.4" height="12.5" rx="1.3" fill="#0a5cff"/>
+          <rect x="23" y="24.5" width="4.4" height="5" rx="1.3" fill="#0a5cff" fillOpacity=".32"/>
         </svg>
       </span>
       <span className="logo-word">순위<b>ZIP</b></span>
