@@ -54,6 +54,19 @@ const weeklyKeywords = ["한국 야구 5연패", "아시안게임 야구 통산 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
 
 
+const pad2 = (n: string) => n.padStart(2, "0");
+
+/** 카드용 짧은 날짜: "09.12 갱신", 기간은 "09.14~09.20", 월·연 단위는 "2026.08 기준"·"2025 기준". */
+function cardDate(date: string) {
+  let m: RegExpMatchArray | null;
+  if ((m = date.match(/\d{4}\.(\d{2})\.(\d{2})~(\d{2})\.(\d{2})/))) return `${m[1]}.${m[2]}~${m[3]}.${m[4]}`;
+  if ((m = date.match(/\d{4}\.(\d{2})\.(\d{2})/))) return `${m[1]}.${m[2]} 갱신`;
+  if ((m = date.match(/\d{4}년 (\d{1,2})월 (\d{1,2})일/))) return `${pad2(m[1])}.${pad2(m[2])} 갱신`;
+  if ((m = date.match(/(\d{4})년 (\d{1,2})월/))) return `${m[1]}.${pad2(m[2])} 기준`;
+  if ((m = date.match(/(\d{4})(년|시즌)/))) return `${m[1]} 기준`;
+  return date.split(" · ")[0];
+}
+
 export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt?: string }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
@@ -106,7 +119,7 @@ export default function Home({ picks, trendsAt }: { picks: TrendPick[]; trendsAt
           <div className="card-grid">
             {filtered.map((item) => <article className="rank-card" key={item.title}>
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{item.tag}</span>
-              <small>{item.category}</small><h3>{pageBySlug[slugByTitle[item.title]]?.title||item.title}</h3><p className="rank-meta">{(pageBySlug[slugByTitle[item.title]]?.date??"").split(" · ")[0]}</p>
+              <small>{item.category}</small><h3>{pageBySlug[slugByTitle[item.title]]?.title||item.title}</h3><p className="rank-meta">{cardDate(pageBySlug[slugByTitle[item.title]]?.date??"")}</p>
               <a className="rank-link" href={`/rankings/${slugByTitle[item.title]}`}>상세 자료 보기 <b>→</b></a>
             </article>)}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
