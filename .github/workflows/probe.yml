@@ -1,8 +1,8 @@
-name: Fetch photo (temporary)
+name: Probe sources (temporary)
 on:
   push:
     branches: [claude/affectionate-einstein-6myk2z]
-    paths: [.github/workflows/probe.yml]
+    paths: [scripts/probe.mjs, .github/workflows/probe.yml]
 permissions:
   contents: write
 jobs:
@@ -10,11 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node scripts/probe.mjs
       - run: |
-          curl -fsSL -A "Mozilla/5.0" -e "https://www.seoul.co.kr/" -o public/ranking-images/portraits/canelo-alvarez-photo.jpg "https://img.seoul.co.kr/img/upload/2018/12/16/SSI_20181216164117_O2.jpg"
-          file public/ranking-images/portraits/canelo-alvarez-photo.jpg
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/ranking-images/portraits/canelo-alvarez-photo.jpg
-          git commit -m "카넬로 사진 받기"
+          git add data/probe
+          git commit -m "원자료 확인" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push

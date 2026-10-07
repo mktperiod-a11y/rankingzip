@@ -21,8 +21,8 @@ export const PEOPLE = [
   ...[['비틀스','The Beatles'],['마이클 잭슨','Michael Jackson'],['엘비스 프레슬리','Elvis Presley'],['마돈나','Madonna'],['엘턴 존','Elton John'],['퀸','Queen (band)'],['레드 제플린','Led Zeppelin'],['리애나','Rihanna'],['핑크 플로이드','Pink Floyd'],['에미넴','Eminem']].map(([ko,en])=>[ko,en,'musician',false]),
 ];
 
-// 대표 사진이 정장·행사 사진이라 선수답지 않을 때, 같은 공용 분류의 경기 사진으로 고정합니다.
-const PREFER = { '카넬로 알바레스': "Canelo Álvarez's HBO 2017.png" };
+// 운영자가 직접 고른 사진을 쓰는 인물은 받지 않습니다(app/rankings/portraits.ts의 PHOTO_OVERRIDE).
+const MANUAL = new Set(['카넬로 알바레스']);
 
 const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const strip = (html = '') => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -67,15 +67,12 @@ async function main() {
   const credits = {};
   for (const [name, en, kind, koFirst] of PEOPLE) {
     await new Promise((r) => setTimeout(r, 1500)); // 위키미디어 요청 제한을 넘지 않게 천천히 받습니다.
+    if (MANUAL.has(name)) continue;
     let found = null, reason = '';
-    if (PREFER[name]) {
-      const info = await commonsInfo(PREFER[name]);
-      if (info && !info.rejected) found = { ...info, article: `https://en.wikipedia.org/wiki/${encodeURIComponent(en.replace(/ /g, '_'))}`, title: PREFER[name] };
-    }
     const base = en.replace(/\s*\([^)]*\)$/, '');
     const enTitles = [en, `${base} (fighter)`, `${base} (baseball)`, `${base} (baseball player)`, base];
     const koTitles = [`${name} (야구 선수)`, `${name} (격투기 선수)`, name];
-    if (!found) for (const [lang, titles] of koFirst ? [['ko', koTitles], ['en', enTitles]] : [['en', enTitles], ['ko', koTitles]]) {
+    for (const [lang, titles] of koFirst ? [['ko', koTitles], ['en', enTitles]] : [['en', enTitles], ['ko', koTitles]]) {
       try {
         const lead = await leadImage(lang, titles, kind);
         if (!lead) { reason = `${lang}: 문서·사진 없음`; continue; }
