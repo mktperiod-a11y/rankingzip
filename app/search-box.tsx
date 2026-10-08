@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
-import { SUGGEST_FORM } from "./links";
+import { suggestWith } from "./links";
 
 export type SearchItem = { slug: string; title: string; category: string; icon: string; color: string; rows: string[] };
 
@@ -86,7 +86,7 @@ export function SearchBox({ items, query, onQuery }: { items: SearchItem[]; quer
           {!results.length && (
             <div className="sp-empty">
               <p>‘{query.trim()}’ 순위는 아직 없어요</p>
-              <a href={SUGGEST_FORM} target="_blank" rel="noreferrer">랭킹 제안하기 →</a>
+              <a href={suggestWith(query.trim())} target="_blank" rel="noreferrer">이 순위 제안하기 →</a>
             </div>
           )}
         </div>
