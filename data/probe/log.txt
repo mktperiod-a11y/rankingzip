@@ -1,0 +1,16 @@
+owtc-0.jpg | File:Lower Manhattan from Staten Island Ferry Jan 2006.jpg | 7952x1875 | CC BY 2.5 | https://commons.wikimedia.org/wiki/File:Lower_Manhattan_from_Staten_Island_Ferry_Jan_2006.jpg
+owtc-1.jpg | File:Lower Manhattan from Jersey City November 2014 panorama 2.jpg | 9000x3600 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lower_Manhattan_from_Jersey_City_November_2014_panorama_2.jpg
+owtc-2.jpg | File:Lower Manhattan from Jersey City November 2014 panorama 3.jpg | 9250x3700 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Lower_Manhattan_from_Jersey_City_November_2014_panorama_3.jpg
+owtc-3.jpg | File:Lower Manhattan from Jersey City September 2020 panorama.jpg | 11500x5750 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Lower_Manhattan_from_Jersey_City_September_2020_panorama.jpg
+owtc-4.jpg | File:Manhattan skyline from Upper New York Bay, 20231001 1042 0894.jpg | 3910x3972 | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Manhattan_skyline_from_Upper_New_York_Bay,_20231001_1042_0894.jpg
+owtc-5.jpg | File:One World Trade Center and Lower Manhattan skyline from the harbor, New York.jpg | 4962x7443 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:One_World_Trade_Center_and_Lower_Manhattan_skyline_from_the_harbor,_New_York.jpg
+owtc-6.jpg | File:Brooklyn Bridge and the Lower Manhattan skyline from Pebble Beach, New York.jpg | 26508x8836 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Brooklyn_Bridge_and_the_Lower_Manhattan_skyline_from_Pebble_Beach,_New_York.jpg
+owtc-7.jpg | File:Lower Manhattan skyline from under the Brooklyn Bridge deck, New York City.jpg | 6869x5152 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Lower_Manhattan_skyline_from_under_the_Brooklyn_Bridge_deck,_New_York_City.jpg
+floyd-0.jpg | File:BarrettHarmonyGuitar.jpg | 3264x2448 | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:BarrettHarmonyGuitar.jpg
+floyd-1.jpg | File:DarkSideOfTheMoon1973.jpg | 1000x690 | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:DarkSideOfTheMoon1973.jpg
+floyd-2.jpg | File:SandersonHayleySax.jpg | 688x1024 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:SandersonHayleySax.jpg
+floyd-3.jpg | File:Third Army hosts Army Field Band 'Volunteers' 120209-A-WD324-035.jpg | 4288x2132 | Public domain | https://commons.wikimedia.org/wiki/File:Third_Army_hosts_Army_Field_Band_%27Volunteers%27_120209-A-WD324-035.jpg
+floyd-4.jpg | File:Third Army hosts Army Field Band 'Volunteers' 120209-A-WD324-070.jpg | 4288x2848 | Public domain | https://commons.wikimedia.org/wiki/File:Third_Army_hosts_Army_Field_Band_%27Volunteers%27_120209-A-WD324-070.jpg
+floyd-5.jpg | File:The-Machine-group-Shot-2016.jpg | 1524x1086 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The-Machine-group-Shot-2016.jpg
+floyd-6.jpg | File:Lim Kiang BeerfestAsia.jpg | 6048x4024 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Lim_Kiang_BeerfestAsia.jpg
+floyd-7.jpg | File:Noel Ong Luna Animalius Concert.jpg | 2500x1667 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Noel_Ong_Luna_Animalius_Concert.jpg
