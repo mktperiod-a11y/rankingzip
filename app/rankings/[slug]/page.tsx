@@ -208,9 +208,6 @@ export default async function RankingDetail({
               {p.category} {p.unranked && !p.divisions ? "GUIDE" : "RANKING"}
             </p>
             <h1>{p.title}</h1>
-            {presentation.headline && (
-              <p className="dp-meta">{presentation.headline}</p>
-            )}
           </div>
         </div>
       </section>
