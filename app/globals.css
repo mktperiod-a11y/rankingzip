@@ -139,3 +139,28 @@
   .suggest a:after{content:none}
 }
 .suggest a:hover{background:#004ce0}
+.header-inner{position:relative}
+.search-wrap{margin-left:auto;position:relative}
+.search-wrap .search{margin-left:0}
+.search-icon{border:0;background:none;padding:0;color:inherit;font-size:16px;line-height:1}
+.search-cancel{display:none}
+.search-pop{position:absolute;top:calc(100% + 8px);right:0;width:380px;max-height:min(70vh,460px);overflow-y:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 50px rgba(22,34,52,.16);padding:6px;z-index:40;animation:search-pop .16s ease-out}
+@keyframes search-pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.search-pop a[role=option]{display:flex;align-items:center;gap:12px;padding:9px 10px;border-radius:10px}
+.search-pop a.on{background:#f2f6fd}
+.sp-icon{width:34px;height:34px;flex-shrink:0;border-radius:9px;display:grid;place-items:center;font-size:17px;background:#e8f0ff}
+.sp-text{min-width:0;display:flex;flex-direction:column;gap:2px}
+.sp-text strong{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-text small{font-size:12px;color:#8a94a4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp-text mark{background:none;color:var(--blue);font-weight:800}
+.sp-empty{padding:18px 12px;text-align:center}
+.sp-empty p{margin:0 0 10px;font-size:14px;color:#566176}
+.sp-empty a{font-size:13px;font-weight:800;color:var(--blue)}
+@media(prefers-reduced-motion:reduce){.search-pop{animation:none}}
+@media(max-width:680px){
+  .search-wrap.expanded{position:absolute;left:16px;right:16px;top:12px;display:flex;align-items:center;gap:10px;z-index:30;background:#fff}
+  .search-wrap.expanded .search{flex:1;width:auto;padding:0 13px}
+  .search-wrap.expanded .search input{display:block;font-size:16px}
+  .search-wrap.expanded .search-cancel{display:block;border:0;background:none;padding:6px 2px;font-size:14px;font-weight:700;color:#566176;flex-shrink:0}
+  .search-pop{position:fixed;top:64px;left:0;right:0;width:auto;max-height:calc(100vh - 64px);border-radius:0 0 14px 14px;border-width:0 0 1px}
+}
