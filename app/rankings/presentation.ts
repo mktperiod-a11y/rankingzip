@@ -15,7 +15,7 @@ const DATA_LABEL: Record<string, string> = {
  
  
  
-  'korean-drama-ratings': '역대 시청률 보도 데이터',
+  'korean-drama-ratings': '나무위키 시청률 TOP 100 데이터',
  
  
  

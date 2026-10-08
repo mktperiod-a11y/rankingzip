@@ -607,35 +607,32 @@
       {
         "name": "그대 그리고 나",
         "value": "62.4%",
-        "note": "MBC",
-        "sourceUrl": "https://enews.imbc.com/News/RetrieveNewsInfo/3742"
+        "note": "MBC"
       },
       {
         "name": "아들과 딸",
         "value": "61.1%",
-        "note": "MBC",
-        "sourceUrl": "https://enews.imbc.com/News/RetrieveNewsInfo/3742"
+        "note": "MBC"
       },
       {
         "name": "태조 왕건",
         "value": "60.2%",
-        "note": "KBS1",
-        "sourceUrl": "https://enews.imbc.com/News/RetrieveNewsInfo/3742"
+        "note": "KBS1"
       },
       {
         "name": "여명의 눈동자",
         "value": "58.4%",
-        "note": "MBC",
-        "sourceUrl": "https://enews.imbc.com/News/RetrieveNewsInfo/3742"
+        "note": "MBC"
       },
       {
-        "name": "보고 또 보고",
-        "value": "57.3%",
+        "name": "대장금",
+        "value": "57.8%",
         "note": "MBC",
-        "sourceUrl": "https://enews.imbc.com/News/RetrieveNewsInfo/6800"
+        "image": "/ranking-images/updates/Dae_Jang_Geum.png",
+        "imageSource": "https://en.wikipedia.org/wiki/Jewel_in_the_Palace"
       }
     ],
-    "auditDate": "2026.10.07"
+    "auditDate": "2026.10.08"
   },
   "most-visited-countries": {
     "rows": [
