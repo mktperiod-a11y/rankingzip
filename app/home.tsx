@@ -167,7 +167,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         <div className="hero-board" aria-label="궁금한 순위" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}>
           {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
             
-            return <a href={`/rankings/${item.slug}`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
+            return <a href={`/rankings/${item.slug}/`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
               <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
               <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong></p>
@@ -179,7 +179,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
       </section>
 
       <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
-        <RankingTicker>{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</RankingTicker>
+        <RankingTicker>{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}/`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</RankingTicker>
       </div></section>
 
       <section className="content" id="rankings" tabIndex={-1}>
@@ -191,7 +191,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug, pageBySlug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
               <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목</p>
-              <a className="rank-link" href={`/rankings/${slug}`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>
+              <a className="rank-link" href={`/rankings/${slug}/`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>

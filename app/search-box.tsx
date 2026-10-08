@@ -75,7 +75,7 @@ export function SearchBox({ items, query, onQuery }: { items: SearchItem[]; quer
       {show && (
         <div className="search-pop" id="search-list" role="listbox" aria-label="검색 결과">
           {results.map(({ item, row }, i) => (
-            <a key={item.slug} id={`search-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? "on" : undefined} href={`/rankings/${item.slug}`} onMouseEnter={() => setActive(i)}>
+            <a key={item.slug} id={`search-opt-${i}`} role="option" aria-selected={i === active} className={i === active ? "on" : undefined} href={`/rankings/${item.slug}/`} onMouseEnter={() => setActive(i)}>
               <span className={`sp-icon ${item.color}`} aria-hidden="true">{item.icon}</span>
               <span className="sp-text">
                 <strong>{mark(item.title, query)}</strong>

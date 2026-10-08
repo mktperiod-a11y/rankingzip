@@ -2,6 +2,7 @@ import type { RankingPage } from './data';
 import allTimeData from '../../data/rankings/anime-all-time.json';
 import weeklyData from '../../data/rankings/anime-weekly.json';
 import titlesKo from '../../data/rankings/anime-titles-ko.json';
+import { josa } from './josa';
 
 type AnimeRow = { rank: number; title: string; id?: number; titleKo?: string; image?: string; url?: string };
 type AllTime = { source: string; checkedAt: string; rows: (AnimeRow & { popularity: number; year: number | null; format: string })[] };
@@ -21,7 +22,7 @@ export function allTimePage(d: AllTime): RankingPage {
     slug: 'anime-all-time-popular', title: '역대 인기 애니메이션 순위', category: '미디어', posterLayout: true,
     date: `${dot(d.checkedAt)} 조회`, dataLabel: `AniList ${dot(d.checkedAt)} 조회 데이터`,
     basis: '전 세계 AniList 회원이 목록에 담은 수 · 같은 작품의 후속 시즌·외전 제외',
-    description: `전 세계 애니메이션 데이터베이스 AniList에서 회원이 가장 많이 자기 목록에 담은 애니메이션 TOP 10입니다. 같은 작품의 후속 시즌은 첫 작품 하나만 셉니다. 1위는 ${nameOf(top)}으로 ${Math.round(top.popularity / 10000)}만 명이 담았습니다. 한국 시청자만의 순위는 아닙니다.`,
+    description: `전 세계 애니메이션 데이터베이스 AniList에서 회원이 가장 많이 자기 목록에 담은 애니메이션 TOP 10입니다. 같은 작품의 후속 시즌은 첫 작품 하나만 셉니다. 1위는 ${nameOf(top)}${josa(nameOf(top), '으로/로')} ${Math.round(top.popularity / 10000)}만 명이 담았습니다. 한국 시청자만의 순위는 아닙니다.`,
     source: 'AniList · 인기순 애니메이션', sourceUrl: d.source,
     rows: d.rows.map((r) => ({ name: nameOf(r), value: `${r.popularity.toLocaleString('en-US')}명`, note: [r.title, r.year, FORMAT[r.format] ?? r.format].filter(Boolean).join(' · '), rank: r.rank, ...image(r) })),
     faq: [

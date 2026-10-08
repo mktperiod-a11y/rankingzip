@@ -135,13 +135,13 @@ export function buildPicks(snapshot: TrendSnapshot, fallback: Pick[], count = fa
       subtitle: news.source ? `${news.title} · ${news.source}` : news.title,
       label: isNew ? "급상승" : "화제",
       live: true,
-      ...(trend.ranking ? { href: `/rankings/${trend.ranking.slug}` } : { href: news.url, external: true }),
+      ...(trend.ranking ? { href: `/rankings/${trend.ranking.slug}/` } : { href: news.url, external: true }),
     });
     if (picks.length === count) return picks;
   }
   for (const [title, subtitle, label, slug] of fallback) {
     if (picks.length === count) break;
-    picks.push({ title, subtitle, label, href: `/rankings/${slug}` });
+    picks.push({ title, subtitle, label, href: `/rankings/${slug}/` });
   }
   return picks;
 }
