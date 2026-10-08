@@ -4,6 +4,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const FILE = 'data/rankings/webhard.json';
+const POOL = 'data/webhard-pool.json';
+const ICONS = 'public/ranking-images/apps/sources.json';
+export const SHOWN = 10;
 
 export function reshuffle(items, rng = Math.random, pMove = 0.3, pTwo = 0.9) {
   const n = items.length;
@@ -23,15 +26,37 @@ export function reshuffle(items, rng = Math.random, pMove = 0.3, pTwo = 0.9) {
   return items.map((it) => ({ ...it, prevRank: it.rank }));
 }
 
+export function fill(items, pool) {
+  const blocked = new Set(pool.blocked ?? []);
+  const shown = items.filter((it) => !blocked.has(it.name)).sort((a, b) => a.base - b.base).map((it, i) => ({ ...it, base: i + 1 }));
+  const reserve = (pool.reserve ?? []).filter((it) => !blocked.has(it.name) && !shown.some((x) => x.name === it.name));
+  const added = [];
+  while (shown.length < SHOWN && reserve.length) {
+    const { icon, ...next } = reserve.shift();
+    added.push({ name: next.name, icon });
+    shown.push({ ...next, base: shown.length + 1, rank: shown.length + 1, prevRank: null });
+  }
+  const ranked = [...shown].sort((a, b) => a.rank - b.rank).map((it, i) => ({ ...it, rank: i + 1 }));
+  return { items: ranked, pool: { ...pool, reserve }, added };
+}
+
 const todayKst = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const file = path.resolve(FILE);
-  const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-  const items = reshuffle([...data.items].sort((a, b) => a.rank - b.rank)).sort((a, b) => a.rank - b.rank);
+  const dryRun = process.argv.includes('--dry-run');
+  const data = JSON.parse(fs.readFileSync(path.resolve(FILE), 'utf8'));
+  const { items: filled, pool, added } = fill(data.items, JSON.parse(fs.readFileSync(POOL, 'utf8')));
+  const items = reshuffle(filled).sort((a, b) => a.rank - b.rank);
   for (const it of items) {
     const d = it.prevRank - it.rank;
-    console.log(`${String(it.rank).padStart(2)}. ${it.name} ${d > 0 ? `▲${d}` : d < 0 ? `▼${-d}` : '-'}`);
+    console.log(`${String(it.rank).padStart(2)}. ${it.name} ${it.prevRank == null ? 'NEW' : d > 0 ? `▲${d}` : d < 0 ? `▼${-d}` : '-'}`);
   }
-  if (!process.argv.includes('--dry-run')) fs.writeFileSync(file, `${JSON.stringify({ updatedAt: todayKst(), items }, null, 2)}\n`);
+  if (dryRun) process.exit(0);
+  fs.writeFileSync(FILE, `${JSON.stringify({ updatedAt: todayKst(), items }, null, 2)}\n`);
+  fs.writeFileSync(POOL, `${JSON.stringify(pool, null, 2)}\n`);
+  if (added.some((a) => a.icon)) {
+    const icons = JSON.parse(fs.readFileSync(ICONS, 'utf8'));
+    for (const a of added) if (a.icon) icons[a.name] = a.icon;
+    fs.writeFileSync(ICONS, `${JSON.stringify(icons, null, 2)}\n`);
+  }
 }

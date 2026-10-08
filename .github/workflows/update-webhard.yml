@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/rankings/webhard.json
+          git add data/rankings/webhard.json data/webhard-pool.json public/ranking-images/apps/sources.json
           git commit -m "Update webhard ranking"
           git push
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"

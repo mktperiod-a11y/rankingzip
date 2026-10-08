@@ -45,7 +45,6 @@ async function tile(src, dest, { background, fill = 0.78, size = 512 }) {
   await sharp({ create: { width: size, height: size, channels: 4, background } }).composite([{ input: resized, gravity: 'center' }]).png().toFile(dest);
   console.log('tile', dest);
 }
-await tile('data/logo-sources/fileis.svg', 'public/ranking-images/apps/tile-fileis.png', { background: '#ffffff', fill: 0.8 });
 await tile('data/logo-sources/filemong.webp', 'public/ranking-images/apps/tile-filemong.png', { background: '#b14747', fill: 0.74 });
 await sharp(fs.readFileSync('data/logo-sources/maplestory-icon.png')).png().toFile('public/ranking-images/games/pc-icon-maplestory.png');
 
