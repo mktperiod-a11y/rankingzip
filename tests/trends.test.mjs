@@ -66,9 +66,9 @@ test('picks show trending keywords with their news headline, then the editorial 
   ] };
   const fallback = [['편집 1', '순위 A', '주간', 'a'], ['편집 2', '순위 B', '최종', 'b'], ['편집 3', '순위 C', '흥행', 'c']];
   assert.deepEqual(buildPicks(snapshot, fallback), [
-    { title: '그랜저', subtitle: '9월 국산차 판매 1위 그랜저 · 한국경제', label: '급상승', live: true, href: '/rankings/cars' },
+    { title: '그랜저', subtitle: '9월 국산차 판매 1위 그랜저 · 한국경제', label: '급상승', live: true, href: '/rankings/cars/' },
     { title: '태풍 경로', subtitle: '제18호 태풍 북상', label: '화제', live: true, href: 'https://example.com/%EC%A0%9C18%ED%98%B8%20%ED%83%9C%ED%92%8D%20%EB%B6%81%EC%83%81', external: true },
-    { title: '편집 1', subtitle: '순위 A', label: '주간', href: '/rankings/a' },
+    { title: '편집 1', subtitle: '순위 A', label: '주간', href: '/rankings/a/' },
   ]);
   assert.deepEqual(buildPicks({ updatedAt: at(0), trends: [] }, fallback).map((p) => p.title), ['편집 1', '편집 2', '편집 3']);
 });

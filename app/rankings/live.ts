@@ -15,6 +15,7 @@ import kboCrowd from '../../data/rankings/live/kbo-attendance-2026.json';
 import population from '../../data/rankings/live/korea-province-population.json';
 import liveImages from '../../data/rankings/live-images.json';
 import { KBO_LOGO } from './portraits';
+import { josa } from './josa';
 
 type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'p4p' | 'auditDate' | 'source' | 'sourceUrl'>>;
 const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string>; brands: Record<string, string>; kboTeams: Record<string, string> };
@@ -34,12 +35,12 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
     const d = pcbang, top = d.rows[0];
     return {
       date: `${dot(d.date)} 기준`, dataLabel: `게임트릭스 ${dot(d.date)} 데이터`, auditDate: dot(d.checkedAt),
-      description: `전국 PC방에서 이용 시간이 가장 많은 PC 게임 TOP 10입니다. 국내 PC 게임은 사용자 수가 공개되지 않아 PC방 이용 점유율로 비교합니다. ${top.name}가 ${top.share}%로 1위입니다.`,
+      description: `전국 PC방에서 이용 시간이 가장 많은 PC 게임 TOP 10입니다. 국내 PC 게임은 사용자 수가 공개되지 않아 PC방 이용 점유율로 비교합니다. ${top.name}${josa(top.name, '이/가')} ${top.share}%로 1위입니다.`,
       rows: d.rows.map((r) => ({ name: r.name, value: `${r.share}%`, note: 'PC방 이용 시간 점유율', rank: r.rank })),
       faq: [
         ['왜 사용자 수가 아니라 점유율인가요?', '국내 PC 게임은 게임사가 사용자 수를 정기적으로 공개하지 않습니다. 대신 전국 PC방 이용 시간을 집계한 점유율이 매일 공개됩니다.'],
         ['집에서 하는 사람도 포함되나요?', '아니요. PC방 이용만 집계하므로 집에서 많이 하는 게임은 실제보다 낮게 나올 수 있습니다.'],
-        ['PC방 점유율 1위는?', `${md(d.date)} 기준 ${top.name}로 ${top.share}%입니다.`],
+        ['PC방 점유율 1위는?', `${md(d.date)} 기준 ${top.name}${josa(top.name, '으로/로')} ${top.share}%입니다.`],
       ],
     };
   },
@@ -50,7 +51,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       description: `${d.year}년 상영기간에 집계된 국내 관객 상위 10편입니다. 1위는 ${top.title}(${tenK(top.audience)} 명)입니다. 이전 연도 개봉작도 포함하며 상영 중인 작품은 순위가 바뀔 수 있습니다.`,
       rows: d.rows.map((r) => ({ name: r.title, value: `${won(r.audience)}명`, note: `${r.openDt} 개봉`, rank: r.rank })),
       faq: [
-        [`${d.year}년 국내 관객 1위 영화는?`, `${md(d.checkedAt)} 조회 기준 ${top.title}로 ${won(top.audience)}명입니다.`],
+        [`${d.year}년 국내 관객 1위 영화는?`, `${md(d.checkedAt)} 조회 기준 ${top.title}${josa(top.title, '으로/로')} ${won(top.audience)}명입니다.`],
         ['어떤 작품을 비교하나요?', '국내 개봉작을 비교하며 한국영화와 외국영화를 모두 포함합니다.'],
         ['수치는 계속 바뀌나요?', '상영 실적과 KOBIS 보정이 반영되면 순위와 수치가 달라질 수 있습니다.'],
       ],
@@ -76,7 +77,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       description: `올해 개봉작의 전 세계 극장 누적 매출 상위 10편을 비교합니다. 1위는 ${movie(top.title)}(${usd(top.gross)})입니다. 상영 중인 작품은 매출과 순위가 달라질 수 있습니다.`,
       rows: d.rows.map((r) => ({ name: movie(r.title), value: `$${won(r.gross)}`, note: N.movies[r.title] ? r.title : '', rank: r.rank })),
       faq: [
-        ['올해 세계 흥행 1위 영화는?', `${md(d.checkedAt)} 조회 기준 ${movie(top.title)}로 $${won(top.gross)}입니다.`],
+        ['올해 세계 흥행 1위 영화는?', `${md(d.checkedAt)} 조회 기준 ${movie(top.title)}${josa(movie(top.title), '으로/로')} $${won(top.gross)}입니다.`],
         ['극장 매출은 순이익인가요?', '아닙니다. 제작·배급·마케팅 비용을 차감하지 않은 매출입니다.'],
       ],
     };
@@ -102,7 +103,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       description: `${y}년 ${m}월 국산 모델 판매량 상위 10개입니다. 1위는 ${top.brand} ${top.name}(${won(top.sales)}대)입니다. 수입 브랜드와 중고차는 포함하지 않습니다.`,
       rows: d.rows.map((r) => ({ name: r.name, value: `${won(r.sales)}대`, note: r.brand, rank: r.rank, image: r.local ?? r.image, imageSource: r.image })),
       faq: [
-        [`${m}월 국산차 판매 1위는 무엇인가요?`, `${top.brand} ${top.name}가 ${won(top.sales)}대로 1위입니다.`],
+        [`${m}월 국산차 판매 1위는 무엇인가요?`, `${top.brand} ${top.name}${josa(top.name, '이/가')} ${won(top.sales)}대로 1위입니다.`],
         ['판매량과 등록 대수는 같나요?', '자료원과 집계 시점에 따라 일부 차이가 날 수 있습니다.'],
         ['수입차도 포함되나요?', '이 표는 국산 모델 순위이며 수입차는 별도 집계입니다.'],
       ],
@@ -112,11 +113,11 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
     const d = kboTeams, [a, b] = d.rows;
     return {
       date: `${dot(d.checkedAt)} 조회`, dataLabel: `KBO ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt),
-      description: `2026 KBO 정규시즌 팀 순위입니다. ${a.team}가 승률 ${a.pct}로 1위, ${b.team}가 ${b.behind}경기 차 2위입니다. 승·패·무와 1위와의 게임 차를 함께 비교합니다.`,
+      description: `2026 KBO 정규시즌 팀 순위입니다. ${a.team}${josa(a.team, '이/가')} 승률 ${a.pct}${josa(a.pct, '으로/로')} 1위, ${b.team}${josa(b.team, '이/가')} ${b.behind}경기 차 2위입니다. 승·패·무와 1위와의 게임 차를 함께 비교합니다.`,
       rows: d.rows.map((r) => ({ name: r.team, value: `승률 ${r.pct}`, note: `${r.win}승 ${r.loss}패 ${r.draw}무 · 1위와 ${r.behind}경기 차`, rank: r.rank, ...(KBO_LOGO[r.team] ? { image: `/ranking-images/expansion/kbo_${KBO_LOGO[r.team]}.webp`, imageSource: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx' } : {}) })),
       faq: [
-        ['현재 1위 팀은 어디인가요?', `${md(d.checkedAt)} 조회 기준 ${a.team}가 승률 ${a.pct}로 1위입니다.`],
-        [`${a.team}와 ${b.team}의 차이는 얼마나 되나요?`, `2위 ${b.team}의 승률은 ${b.pct}이며, 1위 ${a.team}과의 차이는 ${b.behind}경기입니다.`],
+        ['현재 1위 팀은 어디인가요?', `${md(d.checkedAt)} 조회 기준 ${a.team}${josa(a.team, '이/가')} 승률 ${a.pct}${josa(a.pct, '으로/로')} 1위입니다.`],
+        [`${a.team}${josa(a.team, '과/와')} ${b.team}의 차이는 얼마나 되나요?`, `2위 ${b.team}의 승률은 ${b.pct}이며, 1위 ${a.team}${josa(a.team, '과/와')}의 차이는 ${b.behind}경기입니다.`],
         ['승수가 더 많은데 순위가 낮을 수 있나요?', 'KBO 정규시즌 순위는 승수만이 아니라 승률을 기준으로 정합니다. 우천 순연 등으로 팀별 경기 수가 다를 수 있습니다.'],
       ],
     };
@@ -130,7 +131,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       description: `KAIDA가 발표한 ${y}년 ${m}월 수입 승용차 신규등록 ${won(d.total)}대 중 상위 10개 브랜드입니다. 1위는 ${brand(top.brand)}(${won(top.count)}대)입니다. 전기차만의 순위나 전 세계 판매 순위는 아닙니다.`,
       rows: d.rows.map((r) => ({ name: brand(r.brand), value: `${won(r.count)}대`, note: `${m}월 수입 승용차 전체 대비 ${r.share.toFixed(1)}% · 신규등록`, rank: r.rank })),
       faq: [
-        ['수입차 1위 브랜드는 어디인가요?', `${y}년 ${m}월 KAIDA 회원사 수입 승용차 신규등록 기준 ${brand(top.brand)}가 ${won(top.count)}대로 1위입니다.`],
+        ['수입차 1위 브랜드는 어디인가요?', `${y}년 ${m}월 KAIDA 회원사 수입 승용차 신규등록 기준 ${brand(top.brand)}${josa(brand(top.brand), '이/가')} ${won(top.count)}대로 1위입니다.`],
         ['등록 대수와 주문·판매 대수는 같은가요?', '아닙니다. 이 표는 신규등록 기준입니다. 주문량, 계약량, 제조사 도매 판매와 시점 및 범위가 다릅니다.'],
         ['점유율은 TOP 10 안에서 계산했나요?', `아니요. ${m}월 전체 수입 승용차 신규등록 ${won(d.total)}대를 기준으로 계산했습니다.`],
       ],
@@ -141,10 +142,10 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
     return {
       date: `${dot(d.date)} 기준`, dataLabel: `KBO ${dot(d.date)} 데이터`, auditDate: dot(d.checkedAt),
       basis: '구단별 누적 홈 관중 · 2026 정규시즌',
-      description: `2026 KBO 정규시즌 구단별 누적 홈 관중입니다. 10개 구단 합계 ${tenK(d.total)} 명이며, ${team(top.team)}가 ${won(top.crowd)}명으로 가장 많습니다.`,
+      description: `2026 KBO 정규시즌 구단별 누적 홈 관중입니다. 10개 구단 합계 ${tenK(d.total)} 명이며, ${team(top.team)}${josa(team(top.team), '이/가')} ${won(top.crowd)}명으로 가장 많습니다.`,
       rows: d.rows.map((r) => ({ name: team(r.team), value: `${won(r.crowd)}명`, note: '', rank: r.rank, ...(KBO_LOGO[r.team] ? { image: `/ranking-images/expansion/kbo_${KBO_LOGO[r.team]}.webp`, imageSource: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx' } : {}) })),
       faq: [
-        ['홈 관중이 가장 많은 구단은 어디인가요?', `${md(d.date)} 기준 ${team(top.team)}가 ${won(top.crowd)}명으로 1위입니다.`],
+        ['홈 관중이 가장 많은 구단은 어디인가요?', `${md(d.date)} 기준 ${team(top.team)}${josa(team(top.team), '이/가')} ${won(top.crowd)}명으로 1위입니다.`],
         ['집계된 정규시즌 관중은 몇 명인가요?', `${dot(d.date)} 기준 10개 구단 홈 관중 합계는 ${won(d.total)}명입니다.`],
         ['원정 관중도 포함되나요?', '구단별 홈 경기 관중만 셉니다. 한 경기는 홈 구단에만 집계됩니다.'],
       ],
@@ -155,10 +156,10 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
     return {
       date: `${y}년 ${m}월 말`, dataLabel: `행정안전부 ${y}년 ${m}월 말 데이터`, auditDate: dot(d.checkedAt),
       basis: `${y}년 ${m}월 말 주민등록 총인구 · 외국인 제외`,
-      description: `행정안전부 주민등록 총인구 기준 상위 10개 시도입니다. ${y}년 ${m}월 말 전국 인구는 ${won(d.total)}명이며, ${top.name}가 ${won(top.population)}명으로 가장 많습니다. 거주자·거주불명자·재외국민을 포함하고 외국인은 제외합니다.`,
+      description: `행정안전부 주민등록 총인구 기준 상위 10개 시도입니다. ${y}년 ${m}월 말 전국 인구는 ${won(d.total)}명이며, ${top.name}${josa(top.name, '이/가')} ${won(top.population)}명으로 가장 많습니다. 거주자·거주불명자·재외국민을 포함하고 외국인은 제외합니다.`,
       rows: d.rows.map((r) => ({ name: r.name, value: `${won(r.population)}명`, note: '', rank: r.rank })),
       faq: [
-        ['인구가 가장 많은 시도는?', `${y}년 ${m}월 말 기준 ${top.name}로 ${won(top.population)}명입니다.`],
+        ['인구가 가장 많은 시도는?', `${y}년 ${m}월 말 기준 ${top.name}${josa(top.name, '으로/로')} ${won(top.population)}명입니다.`],
         ['외국인도 포함되나요?', '이 표의 주민등록 인구에는 외국인이 포함되지 않습니다.'],
         ['언제 갱신되나요?', '매주 수·토요일에 새 월간 자료를 확인합니다. 수집과 검증이 성공하면 반영하며, 새 자료가 없으면 기존 기준월을 유지합니다.'],
       ],
@@ -196,7 +197,7 @@ function hitters(d: typeof kboHr, label: string, unit: string): Live {
   const top = rows[0];
   return {
     date: `${dot(d.checkedAt)} 조회`, dataLabel: `KBO ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), rows,
-    description: `2026 KBO 정규시즌 ${label} 기록 상위 10명입니다. ${top.name}(${top.note})이 ${top.value}로 1위입니다. 동률은 공동 순위이며, 10번째에서 동률이 이어지면 공식 표의 순서로 10명까지 보여줍니다.`,
+    description: `2026 KBO 정규시즌 ${label} 기록 상위 10명입니다. ${top.name}(${top.note})${josa(top.name, '이/가')} ${top.value}${josa(top.value, '으로/로')} 1위입니다. 동률은 공동 순위이며, 10번째에서 동률이 이어지면 공식 표의 순서로 10명까지 보여줍니다.`,
     faq: [
       [`${label} 1위는 누구인가요?`, `${md(d.checkedAt)} 조회 기준 ${top.name}(${top.note})으로 ${top.value}입니다.`],
       ['포스트시즌도 포함하나요?', '정규시즌 기록만 비교합니다.'],
