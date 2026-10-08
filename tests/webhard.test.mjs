@@ -20,7 +20,6 @@ test('reshuffle keeps every rule over many rounds', () => {
     }
   }
   const total = moves.stay + moves.one + moves.two;
-  // 밀려서 함께 움직이는 경우가 있어 정확히 70%는 아니지만, 대부분은 제자리여야 합니다.
   assert.ok(moves.stay / total > 0.5, JSON.stringify(moves));
   assert.ok(moves.two > 0 && moves.one > moves.two, JSON.stringify(moves));
 });

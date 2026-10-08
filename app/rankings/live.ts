@@ -1,8 +1,3 @@
-// 자동 갱신 순위의 화면 문구. 데이터는 data/rankings/live/<순위 주소>.json에 있고,
-// scripts/update-records.mjs가 원자료(게임트릭스·KOBIS·Box Office Mojo·The Numbers·다나와·KBO·UFC·KAIDA·행정안전부)에서 매주 받아 옵니다.
-// 영어 제목·이름의 한국어 표기는 data/rankings/names-ko.json에서 찾고, 없으면 원문을 그대로 씁니다.
-// 이미지는 data/rankings/live-images.json(이름 → 포스터·로고)에서 찾아 이어 씁니다. 새 항목은 이미지를 추가할 때까지 이니셜로 보입니다.
-// 인물 사진(KBO 선수·UFC)은 portraits.ts가 따로 붙입니다.
 import type { Division, RankingPage, RankingRow } from './data';
 import names from '../../data/rankings/names-ko.json';
 import pcbang from '../../data/rankings/live/korea-pc-games-share.json';
@@ -21,7 +16,7 @@ import population from '../../data/rankings/live/korea-province-population.json'
 import liveImages from '../../data/rankings/live-images.json';
 import { KBO_LOGO } from './portraits';
 
-type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'auditDate' | 'auditNote' | 'sourceUrl'>>;
+type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'auditDate' | 'sourceUrl'>>;
 const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string>; brands: Record<string, string>; kboTeams: Record<string, string> };
 const dot = (iso: string) => iso.replaceAll('-', '.');
 const md = (iso: string) => { const [, m, d] = iso.split('-').map(Number); return `${m}월 ${d}일`; };
@@ -32,7 +27,6 @@ const tenK = (n: number) => `${Math.round(n / 10000).toLocaleString('en-US')}만
 const usd = (n: number) => `${(n / 100000000).toFixed(1)}억 달러`;
 
 const ym = (month: string) => { const [y, m] = month.split('-').map(Number); return { y, m }; };
-/** "약 323만명" → 3230000, "10,387,691명" → 10387691 */
 const people = (v: string) => (/만/.test(v) ? Number(v.replace(/[^\d.]/g, '')) * 10000 : Number(v.replace(/[^\d]/g, '')));
 
 const BUILDERS: Record<string, (p: RankingPage) => Live> = {
@@ -47,7 +41,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['집에서 하는 사람도 포함되나요?', '아니요. PC방 이용만 집계하므로 집에서 많이 하는 게임은 실제보다 낮게 나올 수 있습니다.'],
         ['PC방 점유율 1위는?', `${md(d.date)} 기준 ${top.name}로 ${top.share}%입니다.`],
       ],
-      auditNote: '게임트릭스 PC방 게임 순위 TOP 10을 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'korea-box-office-2026': () => {
@@ -61,7 +54,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['어떤 작품을 비교하나요?', '국내 개봉작을 비교하며 한국영화와 외국영화를 모두 포함합니다.'],
         ['수치는 계속 바뀌나요?', '상영 실적과 KOBIS 보정이 반영되면 순위와 수치가 달라질 수 있습니다.'],
       ],
-      auditNote: 'KOBIS 연도별 박스오피스 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'korean-movie-admissions': () => {
@@ -75,7 +67,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['어떤 작품을 비교하나요?', '국내 개봉작을 비교하며 한국영화와 외국영화를 모두 포함합니다.'],
         ['수치는 계속 바뀌나요?', '상영 중인 작품과 KOBIS 보정이 반영되면 순위와 수치가 달라질 수 있습니다.'],
       ],
-      auditNote: 'KOBIS 역대 박스오피스 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'worldwide-box-office-2026': () => {
@@ -88,7 +79,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['올해 세계 흥행 1위 영화는?', `${md(d.checkedAt)} 조회 기준 ${movie(top.title)}로 $${won(top.gross)}입니다.`],
         ['극장 매출은 순이익인가요?', '아닙니다. 제작·배급·마케팅 비용을 차감하지 않은 매출입니다.'],
       ],
-      auditNote: 'Box Office Mojo 연도별 전 세계 흥행 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'spider-man-worldwide-box-office': () => {
@@ -102,7 +92,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['국내 관객 수 순위인가요?', '아니요. 전 세계 극장 매출을 미국 달러로 비교한 순위입니다.'],
         ['애니메이션도 포함되나요?', '뉴 유니버스와 어크로스 더 유니버스 등 개봉한 장편 애니메이션을 포함합니다.'],
       ],
-      auditNote: 'The Numbers 스파이더맨 시리즈 표에서 개봉작 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'korea-car-sales': () => {
@@ -117,7 +106,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['판매량과 등록 대수는 같나요?', '자료원과 집계 시점에 따라 일부 차이가 날 수 있습니다.'],
         ['수입차도 포함되나요?', '이 표는 국산 모델 순위이며 수입차는 별도 집계입니다.'],
       ],
-      auditNote: '다나와자동차 월간 판매 실적(국산)의 상위 10개 모델을 매주 수·토요일 자동으로 받아옵니다. 새 달 자료가 나오면 바뀝니다.',
     };
   },
   'kbo-team-standings-2026': () => {
@@ -131,7 +119,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         [`${a.team}와 ${b.team}의 차이는 얼마나 되나요?`, `${b.team}는 승률 ${b.pct}로 2위이며 ${a.team}와 ${b.behind}경기 차입니다.`],
         ['승수가 더 많은데 순위가 낮을 수 있나요?', 'KBO 정규시즌 순위는 승수만이 아니라 승률을 기준으로 정합니다. 우천 순연 등으로 팀별 경기 수가 다를 수 있습니다.'],
       ],
-      auditNote: 'KBO 공식 팀 순위를 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'kbo-home-runs-2026': () => hitters(kboHr, '홈런', '홈런'),
@@ -147,7 +134,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['등록 대수와 주문·판매 대수는 같은가요?', '아닙니다. 이 표는 신규등록 기준입니다. 주문량, 계약량, 제조사 도매 판매와 시점 및 범위가 다릅니다.'],
         ['점유율은 TOP 10 안에서 계산했나요?', `아니요. ${m}월 전체 수입 승용차 신규등록 ${won(d.total)}대를 기준으로 계산했습니다.`],
       ],
-      auditNote: 'KAIDA 브랜드 월별 요약(수입 승용차 신규등록)을 매주 수·토요일 자동으로 받아옵니다. 새 달 자료가 발표되면 바뀝니다.',
     };
   },
   'kbo-attendance-2026': () => {
@@ -162,7 +148,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['2026 정규시즌 전체 관중은 몇 명인가요?', `10개 구단 홈 관중 합계는 ${won(d.total)}명입니다.`],
         ['원정 관중도 포함되나요?', '구단별 홈 경기 관중만 셉니다. 한 경기는 홈 구단에만 집계됩니다.'],
       ],
-      auditNote: 'KBO 구단별 관중 현황(정규시즌 전체)을 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
   'korea-province-population': () => {
@@ -177,10 +162,8 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
         ['외국인도 포함되나요?', '이 표의 주민등록 인구에는 외국인이 포함되지 않습니다.'],
         ['언제 갱신되나요?', '행정안전부가 매월 말 기준 통계를 다음 달 초에 공표하며, 공표되면 자동으로 바뀝니다.'],
       ],
-      auditNote: '행정안전부 주민등록 인구통계(시도별 월간)를 매주 수·토요일 자동으로 받아옵니다.',
     };
   },
-  // 놀란 영화는 상영 중이거나 KOBIS 순위에 있는 작품만 관객 수를 자동으로 바꾸고, 나머지 작품은 기존 기록을 유지합니다.
   'christopher-nolan-korea-box-office': (p) => {
     const kobis = new Map([...admissions.rows, ...boxOffice.rows].map((r) => [r.title, r.audience]));
     const at = dot(boxOffice.checkedAt);
@@ -194,7 +177,6 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
     return {
       date: `${dot(d.checkedAt)} 확인 · 공식 미디어 패널 차트`, dataLabel: `UFC ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), divisions,
       rows: divisions.map((x) => ({ name: x.champion, value: `${x.name} 챔피언`, note: '' })),
-      auditNote: 'UFC 공식 랭킹(미디어 패널)의 남성부 8개 체급 챔피언과 1~3위를 매주 수·토요일 자동으로 받아옵니다. 별도 Meta 랭킹과 섞지 않습니다.',
     };
   },
 };
@@ -211,13 +193,11 @@ function hitters(d: typeof kboHr, label: string, unit: string): Live {
       ['포스트시즌도 포함하나요?', '정규시즌 기록만 비교합니다.'],
       ['공동 10위가 여러 명이면 어떻게 표시하나요?', '최대 10명까지 노출하며 공식 기록표의 표시 순서를 따릅니다.'],
     ],
-    auditNote: `KBO 공식 타자 기록(${label} 순) 상위 10명을 매주 수·토요일 자동으로 받아옵니다.`,
   };
 }
 
 const IMAGES = liveImages as Record<string, { image: string; source?: string }>;
 
-/** 자동 갱신 데이터로 해당 순위의 날짜·항목·설명·FAQ를 바꿉니다. 이미지는 이름으로 찾아 붙입니다. */
 export function applyLive(pages: RankingPage[]): RankingPage[] {
   return pages.map((p) => {
     const build = BUILDERS[p.slug];

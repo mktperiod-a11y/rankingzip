@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-// GitHub Pages용 정적 사이트 빌드: node scripts/build-github-pages.mjs [기본경로] [출력폴더]
-// 예) node scripts/build-github-pages.mjs /rankingzip out
-// GitHub Pages 프로젝트 사이트는 https://<계정>.github.io/<저장소>/ 아래에서 열리므로,
-// 정적으로 내보낸 파일 안의 절대 경로(/assets, /rankings ...)에 기본 경로를 붙입니다.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -22,13 +18,10 @@ fs.cpSync('dist/client', outDir, { recursive: true });
 fs.rmSync(path.join(outDir, '_headers'), { force: true });
 fs.writeFileSync(path.join(outDir, '.nojekyll'), '');
 
-// 사이트 루트 기준 경로들. public/ 최상위 항목과 빌드 산출물 폴더를 모두 포함합니다.
 const roots = new Set(['assets', 'rankings', '_vinext_fonts', ...fs.readdirSync('public')]);
 const escaped = [...roots].map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
 const absolute = new RegExp(`(["'\`(=])/(${escaped})(?=[/"'\`)?#]|$)`, 'g');
-// 홈·홈 안 위치로 가는 링크("/", "/#rankings"). HTML 속성과 RSC 데이터("href":"/") 모두 바꿉니다.
 const homeLink = /((?:href=|\\?"href\\?":)\\?["'`])\/(\\?["'`#?])/g;
-// Vite의 동적 import 미리 불러오기 도우미: function(e){return`/`+e}
 const preloadBase = /(return\s*)(["'`])\/\2\+/g;
 
 let changed = 0;
