@@ -1,6 +1,3 @@
-// 서비스·게임 순위의 대표 이미지. 2뎁스 이미지 틀에 꽉 차도록 같은 종류의 이미지로 맞춥니다.
-// - OTT 앱·웹하드: 애플 앱스토어(한국) 공식 앱 아이콘(scripts/fetch-brand-images.mjs). 앱이 없는 곳은 로고 정사각 타일(scripts/normalize-logos.mjs)
-// - PC 게임: 공식 사이트의 공유용 대표 이미지(og:image)
 import type { RankingPage } from './data';
 import apps from '../../public/ranking-images/apps/sources.json';
 import pcArt from '../../public/ranking-images/games/pc-art.json';

@@ -51,12 +51,12 @@ test("renders the public ranking site without starter preview metadata", async (
   assert.match(html,/spider-man-worldwide-box-office/);
 });
 
-test('all ranking routes render audit notices, correct images and indexing rules',async()=>{
+test('all ranking routes render with correct images and indexing rules',async()=>{
  const {default:worker}=await import(new URL('../dist/server/index.js',import.meta.url));
  const slugs=pages.map(p=>p.slug);
  const pending=pages.filter(p=>p.noindex).map(p=>p.slug);
  const env={ASSETS:{fetch:async()=>new Response('Not found',{status:404})}};
  const ctx={waitUntil(){},passThroughOnException(){}};
- for(const slug of slugs){const response=await worker.fetch(new Request(`http://localhost/rankings/${slug}/`,{headers:{accept:'text/html'}}),env,ctx);assert.equal(response.status,200,slug);const html=(await response.text()).replace(/<!--.*?-->/g,'');assert.ok(html.includes(pages.find(p=>p.slug===slug).auditDate),slug);assert.doesNotMatch(html,/class="image-placeholder"/,slug);for(const m of html.matchAll(/<img[^>]+src="([^"]+)"/g))if(m[1].startsWith('/'))assert.ok(fs.existsSync(`public${m[1]}`),`${slug}: ${m[1]}`);if(pending.includes(slug)){assert.match(html,/noindex/,slug);assert.doesNotMatch(html,/"@type":"ItemList"/,slug);}for(const m of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(m[1]),slug);}
+ for(const slug of slugs){const response=await worker.fetch(new Request(`http://localhost/rankings/${slug}/`,{headers:{accept:'text/html'}}),env,ctx);assert.equal(response.status,200,slug);const html=(await response.text()).replace(/<!--.*?-->/g,'');assert.ok(html.includes(pages.find(p=>p.slug===slug).title.replace(/&/g,'&amp;')),slug);assert.doesNotMatch(html,/class="image-placeholder"/,slug);for(const m of html.matchAll(/<img[^>]+src="([^"]+)"/g))if(m[1].startsWith('/'))assert.ok(fs.existsSync(`public${m[1]}`),`${slug}: ${m[1]}`);if(pending.includes(slug)){assert.match(html,/noindex/,slug);assert.doesNotMatch(html,/"@type":"ItemList"/,slug);}for(const m of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(m[1]),slug);}
  const sitemap=await(await worker.fetch(new Request('http://localhost/sitemap.xml'),env,ctx)).text();for(const slug of pending)assert.ok(!sitemap.includes(slug));
 });

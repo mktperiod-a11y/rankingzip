@@ -2,9 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// 공항 출발 안내판(스플릿 플랩)처럼 글자 칸의 위쪽 절반이 앞으로 넘어가며 바뀌는 텍스트.
-// 칸 너비는 목표 글자에 고정하고, 칸마다 불투명한 위·아래 반쪽을 겹쳐 넘기므로 넘기는 중에도 글자가 겹치지 않습니다.
-// run이 바뀔 때마다 각 글자가 같은 종류의 임의 글자 두 장을 넘긴 뒤 원래 글자에 멈춥니다.
 const POOLS: [RegExp, string][] = [
   [/[가-힣]/, "가나다라마바사아자차카타파하"],
   [/[0-9]/, "0123456789"],
@@ -24,7 +21,6 @@ function FlapChar({ char, start, run }: { char: string; start: number; run: numb
     const timers = faces.map((next, k) =>
       setTimeout(() => setState((s) => ({ cur: next, prev: s.cur, step: s.step + 1 })), start + k * STEP_MS),
     );
-    // 마지막 장이 다 넘어가면 넘김 장을 걷어 정지 상태로 돌아갑니다.
     timers.push(setTimeout(() => setState({ cur: char, prev: char, step: 0 }), start + FLIPS * STEP_MS));
     return () => timers.forEach(clearTimeout);
   }, [char, start, run]);

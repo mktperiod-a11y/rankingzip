@@ -1,11 +1,3 @@
-# 순위 데이터 자동 갱신.
-# - 넷플릭스 대한민국 주간 TOP 10(영화·TV): 한국어 제목·대표 이미지와 함께 갱신
-# - 애니메이션: AniList 역대 인기 TOP 10, Anime Corner 최신 주간 투표 TOP 10
-# - 기록 순위: PC방 게임(게임트릭스), 국내·역대 영화 흥행(KOBIS), 세계 흥행(Box Office Mojo), 스파이더맨(The Numbers),
-#   국산차 판매(다나와), KBO 팀·홈런·타점, UFC 랭킹 — 원자료마다 따로 실행해 한 곳이 실패해도 나머지는 저장합니다.
-# - 매주 수요일·토요일 12:00(KST): 바뀐 데이터가 있으면 저장하고 GitHub Pages를 다시 배포합니다.
-#   (Anime Corner 주간 투표는 보통 목·금요일에 발표돼 토요일에 반영됩니다)
-# - 직접 실행(Run workflow): 기본은 "미리보기"라서 결과만 보여주고 저장하지 않습니다.
 name: Update ranking data
 
 on:
@@ -37,7 +29,6 @@ jobs:
           node-version: 22
       - name: 넷플릭스 TOP 10 갱신
         env:
-          # 선택: 한국 전용 작품의 한국어 제목을 TMDB에서 찾습니다(Settings → Secrets → TMDB_API_KEY).
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/update-netflix.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
       - name: 바뀐 데이터 저장 후 사이트 재배포

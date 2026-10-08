@@ -1,9 +1,4 @@
 #!/usr/bin/env node
-// 만들어진 사이트(out/)의 모든 링크가 제대로 열리는지 확인합니다.
-//   node scripts/check-links.mjs [출력폴더] [기본경로]   예) node scripts/check-links.mjs out /rankingzip
-// - 사이트 안 링크: 해당 페이지 파일이 out/에 있는지
-// - 바깥 링크: 실제로 열어 보고, 오류(404 등)이거나 사람이 볼 화면이 아닌 원본 데이터(JSON·CSV 등)면 실패로 봅니다.
-//   봇 차단(403·429)은 브라우저에서는 열리는 경우가 많아 경고로만 남깁니다.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -20,7 +15,7 @@ const htmlFiles = [];
 })(outDir);
 
 const decode = (s) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;/g, "'");
-const external = new Map(); // url → 처음 나온 페이지
+const external = new Map();
 const internalBroken = [];
 for (const file of htmlFiles) {
   const page = '/' + path.relative(outDir, file).replace(/index\.html$/, '');
@@ -28,7 +23,6 @@ for (const file of htmlFiles) {
     const href = decode(raw);
     if (/^https?:\/\//.test(href)) { if (!external.has(href)) external.set(href, page); continue; }
     if (!href.startsWith('/') || href.startsWith('//')) continue;
-    // GitHub Pages는 /<저장소>/ 아래에서 열리므로 기본 경로가 빠진 링크는 사이트 밖(404)으로 나갑니다.
     if (base && !(href === base || href.startsWith(`${base}/`) || href.startsWith(`${base}#`) || href.startsWith(`${base}?`))) { internalBroken.push(`${page} → ${href} (기본 경로 없음)`); continue; }
     const local = href.split(/[?#]/)[0].replace(new RegExp(`^${base}(?=/|$)`), '') || '/';
     const target = path.join(outDir, decodeURIComponent(local));

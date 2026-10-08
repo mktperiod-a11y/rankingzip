@@ -9,16 +9,16 @@ import { musicPages } from './music';
 import { applyCompletion } from './completion';
 import { applyBrandImages } from './brand-images';
 import { applyLive } from './live';
-export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string; /** 지난 갱신 대비 순위 변화(+는 상승) 또는 새로 진입 */ change?: number | 'new' };
+export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string;  change?: number | 'new' };
 export type Division = { name: string; champion: string; contenders: string[] };
 export type RankingPage = {
   slug: string; title: string; category: string; date: string; basis: string;
   description: string; source: string; sourceUrl: string; rows: RankingRow[];
   faq: [string,string][]; divisions?: Division[]; posterLayout?: boolean;
-  auditDate?: string; auditNote?: string; unranked?: boolean; noindex?: boolean;
-  /** 값 막대 비교를 숨깁니다. */ hideBars?: boolean;
-  /** 상단 '기준' 맨 앞의 출처·시기 문구. 자동 갱신 순위처럼 회차마다 바뀔 때 씁니다. */ dataLabel?: string;
-  /** 항목 링크를 '자료 출처' 대신 이 문구의 버튼으로 보여줍니다. 예: '사이트로 이동' */ rowLinkLabel?: string;
+  auditDate?: string; holdReason?: string; unranked?: boolean; noindex?: boolean;
+   hideBars?: boolean;
+   dataLabel?: string;
+   rowLinkLabel?: string;
 };
 
 const originalPages: RankingPage[] = [
