@@ -16,7 +16,7 @@ import population from '../../data/rankings/live/korea-province-population.json'
 import liveImages from '../../data/rankings/live-images.json';
 import { KBO_LOGO } from './portraits';
 
-type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'auditDate' | 'sourceUrl'>>;
+type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'p4p' | 'auditDate' | 'sourceUrl'>>;
 const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string>; brands: Record<string, string>; kboTeams: Record<string, string> };
 const dot = (iso: string) => iso.replaceAll('-', '.');
 const md = (iso: string) => { const [, m, d] = iso.split('-').map(Number); return `${m}월 ${d}일`; };
@@ -173,13 +173,21 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
   },
   'ufc-rankings-by-division': () => {
     const d = ufc;
-    const divisions: Division[] = d.divisions.map((x) => ({ name: UFC_KO[x.division], champion: person(x.champion), contenders: x.contenders.map(person) }));
+    const divisions: Division[] = d.divisions.map((x) => ({ name: UFC_KO[x.division], limit: UFC_LIMIT[x.division], champion: person(x.champion), contenders: x.contenders.map(person) }));
+    const p4p = ((d as { p4p?: string[] }).p4p ?? []).map(person);
     return {
-      date: `${dot(d.checkedAt)} 확인 · 공식 미디어 패널 차트`, dataLabel: `UFC ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), divisions,
+      date: `${dot(d.checkedAt)} 확인`, dataLabel: `UFC ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), divisions, p4p,
+      description: 'UFC 남성부 8개 체급의 챔피언과 랭킹 1~3위, 체급과 상관없는 P4P 순위입니다.',
       rows: divisions.map((x) => ({ name: x.champion, value: `${x.name} 챔피언`, note: '' })),
+      faq: [
+        ['UFC 랭킹은 누가 정하나요?', 'UFC가 선정한 미디어 패널의 투표로 정합니다.'],
+        ['챔피언도 1위에 포함되나요?', '아니요. 챔피언은 따로 두고, 그 아래부터 1위가 시작됩니다.'],
+        ['P4P는 무엇인가요?', '체급 차이를 빼고 선수의 종합 기량을 비교한 순위입니다.'],
+      ],
     };
   },
 };
+const UFC_LIMIT: Record<string, string> = { Flyweight: '56.7kg', Bantamweight: '61.2kg', Featherweight: '65.8kg', Lightweight: '70.3kg', Welterweight: '77.1kg', Middleweight: '83.9kg', 'Light Heavyweight': '93.0kg', Heavyweight: '120.2kg' };
 const UFC_KO: Record<string, string> = { Flyweight: '플라이급', Bantamweight: '밴텀급', Featherweight: '페더급', Lightweight: '라이트급', Welterweight: '웰터급', Middleweight: '미들급', 'Light Heavyweight': '라이트헤비급', Heavyweight: '헤비급' };
 
 function hitters(d: typeof kboHr, label: string, unit: string): Live {
