@@ -214,3 +214,5 @@
 .dp-method .dp-credit{font-size:11px;color:#8a94a4}
 .dp-method summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 @media(max-width:680px){.dp-hero{padding-top:24px}.dp-hero h1{font-size:28px;letter-spacing:-1px}.dp-main{padding:20px 16px}}
+.dp-answer{margin:12px 0 0;font-size:16px;line-height:1.6;color:#4b5565;word-break:keep-all}
+@media(max-width:680px){.dp-answer{margin-top:8px;font-size:14px}}
