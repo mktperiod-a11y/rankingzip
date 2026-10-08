@@ -45,9 +45,9 @@ export function weeklyPage(d: Weekly): RankingPage {
     source: `Anime Corner · ${d.year} ${d.season[0].toUpperCase()}${d.season.slice(1)} ${d.week}주차 순위`, sourceUrl: d.source,
     rows: d.rows.map((r) => ({ name: nameOf(r), value: r.votes, note: r.title, rank: r.rank, ...image(r) })),
     faq: [
-      ['이번 시즌 가장 인기 있는 애니메이션은?', `${season} ${d.week}주차 투표 기준 ${nameOf(top)}이 ${top.votes}로 1위입니다.`],
+      ['이 주차 투표의 1위 애니메이션은?', `${season} ${d.week}주차 투표 1위는 ${nameOf(top)}입니다. 득표율은 ${top.votes}입니다.`],
       ['어떤 투표인가요?', 'Anime Corner 독자가 그 주에 방영된 회차 중 가장 좋았던 작품에 투표한 결과입니다. 영어권 팬이 주로 참여합니다.'],
-      ['언제 바뀌나요?', '시즌 중에는 매주 새 투표 결과가 나오며, 새 회차가 발표되면 자동으로 바뀝니다.'],
+      ['언제 바뀌나요?', '매주 수·토요일에 새 투표 결과를 확인합니다. 수집과 검증이 성공하면 반영하며, 새 자료가 없으면 기존 시즌·주차를 유지합니다.'],
       TITLE_FAQ,
     ],
     auditDate: dot(d.checkedAt),
