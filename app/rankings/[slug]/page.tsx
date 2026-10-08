@@ -159,10 +159,6 @@ export default async function RankingDetail({
   const max = values ? Math.max(...values) : 0;
   const podium = !p.unranked && !p.divisions && p.rows.length >= 3;
   const start = podium ? 3 : 0;
-  const points =
-    p.slug === "file-sharing-services"
-      ? p.rows.slice(0, 3).map((row, i) => `${i + 1}등 : ${row.name}`)
-      : [];
   const related = pages
     .filter((x) => !x.noindex && x.category === p.category && x.slug !== p.slug)
     .slice(0, 4);
@@ -324,9 +320,6 @@ export default async function RankingDetail({
                 <p className="dp-count-note">
                   {rankingCountExceptions[p.slug]}
                 </p>
-              )}
-              {points.length > 0 && (
-                <p className="dp-lede">{points.join(" · ")}</p>
               )}
               {podium && (
                 <ol className={`dp-podium ${poster ? "poster" : ""}${wide}`}>
