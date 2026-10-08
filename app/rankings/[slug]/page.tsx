@@ -6,6 +6,8 @@ import { rankingCountExceptions } from "../completion";
 import { PERSON_SLUGS, portraitOf } from "../portraits";
 import { notFound } from "next/navigation";
 import { BrandLogo } from "../../brand-logo";
+import { SITE_URL } from "../../links";
+import { answerOf, updatedOf } from "../summary";
 import "./ranking.css";
 
 export const imageByName: Record<string, string> = {
@@ -45,24 +47,25 @@ export async function generateMetadata({
   const og = [
     { url: "og.png", width: 1200, height: 630, alt: `${p.title} | 순위ZIP` }
   ];
+  const description = [answerOf(p), p.description].filter(Boolean).join(" ");
   return {
     title: `${p.title} | 순위ZIP`,
-    description: p.description,
+    description,
     robots: p.noindex ? { index: false, follow: true } : undefined,
-    alternates: { canonical: `rankings/${slug}` },
+    alternates: { canonical: `rankings/${slug}/` },
     openGraph: {
       title: p.title,
-      description: p.description,
+      description,
       type: "article",
       locale: "ko_KR",
       siteName: "순위ZIP",
-      url: `rankings/${slug}`,
+      url: `rankings/${slug}/`,
       images: og
     },
     twitter: {
       card: "summary_large_image",
       title: p.title,
-      description: p.description,
+      description,
       images: og
     }
   };
@@ -126,30 +129,62 @@ export default async function RankingDetail({
   const { slug } = await params;
   const p = pageBySlug[slug];
   if (!p) notFound();
+  const url = `${SITE_URL}/rankings/${p.slug}/`;
+  const answer = answerOf(p);
+  const updated = updatedOf(p);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": p.title,
-    "description": p.description,
-    "numberOfItems": p.rows.length,
-    "itemListOrder": p.unranked
-      ? "https://schema.org/ItemListUnordered"
-      : "https://schema.org/ItemListOrderAscending",
-    "itemListElement": p.rows.map((r, i) => ({
-      "@type": "ListItem",
-      "position": r.rank ?? i + 1,
-      "name": r.name,
-      "description": `${r.value} · ${r.note}`
-    }))
-  };
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": p.faq.map(([q, a]) => ({
-      "@type": "Question",
-      "name": q,
-      "acceptedAnswer": { "@type": "Answer", "text": a }
-    }))
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": url,
+        "url": url,
+        "name": p.title,
+        "description": [answer, p.description].filter(Boolean).join(" "),
+        "inLanguage": "ko-KR",
+        "isPartOf": { "@id": `${SITE_URL}/#website` },
+        "publisher": { "@id": `${SITE_URL}/#organization` },
+        "breadcrumb": { "@id": `${url}#breadcrumb` },
+        "mainEntity": { "@id": `${url}#list` },
+        ...(updated && { "dateModified": updated }),
+        ...(p.sourceUrl && { "isBasedOn": p.sourceUrl }),
+        ...(p.source && { "citation": p.source })
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "순위ZIP", "item": `${SITE_URL}/` },
+          { "@type": "ListItem", "position": 2, "name": p.title, "item": url }
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#list`,
+        "name": p.title,
+        "numberOfItems": p.rows.length,
+        "itemListOrder": p.unranked
+          ? "https://schema.org/ItemListUnordered"
+          : "https://schema.org/ItemListOrderAscending",
+        "itemListElement": p.rows.map((r, i) => ({
+          "@type": "ListItem",
+          "position": r.rank ?? i + 1,
+          "name": r.name,
+          "description": [r.value, r.note].filter(Boolean).join(" · ")
+        }))
+      },
+      ...(p.faq.length
+        ? [{
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            "mainEntity": p.faq.map(([q, a]) => ({
+              "@type": "Question",
+              "name": q,
+              "acceptedAnswer": { "@type": "Answer", "text": a }
+            }))
+          }]
+        : [])
+    ]
   };
   const json = (value: unknown) =>
     JSON.stringify(value).replace(/</g, "\\u003c");
@@ -186,12 +221,6 @@ export default async function RankingDetail({
           dangerouslySetInnerHTML={{ __html: json(schema) }}
         />
       )}
-      {p.faq.length > 0 && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: json(faqSchema) }}
-        />
-      )}
       <header className="site-header">
         <div className="header-inner">
           <BrandLogo href="/" />
@@ -208,6 +237,7 @@ export default async function RankingDetail({
               {p.category} {p.unranked && !p.divisions ? "GUIDE" : "RANKING"}
             </p>
             <h1>{p.title}</h1>
+            {answer && <p className="dp-answer">{answer}</p>}
           </div>
         </div>
       </section>
@@ -522,7 +552,7 @@ export default async function RankingDetail({
               <ul>
                 {related.map((x) => (
                   <li key={x.slug}>
-                    <a href={`/rankings/${x.slug}`}>
+                    <a href={`/rankings/${x.slug}/`}>
                       <span>{x.title}</span>
                       <b>→</b>
                     </a>
