@@ -20,7 +20,6 @@ const DATA_LABEL: Record<string, string> = {
  
  
   'korea-highest-mountains': '산림청·국립공원공단 고도 데이터',
-  'korea-ott-users': '와이즈앱 2025년 4월 데이터',
   'korea-mobile-games-users': '모바일인덱스 2026년 8월 데이터',
  
   'file-sharing-services': '순위ZIP 자체 선정',

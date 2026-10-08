@@ -27,17 +27,35 @@ export function reshuffle(items, rng = Math.random, pMove = 0.3, pTwo = 0.9) {
 }
 
 export function fill(items, pool) {
-  const blocked = new Set(pool.blocked ?? []);
-  const shown = items.filter((it) => !blocked.has(it.name)).sort((a, b) => a.base - b.base).map((it, i) => ({ ...it, base: i + 1 }));
-  const reserve = (pool.reserve ?? []).filter((it) => !blocked.has(it.name) && !shown.some((x) => x.name === it.name));
-  const added = [];
-  while (shown.length < SHOWN && reserve.length) {
-    const { icon, ...next } = reserve.shift();
-    added.push({ name: next.name, icon });
-    shown.push({ ...next, base: shown.length + 1, rank: shown.length + 1, prevRank: null });
+  const normalize = (name) => name.normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+  const blocked = new Set((pool.blocked ?? []).map(normalize));
+  const allowed = (it) => !blocked.has(normalize(it.name));
+  const required = new Set(pool.required ?? []);
+  const unique = new Map();
+  for (const it of [...items, ...(pool.reserve ?? [])].filter(allowed)) {
+    if (!unique.has(it.name)) unique.set(it.name, it);
   }
-  const ranked = [...shown].sort((a, b) => a.rank - b.rank).map((it, i) => ({ ...it, rank: i + 1 }));
+  const all = [...unique.values()];
+  const selected = [...all.filter(it => required.has(it.name)), ...all.filter(it => !required.has(it.name))].slice(0, SHOWN);
+  const names = new Set(selected.map(it => it.name));
+  const previous = new Map(items.map(it => [it.name, it]));
+  selected.sort((a, b) => (a.base ?? SHOWN + 1) - (b.base ?? SHOWN + 1));
+  const added = selected.filter(it => !previous.has(it.name)).map(it => ({ name: it.name, icon: it.icon }));
+  const ranked = selected.map((entry, i) => {
+    const it = { ...entry }; delete it.icon;
+    return { ...it, base: i + 1, rank: previous.get(it.name)?.rank ?? SHOWN + 1, prevRank: previous.get(it.name)?.rank ?? null };
+  }).sort((a, b) => a.rank - b.rank).map((it, i) => ({ ...it, rank: i + 1 }));
+  const reserve = all.filter(it => !names.has(it.name)).map(entry => {
+    const it = { ...entry }; delete it.base; delete it.rank; delete it.prevRank; return it;
+  });
   return { items: ranked, pool: { ...pool, reserve }, added };
+}
+
+export function updateRanking(previous, pool, rng = Math.random) {
+  const filled = fill(previous, pool);
+  const ranks = new Map(previous.map(it => [it.name, it.rank]));
+  const items = reshuffle(filled.items, rng).map(it => ({ ...it, prevRank: ranks.get(it.name) ?? null }));
+  return { ...filled, items };
 }
 
 const todayKst = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
@@ -45,8 +63,8 @@ const todayKst = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0,
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const dryRun = process.argv.includes('--dry-run');
   const data = JSON.parse(fs.readFileSync(path.resolve(FILE), 'utf8'));
-  const { items: filled, pool, added } = fill(data.items, JSON.parse(fs.readFileSync(POOL, 'utf8')));
-  const items = reshuffle(filled).sort((a, b) => a.rank - b.rank);
+  const { items: nextItems, pool, added } = updateRanking(data.items, JSON.parse(fs.readFileSync(POOL, 'utf8')));
+  const items = nextItems.sort((a, b) => a.rank - b.rank);
   for (const it of items) {
     const d = it.prevRank - it.rank;
     console.log(`${String(it.rank).padStart(2)}. ${it.name} ${it.prevRank == null ? 'NEW' : d > 0 ? `▲${d}` : d < 0 ? `▼${-d}` : '-'}`);

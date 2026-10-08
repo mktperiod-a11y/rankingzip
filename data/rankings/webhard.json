@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07",
+  "updatedAt": "2026-10-08",
   "items": [
     {
       "name": "온디스크",
@@ -38,36 +38,36 @@
       "prevRank": 5
     },
     {
-      "name": "파일마루",
-      "url": "https://www.filemaru.com/",
-      "base": 6,
-      "rank": 6,
-      "prevRank": 6
-    },
-    {
       "name": "빅파일",
       "url": "https://www.bigfile.co.kr/",
       "base": 7,
-      "rank": 7,
+      "rank": 6,
       "prevRank": 7
+    },
+    {
+      "name": "파일보고",
+      "url": "https://www.filebogo.com/",
+      "base": 9,
+      "rank": 7,
+      "prevRank": 10
+    },
+    {
+      "name": "파일마루",
+      "url": "https://www.filemaru.com/",
+      "base": 6,
+      "rank": 8,
+      "prevRank": 6
     },
     {
       "name": "파일몽",
       "url": "https://www.filemong.com/",
       "base": 8,
-      "rank": 8,
-      "prevRank": null
-    },
-    {
-      "name": "파일시티",
-      "url": "https://www.filecity.co.kr/",
-      "base": 9,
       "rank": 9,
-      "prevRank": null
+      "prevRank": 8
     },
     {
-      "name": "파일보고",
-      "url": "https://www.filebogo.com/",
+      "name": "애플파일",
+      "url": "https://www.applefile.com/",
       "base": 10,
       "rank": 10,
       "prevRank": null

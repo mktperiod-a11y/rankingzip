@@ -83,5 +83,10 @@
     "image": "/ranking-images/apps/filebogo.jpg",
     "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EB%B3%B4%EA%B3%A0/id6766728476",
     "app": "파일보고"
+  },
+  "애플파일": {
+    "image": "/ranking-images/apps/applefile.jpg",
+    "source": "https://apps.apple.com/kr/app/%EC%95%A0%ED%94%8C%ED%8C%8C%EC%9D%BC/id783487682",
+    "app": "애플파일"
   }
 }
