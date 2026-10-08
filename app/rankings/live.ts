@@ -1,0 +1,173 @@
+// 자동 갱신 순위의 화면 문구. 데이터는 data/rankings/live/<순위 주소>.json에 있고,
+// scripts/update-records.mjs가 원자료(게임트릭스·KOBIS·Box Office Mojo·The Numbers·다나와·KBO·UFC)에서 매주 받아 옵니다.
+// 영어 제목·이름의 한국어 표기는 data/rankings/names-ko.json에서 찾고, 없으면 원문을 그대로 씁니다.
+// 이미지는 data/rankings/live-images.json(이름 → 포스터·로고)에서 찾아 이어 씁니다. 새 항목은 이미지를 추가할 때까지 이니셜로 보입니다.
+// 인물 사진(KBO 선수·UFC)은 portraits.ts가 따로 붙입니다.
+import type { Division, RankingPage, RankingRow } from './data';
+import names from '../../data/rankings/names-ko.json';
+import pcbang from '../../data/rankings/live/korea-pc-games-share.json';
+import boxOffice from '../../data/rankings/live/korea-box-office-2026.json';
+import admissions from '../../data/rankings/live/korean-movie-admissions.json';
+import worldBox from '../../data/rankings/live/worldwide-box-office-2026.json';
+import spiderMan from '../../data/rankings/live/spider-man-worldwide-box-office.json';
+import carSales from '../../data/rankings/live/korea-car-sales.json';
+import kboTeams from '../../data/rankings/live/kbo-team-standings-2026.json';
+import kboHr from '../../data/rankings/live/kbo-home-runs-2026.json';
+import kboRbi from '../../data/rankings/live/kbo-rbi-2026.json';
+import ufc from '../../data/rankings/live/ufc-rankings-by-division.json';
+import liveImages from '../../data/rankings/live-images.json';
+import { KBO_LOGO } from './portraits';
+
+type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'description' | 'rows' | 'faq' | 'divisions' | 'auditDate' | 'auditNote' | 'sourceUrl'>>;
+const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string> };
+const dot = (iso: string) => iso.replaceAll('-', '.');
+const md = (iso: string) => { const [, m, d] = iso.split('-').map(Number); return `${m}월 ${d}일`; };
+const won = (n: number) => n.toLocaleString('en-US');
+const movie = (en: string) => N.movies[en] ?? en;
+const person = (en: string) => N.people[en] ?? en;
+const tenK = (n: number) => `${Math.round(n / 10000).toLocaleString('en-US')}만`;
+const usd = (n: number) => `${(n / 100000000).toFixed(1)}억 달러`;
+
+const BUILDERS: Record<string, () => Live> = {
+  'korea-pc-games-share': () => {
+    const d = pcbang, top = d.rows[0];
+    return {
+      date: `${dot(d.date)} 기준`, dataLabel: `게임트릭스 ${dot(d.date)} 데이터`, auditDate: dot(d.checkedAt),
+      description: `전국 PC방에서 이용 시간이 가장 많은 PC 게임 TOP 10입니다. 국내 PC 게임은 사용자 수가 공개되지 않아 PC방 이용 점유율로 비교합니다. ${top.name}가 ${top.share}%로 1위입니다.`,
+      rows: d.rows.map((r) => ({ name: r.name, value: `${r.share}%`, note: 'PC방 이용 시간 점유율', rank: r.rank })),
+      faq: [
+        ['왜 사용자 수가 아니라 점유율인가요?', '국내 PC 게임은 게임사가 사용자 수를 정기적으로 공개하지 않습니다. 대신 전국 PC방 이용 시간을 집계한 점유율이 매일 공개됩니다.'],
+        ['집에서 하는 사람도 포함되나요?', '아니요. PC방 이용만 집계하므로 집에서 많이 하는 게임은 실제보다 낮게 나올 수 있습니다.'],
+        ['PC방 점유율 1위는?', `${md(d.date)} 기준 ${top.name}로 ${top.share}%입니다.`],
+      ],
+      auditNote: '게임트릭스 PC방 게임 순위 TOP 10을 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'korea-box-office-2026': () => {
+    const d = boxOffice, top = d.rows[0];
+    return {
+      date: `${dot(d.checkedAt)} 조회`, dataLabel: `KOBIS ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), sourceUrl: d.source,
+      description: `${d.year}년 상영기간에 집계된 국내 관객 상위 10편입니다. 1위는 ${top.title}(${tenK(top.audience)} 명)입니다. 이전 연도 개봉작도 포함하며 상영 중인 작품은 순위가 바뀔 수 있습니다.`,
+      rows: d.rows.map((r) => ({ name: r.title, value: `${won(r.audience)}명`, note: `${r.openDt} 개봉`, rank: r.rank })),
+      faq: [
+        [`${d.year}년 국내 관객 1위 영화는?`, `${md(d.checkedAt)} 조회 기준 ${top.title}로 ${won(top.audience)}명입니다.`],
+        ['어떤 작품을 비교하나요?', '국내 개봉작을 비교하며 한국영화와 외국영화를 모두 포함합니다.'],
+        ['수치는 계속 바뀌나요?', '상영 실적과 KOBIS 보정이 반영되면 순위와 수치가 달라질 수 있습니다.'],
+      ],
+      auditNote: 'KOBIS 연도별 박스오피스 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'korean-movie-admissions': () => {
+    const d = admissions, top = d.rows[0];
+    return {
+      date: `${dot(d.checkedAt)} 조회`, dataLabel: `KOBIS ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt),
+      description: `국내 개봉작의 역대 누적 관객 상위 10편입니다. 1위는 ${top.title}(${tenK(top.audience)} 명)입니다. 재개봉과 집계 보정에 따라 수치가 달라질 수 있습니다.`,
+      rows: d.rows.map((r) => ({ name: r.title, value: `${won(r.audience)}명`, note: `${r.openDt} 개봉`, rank: r.rank })),
+      faq: [
+        ['역대 국내 관객 1위 영화는?', `${top.title}입니다. ${md(d.checkedAt)} 조회 기준 ${won(top.audience)}명입니다.`],
+        ['어떤 작품을 비교하나요?', '국내 개봉작을 비교하며 한국영화와 외국영화를 모두 포함합니다.'],
+        ['수치는 계속 바뀌나요?', '상영 중인 작품과 KOBIS 보정이 반영되면 순위와 수치가 달라질 수 있습니다.'],
+      ],
+      auditNote: 'KOBIS 역대 박스오피스 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'worldwide-box-office-2026': () => {
+    const d = worldBox, top = d.rows[0];
+    return {
+      date: `${dot(d.checkedAt)} 조회`, dataLabel: `Box Office Mojo ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), sourceUrl: d.source,
+      description: `올해 개봉작의 전 세계 극장 누적 매출 상위 10편을 비교합니다. 1위는 ${movie(top.title)}(${usd(top.gross)})입니다. 상영 중인 작품은 매출과 순위가 달라질 수 있습니다.`,
+      rows: d.rows.map((r) => ({ name: movie(r.title), value: `$${won(r.gross)}`, note: N.movies[r.title] ? r.title : '', rank: r.rank })),
+      faq: [
+        ['올해 세계 흥행 1위 영화는?', `${md(d.checkedAt)} 조회 기준 ${movie(top.title)}로 $${won(top.gross)}입니다.`],
+        ['극장 매출은 순이익인가요?', '아닙니다. 제작·배급·마케팅 비용을 차감하지 않은 매출입니다.'],
+      ],
+      auditNote: 'Box Office Mojo 연도별 전 세계 흥행 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'spider-man-worldwide-box-office': () => {
+    const d = spiderMan, top = d.rows[0];
+    return {
+      date: `${dot(d.checkedAt)} 조회`, dataLabel: `The Numbers ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt),
+      description: `실사와 장편 애니메이션을 함께 비교한 스파이더맨 시리즈 세계 흥행 상위 10편입니다. 1위는 ${movie(top.title)}(${usd(top.gross)})입니다. 묶음 상영·미개봉 작품은 제외합니다.`,
+      rows: d.rows.map((r) => ({ name: movie(r.title), value: `$${won(r.gross)}`, note: `${r.year ?? ''} · 전 세계 누적 매출`.replace(/^ · /, ''), rank: r.rank })),
+      faq: [
+        ['가장 흥행한 스파이더맨 영화는?', `${movie(top.title)}입니다. ${md(d.checkedAt)} 조회 기준 전 세계 $${won(top.gross)}입니다.`],
+        ['국내 관객 수 순위인가요?', '아니요. 전 세계 극장 매출을 미국 달러로 비교한 순위입니다.'],
+        ['애니메이션도 포함되나요?', '뉴 유니버스와 어크로스 더 유니버스 등 개봉한 장편 애니메이션을 포함합니다.'],
+      ],
+      auditNote: 'The Numbers 스파이더맨 시리즈 표에서 개봉작 상위 10편을 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'korea-car-sales': () => {
+    const d = carSales, top = d.rows[0];
+    const [y, m] = d.month.split('-').map(Number);
+    return {
+      date: `${y}년 ${m}월 · ${md(d.checkedAt)} 확인`, dataLabel: `다나와자동차 ${y}년 ${m}월 데이터`, auditDate: dot(d.checkedAt), sourceUrl: d.source,
+      description: `${y}년 ${m}월 국산 모델 판매량 상위 10개입니다. 1위는 ${top.brand} ${top.name}(${won(top.sales)}대)입니다. 수입 브랜드와 중고차는 포함하지 않습니다.`,
+      rows: d.rows.map((r) => ({ name: r.name, value: `${won(r.sales)}대`, note: r.brand, rank: r.rank, image: r.local ?? r.image, imageSource: r.image })),
+      faq: [
+        [`${m}월 국산차 판매 1위는 무엇인가요?`, `${top.brand} ${top.name}가 ${won(top.sales)}대로 1위입니다.`],
+        ['판매량과 등록 대수는 같나요?', '자료원과 집계 시점에 따라 일부 차이가 날 수 있습니다.'],
+        ['수입차도 포함되나요?', '이 표는 국산 모델 순위이며 수입차는 별도 집계입니다.'],
+      ],
+      auditNote: '다나와자동차 월간 판매 실적(국산)의 상위 10개 모델을 매주 수·토요일 자동으로 받아옵니다. 새 달 자료가 나오면 바뀝니다.',
+    };
+  },
+  'kbo-team-standings-2026': () => {
+    const d = kboTeams, [a, b] = d.rows;
+    return {
+      date: `${dot(d.checkedAt)} 조회`, dataLabel: `KBO ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt),
+      description: `2026 KBO 정규시즌 팀 순위입니다. ${a.team}가 승률 ${a.pct}로 1위, ${b.team}가 ${b.behind}경기 차 2위입니다. 승·패·무와 1위와의 게임 차를 함께 비교합니다.`,
+      rows: d.rows.map((r) => ({ name: r.team, value: `승률 ${r.pct}`, note: `${r.win}승 ${r.loss}패 ${r.draw}무 · 1위와 ${r.behind}경기 차`, rank: r.rank, ...(KBO_LOGO[r.team] ? { image: `/ranking-images/expansion/kbo_${KBO_LOGO[r.team]}.webp`, imageSource: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx' } : {}) })),
+      faq: [
+        ['현재 1위 팀은 어디인가요?', `${md(d.checkedAt)} 조회 기준 ${a.team}가 승률 ${a.pct}로 1위입니다.`],
+        [`${a.team}와 ${b.team}의 차이는 얼마나 되나요?`, `${b.team}는 승률 ${b.pct}로 2위이며 ${a.team}와 ${b.behind}경기 차입니다.`],
+        ['승수가 더 많은데 순위가 낮을 수 있나요?', 'KBO 정규시즌 순위는 승수만이 아니라 승률을 기준으로 정합니다. 우천 순연 등으로 팀별 경기 수가 다를 수 있습니다.'],
+      ],
+      auditNote: 'KBO 공식 팀 순위를 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'kbo-home-runs-2026': () => hitters(kboHr, '홈런', '홈런'),
+  'kbo-rbi-2026': () => hitters(kboRbi, '타점', '타점'),
+  'ufc-rankings-by-division': () => {
+    const d = ufc;
+    const divisions: Division[] = d.divisions.map((x) => ({ name: UFC_KO[x.division], champion: person(x.champion), contenders: x.contenders.map(person) }));
+    return {
+      date: `${dot(d.checkedAt)} 확인 · 공식 미디어 패널 차트`, dataLabel: `UFC ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), divisions,
+      rows: divisions.map((x) => ({ name: x.champion, value: `${x.name} 챔피언`, note: '' })),
+      auditNote: 'UFC 공식 랭킹(미디어 패널)의 남성부 8개 체급 챔피언과 1~3위를 매주 수·토요일 자동으로 받아옵니다. 별도 Meta 랭킹과 섞지 않습니다.',
+    };
+  },
+};
+const UFC_KO: Record<string, string> = { Flyweight: '플라이급', Bantamweight: '밴텀급', Featherweight: '페더급', Lightweight: '라이트급', Welterweight: '웰터급', Middleweight: '미들급', 'Light Heavyweight': '라이트헤비급', Heavyweight: '헤비급' };
+
+function hitters(d: typeof kboHr, label: string, unit: string): Live {
+  const rows: RankingRow[] = d.rows.map((r) => ({ name: N.kboPlayers[r.playerId] ?? r.name, value: `${r.value}${unit}`, note: r.team, rank: r.rank }));
+  const top = rows[0];
+  return {
+    date: `${dot(d.checkedAt)} 조회`, dataLabel: `KBO ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), rows,
+    description: `2026 KBO 정규시즌 ${label} 기록 상위 10명입니다. ${top.name}(${top.note})이 ${top.value}로 1위입니다. 동률은 공동 순위이며, 10번째에서 동률이 이어지면 공식 표의 순서로 10명까지 보여줍니다.`,
+    faq: [
+      [`${label} 1위는 누구인가요?`, `${md(d.checkedAt)} 조회 기준 ${top.name}(${top.note})으로 ${top.value}입니다.`],
+      ['포스트시즌도 포함하나요?', '정규시즌 기록만 비교합니다.'],
+      ['공동 10위가 여러 명이면 어떻게 표시하나요?', '최대 10명까지 노출하며 공식 기록표의 표시 순서를 따릅니다.'],
+    ],
+    auditNote: `KBO 공식 타자 기록(${label} 순) 상위 10명을 매주 수·토요일 자동으로 받아옵니다.`,
+  };
+}
+
+const IMAGES = liveImages as Record<string, { image: string; source?: string }>;
+
+/** 자동 갱신 데이터로 해당 순위의 날짜·항목·설명·FAQ를 바꿉니다. 이미지는 이름으로 찾아 붙입니다. */
+export function applyLive(pages: RankingPage[]): RankingPage[] {
+  return pages.map((p) => {
+    const build = BUILDERS[p.slug];
+    if (!build) return p;
+    const live = build();
+    const rowSource = p.rows[0]?.sourceUrl ? { sourceUrl: live.sourceUrl ?? p.sourceUrl } : {};
+    const rows = live.rows?.map((r) => { const known = IMAGES[r.name]; return { ...r, ...(known ? { image: known.image, imageSource: known.source } : {}), ...rowSource }; });
+    return { ...p, ...live, ...(rows ? { rows } : {}) };
+  });
+}
+
+export const LIVE_SLUGS = Object.keys(BUILDERS);
