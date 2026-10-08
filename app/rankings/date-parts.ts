@@ -1,7 +1,4 @@
-// 상세 화면 상단 라벨용으로 자료 날짜 문구를 "기준 시점"과 "업데이트(우리가 마지막으로 확인한 날)"로 나눕니다.
-// 업데이트는 문구 속 확인일, 사이트 점검일, 기준 시점에 적힌 날짜 중 가장 늦은 날입니다.
-// 예) "2026년 8월 · 9월 7일 확인" → { reference: "2026년 8월", updated: "2026.09.07" }
-const CHECKED = /(확인|조회|점검|대조|갱신)$/;
+const CHECKED = /(확인|조회|대조|갱신)$/;
 const pad = (n: string | number) => String(n).padStart(2, "0");
 
 export function dateParts(date: string, fallbackUpdated?: string) {

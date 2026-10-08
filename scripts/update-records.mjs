@@ -1,11 +1,4 @@
 #!/usr/bin/env node
-// 직접 확인하던 순위를 공개 원자료로 자동 갱신합니다. API 키가 필요 없습니다.
-// 원자료: 게임트릭스, KOBIS, Box Office Mojo, The Numbers, 다나와자동차, KBO(팀·홈런·타점·관중), UFC, KAIDA, 행정안전부
-//   node scripts/update-records.mjs                 모든 원자료를 받아 data/rankings/live/<순위 주소>.json에 저장
-//   node scripts/update-records.mjs --dry-run       저장하지 않고 결과만 출력
-//   node scripts/update-records.mjs --only kbo,ufc  일부만 실행
-// 원자료마다 따로 실행해 한 곳이 실패해도 나머지는 저장합니다. 형식이 예상과 다르면 그 순위는 저장하지 않습니다.
-// 화면 문구(설명·FAQ)는 app/rankings/live.ts가 이 데이터로 만듭니다.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,7 +11,6 @@ const text = (s) => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&#
 const num = (s) => Number(String(s).replace(/[^\d.]/g, ''));
 function check(cond, msg) { if (!cond) throw new Error(msg); }
 
-// ── 게임트릭스: 전국 PC방 게임 이용 시간 점유율 (매일 발표) ──────────────────────────
 export function parseGametrics(html) {
   const day = html.match(/id="lb_rank_date">(\d{4})년 (\d{1,2})월 (\d{1,2})일/);
   check(day, '게임트릭스: 기준일 없음');
@@ -30,7 +22,6 @@ export function parseGametrics(html) {
   return { date: `${day[1]}-${day[2].padStart(2, '0')}-${day[3].padStart(2, '0')}`, rows };
 }
 
-// ── KOBIS: 연도별·역대 박스오피스 ────────────────────────────────────────────
 export function parseKobis(html) {
   const rows = [...html.matchAll(/<td id="td_rank">\s*(\d+)\s*<\/td>\s*<td id="td_movie"[^>]*>[\s\S]*?mstView\('movie','(\d+)'\)[^>]*title="([^"]+)"[\s\S]*?<td id="td_openDt">\s*([\d-]*)\s*<\/td>[\s\S]*?<td id="td_audiAcc"[^>]*>\s*([\d,]+)\s*<\/td>/g)]
     .slice(0, TOP).map((m) => ({ rank: Number(m[1]), title: text(m[3]), movieCd: m[2], openDt: m[4], audience: num(m[5]) }));
@@ -38,7 +29,6 @@ export function parseKobis(html) {
   return { rows };
 }
 
-// ── Box Office Mojo: 연도별 전 세계 흥행 ─────────────────────────────────────
 export function parseMojoWorld(html) {
   const rows = [...html.matchAll(/mojo-field-type-rank[^>]*>(\d+)<\/td><td class="a-text-left mojo-field-type-release_group"><a class="a-link-normal" href="[^"]*">([^<]+)<\/a><\/td><td class="a-text-right mojo-field-type-money">\$([\d,]+)<\/td>/g)]
     .slice(0, TOP).map((m) => ({ rank: Number(m[1]), title: text(m[2]), gross: num(m[3]) }));
@@ -46,7 +36,6 @@ export function parseMojoWorld(html) {
   return { rows };
 }
 
-// ── The Numbers: 스파이더맨 시리즈 전 세계 흥행 (개봉작만, 묶음 상영 제외) ────────────
 export function parseNumbersFranchise(html) {
   const seen = new Set();
   const films = [...html.matchAll(/<tr>\s*<td>([^<]*)<\/td>\s*<td><b><a href="([^"]+)">([^<]+)<\/a><\/b><\/td>(?:\s*<td class='data'>([^<]*)<\/td>){4}/g)]
@@ -57,7 +46,6 @@ export function parseNumbersFranchise(html) {
   return { rows };
 }
 
-// ── 다나와자동차: 국산차 모델별 월간 판매 ─────────────────────────────────────
 const BRAND = { 303: '현대', 304: '제네시스', 307: '기아', 312: '쉐보레', 321: '르노코리아', 326: 'KGM' };
 export function parseDanawa(html, month) {
   const rows = [...html.matchAll(/<tr>\s*<td><input type='checkbox'[^>]*title='([^']+)' brand='(\d+)'><\/td>\s*<td class='rank'>(\d+)<\/td>[\s\S]*?<img src='([^']+)'[\s\S]*?<td class='num'>([\d,]+)/g)]
@@ -67,7 +55,6 @@ export function parseDanawa(html, month) {
   return { month, rows };
 }
 
-// ── KBO: 팀 순위·타자 기록 ─────────────────────────────────────────────────
 export function parseKboTeams(html) {
   const body = html.slice(html.indexOf('<tbody>'), html.indexOf('</tbody>'));
   const rows = [...body.matchAll(/<tr>\s*<td>(\d+)<\/td>\s*<td>([^<]+)<\/td>\s*<td>(\d+)<\/td>\s*<td>(\d+)<\/td>\s*<td>(\d+)<\/td>\s*<td>(\d+)<\/td>\s*<td>([\d.]+)<\/td>\s*<td>([\d.-]+)<\/td>/g)]
@@ -84,14 +71,12 @@ export function parseKboHitters(html, stat) {
   return { rows: sorted.map((r) => ({ rank: r.rank, playerId: r.playerId, name: r.name, team: r.team, value: r[key] })) };
 }
 
-// ── UFC: 공식 랭킹(미디어 패널) 남성부 8개 체급 ────────────────────────────────
 export const UFC_DIVISIONS = { Flyweight: '플라이급', Bantamweight: '밴텀급', Featherweight: '페더급', Lightweight: '라이트급', Welterweight: '웰터급', Middleweight: '미들급', 'Light Heavyweight': '라이트헤비급', Heavyweight: '헤비급' };
 export function parseUfc(html) {
   const groups = html.split('view-grouping-header">').slice(1);
   const divisions = [];
   for (const g of groups) {
     const name = text(g.slice(0, g.indexOf('<')));
-    // 같은 랭킹이 페이지 아래에 한 번 더(내용 없이) 나오므로 처음 것만 씁니다.
     if (!UFC_DIVISIONS[name] || divisions.some((d) => d.division === name)) continue;
     const champion = text(g.match(/rankings--athlete--champion[\s\S]*?<h5><a[^>]*>([^<]+)<\/a><\/h5>/)?.[1] ?? '');
     const contenders = [...g.matchAll(/views-field-weight-class-rank">(\d+)\s*<\/td>\s*<td class="views-field views-field-title"><a[^>]*>([^<]+)<\/a>/g)].slice(0, 3).map((m) => text(m[2]));
@@ -101,11 +86,9 @@ export function parseUfc(html) {
   return { divisions };
 }
 
-// ── KAIDA: 수입 승용차 브랜드별 월간 신규등록 (로그인 없이 공개되는 브랜드 월별 요약) ──────────
 const MONTHS = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
 export function parseKaida(json, month) {
   const html = json.statistics ?? '';
-  // 표의 첫 달 머리글이 요청한 달이어야 합니다(같은 표에 전월 열도 있습니다).
   const firstMonth = html.match(new RegExp(`<th>(${MONTHS.map((m) => m.replace('.', '\\.')).join('|')})</th>`))?.[1];
   check(firstMonth === MONTHS[Number(month.slice(5)) - 1], `KAIDA: ${month} 표가 아닙니다`);
   const cells = [...html.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map((m) => [...m[1].matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/g)].map((c) => text(c[1])));
@@ -118,7 +101,6 @@ export function parseKaida(json, month) {
   return { month, total: num(total[1]), rows };
 }
 
-// ── KBO: 구단별 홈 관중 (정규시즌 누적) ───────────────────────────────────────
 export function parseKboCrowd(json) {
   const teams = String(json.categories ?? '').split(',').filter(Boolean);
   const counts = json.data?.[0]?.data ?? [];
@@ -128,7 +110,6 @@ export function parseKboCrowd(json) {
   return { date: `${day[1]}-${day[2].padStart(2, '0')}-${day[3].padStart(2, '0')}`, total: rows.reduce((a, r) => a + r.crowd, 0), rows };
 }
 
-// ── 행정안전부: 시도별 주민등록 인구 (월간, CSV) ───────────────────────────────
 export function parseMoisCsv(csv) {
   const lines = csv.trim().split(/\r?\n/).map((l) => [...l.matchAll(/"([^"]*)"/g)].map((m) => m[1].trim()));
   const ym = lines[0]?.[1]?.match(/(\d{4})년(\d{2})월_총인구수/);
@@ -140,13 +121,11 @@ export function parseMoisCsv(csv) {
   return { month: `${ym[1]}-${ym[2]}`, total: nation.population, rows };
 }
 
-// ── 실행 ─────────────────────────────────────────────────────────────────
 async function get(url) {
   const res = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9,en;q=0.8' }, signal: AbortSignal.timeout(45000) });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.text();
 }
-/** 쿠키가 있어야 응답하는 사이트용: 페이지를 한 번 열어 쿠키를 받습니다. */
 async function cookies(url) {
   const res = await fetch(url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(45000) });
   return (res.headers.getSetCookie?.() ?? []).map((c) => c.split(';')[0]).join('; ');
@@ -177,7 +156,6 @@ export const SOURCES = {
       const url = `https://auto.danawa.com/auto/?Work=record&Tab=Model&Month=${month}-00`;
       let data;
       try { data = parseDanawa(await get(url), month); } catch (e) { console.log(`다나와 ${month}: ${e.message}`); continue; }
-      // 모델 사진은 다나와 이미지를 받아 둡니다(처음 보는 모델만).
       for (const r of data.rows) {
         const id = r.image.match(/photo\/(\d+)\//)?.[1];
         if (!id) continue;
@@ -231,7 +209,6 @@ export const SOURCES = {
   ufc: async () => ({ 'ufc-rankings-by-division': { source: 'https://www.ufc.com/rankings', ...parseUfc(await get('https://www.ufc.com/rankings')) } }),
 };
 
-/** 숫자·순위가 그대로면 파일을 바꾸지 않습니다(확인 날짜만 바뀌는 커밋을 막습니다). */
 function save(slug, data, dryRun) {
   const file = path.join(OUT, `${slug}.json`);
   const before = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;

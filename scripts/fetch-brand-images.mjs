@@ -1,12 +1,7 @@
 #!/usr/bin/env node
-// 서비스·게임 대표 이미지를 공식 출처에서 받습니다. 2뎁스 이미지 틀에 꽉 차게 넣기 위한 원본입니다.
-//   node scripts/fetch-brand-images.mjs
-// - 앱 서비스(OTT·웹하드): 애플 앱스토어(한국) 공식 앱 아이콘 → public/ranking-images/apps/ (앱이 없는 곳은 normalize-logos.mjs의 타일)
-// - PC 게임: 공식 사이트의 공유용 대표 이미지(og:image, 가로형) → public/ranking-images/games/pc-art-*
 import fs from 'node:fs';
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
-// [화면 이름, 파일 이름, 앱스토어 검색어, 앱 이름에 꼭 들어가야 하는 말]
 const APPS = [
   ['넷플릭스', 'netflix', 'Netflix', /^netflix$/i], ['쿠팡플레이', 'coupangplay', '쿠팡플레이', /쿠팡플레이|coupang play/i], ['티빙', 'tving', 'TVING', /tving|티빙/i],
   ['웨이브', 'wavve', 'Wavve', /wavve|웨이브/i], ['디즈니+', 'disneyplus', 'Disney+', /disney\+/i], ['U+모바일tv', 'uplus-tv', 'U+tv', /u\+\s?(모바일\s?)?tv/i],
@@ -16,7 +11,6 @@ const APPS = [
   ['파일시티', 'filecity', '파일시티', /파일시티|filecity/i],
 ];
 const PC = [
-  // 리그 오브 레전드·발로란트·서든어택·메이플 스토리 이미지는 brand-images.ts와 normalize-logos.mjs에서 따로 붙입니다.
   ['FC온라인', 'fc-online', 'https://fconline.nexon.com/'], ['배틀그라운드', 'pubg', 'https://pubg.com/ko/main'],
   ['리니지 클래식', 'lineage-classic', 'https://lineageclassic.plaync.com/ko-kr'], ['오버워치', 'overwatch', 'https://overwatch.blizzard.com/ko-kr/'],
   ['Roblox', 'roblox', 'https://www.roblox.com/'], ['스타크래프트', 'starcraft', 'https://starcraft.blizzard.com/ko-kr'],

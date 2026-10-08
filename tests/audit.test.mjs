@@ -11,13 +11,12 @@ const detail=fs.readFileSync('app/rankings/[slug]/page.tsx','utf8');
 const map=JSON.parse(detail.match(/export const imageByName[^=]*= (\{[\s\S]*?\n\});/)[1]);
 test('all 38 pages have explicit audit decisions and no broken local row images',()=>{
  assert.equal(pages.length,38);assert.equal(new Set(pages.map(p=>p.slug)).size,38);
- for(const p of pages){assert.ok(p.auditDate,p.slug);for(const r of p.rows){const src=r.image||map[r.name];if(!src)continue;// 출처가 확인된 이미지가 없으면 이니셜로 보여줍니다(임시 그림을 만들어 넣지 않음)
+ for(const p of pages){assert.ok(p.auditDate,p.slug);for(const r of p.rows){const src=r.image||map[r.name];if(!src)continue;
  assert.ok(src,`${p.slug}: missing ${r.name}`);if(src.startsWith('/'))assert.ok(fs.statSync('public'+src).size>100,src);assert.ok(!src.includes('unsplash'),`unverified stock image ${p.slug}`);}}
 });
 test('new season rankings and imported brands are complete and linked',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));
  const hr=by['kbo-home-runs-2026'],rbi=by['kbo-rbi-2026'],cars=by['korea-import-car-brands'];
- // 홈런·타점은 자동 갱신 데이터(data/rankings/live)와 화면 값이 같아야 합니다.
  const live=(slug)=>JSON.parse(fs.readFileSync(`data/rankings/live/${slug}.json`,'utf8'));
  assert.deepEqual(Array.from(hr.rows,r=>r.value),live('kbo-home-runs-2026').rows.map(r=>`${r.value}홈런`));
  assert.deepEqual(Array.from(rbi.rows,r=>r.value),live('kbo-rbi-2026').rows.map(r=>`${r.value}타점`));
@@ -26,9 +25,7 @@ test('new season rankings and imported brands are complete and linked',()=>{
  const {slugByTitle}=load('app/rankings/data.ts');
  const home=fs.readFileSync('app/home.tsx','utf8');
  for(const p of [hr,rbi,cars]){assert.equal(slugByTitle[p.title],p.slug);assert.ok(home.includes(p.title));assert.ok(p.faq.length>=2);}
- // 브랜드 로고가 있으면 expansion 폴더의 로고여야 하고, 처음 순위에 든 브랜드는 로고를 추가할 때까지 이니셜입니다.
  for(const r of cars.rows){assert.ok(r.sourceUrl);if(r.image)assert.ok(r.image.startsWith('/ranking-images/expansion/')&&r.imageSource);}
- // 선수 사진: 위키미디어 자유 이용 사진(작가·라이선스 기록)이 있으면 그 사진, 없으면 구단 로고. 공식 사이트 사진은 쓰지 않습니다.
  const credits=JSON.parse(fs.readFileSync('public/ranking-images/portraits/credits.json','utf8'));
  for(const r of [...hr.rows,...rbi.rows]){assert.ok(r.sourceUrl);const c=credits[r.name];if(c){assert.equal(r.image,c.image);assert.ok(c.author&&c.license&&c.source);}else assert.match(r.image,/^\/ranking-images\/expansion\/kbo_\w+\.webp$/);assert.ok(fs.existsSync(`public${r.image}`));}
 });

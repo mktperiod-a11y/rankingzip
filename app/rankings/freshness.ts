@@ -1,8 +1,3 @@
-// 홈 카드의 갱신 표시. 순위마다 자료가 바뀌는 방식이 달라 세 가지로 나눕니다.
-// - auto: GitHub Actions가 원자료를 자동으로 받아 갱신. 라벨은 마지막으로 새 자료를 받은 날, 아래 문구는 실제 실행 주기입니다.
-// - checked: 사람이 원자료 발표에 맞춰 직접 확인. 라벨은 마지막 확인일, 아래 문구는 원자료 발표 주기입니다.
-// - fixed: 역대 기록·지형처럼 사실상 바뀌지 않는 순위. 라벨은 "변동 없음"이고 주기 문구는 없습니다.
-// 자동 갱신 일정은 .github/workflows/update-data.yml(넷플릭스·애니·기록 순위), update-webhard.yml(웹하드)에 있습니다.
 export type Freshness = { kind: 'auto' | 'checked' | 'fixed'; cycle?: string };
 
 const auto = (cycle: string): Freshness => ({ kind: 'auto', cycle });

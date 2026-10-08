@@ -1,8 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-// Pages replaces old hashed assets on deploy. Keep each HTML document's matching
-// styles inside that document as well, so a cached page can still render.
 export function inlinePageStyles(html, outDir, base = '') {
   return html.replace(/<link\b[^>]*\brel="stylesheet"[^>]*>/g, tag => {
     const href = tag.match(/\bhref="([^"]+)"/)?.[1];

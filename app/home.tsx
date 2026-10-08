@@ -12,7 +12,6 @@ type Category = "전체" | "스포츠" | "미디어" | "라이프" | "IT·게임
 
 const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "IT·게임", "글로벌"];
 
-// 히어로 질문 순서를 숫자 대신 금·은·동 트로피로 보여줍니다. 색은 순위 페이지의 1~3위 메달과 같습니다.
 const TROPHY_COLORS = [["#ffd45a", "#e3a300"], ["#d9dee6", "#9aa4b2"], ["#f0b07a", "#c06a2b"]];
 function Trophy({ rank }: { rank: number }) {
   const [from, to] = TROPHY_COLORS[rank];
@@ -26,9 +25,8 @@ function Trophy({ rank }: { rank: number }) {
   </svg>;
 }
 
-// 히어로 카드 질문 3개씩 3세트. 5초마다 다음 세트로 넘어갑니다(답은 보여주지 않습니다).
 const heroQuestions = [
-  { icon: "⚾", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
+  { icon: "⚾️", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
   { icon: "🍿", question: "이번 주 넷플릭스 영화 1위는?", slug: "netflix-korea-films-weekly" },
   { icon: "🚗", question: "가장 많이 팔린 수입차 브랜드는?", slug: "korea-import-car-brands" },
   { icon: "🎬", question: "올해 극장 관객 1위 영화는?", slug: "korea-box-office-2026" },
@@ -58,7 +56,7 @@ const rankings = [
   { category: "스포츠", icon: "🎟️", title: "2026 KBO 구단 관중", color: "blue" },
   { category: "미디어", icon: "📺", title: "OTT 인기 콘텐츠", color: "pink" },
   { category: "라이프", icon: "🚙", title: "국내 자동차 판매량", color: "navy" },
-  { category: "스포츠", icon: "⚽", title: "한국 축구선수 연봉", color: "green" },
+  { category: "스포츠", icon: "⚽️", title: "한국 축구선수 연봉", color: "green" },
   { category: "미디어", icon: "🌏", title: "2026년 세계 영화 흥행", color: "purple" },
   { category: "스포츠", icon: "💵", title: "MLB 한국 선수 역대 연봉", color: "blue" },
   { category: "스포츠", icon: "🥊", title: "UFC 체급별 랭킹", color: "red" },
@@ -81,11 +79,8 @@ const rankings = [
   { category: "라이프", icon: "✈️", title: "세계 관광객 방문 국가", color: "purple" },
 ];
 
-
-// 카드 아래 줄: 이 순위가 얼마나 자주 업데이트되는지. 없으면 "기록 경신 때"입니다.
 const ADULT = new Set(["japan-av-actress-ranking"]);
 
-/** 카드 오른쪽 위 라벨: 자동 갱신은 "10.04 갱신", 직접 확인은 "10.07 확인", 바뀌지 않는 순위는 "변동 없음" */
 function updatedLabel(slug: string) {
   const p = pageBySlug[slug];
   const f = FRESHNESS[slug];
@@ -94,17 +89,14 @@ function updatedLabel(slug: string) {
   return updated ? `${updated.slice(5)} ${f?.kind === "auto" ? "갱신" : "확인"}` : "";
 }
 
-/** 카드 아래 문구: 자동 갱신은 실제 실행 주기, 직접 확인은 원자료 발표 주기 */
 function cycleText(slug: string) {
   const f = FRESHNESS[slug];
   if (!f || f.kind === "fixed") return null;
   return <span><em>{f.cycle}</em> {f.kind === "auto" ? "자동 업데이트돼요" : "업데이트돼요"}</span>;
 }
 
-/** HOT 띠에 쓰는 짧은 순위 이름: "2026 KBO 팀 순위" → "KBO 팀" */
 const topic = (title: string) => title.replace(/\s*·\s*\d{4}년 \d+월$/, "").replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
 
-// HOT 줄은 공개 순위 중 5개를 사이트를 만든 날(한국 시간) 기준으로 무작위로 고릅니다. 같은 날에는 같은 5개가 나옵니다.
 function hotRankings(day: string, count = 5) {
   const listed = new Set(Object.values(slugByTitle));
   const pool = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug)).map((p) => p.slug).sort();
@@ -114,16 +106,12 @@ function hotRankings(day: string, count = 5) {
   return pool.slice(0, count);
 }
 
-
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
-
 
 export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; trendsAt?: string; hotDay: string }) {
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
-  // "지금 주목할 랭킹" 제목 글자를 실시간 검색어판처럼 몇 초마다 위에서부터 한 장씩 넘겨 다시 보여줍니다.
   const [flip, setFlip] = useState(0);
-  // 히어로 카드 세트: 5초마다 다음 세트. 마우스를 올리거나 키보드로 고르면 멈춥니다.
   const [heroSet, setHeroSet] = useState(0);
   const [heroPaused, setHeroPaused] = useState(false);
   useEffect(() => {
@@ -172,7 +160,6 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
       </section>
 
       <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
-        {/* 주식 전광판처럼 왼쪽으로 계속 흐릅니다. 같은 목록을 두 번 이어 붙여 끊김 없이 돌고, 마우스를 올리면 멈춥니다. */}
         <div className="ticker-track"><div className="ticker-run">{[0, 1, 2, 3].map((copy) => hotRankings(hotDay).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
       </div></section>
 

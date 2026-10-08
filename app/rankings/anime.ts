@@ -1,7 +1,3 @@
-// 애니메이션 순위 두 가지. 데이터는 data/rankings/anime-*.json에 있고,
-// scripts/update-anime.mjs가 매주 공개 자료로 갱신합니다. 이 파일은 그 데이터로 화면 문구를 만듭니다.
-// - 역대 인기: AniList 회원이 자기 목록에 담은 수(전 세계). 같은 작품의 후속 시즌·외전은 첫 작품 하나만 셉니다.
-// - 이번 시즌 인기: Anime Corner 주간 팬 투표(영어권 팬) 최신 회차의 득표율
 import type { RankingPage } from './data';
 import allTimeData from '../../data/rankings/anime-all-time.json';
 import weeklyData from '../../data/rankings/anime-weekly.json';
@@ -34,7 +30,7 @@ export function allTimePage(d: AllTime): RankingPage {
       ['시즌별로 따로 세지 않나요?', '같은 작품의 2기·3기·외전은 빼고 첫 작품만 셉니다. 예를 들어 진격의 거인 2기는 진격의 거인에 포함되지 않고 순위에서 제외됩니다.'],
       TITLE_FAQ,
     ],
-    auditDate: dot(d.checkedAt), auditNote: 'AniList 인기순(popularity) 상위 50개에서 같은 작품의 후속 시즌·외전을 뺀 상위 10개를 매주 자동으로 받아옵니다.',
+    auditDate: dot(d.checkedAt),
   };
 }
 
@@ -54,7 +50,7 @@ export function weeklyPage(d: Weekly): RankingPage {
       ['언제 바뀌나요?', '시즌 중에는 매주 새 투표 결과가 나오며, 새 회차가 발표되면 자동으로 바뀝니다.'],
       TITLE_FAQ,
     ],
-    auditDate: dot(d.checkedAt), auditNote: 'Anime Corner 최신 주간 투표 글의 순위표 상위 10개를 매주 자동으로 받아옵니다. 포스터는 AniList에서 같은 작품을 찾아 붙입니다.',
+    auditDate: dot(d.checkedAt),
   };
 }
 

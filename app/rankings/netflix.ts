@@ -1,5 +1,3 @@
-// 넷플릭스 대한민국 주간 TOP 10. 순위 데이터는 data/rankings/*.json에 있고,
-// scripts/update-netflix.mjs가 매주 넷플릭스 공개 데이터로 갱신합니다. 이 파일은 그 데이터로 화면 문구를 만듭니다.
 import type { RankingPage } from './data';
 import filmsData from '../../data/rankings/netflix-korea-films-weekly.json';
 import tvData from '../../data/rankings/ott-content-weekly.json';
@@ -18,14 +16,12 @@ type ChartContent = Pick<RankingPage, 'date' | 'description' | 'rows' | 'faq'>;
 const parts = (iso: string) => { const [y, m, d] = iso.split('-').map(Number); return { y, m, d }; };
 const pad = (n: number) => String(n).padStart(2, '0');
 
-/** "2026.09.14~09.20 · 9월 24일 확인" */
 function dateLine(c: WeeklyChart) {
   const s = parts(c.weekStart), e = parts(c.weekEnd), k = parts(c.checkedAt);
   const end = s.y === e.y ? `${pad(e.m)}.${pad(e.d)}` : `${e.y}.${pad(e.m)}.${pad(e.d)}`;
   return `${s.y}.${pad(s.m)}.${pad(s.d)}~${end} · ${k.m}월 ${k.d}일 확인`;
 }
 
-/** "9월 14일부터 20일까지" (repeatMonth면 "9월 14일부터 9월 20일까지"). 달이 바뀌면 항상 "9월 28일부터 10월 4일까지" */
 function spanKo(c: WeeklyChart, repeatMonth = false) {
   const s = parts(c.weekStart), e = parts(c.weekEnd);
   return `${s.m}월 ${s.d}일부터 ${repeatMonth || s.m !== e.m ? `${e.m}월 ` : ''}${e.d}일까지`;
@@ -36,7 +32,6 @@ const manualKo = titlesKo as Record<string, string>;
 const koOf = (r: WeeklyChart['rows'][number]) => r.titleKo || manualKo[r.title];
 const nameOf = (r: WeeklyChart['rows'][number]) => koOf(r) || r.title;
 
-/** "Season 2" → "시즌 2", "Limited Series" → "리미티드 시리즈", "Part 33" → "파트 33" */
 export function seasonKo(season: string) {
   return season.replace(/\bLimited Series\b/i, '리미티드 시리즈').replace(/\bSeason (\d+)/i, '시즌 $1').replace(/\bPart (\d+)/i, '파트 $1').replace(/\bVolume (\d+)/i, '볼륨 $1');
 }

@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-// 모바일 게임 순위의 게임 아이콘을 애플 앱스토어(한국) 공식 앱 아이콘으로 받습니다. 웹하드 로고처럼 서비스 식별용입니다.
-//   node scripts/fetch-game-icons.mjs → public/ranking-images/games/*.png, sources.json
 import fs from 'node:fs';
 
 const OUT = 'public/ranking-images/games';
-// [화면 이름, 앱스토어 검색어, 앱 이름에 꼭 들어가야 하는 말]
 const GAMES = [
   ['Roblox', 'Roblox', /roblox/i], ['블록 블라스트', 'Block Blast', /block blast|블록 블라스트/i], ['Pokemon GO', 'Pokemon GO', /pok[eé]mon go/i],
   ['브롤스타즈', 'Brawl Stars', /brawl stars|브롤스타즈/i], ['로얄 매치', 'Royal Match', /royal match|로얄 매치/i], ['Minecraft', 'Minecraft', /^minecraft/i],

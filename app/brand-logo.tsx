@@ -1,4 +1,3 @@
-// 순위ZIP 로고. 메인과 순위 상세 화면이 함께 씁니다.
 export function BrandLogo({ footer = false, href = "#top" }: { footer?: boolean; href?: string }) {
   return (
     <a className={`logo${footer ? " footer-logo" : ""}`} href={href} aria-label="순위ZIP 홈">
