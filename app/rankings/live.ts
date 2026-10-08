@@ -174,7 +174,8 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
   'ufc-rankings-by-division': () => {
     const d = ufc;
     const divisions: Division[] = d.divisions.map((x) => ({ name: UFC_KO[x.division], limit: UFC_LIMIT[x.division], champion: person(x.champion), contenders: x.contenders.map(person) }));
-    const p4p = ((d as { p4p?: string[] }).p4p ?? []).map(person);
+    const rank = (n: string) => { for (const x of divisions) { if (x.champion === n) return `${x.name} 챔피언`; const i = x.contenders.indexOf(n); if (i >= 0) return `${x.name} ${i + 1}위`; } return undefined; };
+    const p4p = ((d as { p4p?: string[] }).p4p ?? []).map(person).map((name) => ({ name, note: rank(name) }));
     return {
       date: `${dot(d.checkedAt)} 확인`, dataLabel: `UFC ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), divisions, p4p,
       description: 'UFC 남성부 8개 체급의 챔피언과 랭킹 1~3위, 체급과 상관없는 P4P 순위입니다.',
@@ -182,7 +183,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       faq: [
         ['UFC 랭킹은 누가 정하나요?', 'UFC가 선정한 미디어 패널의 투표로 정합니다.'],
         ['챔피언도 1위에 포함되나요?', '아니요. 챔피언은 따로 두고, 그 아래부터 1위가 시작됩니다.'],
-        ['P4P는 무엇인가요?', '체급 차이를 빼고 선수의 종합 기량을 비교한 순위입니다.'],
+        ['P4P는 무엇인가요?', '체급 차이를 빼고 선수의 종합 기량을 비교한 순위입니다. 체급 랭킹과 같은 UFC 미디어 패널 투표로 정합니다.'],
       ],
     };
   },
