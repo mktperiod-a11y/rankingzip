@@ -1,5 +1,12 @@
 {
   "source": "https://www.ufc.com/rankings",
+  "p4p": [
+    "Islam Makhachev",
+    "Alexander Volkanovski",
+    "Justin Gaethje",
+    "Petr Yan",
+    "Ilia Topuria"
+  ],
   "divisions": [
     {
       "division": "Flyweight",
