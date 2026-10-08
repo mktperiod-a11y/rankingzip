@@ -1,4 +1,0 @@
-https://lostark.game.onstove.com/ og:image https://cdn-lostark.game.onstove.com/uploadfiles/banner/2026/9428709bd8be43a3bd4888cf8f50a781.jpg
-https://cdn-lostark.game.onstove.com/uploadfiles/banner/2026/9428709bd8be43a3bd4888cf8f50a781.jpg 200 image/jpeg
-https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1599340/header.jpg 200 image/jpeg
-https://cdn.cloudflare.steamstatic.com/steam/apps/1599340/header.jpg 200 image/jpeg

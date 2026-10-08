@@ -22,5 +22,9 @@
   "스타크래프트": {
     "image": "/ranking-images/games/pc-art-starcraft.png",
     "source": "https://starcraft.blizzard.com/ko-kr"
+  },
+  "로스트아크": {
+    "image": "/ranking-images/games/pc-art-lost-ark.jpg",
+    "source": "https://store.steampowered.com/app/1599340/LOST_ARK/"
   }
 }
