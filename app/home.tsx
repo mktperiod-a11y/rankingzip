@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
-import { FlapText } from "./flap-text";
+import { TrendRoll } from "./trend-roll";
 import { RankingTicker } from "./ranking-ticker";
 import { FRESHNESS } from "./rankings/freshness";
 import type { TrendPick } from "../lib/trends";
@@ -190,7 +190,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
           </div>
           <aside>
             <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em></div>
-            <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
+            <TrendRoll picks={picks}/>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
           </aside>
         </div>
