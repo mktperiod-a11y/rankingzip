@@ -1,0 +1,76 @@
+{
+  "source": "https://www.kobis.or.kr/kobis/business/stat/boxs/findFormerBoxOfficeList.do?loadEnd=0&searchType=search",
+  "rows": [
+    {
+      "rank": 1,
+      "title": "명량",
+      "movieCd": "20129370",
+      "openDt": "2014-07-30",
+      "audience": 17616791
+    },
+    {
+      "rank": 2,
+      "title": "왕과 사는 남자",
+      "movieCd": "20242837",
+      "openDt": "2026-02-04",
+      "audience": 16929365
+    },
+    {
+      "rank": 3,
+      "title": "극한직업",
+      "movieCd": "20182530",
+      "openDt": "2019-01-23",
+      "audience": 16266641
+    },
+    {
+      "rank": 4,
+      "title": "신과함께-죄와 벌",
+      "movieCd": "20150976",
+      "openDt": "2017-12-20",
+      "audience": 14414658
+    },
+    {
+      "rank": 5,
+      "title": "국제시장",
+      "movieCd": "20137048",
+      "openDt": "2014-12-17",
+      "audience": 14269752
+    },
+    {
+      "rank": 6,
+      "title": "어벤져스: 엔드게임",
+      "movieCd": "20184889",
+      "openDt": "2019-04-24",
+      "audience": 13977409
+    },
+    {
+      "rank": 7,
+      "title": "겨울왕국 2",
+      "movieCd": "20197803",
+      "openDt": "2019-11-21",
+      "audience": 13768797
+    },
+    {
+      "rank": 8,
+      "title": "베테랑",
+      "movieCd": "20148048",
+      "openDt": "2015-08-05",
+      "audience": 13414649
+    },
+    {
+      "rank": 9,
+      "title": "아바타",
+      "movieCd": "20090834",
+      "openDt": "2009-12-17",
+      "audience": 13337833
+    },
+    {
+      "rank": 10,
+      "title": "서울의 봄",
+      "movieCd": "20212866",
+      "openDt": "2023-11-22",
+      "audience": 13128587
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}

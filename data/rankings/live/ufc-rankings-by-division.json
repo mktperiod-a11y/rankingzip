@@ -1,0 +1,78 @@
+{
+  "source": "https://www.ufc.com/rankings",
+  "divisions": [
+    {
+      "division": "Flyweight",
+      "champion": "Joshua Van",
+      "contenders": [
+        "Alexandre Pantoja",
+        "Manel Kape",
+        "Brandon Royval"
+      ]
+    },
+    {
+      "division": "Bantamweight",
+      "champion": "Petr Yan",
+      "contenders": [
+        "Merab Dvalishvili",
+        "Sean O'Malley",
+        "Song Yadong"
+      ]
+    },
+    {
+      "division": "Featherweight",
+      "champion": "Alexander Volkanovski",
+      "contenders": [
+        "Movsar Evloev",
+        "Diego Lopes",
+        "Lerone Murphy"
+      ]
+    },
+    {
+      "division": "Lightweight",
+      "champion": "Justin Gaethje",
+      "contenders": [
+        "Ilia Topuria",
+        "Arman Tsarukyan",
+        "Charles Oliveira"
+      ]
+    },
+    {
+      "division": "Welterweight",
+      "champion": "Islam Makhachev",
+      "contenders": [
+        "Ian Machado Garry",
+        "Carlos Prates",
+        "Michael Morales"
+      ]
+    },
+    {
+      "division": "Middleweight",
+      "champion": "Sean Strickland",
+      "contenders": [
+        "Khamzat Chimaev",
+        "Dricus Du Plessis",
+        "Nassourdine Imavov"
+      ]
+    },
+    {
+      "division": "Light Heavyweight",
+      "champion": "Carlos Ulberg",
+      "contenders": [
+        "Magomed Ankalaev",
+        "Jiří Procházka",
+        "Alex Pereira"
+      ]
+    },
+    {
+      "division": "Heavyweight",
+      "champion": "Ciryl Gane",
+      "contenders": [
+        "Tom Aspinall",
+        "Alexander Volkov",
+        "Sergei Pavlovich"
+      ]
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}
