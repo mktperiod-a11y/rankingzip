@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
+import { RankingTicker } from "./ranking-ticker";
 import { FRESHNESS } from "./rankings/freshness";
 import type { TrendPick } from "../lib/trends";
 
@@ -112,18 +113,21 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
   const pageBySlug = useMemo(() => Object.fromEntries(pages.map(p => [p.slug, p])), [pages]);
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
-  const [flip, setFlip] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroVisible, setHeroVisible] = useState(true);
   const [heroSet, setHeroSet] = useState(0);
   const [heroPaused, setHeroPaused] = useState(false);
   useEffect(() => {
-    if (heroPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (heroPaused || !heroVisible || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = setInterval(() => setHeroSet((n) => (n + 1) % HERO_SETS), 5000);
     return () => clearInterval(timer);
-  }, [heroPaused]);
+  }, [heroPaused, heroVisible]);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setInterval(() => setFlip((n) => n + 1), 6000);
-    return () => clearInterval(timer);
+    const hero = heroRef.current;
+    if (!hero) return;
+    const observer = new IntersectionObserver(([entry]) => setHeroVisible(entry.isIntersecting));
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, []);
   const filtered = useMemo(() => rankings.filter((item) =>
     pageBySlug[slugByTitle[item.title]] && !pageBySlug[slugByTitle[item.title]].noindex && (active === "전체" || item.category === active) &&
@@ -139,12 +143,19 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         </div>
       </header>
 
-      <section className="hero" id="top">
+      <section className="hero" id="top" ref={heroRef}>
         <div className="hero-copy">
           <p className="eyebrow">대한민국 모든 순위를 한곳에</p>
           <h1>지금 사람들이<br/><em>가장 궁금한 순위</em></h1>
           <p className="hero-desc">스포츠부터 영화·자동차·OTT까지, 한눈에 비교하세요.</p>
-          <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
+          <div className="hero-actions"><a href="#rankings" onClick={(event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            const target = document.getElementById("rankings");
+            if (!target) return;
+            event.preventDefault();
+            target.focus({ preventScroll: true });
+            target.scrollIntoView({ behavior: "instant", block: "start" });
+          }}>순위 둘러보기 <b>→</b></a></div>
         </div>
         <div className="hero-board" aria-label="궁금한 순위" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}>
           {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
@@ -161,10 +172,10 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
       </section>
 
       <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
-        <div className="ticker-track"><div className="ticker-run">{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
+        <RankingTicker>{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</RankingTicker>
       </div></section>
 
-      <section className="content" id="rankings">
+      <section className="content" id="rankings" tabIndex={-1}>
         <div className="section-heading"><div><h2>분야별 인기 순위</h2></div></div>
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
@@ -179,7 +190,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
           </div>
           <aside>
             <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em></div>
-            <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
+            <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
           </aside>
         </div>
