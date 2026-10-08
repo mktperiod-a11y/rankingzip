@@ -1,3 +1,4 @@
+import { applyFaq } from './faq';
 import { applyVisibility } from './visibility';
 import { extraPages, extraSlugs } from './additions';
 import { applyAudit } from './audit';
@@ -49,7 +50,7 @@ const originalPages: RankingPage[] = [
  {slug:"most-visited-countries",title:"세계 관광객 방문 국가 순위",category:"라이프",date:"2024년",basis:"1박 이상 국제 관광객 입국자",description:"UN Tourism과 각국 공표자료를 바탕으로 해외 관광객이 많이 방문한 국가를 정리합니다. 잠정치와 최종치가 다를 수 있습니다.",source:"UN Tourism World Tourism Barometer",sourceUrl:"https://www.unwto.org/un-tourism-world-tourism-barometer-data",rows:[{name:"프랑스",value:"약 1억명",note:"최상위",image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=85"},{name:"스페인",value:"약 9,380만명",note:"최상위",image:"https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1000&q=85"},{name:"미국",value:"약 7,240만명",note:"상위권",image:"https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1000&q=85"},{name:"튀르키예",value:"약 6,060만명",note:"상위권",image:"https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=85"},{name:"이탈리아",value:"약 5,800만명",note:"상위권",image:"https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1000&q=85"}],faq:[["가장 많이 방문한 나라는 어디인가요?","UN Tourism 공개자료에서 프랑스가 세계 최대 방문국으로 소개됩니다."],["당일 방문객도 포함되나요?","이 표는 원칙적으로 1박 이상 체류한 국제 관광객을 기준으로 합니다."]]}
 ];
 
-export const pages = applyVisibility(applyBrandImages(applyPortraits(applyLive(applyCompletion([...applyAudit([...asianGamesPages, ...expansionPages, ...originalPages]), ...gamePages, ...animePages, ...musicPages])))));
+export const pages = applyFaq(applyVisibility(applyBrandImages(applyPortraits(applyLive(applyCompletion([...applyAudit([...asianGamesPages, ...expansionPages, ...originalPages]), ...gamePages, ...animePages, ...musicPages]))))));
 export const pageBySlug = Object.fromEntries(pages.map(p=>[p.slug,p]));
 Object.assign(extraSlugs,Object.fromEntries(expansionPages.map(p=>[p.title,p.slug])));
 Object.assign(extraSlugs,Object.fromEntries(asianGamesPages.map(p=>[p.title,p.slug])));
