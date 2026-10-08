@@ -1,0 +1,77 @@
+{
+  "source": "https://www.kobis.or.kr/kobis/business/stat/boxs/findYearlyBoxOfficeList.do?loadEnd=0&searchType=search&sSearchYearFrom=2026",
+  "year": 2026,
+  "rows": [
+    {
+      "rank": 1,
+      "title": "왕과 사는 남자",
+      "movieCd": "20242837",
+      "openDt": "2026-02-04",
+      "audience": 16929365
+    },
+    {
+      "rank": 2,
+      "title": "오디세이",
+      "movieCd": "20250654",
+      "openDt": "2026-08-05",
+      "audience": 12068518
+    },
+    {
+      "rank": 3,
+      "title": "스파이더맨: 브랜드 뉴 데이",
+      "movieCd": "20262770",
+      "openDt": "2026-07-29",
+      "audience": 9047443
+    },
+    {
+      "rank": 4,
+      "title": "군체",
+      "movieCd": "20252402",
+      "openDt": "2026-05-21",
+      "audience": 5953042
+    },
+    {
+      "rank": 5,
+      "title": "호프",
+      "movieCd": "20233219",
+      "openDt": "2026-07-15",
+      "audience": 4588779
+    },
+    {
+      "rank": 6,
+      "title": "살목지",
+      "movieCd": "20254121",
+      "openDt": "2026-04-08",
+      "audience": 3241491
+    },
+    {
+      "rank": 7,
+      "title": "토이 스토리 5",
+      "movieCd": "20259781",
+      "openDt": "2026-06-17",
+      "audience": 2948159
+    },
+    {
+      "rank": 8,
+      "title": "프로젝트 헤일메리",
+      "movieCd": "20261782",
+      "openDt": "2026-03-18",
+      "audience": 2914612
+    },
+    {
+      "rank": 9,
+      "title": "암살자(들)",
+      "movieCd": "20255033",
+      "openDt": "2026-09-23",
+      "audience": 2520869
+    },
+    {
+      "rank": 10,
+      "title": "만약에 우리",
+      "movieCd": "20249255",
+      "openDt": "2025-12-31",
+      "audience": 2474077
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}

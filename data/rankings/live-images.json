@@ -1,0 +1,214 @@
+{
+  "KT": {
+    "image": "/ranking-images/expansion/kbo_KT.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "삼성": {
+    "image": "/ranking-images/expansion/kbo_Samsung.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "LG": {
+    "image": "/ranking-images/expansion/kbo_LG.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "KIA": {
+    "image": "/ranking-images/expansion/kbo_KIA.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "두산": {
+    "image": "/ranking-images/expansion/kbo_Doosan.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "NC": {
+    "image": "/ranking-images/expansion/kbo_NC.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "SSG": {
+    "image": "/ranking-images/expansion/kbo_SSG.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "한화": {
+    "image": "/ranking-images/expansion/kbo_Hanwha.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "롯데": {
+    "image": "/ranking-images/expansion/kbo_Lotte.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "키움": {
+    "image": "/ranking-images/expansion/kbo_Kiwoom.webp",
+    "source": "https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx"
+  },
+  "왕과 사는 남자": {
+    "image": "/ranking-images/complete/kings-warden.jpg",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20242837"
+  },
+  "오디세이": {
+    "image": "/ranking-images/updates/The_Odyssey__2026_film_.jpg",
+    "source": "https://en.wikipedia.org/wiki/The_Odyssey_(2026_film)"
+  },
+  "스파이더맨: 브랜드 뉴 데이": {
+    "image": "/ranking-images/updates/Spider-Man__Brand_New_Day.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Brand_New_Day"
+  },
+  "군체": {
+    "image": "/ranking-images/updates/audit-Colony__2026_film_.png",
+    "source": "https://en.wikipedia.org/wiki/Colony_(2026_film)"
+  },
+  "호프": {
+    "image": "/ranking-images/updates/audit-Hope__2026_film_.png",
+    "source": "https://en.wikipedia.org/wiki/Hope_(2026_film)"
+  },
+  "살목지": {
+    "image": "/ranking-images/complete/5ff1f2e2b4d9.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20254121"
+  },
+  "토이 스토리 5": {
+    "image": "/ranking-images/updates/audit-Toy_Story_5.jpg",
+    "source": "https://en.wikipedia.org/wiki/Toy_Story_5"
+  },
+  "프로젝트 헤일메리": {
+    "image": "/ranking-images/complete/96ecb31e587f.webp",
+    "source": "https://en.wikipedia.org/wiki/Project_Hail_Mary_(film)"
+  },
+  "만약에 우리": {
+    "image": "/ranking-images/complete/82d3970f5750.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20249255"
+  },
+  "암살자(들)": {
+    "image": "/ranking-images/complete/7b4322db68ea.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20255033"
+  },
+  "명량": {
+    "image": "/ranking-images/myungryang.jpg"
+  },
+  "극한직업": {
+    "image": "/ranking-images/extreme-job.jpg"
+  },
+  "신과함께-죄와 벌": {
+    "image": "/ranking-images/along-gods.jpg"
+  },
+  "국제시장": {
+    "image": "/ranking-images/ode-father.jpg"
+  },
+  "어벤져스: 엔드게임": {
+    "image": "/ranking-images/complete/1888971abeae.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20184889"
+  },
+  "겨울왕국 2": {
+    "image": "/ranking-images/complete/94bb08c1bddf.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20197803"
+  },
+  "베테랑": {
+    "image": "/ranking-images/complete/d1c8ac6318f7.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20148048"
+  },
+  "아바타": {
+    "image": "/ranking-images/complete/27eeb98103a4.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20090834"
+  },
+  "서울의 봄": {
+    "image": "/ranking-images/complete/4534b4ecd236.webp",
+    "source": "https://www.kobis.or.kr/kobis/business/mast/mvie/searchMovieDtl.do?code=20212866"
+  },
+  "마이클": {
+    "image": "/ranking-images/updates/audit-Michael__2026_film_.png",
+    "source": "https://en.wikipedia.org/wiki/Michael_(2026_film)"
+  },
+  "슈퍼 마리오 갤럭시 무비": {
+    "image": "/ranking-images/updates/audit-The_Super_Mario_Galaxy_Movie.jpg",
+    "source": "https://en.wikipedia.org/wiki/The_Super_Mario_Galaxy_Movie"
+  },
+  "악마는 프라다를 입는다 2": {
+    "image": "/ranking-images/complete/9b38398bcc9c.webp",
+    "source": "https://en.wikipedia.org/wiki/The_Devil_Wears_Prada_2"
+  },
+  "페가수스 3": {
+    "image": "/ranking-images/complete/f1f5954fbc45.webp",
+    "source": "https://en.wikipedia.org/wiki/Pegasus_3"
+  },
+  "미니언즈 & 몬스터즈": {
+    "image": "/ranking-images/complete/91f45bebba58.webp",
+    "source": "https://en.wikipedia.org/wiki/Minions_%26_Monsters"
+  },
+  "옵세션": {
+    "image": "/ranking-images/complete/5d3a45f86f07.webp",
+    "source": "https://en.wikipedia.org/wiki/Obsession_(2025_film)"
+  },
+  "스파이더맨: 노 웨이 홈": {
+    "image": "/ranking-images/updates/Spider-Man__No_Way_Home.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_No_Way_Home"
+  },
+  "스파이더맨: 파 프롬 홈": {
+    "image": "/ranking-images/updates/Spider-Man__Far_From_Home.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Far_From_Home"
+  },
+  "스파이더맨 3": {
+    "image": "/ranking-images/updates/Spider-Man_3.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man_3"
+  },
+  "스파이더맨: 홈커밍": {
+    "image": "/ranking-images/updates/Spider-Man__Homecoming.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Homecoming"
+  },
+  "스파이더맨": {
+    "image": "/ranking-images/updates/Spider-Man__2002_film_.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man_(2002_film)"
+  },
+  "스파이더맨 2": {
+    "image": "/ranking-images/updates/Spider-Man_2.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man_2"
+  },
+  "어메이징 스파이더맨": {
+    "image": "/ranking-images/updates/The_Amazing_Spider-Man__film_.jpg",
+    "source": "https://en.wikipedia.org/wiki/The_Amazing_Spider-Man_(film)"
+  },
+  "어메이징 스파이더맨 2": {
+    "image": "/ranking-images/updates/The_Amazing_Spider-Man_2.jpg",
+    "source": "https://en.wikipedia.org/wiki/The_Amazing_Spider-Man_2"
+  },
+  "스파이더맨: 어크로스 더 유니버스": {
+    "image": "/ranking-images/updates/Spider-Man__Across_the_Spider-Verse.jpg",
+    "source": "https://en.wikipedia.org/wiki/Spider-Man%3A_Across_the_Spider-Verse"
+  },
+  "쏘렌토": {
+    "image": "/ranking-images/complete/3f8914ffe560.webp",
+    "source": "https://autoimg.danawa.com/photo/4563/model_200.png"
+  },
+  "더 뉴 그랜저": {
+    "image": "/ranking-images/complete/70dd40f47e1f.webp",
+    "source": "https://autoimg.danawa.com/photo/4802/model_200.png"
+  },
+  "카니발": {
+    "image": "/ranking-images/complete/736fef6ef541.webp",
+    "source": "https://autoimg.danawa.com/photo/4586/model_200.png"
+  },
+  "스포티지": {
+    "image": "/ranking-images/complete/9cf39cfdf307.webp",
+    "source": "https://autoimg.danawa.com/photo/4684/model_200.png"
+  },
+  "포터2": {
+    "image": "/ranking-images/complete/3dbccb6c62ce.webp",
+    "source": "https://autoimg.danawa.com/photo/1901/model_200.png"
+  },
+  "싼타페": {
+    "image": "/ranking-images/complete/ee78c4cadc79.webp",
+    "source": "https://autoimg.danawa.com/photo/4435/model_200.png"
+  },
+  "셀토스": {
+    "image": "/ranking-images/complete/e1d42d5f16ba.webp",
+    "source": "https://autoimg.danawa.com/photo/4763/model_200.png"
+  },
+  "EV3": {
+    "image": "/ranking-images/complete/650437138715.webp",
+    "source": "https://autoimg.danawa.com/photo/4647/model_200.png"
+  },
+  "EV5": {
+    "image": "/ranking-images/complete/8acb6fb5d272.webp",
+    "source": "https://autoimg.danawa.com/photo/4499/model_200.png"
+  },
+  "쏘나타 디 엣지": {
+    "image": "/ranking-images/complete/626d19740efb.webp",
+    "source": "https://autoimg.danawa.com/photo/4466/model_200.png"
+  }
+}
