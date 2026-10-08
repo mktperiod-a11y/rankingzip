@@ -103,7 +103,6 @@
  "/ranking-images/complete/kings-warden.jpg": 0.707,
  "/ranking-images/drama/first-love.jpg": 1.019,
  "/ranking-images/drama/sandglass.jpg": 0.878,
- "/ranking-images/drama/sunny-place.jpg": 1.073,
  "/ranking-images/expansion/audi.webp": 2.878,
  "/ranking-images/expansion/bmw.webp": 1,
  "/ranking-images/expansion/byd.webp": 5.189,
@@ -327,5 +326,7 @@
  "/ranking-images/updates/netflix-tv-7.jpg": 1.778,
  "/ranking-images/updates/netflix-tv-8.jpg": 1.778,
  "/ranking-images/updates/netflix-tv-9.jpg": 1.778,
- "/ranking-images/updates/what-is-love.webp": 1.331
+ "/ranking-images/updates/sunny-place.webp": 0.729,
+ "/ranking-images/updates/what-is-love.webp": 1.331,
+ "/ranking-images/updates/you-and-i.webp": 1
 }
