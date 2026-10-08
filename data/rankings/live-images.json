@@ -210,5 +210,85 @@
   "쏘나타 디 엣지": {
     "image": "/ranking-images/complete/626d19740efb.webp",
     "source": "https://autoimg.danawa.com/photo/4466/model_200.png"
+  },
+  "테슬라": {
+    "image": "/ranking-images/expansion/tesla.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "BMW": {
+    "image": "/ranking-images/expansion/bmw.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "메르세데스-벤츠": {
+    "image": "/ranking-images/expansion/mercedes.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "BYD": {
+    "image": "/ranking-images/expansion/byd.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "토요타": {
+    "image": "/ranking-images/expansion/toyota.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "렉서스": {
+    "image": "/ranking-images/expansion/lexus.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "아우디": {
+    "image": "/ranking-images/expansion/audi.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "볼보": {
+    "image": "/ranking-images/expansion/volvo.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "포르쉐": {
+    "image": "/ranking-images/expansion/porsche.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "미니": {
+    "image": "/ranking-images/expansion/mini.webp",
+    "source": "https://www.kaida.co.kr/ko/brand/BrandMain.do"
+  },
+  "경기도": {
+    "image": "/ranking-images/updates/audit-Gyeonggi_Province.jpg",
+    "source": "https://en.wikipedia.org/wiki/Gyeonggi_Province"
+  },
+  "서울특별시": {
+    "image": "/ranking-images/updates/audit-Seoul.jpg",
+    "source": "https://en.wikipedia.org/wiki/Seoul"
+  },
+  "부산광역시": {
+    "image": "/ranking-images/updates/audit-Busan.jpg",
+    "source": "https://en.wikipedia.org/wiki/Busan"
+  },
+  "경상남도": {
+    "image": "/ranking-images/updates/audit-South_Gyeongsang_Province.jpg",
+    "source": "https://en.wikipedia.org/wiki/South_Gyeongsang_Province"
+  },
+  "전남광주통합특별시": {
+    "image": "/ranking-images/updates/audit-Gwangju.png",
+    "source": "https://en.wikipedia.org/wiki/Gwangju"
+  },
+  "인천광역시": {
+    "image": "/ranking-images/complete/4f20da2ab642.webp",
+    "source": "https://en.wikipedia.org/wiki/Incheon"
+  },
+  "경상북도": {
+    "image": "/ranking-images/complete/e60116919046.webp",
+    "source": "https://en.wikipedia.org/wiki/North_Gyeongsang_Province"
+  },
+  "대구광역시": {
+    "image": "/ranking-images/complete/9392b59306af.webp",
+    "source": "https://en.wikipedia.org/wiki/Daegu"
+  },
+  "충청남도": {
+    "image": "/ranking-images/complete/2d0a6a6a8150.webp",
+    "source": "https://en.wikipedia.org/wiki/South_Chungcheong_Province"
+  },
+  "전북특별자치도": {
+    "image": "/ranking-images/complete/59b034500299.webp",
+    "source": "https://en.wikipedia.org/wiki/North_Jeolla_Province"
   }
 }
