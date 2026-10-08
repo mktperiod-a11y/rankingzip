@@ -5,14 +5,14 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 const log = [];
 const cookieOf = (r) => (r.headers.getSetCookie?.() ?? []).map((c) => c.split(';')[0]).join('; ');
 const save = async (k, url, opt = {}) => {
-  try { const r = await fetch(url, { ...opt, headers: { 'user-agent': UA, 'accept-language': 'ko-KR', ...(opt.headers ?? {}) } }); const t = await r.text(); fs.writeFileSync(`data/probe/${k}`, t.slice(0, 600000)); log.push(`${k} ${r.status} ${r.headers.get('content-type')} ${t.length}`); return r; }
+  try { const r = await fetch(url, { ...opt, headers: { 'user-agent': UA, 'accept-language': 'ko-KR', ...(opt.headers ?? {}) } }); const b = Buffer.from(await r.arrayBuffer()); fs.writeFileSync(`data/probe/${k}`, b); log.push(`${k} ${r.status} ${r.headers.get('content-type')} ${b.length}`); return r; }
   catch (e) { log.push(`${k} ERR ${e.message}`); }
 };
 const form = (o, extra = {}) => ({ method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'x-requested-with': 'XMLHttpRequest', ...extra }, body: new URLSearchParams(o).toString() });
 // KBO
 const kp = await fetch('https://www.koreabaseball.com/Record/Crowd/GraphTeam.aspx', { headers: { 'user-agent': UA } });
 const kc = cookieOf(kp);
-await save('kbo-crowd.json', 'https://www.koreabaseball.com/ws/Record.asmx/GetCrowdTeam', form({ leagueId: '1', seriesId: '0', gameMonth: '2026' }, { cookie: kc, referer: 'https://www.koreabaseball.com/Record/Crowd/GraphTeam.aspx', origin: 'https://www.koreabaseball.com', accept: 'application/json, text/javascript, */*; q=0.01' }));
+await save('kbo-crowd.json', 'https://www.koreabaseball.com/ws/Record.asmx/GetCrowdTeam', form({ leagueId: '1', seriesId: '0', gameMonth: '0' }, { cookie: kc, referer: 'https://www.koreabaseball.com/Record/Crowd/GraphTeam.aspx', origin: 'https://www.koreabaseball.com', accept: 'application/json, text/javascript, */*; q=0.01' }));
 // KAIDA
 const ap = await fetch('https://www.kaida.co.kr/ko/statistics/NewRegistList.do', { headers: { 'user-agent': UA } });
 const ac = cookieOf(ap);
