@@ -40,8 +40,9 @@ test('KBO 팀 순위·홈런', () => {
   assert.deepEqual(hr.slice(0, 3).map((r) => [r.rank, r.value]), [[1, 43], [2, 41], [2, 41]]);
 });
 
-test('UFC 남성부 8개 체급', () => {
-  const d = parseUfc(fx('ufc.html')).divisions;
+test('UFC 남성부 8개 체급과 P4P', () => {
+  const { p4p, divisions: d } = parseUfc(fx('ufc.html'));
+  assert.deepEqual(p4p, ['Islam Makhachev', 'Alexander Volkanovski', 'Justin Gaethje', 'Petr Yan', 'Ilia Topuria']);
   assert.equal(d.length, 8);
   assert.deepEqual(d[0], { division: 'Flyweight', champion: 'Joshua Van', contenders: ['Alexandre Pantoja', 'Manel Kape', 'Brandon Royval'] });
 });

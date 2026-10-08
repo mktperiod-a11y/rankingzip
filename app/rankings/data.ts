@@ -10,11 +10,11 @@ import { applyCompletion } from './completion';
 import { applyBrandImages } from './brand-images';
 import { applyLive } from './live';
 export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string;  change?: number | 'new' };
-export type Division = { name: string; champion: string; contenders: string[] };
+export type Division = { name: string; limit?: string; champion: string; contenders: string[] };
 export type RankingPage = {
   slug: string; title: string; category: string; date: string; basis: string;
   description: string; source: string; sourceUrl: string; rows: RankingRow[];
-  faq: [string,string][]; divisions?: Division[]; posterLayout?: boolean;
+  faq: [string,string][]; divisions?: Division[]; p4p?: string[]; posterLayout?: boolean;
   auditDate?: string; holdReason?: string; unranked?: boolean; noindex?: boolean;
    hideBars?: boolean;
    dataLabel?: string;
