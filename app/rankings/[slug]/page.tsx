@@ -26,7 +26,7 @@ const LOGO_SLUGS=["korea-import-car-brands","kbo-team-standings-2026","kbo-atten
 
 const offRatio=(src?:string)=>{const r=src&&(shapes as Record<string,number>)[src];return r&&(r<0.6||r>0.78)?"off-ratio":undefined};
 function imageKind(slug:string,src:string):ImageKind{
- if(src.includes('flagcdn.com'))return 'flag';
+ if(src.includes('flagcdn.com')||src.includes('/ranking-images/flags/'))return 'flag';
  if(src.includes('/kbo_'))return PERSON_SLUGS.includes(slug)?'photo crest':'logo';
  if(LOGO_SLUGS.includes(slug))return 'logo';
  return 'photo';
