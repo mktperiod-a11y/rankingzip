@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "0 3 * * 3"
     - cron: "0 3 * * 6"
+    - cron: "0 3 7 * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -28,9 +29,11 @@ jobs:
         with:
           node-version: 22
       - name: OTT 월간 공개 자료 확인
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 3 7 * *'
         continue-on-error: true
         run: node scripts/update-ott.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
       - name: 넷플릭스 TOP 10 갱신
+        if: github.event.schedule != '0 3 7 * *'
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: node scripts/update-netflix.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
@@ -47,6 +50,7 @@ jobs:
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
 
   anime:
+    if: github.event.schedule != '0 3 7 * *'
     needs: netflix
     runs-on: ubuntu-latest
     steps:
