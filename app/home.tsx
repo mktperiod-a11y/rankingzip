@@ -201,7 +201,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         <div className="idea-chips">{upcoming.map((x,i)=><span key={x}><b>{String(i+1).padStart(2,"0")}</b>{x}</span>)}</div>
       </section>
 
-      <section className="suggest"><div><span>＋</span><p><small>찾는 순위가 없나요?</small><strong>궁금한 순위를 제안해 주세요</strong></p></div><button>랭킹 제안하기 →</button></section>
+      <section className="suggest"><div><span>＋</span><p><small>찾는 순위가 없나요?</small><strong>궁금한 순위를 제안해 주세요</strong></p></div><a href="https://docs.google.com/forms/d/e/1FAIpQLScs2OwjKDtQ-5T9ULWVx7BIHZCaXW-EkbcanhpjV918grUHmg/viewform" target="_blank" rel="noreferrer">랭킹 제안하기 →</a></section>
       <footer><BrandLogo footer /><p>세상의 흥미로운 순위를 한곳에.</p><small>순위는 공개 자료와 자체 기준을 바탕으로 제공되며, 제휴 콘텐츠는 별도로 표시합니다.</small></footer>
     </main>
   );
