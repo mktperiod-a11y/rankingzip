@@ -5,6 +5,8 @@ import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { TrendRoll } from "./trend-roll";
+import { SearchBox } from "./search-box";
+import { SUGGEST_FORM } from "./links";
 import { RankingTicker } from "./ranking-ticker";
 import { FRESHNESS } from "./rankings/freshness";
 import type { TrendPick } from "../lib/trends";
@@ -134,12 +136,17 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
     (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).toLowerCase().includes(query.toLowerCase())
   ), [active, query, pageBySlug, slugByTitle]);
 
+  const searchItems = useMemo(() => rankings.flatMap((item) => {
+    const page = pageBySlug[slugByTitle[item.title]];
+    return page && !page.noindex ? [{ slug: page.slug, title: page.title, category: item.category, icon: item.icon, color: item.color, rows: page.rows.map((r) => r.name) }] : [];
+  }), [pageBySlug, slugByTitle]);
+
   return (
     <main>
       <header className="site-header">
         <div className="header-inner">
           <BrandLogo />
-          <label className="search"><span>⌕</span><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="궁금한 순위를 검색하세요" /></label>
+          <SearchBox items={searchItems} query={query} onQuery={setQuery} />
         </div>
       </header>
 
@@ -201,7 +208,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         <div className="idea-chips">{upcoming.map((x,i)=><span key={x}><b>{String(i+1).padStart(2,"0")}</b>{x}</span>)}</div>
       </section>
 
-      <section className="suggest"><div><span>＋</span><p><small>찾는 순위가 없나요?</small><strong>궁금한 순위를 제안해 주세요</strong></p></div><a href="https://docs.google.com/forms/d/e/1FAIpQLScs2OwjKDtQ-5T9ULWVx7BIHZCaXW-EkbcanhpjV918grUHmg/viewform" target="_blank" rel="noreferrer">랭킹 제안하기 →</a></section>
+      <section className="suggest"><div><span>＋</span><p><small>찾는 순위가 없나요?</small><strong>궁금한 순위를 제안해 주세요</strong></p></div><a href={SUGGEST_FORM} target="_blank" rel="noreferrer">랭킹 제안하기 →</a></section>
       <footer><BrandLogo footer /><p>세상의 흥미로운 순위를 한곳에.</p><small>순위는 공개 자료와 자체 기준을 바탕으로 제공되며, 제휴 콘텐츠는 별도로 표시합니다.</small></footer>
     </main>
   );
