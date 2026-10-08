@@ -11,7 +11,6 @@ const BRAND: Record<string, Record<string, Img>> = {
   'korea-ott-users': appIcons,
   'file-sharing-services': {
     ...appIcons,
-    파일이즈: { image: '/ranking-images/apps/tile-fileis.png', source: 'https://www.fileis.com/' },
     파일몽: { image: '/ranking-images/apps/tile-filemong.png', source: 'https://www.filemong.com/' },
     파일스타: { image: '/ranking-images/apps/tile-filestar.png', source: 'https://filestar.co.kr/' },
   },

@@ -31,3 +31,17 @@ test('ondisk never leaves the top 3', () => {
     assert.ok(items.find((it) => it.name === '온디스크').rank <= 3);
   }
 });
+
+test('blocked webhards never appear and reserve fills empty slots', async () => {
+  const { fill, SHOWN } = await import('../scripts/update-webhard.mjs');
+  const pool = JSON.parse(fs.readFileSync('data/webhard-pool.json', 'utf8'));
+  assert.equal(start.length, SHOWN);
+  for (const name of pool.blocked) assert.ok(!start.some((it) => it.name === name), name);
+  const next = pool.reserve[0];
+  const out = fill(start.filter((it) => it.name !== start[3].name), pool);
+  assert.equal(out.items.length, SHOWN);
+  assert.ok(out.items.some((it) => it.name === next.name && it.prevRank === null));
+  assert.ok(!out.pool.reserve.some((it) => it.name === next.name));
+  const sneaky = fill([...start, { name: pool.blocked[0], url: '', base: 11, rank: 11, prevRank: 11 }], pool);
+  assert.ok(sneaky.items.every((it) => !pool.blocked.includes(it.name)));
+});

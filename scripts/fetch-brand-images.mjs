@@ -8,7 +8,7 @@ const APPS = [
   ['라프텔', 'laftel', '라프텔', /라프텔|laftel/i], ['스포티비 나우', 'spotv-now', 'SPOTV NOW', /spotv now|스포티비 나우/i], ['왓챠', 'watcha', 'WATCHA', /watcha|왓챠/i],
   ['온디스크', 'ondisk', '온디스크', /온디스크|ondisk/i], ['예스파일', 'yesfile', '예스파일', /예스파일|yesfile/i], ['파일조', 'filejo', '파일조', /파일조|filejo/i],
   ['케이디스크', 'kdisk', '케이디스크', /케이디스크|kdisk/i], ['파일마루', 'filemaru', '파일마루', /파일마루|filemaru/i], ['빅파일', 'bigfile', '빅파일', /빅파일|bigfile/i],
-  ['파일시티', 'filecity', '파일시티', /파일시티|filecity/i],
+  ['파일시티', 'filecity', '파일시티', /파일시티|filecity/i], ['파일보고', 'filebogo', '파일보고', /파일보고|filebogo/i], ['애플파일', 'applefile', '애플파일', /애플파일|applefile/i],
 ];
 const PC = [
   ['FC온라인', 'fc-online', 'https://fconline.nexon.com/'], ['배틀그라운드', 'pubg', 'https://pubg.com/ko/main'],
