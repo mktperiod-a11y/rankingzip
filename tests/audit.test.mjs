@@ -22,11 +22,12 @@ test('new season rankings and imported brands are complete and linked',()=>{
  assert.deepEqual(Array.from(hr.rows,r=>r.value),live('kbo-home-runs-2026').rows.map(r=>`${r.value}홈런`));
  assert.deepEqual(Array.from(rbi.rows,r=>r.value),live('kbo-rbi-2026').rows.map(r=>`${r.value}타점`));
  assert.equal(cars.rows.length,10);
- assert.equal(cars.rows[0].value,'10,400대');assert.match(cars.rows[0].note,/34.9%/);
+ const kaida=live('korea-import-car-brands');assert.deepEqual(Array.from(cars.rows,r=>r.value),kaida.rows.map(r=>`${r.count.toLocaleString('en-US')}대`));assert.match(cars.rows[0].note,new RegExp(`${kaida.rows[0].share.toFixed(1)}%`));
  const {slugByTitle}=load('app/rankings/data.ts');
  const home=fs.readFileSync('app/home.tsx','utf8');
  for(const p of [hr,rbi,cars]){assert.equal(slugByTitle[p.title],p.slug);assert.ok(home.includes(p.title));assert.ok(p.faq.length>=2);}
- for(const r of cars.rows){assert.ok(r.imageSource&&r.sourceUrl);assert.ok(r.image.startsWith('/ranking-images/expansion/'));}
+ // 브랜드 로고가 있으면 expansion 폴더의 로고여야 하고, 처음 순위에 든 브랜드는 로고를 추가할 때까지 이니셜입니다.
+ for(const r of cars.rows){assert.ok(r.sourceUrl);if(r.image)assert.ok(r.image.startsWith('/ranking-images/expansion/')&&r.imageSource);}
  // 선수 사진: 위키미디어 자유 이용 사진(작가·라이선스 기록)이 있으면 그 사진, 없으면 구단 로고. 공식 사이트 사진은 쓰지 않습니다.
  const credits=JSON.parse(fs.readFileSync('public/ranking-images/portraits/credits.json','utf8'));
  for(const r of [...hr.rows,...rbi.rows]){assert.ok(r.sourceUrl);const c=credits[r.name];if(c){assert.equal(r.image,c.image);assert.ok(c.author&&c.license&&c.source);}else assert.match(r.image,/^\/ranking-images\/expansion\/kbo_\w+\.webp$/);assert.ok(fs.existsSync(`public${r.image}`));}
@@ -46,7 +47,7 @@ test('auto-updated rankings show exactly the collected source data',()=>{
 test('corrections and withheld rankings are consistent',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));
  assert.deepEqual(Array.from(by['world-gdp-ranking'].rows,r=>r.name),['미국','중국','독일','일본','영국','인도','프랑스','이탈리아','러시아','브라질']);
- assert.equal(by['korea-province-population'].rows[4].name,'전남광주통합특별시');
+ assert.deepEqual(Array.from(by['korea-province-population'].rows,r=>r.name),JSON.parse(fs.readFileSync('data/rankings/live/korea-province-population.json','utf8')).rows.map(r=>r.name));
  assert.equal(by['ufc-rankings-by-division'].divisions[7].contenders[2],'세르게이 파블로비치');
  assert.equal(by['highest-paid-athletes'].rows[1].name,'카넬로 알바레스');
  assert.ok(!by['file-sharing-services'].unranked&&!by['file-sharing-services'].noindex&&by['file-sharing-services'].rows.length===10);

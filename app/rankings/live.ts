@@ -1,5 +1,5 @@
 // 자동 갱신 순위의 화면 문구. 데이터는 data/rankings/live/<순위 주소>.json에 있고,
-// scripts/update-records.mjs가 원자료(게임트릭스·KOBIS·Box Office Mojo·The Numbers·다나와·KBO·UFC)에서 매주 받아 옵니다.
+// scripts/update-records.mjs가 원자료(게임트릭스·KOBIS·Box Office Mojo·The Numbers·다나와·KBO·UFC·KAIDA·행정안전부)에서 매주 받아 옵니다.
 // 영어 제목·이름의 한국어 표기는 data/rankings/names-ko.json에서 찾고, 없으면 원문을 그대로 씁니다.
 // 이미지는 data/rankings/live-images.json(이름 → 포스터·로고)에서 찾아 이어 씁니다. 새 항목은 이미지를 추가할 때까지 이니셜로 보입니다.
 // 인물 사진(KBO 선수·UFC)은 portraits.ts가 따로 붙입니다.
@@ -15,11 +15,14 @@ import kboTeams from '../../data/rankings/live/kbo-team-standings-2026.json';
 import kboHr from '../../data/rankings/live/kbo-home-runs-2026.json';
 import kboRbi from '../../data/rankings/live/kbo-rbi-2026.json';
 import ufc from '../../data/rankings/live/ufc-rankings-by-division.json';
+import importCars from '../../data/rankings/live/korea-import-car-brands.json';
+import kboCrowd from '../../data/rankings/live/kbo-attendance-2026.json';
+import population from '../../data/rankings/live/korea-province-population.json';
 import liveImages from '../../data/rankings/live-images.json';
 import { KBO_LOGO } from './portraits';
 
-type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'description' | 'rows' | 'faq' | 'divisions' | 'auditDate' | 'auditNote' | 'sourceUrl'>>;
-const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string> };
+type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'auditDate' | 'auditNote' | 'sourceUrl'>>;
+const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string>; brands: Record<string, string>; kboTeams: Record<string, string> };
 const dot = (iso: string) => iso.replaceAll('-', '.');
 const md = (iso: string) => { const [, m, d] = iso.split('-').map(Number); return `${m}월 ${d}일`; };
 const won = (n: number) => n.toLocaleString('en-US');
@@ -28,7 +31,11 @@ const person = (en: string) => N.people[en] ?? en;
 const tenK = (n: number) => `${Math.round(n / 10000).toLocaleString('en-US')}만`;
 const usd = (n: number) => `${(n / 100000000).toFixed(1)}억 달러`;
 
-const BUILDERS: Record<string, () => Live> = {
+const ym = (month: string) => { const [y, m] = month.split('-').map(Number); return { y, m }; };
+/** "약 323만명" → 3230000, "10,387,691명" → 10387691 */
+const people = (v: string) => (/만/.test(v) ? Number(v.replace(/[^\d.]/g, '')) * 10000 : Number(v.replace(/[^\d]/g, '')));
+
+const BUILDERS: Record<string, (p: RankingPage) => Live> = {
   'korea-pc-games-share': () => {
     const d = pcbang, top = d.rows[0];
     return {
@@ -129,6 +136,58 @@ const BUILDERS: Record<string, () => Live> = {
   },
   'kbo-home-runs-2026': () => hitters(kboHr, '홈런', '홈런'),
   'kbo-rbi-2026': () => hitters(kboRbi, '타점', '타점'),
+  'korea-import-car-brands': () => {
+    const d = importCars, { y, m } = ym(d.month), top = d.rows[0], brand = (en: string) => N.brands[en] ?? en;
+    return {
+      date: `${y}년 ${m}월 · ${md(d.checkedAt)} 확인`, dataLabel: `KAIDA ${y}년 ${m}월 데이터`, auditDate: dot(d.checkedAt),
+      description: `KAIDA가 발표한 ${y}년 ${m}월 수입 승용차 신규등록 ${won(d.total)}대 중 상위 10개 브랜드입니다. 1위는 ${brand(top.brand)}(${won(top.count)}대)입니다. 전기차만의 순위나 전 세계 판매 순위는 아닙니다.`,
+      rows: d.rows.map((r) => ({ name: brand(r.brand), value: `${won(r.count)}대`, note: `${m}월 수입 승용차 전체 대비 ${r.share.toFixed(1)}% · 신규등록`, rank: r.rank })),
+      faq: [
+        ['수입차 1위 브랜드는 어디인가요?', `${y}년 ${m}월 KAIDA 회원사 수입 승용차 신규등록 기준 ${brand(top.brand)}가 ${won(top.count)}대로 1위입니다.`],
+        ['등록 대수와 주문·판매 대수는 같은가요?', '아닙니다. 이 표는 신규등록 기준입니다. 주문량, 계약량, 제조사 도매 판매와 시점 및 범위가 다릅니다.'],
+        ['점유율은 TOP 10 안에서 계산했나요?', `아니요. ${m}월 전체 수입 승용차 신규등록 ${won(d.total)}대를 기준으로 계산했습니다.`],
+      ],
+      auditNote: 'KAIDA 브랜드 월별 요약(수입 승용차 신규등록)을 매주 수·토요일 자동으로 받아옵니다. 새 달 자료가 발표되면 바뀝니다.',
+    };
+  },
+  'kbo-attendance-2026': () => {
+    const d = kboCrowd, top = d.rows[0], team = (t: string) => N.kboTeams[t] ?? t;
+    return {
+      date: `${dot(d.date)} 기준`, dataLabel: `KBO ${dot(d.date)} 데이터`, auditDate: dot(d.checkedAt),
+      basis: '구단별 누적 홈 관중 · 2026 정규시즌',
+      description: `2026 KBO 정규시즌 구단별 누적 홈 관중입니다. 10개 구단 합계 ${tenK(d.total)} 명이며, ${team(top.team)}가 ${won(top.crowd)}명으로 가장 많습니다.`,
+      rows: d.rows.map((r) => ({ name: team(r.team), value: `${won(r.crowd)}명`, note: '', rank: r.rank, ...(KBO_LOGO[r.team] ? { image: `/ranking-images/expansion/kbo_${KBO_LOGO[r.team]}.webp`, imageSource: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx' } : {}) })),
+      faq: [
+        ['홈 관중이 가장 많은 구단은 어디인가요?', `${md(d.date)} 기준 ${team(top.team)}가 ${won(top.crowd)}명으로 1위입니다.`],
+        ['2026 정규시즌 전체 관중은 몇 명인가요?', `10개 구단 홈 관중 합계는 ${won(d.total)}명입니다.`],
+        ['원정 관중도 포함되나요?', '구단별 홈 경기 관중만 셉니다. 한 경기는 홈 구단에만 집계됩니다.'],
+      ],
+      auditNote: 'KBO 구단별 관중 현황(정규시즌 전체)을 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  'korea-province-population': () => {
+    const d = population, { y, m } = ym(d.month), top = d.rows[0];
+    return {
+      date: `${y}년 ${m}월 말`, dataLabel: `행정안전부 ${y}년 ${m}월 말 데이터`, auditDate: dot(d.checkedAt),
+      basis: `${y}년 ${m}월 말 주민등록 총인구 · 외국인 제외`,
+      description: `행정안전부 주민등록 총인구 기준 상위 10개 시도입니다. ${y}년 ${m}월 말 전국 인구는 ${won(d.total)}명이며, ${top.name}가 ${won(top.population)}명으로 가장 많습니다. 거주자·거주불명자·재외국민을 포함하고 외국인은 제외합니다.`,
+      rows: d.rows.map((r) => ({ name: r.name, value: `${won(r.population)}명`, note: '', rank: r.rank })),
+      faq: [
+        ['인구가 가장 많은 시도는?', `${y}년 ${m}월 말 기준 ${top.name}로 ${won(top.population)}명입니다.`],
+        ['외국인도 포함되나요?', '이 표의 주민등록 인구에는 외국인이 포함되지 않습니다.'],
+        ['언제 갱신되나요?', '행정안전부가 매월 말 기준 통계를 다음 달 초에 공표하며, 공표되면 자동으로 바뀝니다.'],
+      ],
+      auditNote: '행정안전부 주민등록 인구통계(시도별 월간)를 매주 수·토요일 자동으로 받아옵니다.',
+    };
+  },
+  // 놀란 영화는 상영 중이거나 KOBIS 순위에 있는 작품만 관객 수를 자동으로 바꾸고, 나머지 작품은 기존 기록을 유지합니다.
+  'christopher-nolan-korea-box-office': (p) => {
+    const kobis = new Map([...admissions.rows, ...boxOffice.rows].map((r) => [r.title, r.audience]));
+    const at = dot(boxOffice.checkedAt);
+    const rows = p.rows.map((r) => (kobis.has(r.name) ? { ...r, value: `${won(kobis.get(r.name)!)}명`, note: `KOBIS 누적 집계 · ${at} 조회` } : r))
+      .sort((a, b) => people(b.value) - people(a.value)).map((r, i) => ({ ...r, rank: i + 1 }));
+    return { rows, date: `${at} 자료 확인`, dataLabel: `KOBIS·흥행 보도 ${at} 데이터`, auditDate: at };
+  },
   'ufc-rankings-by-division': () => {
     const d = ufc;
     const divisions: Division[] = d.divisions.map((x) => ({ name: UFC_KO[x.division], champion: person(x.champion), contenders: x.contenders.map(person) }));
@@ -163,7 +222,7 @@ export function applyLive(pages: RankingPage[]): RankingPage[] {
   return pages.map((p) => {
     const build = BUILDERS[p.slug];
     if (!build) return p;
-    const live = build();
+    const live = build(p);
     const rowSource = p.rows[0]?.sourceUrl ? { sourceUrl: live.sourceUrl ?? p.sourceUrl } : {};
     const rows = live.rows?.map((r) => { const known = IMAGES[r.name]; return { ...r, ...(known ? { image: known.image, imageSource: known.source } : {}), ...rowSource }; });
     return { ...p, ...live, ...(rows ? { rows } : {}) };

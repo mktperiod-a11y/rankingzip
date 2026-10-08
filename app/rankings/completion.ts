@@ -1,6 +1,7 @@
 import type { RankingPage } from './data';
 import updates from '../../data/rankings/completion.json';
 import assets from '../../public/ranking-images/complete/sources.json';
+import { LIVE_SLUGS } from './live';
 
 export const MAX_RANKING_ITEMS = 10;
 export const MIN_RANKING_ITEMS = 5;
@@ -20,7 +21,8 @@ export function applyCompletion(pages: RankingPage[]): RankingPage[] {
     p.rows = p.rows.slice(0, MAX_RANKING_ITEMS).map(r => pictures[r.name]
       ? { ...r, image: pictures[r.name].image, imageSource: pictures[r.name].source }
       : { ...r });
-    if (!p.noindex && p.rows.length < MIN_RANKING_ITEMS && !rankingCountExceptions[p.slug]) {
+    // 자동 갱신 순위는 이 다음 단계(live.ts)에서 항목이 채워지므로 여기서 세지 않습니다(테스트가 최종 개수를 확인합니다).
+    if (!p.noindex && p.rows.length < MIN_RANKING_ITEMS && !rankingCountExceptions[p.slug] && !LIVE_SLUGS.includes(p.slug)) {
       throw new Error(`${p.slug}: 공개 순위는 최소 ${MIN_RANKING_ITEMS}개가 필요합니다.`);
     }
     return p;

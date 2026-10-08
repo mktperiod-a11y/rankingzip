@@ -1,0 +1,68 @@
+{
+  "source": "https://www.kaida.co.kr/ko/statistics/NewRegistList.do",
+  "month": "2026-09",
+  "total": 34904,
+  "rows": [
+    {
+      "rank": 1,
+      "brand": "Tesla",
+      "count": 12372,
+      "share": 35.45
+    },
+    {
+      "rank": 2,
+      "brand": "BMW",
+      "count": 6066,
+      "share": 17.38
+    },
+    {
+      "rank": 3,
+      "brand": "Mercedes-Benz",
+      "count": 5477,
+      "share": 15.69
+    },
+    {
+      "rank": 4,
+      "brand": "BYD",
+      "count": 2614,
+      "share": 7.49
+    },
+    {
+      "rank": 5,
+      "brand": "Volvo",
+      "count": 1414,
+      "share": 4.05
+    },
+    {
+      "rank": 6,
+      "brand": "Lexus",
+      "count": 1064,
+      "share": 3.05
+    },
+    {
+      "rank": 7,
+      "brand": "Toyota",
+      "count": 971,
+      "share": 2.78
+    },
+    {
+      "rank": 8,
+      "brand": "Audi",
+      "count": 900,
+      "share": 2.58
+    },
+    {
+      "rank": 9,
+      "brand": "Porsche",
+      "count": 877,
+      "share": 2.51
+    },
+    {
+      "rank": 10,
+      "brand": "Polestar",
+      "count": 769,
+      "share": 2.2
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}
