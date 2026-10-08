@@ -1,10 +1,6 @@
-// 국내 인기 게임 순위(모바일·PC). 두 자료 모두 매달 직접 확인해 갱신합니다.
-// - 모바일: 모바일인덱스 GAME 월간 리포트의 안드로이드+iOS 합산 월간 사용자 수(추정)
-// - PC: 국내 PC 게임은 사용자 수가 공개되지 않아, 공개 지표 중 가장 널리 쓰이는 게임트릭스 PC방 이용 점유율로 비교합니다.
 import type { RankingPage } from './data';
 import icons from '../../public/ranking-images/games/sources.json';
 
-// 모바일은 공식 앱 아이콘입니다. PC 게임 이미지는 brand-images.ts에서 붙입니다.
 const icon = (name: string) => { const i = (icons as Record<string, { image: string; source: string }>)[name]; return i ? { image: i.image, imageSource: i.source } : {}; };
 
 const mobile: [string, number][] = [['Roblox', 281], ['블록 블라스트', 202], ['Pokemon GO', 169], ['브롤스타즈', 154], ['로얄 매치', 119], ['Minecraft', 99], ['전략적 팀 전투', 89], ['좀비고등학교', 87], ['피망 뉴맞고', 76], ['쿠키런 키우기', 74]];
@@ -22,7 +18,7 @@ export const gamePages: RankingPage[] = [
       ['매출 순위와 같은가요?', '아닙니다. 이 순위는 이용한 사람 수 기준입니다. 같은 달 매출 1위는 다른 게임(SOL)입니다.'],
       ['사용자 수는 정확한 값인가요?', '모바일인덱스가 표본 데이터로 추정한 값이라 실제와 차이가 있을 수 있습니다.'],
     ],
-    auditDate: '2026.10.07', auditNote: '모바일인덱스 GAME 9월 리포트(2026년 8월 AOS+iOS 합산 사용자 기준)의 TOP 10 사용자 수를 대조했습니다.',
+    auditDate: '2026.10.07',
   },
   {
     slug: 'korea-pc-games-share', title: '국내 인기 PC 게임 순위', category: 'IT·게임',
@@ -35,6 +31,6 @@ export const gamePages: RankingPage[] = [
       ['집에서 하는 사람도 포함되나요?', '아니요. PC방 이용만 집계하므로 집에서 많이 하는 게임은 실제보다 낮게 나올 수 있습니다.'],
       ['PC방 점유율 1위는?', '2026년 10월 6일 기준 리그 오브 레전드로 34.04%입니다.'],
     ],
-    auditDate: '2026.10.07', auditNote: '게임트릭스 PC방 게임 순위(2026년 10월 6일)의 TOP 10 점유율을 대조했습니다.',
+    auditDate: '2026.10.07',
   },
 ];

@@ -1,11 +1,9 @@
-/* 순위 상세 화면. 색·헤더·로고는 메인(globals.css)과 같은 것을 씁니다. */
 .detail-page{background:#f6f8fb;min-height:100vh;color:var(--ink)}
 .dp-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 .dp-all{margin-left:auto;font-size:14px;font-weight:800;color:#3b4557}
 .dp-all b{margin-left:4px;color:var(--blue)}
 .dp-all:hover{color:var(--blue)}
 
-/* 상단 소개: 분야 표시 · 제목 · 설명 · 기준 칩 · 항목 수, 그 아래 자료 점검 상자 */
 .dp-hero{padding:40px 0 24px}
 .dp-hero-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .dp-eyebrow{margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
@@ -16,21 +14,16 @@
 .dp-audit p{margin:4px 0 0;color:#526780;word-break:keep-all}
 .dp-audit.pending{background:#fff7e8;border-color:#ecd5ab}
 
-/* 공통 소제목 */
 .dp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:16px}
 .dp-head p{flex-basis:100%;margin:0;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
 .dp-head h2{margin:0;font-size:23px;letter-spacing:-.8px}
 .dp-head span{font-size:13px;color:#8a94a4}
 
-/* 본문: 순위 + 옆 정보 */
 .dp-body{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:24px;align-items:start;margin-top:12px}
 .dp-main{background:white;border:1px solid var(--line);border-radius:18px;padding:26px}
 .dp-empty{margin:0;padding:30px 0;text-align:center;font-size:15px;color:#687386}
 .dp-credit{margin:18px 0 0;font-size:11px;line-height:1.6;color:#a1a9b5}
 
-/* 한 줄 포인트 */
-
-/* 1~3위 시상대: 2위 · 1위 · 3위 순서, 1위가 가장 높습니다. */
 .dp-podium{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:end}
 .dp-podium li{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
 .dp-podium .dp-thumb{width:84px;height:84px;border-radius:18px;margin-bottom:10px}
@@ -56,21 +49,18 @@
 .dp-podium+.dp-list,.dp-podium+.dp-posters{border-top:1px solid #eef1f6;padding-top:6px}
 .dp-podium+.dp-posters{padding-top:22px}
 
-/* 목록형 순위 */
 .dp-list{list-style:none;margin:0;padding:0}
 .dp-list li{display:flex;align-items:center;gap:16px;padding:16px 4px;border-top:1px solid #eef1f6}
 .dp-list li:first-child{border-top:0}
 .dp-rank{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;font-size:14px;font-weight:900;color:#566176;background:#f1f4f8}
 .dp-list li.top .dp-rank,.dp-rank.top{color:white;background:var(--blue)}
 .dp-thumb{position:relative;flex-shrink:0;width:64px;height:64px;border-radius:14px;overflow:hidden;background:#eef3fb;display:grid;place-items:center}
-/* 이미지를 못 불러오면 대체 글자 대신 빈 틀만 보입니다. */
 .dp-thumb img,.dp-poster img,.dp-division img{color:transparent;font-size:0}
 .dp-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
 .dp-thumb.flag{width:72px;height:48px;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(16,24,39,.08)}
 .dp-thumb.flag img{object-position:center}
 .dp-thumb.logo{width:80px;background:white;border:1px solid #e7ebf1}
 .dp-thumb.logo img{object-fit:contain;padding:8px}
-/* 메인 헤더 로고의 .logo span 스타일이 로고형 틀에 섞이지 않게 막습니다. */
 .detail-page .dp-thumb.none span{display:inline;width:auto;height:auto;border-radius:0;background:none;box-shadow:none;font-style:normal;font-size:21px;font-weight:900;color:#9fb3d6}
 .dp-info{flex:1;min-width:0}
 .dp-line{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
@@ -90,7 +80,6 @@
 .dp-row-links a.dp-visit:hover{background:#0647d6;color:#fff}
 .dp-row-links a.btn-sub{margin-top:2px}
 
-/* 포스터형 순위 */
 .dp-posters{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:22px 16px}
 .dp-poster{position:relative;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:#eef3fb;box-shadow:0 10px 24px rgba(22,34,52,.12)}
 .dp-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -101,8 +90,6 @@
 .dp-posters strong{display:block;margin-top:4px;font-size:15px;font-weight:900;color:var(--blue)}
 .dp-posters li>p{margin:4px 0 0;font-size:12px;line-height:1.5;color:#7a8597;word-break:keep-all}
 
-/* 옆 정보: 자료와 집계 기준, 다른 순위 */
-/* 메인 화면의 aside 기본 스타일(테두리, 900px 이하 숨김)이 적용되지 않게 덮어씁니다. */
 .detail-page .dp-side{display:flex;flex-direction:column;gap:14px;position:sticky;top:94px;border:0;border-radius:0;padding:0;height:auto}
 .dp-card{background:white;border:1px solid var(--line);border-radius:18px;padding:22px}
 .dp-card small{font-size:11px;font-weight:900;letter-spacing:1.4px;color:var(--blue)}
@@ -110,7 +97,6 @@
 .dp-card>p{margin:0;font-size:14px;line-height:1.7;color:#5d6879;word-break:keep-all}
 .dp-source{display:block;margin:16px 0;padding:12px 14px;border-radius:10px;background:var(--blue);color:white;font-size:14px;font-weight:800;line-height:1.4;text-align:center;word-break:keep-all}
 .dp-source:hover{background:#0d5be8}
-/* 링크가 없는 출처는 버튼이 아닌 글자로 표시합니다. */
 .dp-card>.dp-source.static{background:#f1f4f8;color:#3b4557;font-size:14px;line-height:1.4}
 .dp-card>span{display:block;font-size:12px;line-height:1.6;color:#9aa4b3}
 .dp-card ul{list-style:none;margin:0;padding:0}
@@ -118,7 +104,6 @@
 .dp-card li a b{color:#a1a9b5}
 .dp-card li a:hover,.dp-card li a:hover b{color:var(--blue)}
 
-/* UFC 체급 */
 .dp-divisions{margin-top:32px}
 .dp-division-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
 .dp-division{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}
@@ -132,7 +117,6 @@
 .dp-division li img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 15%;background:#eef3fb}
 .dp-division li b{color:var(--blue);width:12px}
 
-/* 자주 묻는 질문 */
 .dp-faq{margin-top:40px}
 .dp-faq details{background:white;border:1px solid var(--line);border-radius:14px;margin-top:10px}
 .dp-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;padding:17px 20px;font-size:15px;font-weight:800}
@@ -141,10 +125,8 @@
 .dp-faq details[open] summary:after{content:"−"}
 .dp-faq details p{margin:0;padding:0 20px 18px;font-size:14px;line-height:1.7;color:#5d6879;word-break:keep-all}
 
-/* 바닥 */
 .dp-footer{margin-top:56px;border-top:1px solid var(--line);background:white;padding:26px 0}
 .dp-footer .dp-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.dp-footer p{margin:0;font-size:13px;color:#8a94a4}
 
 @media(max-width:960px){
  .dp-body{grid-template-columns:1fr}
@@ -174,9 +156,6 @@
  .dp-footer .dp-wrap{flex-direction:column;align-items:flex-start}
 }
 
-.dp-credit-links{display:flex;flex-wrap:wrap;gap:4px 10px;margin-bottom:6px;font-weight:700;color:#687386}
-.dp-credit-links a{color:#687386;text-decoration:underline;text-underline-offset:2px}
-.dp-credit-links a:hover{color:var(--blue)}
 .dp-podium.wide .dp-podium-poster{aspect-ratio:16/9;max-width:240px}
 .dp-posters.wide{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .dp-posters.wide .dp-poster{aspect-ratio:16/9}
@@ -192,8 +171,6 @@
 .dp-meta span+span::before{content:"";align-self:center;width:1px;height:11px;margin:0 12px;background:#d5dbe4}
 .dp-meta b{font-weight:700;color:#111}
 .dp-lede{margin:0 0 22px;font-size:17px;font-weight:600;line-height:1.5;letter-spacing:-.3px;color:var(--ink);word-break:keep-all}
-.dp-card>.dp-check{display:block;margin-top:2px;font-size:12px;line-height:1.6;color:#8a94a4;word-break:keep-all}
-.dp-check b{display:block;margin-bottom:2px;font-weight:700;color:#374151}
 @media(max-width:640px){.dp-meta{flex-direction:column}.dp-meta span+span::before{display:none}.dp-lede{font-size:16px}}
 .dp-photo-credits{margin-top:18px;font-size:11px;line-height:1.6;color:#8a94a4}
 .dp-photo-credits summary{cursor:pointer;font-weight:700;color:#687386}
@@ -205,6 +182,5 @@
 .dp-initial{flex-shrink:0;display:grid;place-items:center;background:#eef3fb;color:#9fb3d6;font-weight:900}
 .dp-champion .dp-initial{width:64px;height:64px;border-radius:14px;font-size:22px}
 .dp-division li .dp-initial{width:32px;height:32px;border-radius:50%;font-size:13px}
-/* 흰 바탕 아이콘도 틀이 보이게 모든 이미지 틀에 옅은 안쪽 테두리를 겹칩니다. */
 .dp-thumb::after,.dp-podium-poster::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(16,24,39,.08);pointer-events:none}
 .dp-value-label{display:block;margin-bottom:1px;font-size:11px;font-weight:700;letter-spacing:0;color:var(--muted,#7a8494)}

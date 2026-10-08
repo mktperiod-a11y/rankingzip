@@ -1,9 +1,5 @@
-// 역대 가수 음반 판매량. 위키백과 "List of best-selling music artists"(2026.10.07 조회)의 순서를 따릅니다.
-// 그 목록은 음반사·언론이 밝힌 판매량(추정, 범위)으로 줄을 세우고, 각국 음반협회 인증 판매량을 근거로 함께 적습니다.
-// 인증 판매량은 스트리밍 환산이 포함돼 최근 가수에게 유리하므로 순위가 아닌 참고 값으로만 보여줍니다.
 import type { RankingPage } from './data';
 
-// [이름, 영문 이름, 국가, 활동 기간, 인증 판매량(백만), 추정 판매량 하한(백만), 상한(백만)]
 const ARTISTS: [string, string, string, string, number, number, number][] = [
   ['비틀스', 'The Beatles', '영국', '1960~1970', 295.9, 500, 600],
   ['마이클 잭슨', 'Michael Jackson', '미국', '1964~2009', 308.2, 400, 500],
@@ -17,9 +13,8 @@ const ARTISTS: [string, string, string, string, number, number, number][] = [
   ['에미넴', 'Eminem', '미국', '1996~', 345.8, 220, 220],
 ];
 
-/** 백만 단위 → "2억 5천만", "2억 9,590만" */
 export function koCount(million: number) {
-  const man = Math.round(million * 100); // 만 단위
+  const man = Math.round(million * 100);
   const eok = Math.floor(man / 10000), rest = man % 10000;
   if (!rest) return `${eok}억`;
   const restText = rest % 1000 === 0 ? `${rest / 1000}천만` : `${rest.toLocaleString('en-US')}만`;
@@ -36,7 +31,6 @@ export const musicPages: RankingPage[] = [{
   hideBars: true,
   rows: ARTISTS.map(([name, en, country, period, certified, lo, hi], i) => ({
     name, value: claim(lo, hi),
-    // 추정 판매량 범위가 같으면 공동 순위입니다.
     rank: ARTISTS.findIndex((a) => a[5] === lo && a[6] === hi) + 1 || i + 1,
     note: `${en} · ${country} · ${period} 활동 · 인증 ${koCount(certified)} 장`,
   })),
@@ -46,5 +40,5 @@ export const musicPages: RankingPage[] = [{
     ['리애나·에미넴은 인증 판매량이 더 많은데 왜 아래에 있나요?', '인증 판매량에는 스트리밍 환산 수치가 들어가 최근 가수에게 유리합니다. 이 순위는 위키백과 목록처럼 추정 판매량을 기준으로 합니다.'],
     ['한국 가수는 없나요?', '2026년 10월 7일 조회한 위키백과 목록에는 한국 가수가 없습니다.'],
   ],
-  auditDate: '2026.10.07', auditNote: '위키백과 목록 상위 10명의 추정 판매량과 인증 판매량(전체 합계)을 대조했습니다. 엘턴 존과 퀸은 추정 판매량 범위가 같아 공동 5위입니다.',
+  auditDate: '2026.10.07',
 }];

@@ -1,11 +1,4 @@
 #!/usr/bin/env node
-// 애니메이션 순위 두 가지를 공개 자료로 갱신합니다. API 키가 필요 없습니다.
-//   node scripts/update-anime.mjs            갱신해서 data/rankings/anime-*.json과 public/ranking-images/anime/에 저장
-//   node scripts/update-anime.mjs --dry-run  저장하지 않고 결과만 출력
-// - 역대 인기 애니메이션: AniList 회원이 자기 목록에 담은 수(popularity). 같은 작품의 후속 시즌·외전은 첫 작품 하나만 셉니다.
-// - 이번 시즌 인기 애니메이션: Anime Corner 주간 팬 투표 최신 회차의 득표율. 새 회차가 없으면 바꾸지 않습니다.
-// 한국어 제목은 data/rankings/anime-titles-ko.json(AniList 작품 번호 또는 영어 제목 → 한국어 제목)에서 먼저 찾고,
-// 없으면 위키데이터의 한국어 이름을 씁니다. 둘 다 없으면 영어 제목을 그대로 저장하고 목록을 출력합니다.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -22,14 +15,12 @@ const today = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10
 
 const decode = (s) => s.replace(/<[^>]+>/g, '').replace(/&#8217;|&rsquo;/g, '’').replace(/&#8211;|&ndash;/g, '–').replace(/&#038;|&amp;/g, '&').replace(/&#8220;|&#8221;|&quot;/g, '"').replace(/&#039;|&#8216;/g, "'").replace(/\s+/g, ' ').trim();
 
-/** Anime Corner 순위 목록 페이지에서 가장 최근 주간 투표 글 주소 */
 export function latestWeekUrl(html) {
   const m = html.match(/href="(https:\/\/animecorner\.me\/[a-z]+-\d{4}-anime-rankings-week-\d+\/?)"/);
   if (!m) throw new Error('주간 투표 글을 찾지 못했습니다');
   return m[1];
 }
 
-/** 주간 투표 글에서 시즌·회차·발표일과 순위표를 뽑습니다. */
 export function parseWeekly(html, url) {
   const head = url.match(/\/([a-z]+)-(\d{4})-anime-rankings-week-(\d+)/);
   if (!head) throw new Error(`주소 형식이 다릅니다: ${url}`);
@@ -48,7 +39,6 @@ export function parseWeekly(html, url) {
 }
 
 const norm = (s = '') => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
-/** 같은 작품의 후속 시즌·외전을 뺍니다: 이미 고른 작품과 이어지는 관계이거나 제목이 그 작품 제목으로 시작하면 뺍니다. */
 export function pickFranchiseLeaders(media, count = TOP) {
   const picked = [];
   for (const m of media) {
@@ -62,7 +52,7 @@ export function pickFranchiseLeaders(media, count = TOP) {
 }
 
 async function anilist(query, variables = {}) {
-  await wait(800); // AniList 요청 제한(분당 90회)을 넘지 않게 천천히 보냅니다.
+  await wait(800);
   const res = await fetch('https://graphql.anilist.co', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' }, body: JSON.stringify({ query, variables }), signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`AniList ${res.status}`);
   const json = await res.json();
@@ -72,7 +62,6 @@ async function anilist(query, variables = {}) {
 
 const FIELDS = 'id idMal title { romaji english native } popularity startDate { year } format coverImage { extraLarge large } siteUrl';
 
-/** 위키데이터에서 AniList·MyAnimeList 번호로 한국어 이름을 찾습니다. */
 async function wikidataKo(m) {
   const q = `SELECT ?l WHERE { { ?i wdt:P8729 "${m.id}" } UNION { ?i wdt:P4086 "${m.idMal ?? 0}" } ?i rdfs:label ?l FILTER(lang(?l)="ko") } LIMIT 1`;
   try {
@@ -105,7 +94,6 @@ async function main() {
   const manual = JSON.parse(fs.readFileSync(TITLES_KO, 'utf8'));
   const missing = [];
 
-  // 역대 인기
   const { Page } = await anilist(`{ Page(perPage: 50) { media(type: ANIME, sort: POPULARITY_DESC, isAdult: false) { ${FIELDS} relations { edges { relationType node { id } } } } } }`);
   const leaders = pickFranchiseLeaders(Page.media);
   if (leaders.length < TOP) throw new Error('AniList 결과가 부족합니다');
@@ -114,7 +102,6 @@ async function main() {
     allTime.rows.push({ rank: i + 1, title: m.title.english ?? m.title.romaji, popularity: m.popularity, year: m.startDate?.year ?? null, format: m.format, ...(await describe(m, manual, missing, dryRun)) });
   }
 
-  // 이번 시즌 주간 투표
   const list = await (await fetch(RANKINGS_PAGE, { headers: { 'user-agent': UA } })).text();
   const url = latestWeekUrl(list);
   const previous = fs.existsSync(WEEKLY_FILE) ? JSON.parse(fs.readFileSync(WEEKLY_FILE, 'utf8')) : null;
@@ -132,7 +119,6 @@ async function main() {
   console.log(JSON.stringify({ allTime: allTime.rows.map((r) => `${r.rank}. ${r.titleKo ?? r.title} ${r.popularity}`), weekly: weekly?.rows.map((r) => `${r.rank}. ${r.titleKo ?? r.title} ${r.votes}`) }, null, 1));
   if (missing.length) console.log(`한국어 제목 없음 → ${TITLES_KO}에 추가하세요:\n${missing.join('\n')}`);
   if (dryRun) return;
-  // 역대 순위는 같은 날 다시 돌려도 수치만 바뀌므로 그대로 덮어씁니다.
   fs.writeFileSync(ALL_TIME_FILE, `${JSON.stringify(allTime, null, 2)}\n`);
   if (weekly) fs.writeFileSync(WEEKLY_FILE, `${JSON.stringify(weekly, null, 2)}\n`);
 }

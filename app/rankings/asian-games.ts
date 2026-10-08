@@ -29,7 +29,6 @@ export const asianGamesPages: RankingPage[] = [{
     {name:'차이니스 타이베이',value:'금메달 1회',note:'2006 도하 대회 우승',image:'https://flagcdn.com/w640/tw.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
   ],
   auditDate:'2026.09.28',
-  auditNote:'KBO의 2026 대회 일정·대표팀 자료와 9월 27일 결승 결과, 1994년 이후 역대 우승 대회를 대조했습니다. 시범 종목이었던 1990년 대회는 제외했습니다.',
   faq:[
     ['아시안게임 야구 최다 우승 국가는 어디인가요?','2026년 대회 종료 기준 대한민국이 금메달 7개로 가장 많습니다.'],
     ['한국 야구는 몇 회 연속 우승했나요?','2010 광저우 대회부터 2026 아이치·나고야 대회까지 5회 연속 우승했습니다.'],
@@ -52,7 +51,6 @@ export const asianGamesPages: RankingPage[] = [{
     sourceUrl,
   })),
   auditDate:'2026.09.24',
-  auditNote:'9월 23일 22시 8분 발표된 메달 표의 금·은·동 수치와 순서를 대조했습니다. 대회 진행 중인 집계이므로 다음 경기 종료 후 달라질 수 있습니다.',
   faq:[
     ['대한민국은 현재 몇 위인가요?','9월 23일 경기 종료 기준 금메달 8개, 은메달 8개, 동메달 25개로 종합 3위입니다.'],
     ['총메달이 많은 나라가 더 낮을 수도 있나요?','네. 아시안게임 종합 순위는 총메달 수가 아니라 금메달 수를 먼저 비교하고, 같으면 은메달과 동메달 수를 차례로 봅니다.'],

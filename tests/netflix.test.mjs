@@ -9,7 +9,6 @@ import { parseKoreaCharts, parseTitlePage, parseTudumCards, weekRange } from '..
 
 const fixture = fs.readFileSync('tests/fixtures/netflix-top10.tsv', 'utf8');
 
-// app/rankings/netflix.ts를 JSON import 대신 실제 데이터 파일 내용으로 바꿔 불러옵니다.
 async function loadContent() {
   const source = fs.readFileSync('app/rankings/netflix.ts', 'utf8')
     .replace(/import (\w+) from '\.\.\/\.\.\/(data\/rankings\/[\w-]+\.json)';/g, (_, name, file) => `const ${name} = ${fs.readFileSync(file, 'utf8')};`);
@@ -43,7 +42,6 @@ test('parser refuses unexpected formats instead of saving bad data', () => {
 test('updater writes only newer weeks, and dry-run writes nothing', () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'netflix-'));
   fs.cpSync('data', path.join(dir, 'data'), { recursive: true });
-  // 저장된 데이터는 매주 바뀌므로, 테스트용 TSV보다 이전 주간으로 고정해 둡니다.
   for (const name of ['netflix-korea-films-weekly', 'ott-content-weekly']) {
     fs.writeFileSync(path.join(dir, `data/rankings/${name}.json`), JSON.stringify({ source: '', weekStart: '2026-09-14', weekEnd: '2026-09-20', checkedAt: '2026-09-24', rows: [] }));
   }

@@ -6,7 +6,6 @@ import { LIVE_SLUGS } from './live';
 export const MAX_RANKING_ITEMS = 10;
 export const MIN_RANKING_ITEMS = 5;
 
-// 실제 대상이 부족한 순위만 예외로 둡니다. 숫자를 맞추기 위해 기록을 만들지 않습니다.
 export const rankingCountExceptions: Record<string, string> = {
   'asian-games-baseball-champions': '정식 종목 채택 이후 우승 국가는 3곳뿐입니다.',
   'ufc-rankings-by-division': '이 페이지의 비교 대상은 남성부 8개 체급입니다.',
@@ -21,7 +20,6 @@ export function applyCompletion(pages: RankingPage[]): RankingPage[] {
     p.rows = p.rows.slice(0, MAX_RANKING_ITEMS).map(r => pictures[r.name]
       ? { ...r, image: pictures[r.name].image, imageSource: pictures[r.name].source }
       : { ...r });
-    // 자동 갱신 순위는 이 다음 단계(live.ts)에서 항목이 채워지므로 여기서 세지 않습니다(테스트가 최종 개수를 확인합니다).
     if (!p.noindex && p.rows.length < MIN_RANKING_ITEMS && !rankingCountExceptions[p.slug] && !LIVE_SLUGS.includes(p.slug)) {
       throw new Error(`${p.slug}: 공개 순위는 최소 ${MIN_RANKING_ITEMS}개가 필요합니다.`);
     }

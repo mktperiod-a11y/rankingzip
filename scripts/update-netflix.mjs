@@ -1,11 +1,4 @@
 #!/usr/bin/env node
-// 넷플릭스 대한민국 주간 TOP 10(영화·TV)을 넷플릭스 공개 데이터로 갱신합니다. API 키가 필요 없습니다.
-//   node scripts/update-netflix.mjs            갱신해서 data/rankings/*.json에 저장
-//   node scripts/update-netflix.mjs --dry-run  저장하지 않고 결과만 출력
-//   node scripts/update-netflix.mjs --input 파일.tsv   내려받는 대신 로컬 파일 사용(한국어 제목·이미지는 받지 않음)
-// 새 주간이 없으면 아무것도 바꾸지 않습니다. 데이터 형식이 예상과 다르면 저장하지 않고 실패합니다.
-// 순위 데이터(TSV)는 영문 제목뿐이라, 넷플릭스 Tudum 국가 페이지에서 작품 번호·대표 이미지를,
-// 작품 페이지(한국어)에서 한국어 제목을 가져와 덧붙입니다. 이 단계가 실패해도 순위는 영문 제목으로 저장합니다.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,7 +18,6 @@ const MANUAL_KO = 'data/rankings/netflix-titles-ko.json';
 
 const isoDay = (ms) => new Date(ms).toISOString().slice(0, 10);
 
-/** 넷플릭스 주간(월~일). 데이터의 week 값이 주의 시작(월)인지 끝(일)인지 모두 처리합니다. */
 export function weekRange(week) {
   const ms = Date.parse(`${week}T00:00:00Z`);
   const day = new Date(ms).getUTCDay();
@@ -34,7 +26,6 @@ export function weekRange(week) {
   throw new Error(`week 값 ${week}이(가) 월요일이나 일요일이 아닙니다`);
 }
 
-/** TSV 전체에서 대한민국 최신 주간의 영화·TV 차트를 뽑습니다. */
 export function parseKoreaCharts(tsv) {
   const [headerLine, ...lines] = tsv.replace(/^﻿/, '').split(/\r?\n/).filter(Boolean);
   const header = headerLine.split('\t');
@@ -73,7 +64,6 @@ async function getText(url) {
   return res.text();
 }
 
-/** Tudum 국가 페이지의 카드: 영문 제목(시즌 포함) → 작품 번호, 가로 대표 이미지(1200×675) */
 export function parseTudumCards(html) {
   return html.split('data-uia="top10-card"').slice(1).map((card) => ({
     alt: decodeHtml(card.match(/top10-card-logo[\s\S]*?alt="([^"]*)"/)?.[1]),
@@ -82,7 +72,6 @@ export function parseTudumCards(html) {
   })).filter((c) => c.alt && c.videoId);
 }
 
-/** 작품 페이지(한국어)의 제목과 대표 이미지 */
 export function parseTitlePage(html) {
   const meta = (p) => html.match(new RegExp(`<meta[^>]+property="${p}"[^>]+content="([^"]*)"`))?.[1];
   const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, '');
@@ -92,10 +81,6 @@ export function parseTitlePage(html) {
 
 const hasHangul = (s) => /[가-힣]/.test(s ?? '');
 
-/**
- * 넷플릭스 작품 페이지가 막혔을 때(한국 전용 작품은 해외에서 404) TMDB에서 한국어 제목을 찾습니다.
- * TMDB_API_KEY(v3 키 또는 읽기 토큰)가 있을 때만 씁니다. 원제가 같거나 한국 작품인 결과만 받아들입니다.
- */
 async function tmdbTitleKo(title, category) {
   const key = process.env.TMDB_API_KEY;
   if (!key) return undefined;
@@ -116,7 +101,6 @@ async function download(src, file) {
   fs.writeFileSync(file, Buffer.from(await res.arrayBuffer()));
 }
 
-/** 차트 행마다 한국어 제목(titleKo)과 이미지(image)를 붙입니다. 실패한 항목은 비워 두고 다음 갱신 때 다시 시도합니다. */
 async function enrich(chart, saveImages) {
   let cards = [];
   try { cards = parseTudumCards(await getText(TUDUM[chart.category])); } catch (error) { console.log(`  ! Tudum 페이지 실패: ${error.message}`); }
@@ -162,11 +146,9 @@ async function main() {
     const file = path.resolve(chart.file);
     const current = JSON.parse(fs.readFileSync(file, 'utf8'));
     console.log(`\n[${chart.category}] ${chart.weekStart} ~ ${chart.weekEnd} (현재 저장: ${current.weekStart} ~ ${current.weekEnd})`);
-    // 같은 주간이라도 한국어 제목이 빠져 있으면 다시 받아 채웁니다.
     const missingKo = chart.weekEnd === current.weekEnd && current.rows.some((r) => !r.titleKo);
     if (chart.weekEnd < current.weekEnd || (chart.weekEnd === current.weekEnd && !(missingKo && online))) { console.log('  → 새 주간이 아니어서 그대로 둡니다'); continue; }
     if (online) await enrich(chart, !dryRun);
-    // 이번에 못 받은 한국어 제목·이미지는 같은 작품의 이전 값으로 채웁니다.
     for (const r of chart.rows) {
       const prev = current.rows.find((p) => p.title === r.title && p.season === r.season);
       if (prev) { r.titleKo ??= prev.titleKo; r.image ??= prev.image; r.videoId ??= prev.videoId; }
