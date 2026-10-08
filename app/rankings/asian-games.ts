@@ -1,18 +1,26 @@
 import type { RankingPage } from './data';
 
-const sourceUrl = 'https://www.yna.co.kr/view/AKR20260920054553007';
-const medals: [string,string,number,number,number][] = [
-  ['중국','cn',48,20,10],
-  ['일본','jp',15,25,27],
-  ['대한민국','kr',8,8,25],
-  ['카자흐스탄','kz',7,4,8],
-  ['태국','th',5,3,4],
-  ['홍콩','hk',3,6,7],
-  ['이란','ir',3,3,2],
-  ['말레이시아','my',3,1,5],
-  ['북한','kp',2,1,3],
-  ['쿠웨이트','kw',2,1,2],
-];
+const sourceUrl = 'https://www.yna.co.kr/view/AKR20261002184252007';
+const medalDate = '2026.10.04';
+const medalRows = [
+  ['중국', 'cn', 169, 89, 83],
+  ['일본', 'jp', 83, 95, 91],
+  ['대한민국', 'kr', 39, 43, 68],
+  ['인도', 'in', 21, 27, 37],
+  ['우즈베키스탄', 'uz', 21, 25, 24],
+  ['이란', 'ir', 19, 18, 15],
+  ['태국', 'th', 18, 13, 21],
+  ['카자흐스탄', 'kz', 12, 24, 48],
+  ['홍콩', 'hk', 11, 19, 24],
+  ['바레인', 'bh', 11, 5, 6],
+] as [string, string, number, number, number][];
+const medals = medalRows.map(([name, code, gold, silver, bronze], i) => ({
+  name, rank: i + 1,
+  value: `금 ${gold} · 은 ${silver} · 동 ${bronze}`,
+  note: `총 ${gold + silver + bronze}개 · 금메달 수 우선 순위`,
+  image: `https://flagcdn.com/w640/${code}.png`, sourceUrl,
+}));
+const korea = medals.find(row => row.name === '대한민국')!;
 
 export const asianGamesPages: RankingPage[] = [{
   slug:'asian-games-baseball-champions',
@@ -38,22 +46,17 @@ export const asianGamesPages: RankingPage[] = [{
   slug:'asian-games-medal-table-2026',
   title:'2026 아시안게임 국가별 메달 순위',
   category:'스포츠',
-  date:'2026.09.23 경기 종료 기준 · 22:08 발표',
+  date:`${medalDate} 최종 집계`,
+  dataLabel:`연합뉴스 ${medalDate} 최종 메달 집계`,
   basis:'금메달 수 우선 · 은메달, 동메달 순 · 상위 10개 국가·지역',
-  description:'아이치·나고야 아시안게임 9월 23일 경기 종료 후 국가별 메달 순위입니다. 중국이 금메달 48개로 1위, 일본이 15개로 2위, 대한민국이 8개로 3위입니다. 대회 중 수치는 매일 바뀔 수 있습니다.',
-  source:'연합뉴스 · 2026 아이치·나고야 아시안게임 메달 순위(23일)',
+  description:`${medalDate} 종료된 아이치·나고야 아시안게임 최종 메달 순위입니다. 대한민국은 ${korea.value}개로 종합 ${korea.rank}위입니다.`,
+  source:'연합뉴스 · 2026 아시안게임 최종 메달 순위',
   sourceUrl,
-  rows:medals.map(([name,code,gold,silver,bronze])=>({
-    name,
-    value:`금 ${gold} · 은 ${silver} · 동 ${bronze}`,
-    note:`총 ${gold+silver+bronze}개 · 금메달 수 우선 순위`,
-    image:`https://flagcdn.com/w640/${code}.png`,
-    sourceUrl,
-  })),
-  auditDate:'2026.09.24',
+  rows:medals,
+  auditDate:'2026.10.08',
   faq:[
-    ['대한민국은 현재 몇 위인가요?','9월 23일 경기 종료 기준 금메달 8개, 은메달 8개, 동메달 25개로 종합 3위입니다.'],
+    ['대한민국의 최종 순위는 몇 위인가요?',`${medalDate} 최종 집계 기준 종합 ${korea.rank}위입니다. 메달 수는 ${korea.value}개입니다.`],
     ['총메달이 많은 나라가 더 낮을 수도 있나요?','네. 아시안게임 종합 순위는 총메달 수가 아니라 금메달 수를 먼저 비교하고, 같으면 은메달과 동메달 수를 차례로 봅니다.'],
-    ['이 순위는 최종 결과인가요?','아닙니다. 2026년 9월 23일 경기 종료 기준 중간 집계이며 대회가 진행되면 바뀝니다.'],
+    ['이 순위는 최종 결과인가요?',`네. ${medalDate} 대회 종료 후 발표된 최종 집계입니다. 이후 공식 기록이 정정되면 수정될 수 있습니다.`],
   ],
 }];

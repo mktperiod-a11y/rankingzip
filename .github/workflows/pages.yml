@@ -29,6 +29,8 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - run: node scripts/build-github-pages.mjs "${{ steps.pages.outputs.base_path }}" out
+      - name: 순위 및 FAQ 정합성 검증
+        run: node --test tests/*.test.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

@@ -3,7 +3,7 @@ import { dateParts } from './date-parts';
 
 const DATA_LABEL: Record<string, string> = {
   'asian-games-baseball-champions': 'KBO 2026.09.27 결승 종료 데이터',
-  'asian-games-medal-table-2026': '연합뉴스 2026.09.23 22:08 발표 데이터',
+  'asian-games-medal-table-2026': '연합뉴스 2026.10.04 최종 메달 집계',
  
  
  

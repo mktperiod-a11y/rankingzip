@@ -16,7 +16,7 @@ import population from '../../data/rankings/live/korea-province-population.json'
 import liveImages from '../../data/rankings/live-images.json';
 import { KBO_LOGO } from './portraits';
 
-type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'p4p' | 'auditDate' | 'sourceUrl'>>;
+type Live = Partial<Pick<RankingPage, 'date' | 'dataLabel' | 'basis' | 'description' | 'rows' | 'faq' | 'divisions' | 'p4p' | 'auditDate' | 'source' | 'sourceUrl'>>;
 const N = names as { movies: Record<string, string>; people: Record<string, string>; kboPlayers: Record<string, string>; brands: Record<string, string>; kboTeams: Record<string, string> };
 const dot = (iso: string) => iso.replaceAll('-', '.');
 const md = (iso: string) => { const [, m, d] = iso.split('-').map(Number); return `${m}월 ${d}일`; };
@@ -116,7 +116,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       rows: d.rows.map((r) => ({ name: r.team, value: `승률 ${r.pct}`, note: `${r.win}승 ${r.loss}패 ${r.draw}무 · 1위와 ${r.behind}경기 차`, rank: r.rank, ...(KBO_LOGO[r.team] ? { image: `/ranking-images/expansion/kbo_${KBO_LOGO[r.team]}.webp`, imageSource: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx' } : {}) })),
       faq: [
         ['현재 1위 팀은 어디인가요?', `${md(d.checkedAt)} 조회 기준 ${a.team}가 승률 ${a.pct}로 1위입니다.`],
-        [`${a.team}와 ${b.team}의 차이는 얼마나 되나요?`, `${b.team}는 승률 ${b.pct}로 2위이며 ${a.team}와 ${b.behind}경기 차입니다.`],
+        [`${a.team}와 ${b.team}의 차이는 얼마나 되나요?`, `2위 ${b.team}의 승률은 ${b.pct}이며, 1위 ${a.team}과의 차이는 ${b.behind}경기입니다.`],
         ['승수가 더 많은데 순위가 낮을 수 있나요?', 'KBO 정규시즌 순위는 승수만이 아니라 승률을 기준으로 정합니다. 우천 순연 등으로 팀별 경기 수가 다를 수 있습니다.'],
       ],
     };
@@ -126,7 +126,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
   'korea-import-car-brands': () => {
     const d = importCars, { y, m } = ym(d.month), top = d.rows[0], brand = (en: string) => N.brands[en] ?? en;
     return {
-      date: `${y}년 ${m}월 · ${md(d.checkedAt)} 확인`, dataLabel: `KAIDA ${y}년 ${m}월 데이터`, auditDate: dot(d.checkedAt),
+      date: `${y}년 ${m}월 · ${md(d.checkedAt)} 확인`, dataLabel: `KAIDA ${y}년 ${m}월 데이터`, auditDate: dot(d.checkedAt), source: `한국수입자동차협회(KAIDA) · ${y}년 ${m}월 신규등록`,
       description: `KAIDA가 발표한 ${y}년 ${m}월 수입 승용차 신규등록 ${won(d.total)}대 중 상위 10개 브랜드입니다. 1위는 ${brand(top.brand)}(${won(top.count)}대)입니다. 전기차만의 순위나 전 세계 판매 순위는 아닙니다.`,
       rows: d.rows.map((r) => ({ name: brand(r.brand), value: `${won(r.count)}대`, note: `${m}월 수입 승용차 전체 대비 ${r.share.toFixed(1)}% · 신규등록`, rank: r.rank })),
       faq: [
@@ -145,7 +145,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       rows: d.rows.map((r) => ({ name: team(r.team), value: `${won(r.crowd)}명`, note: '', rank: r.rank, ...(KBO_LOGO[r.team] ? { image: `/ranking-images/expansion/kbo_${KBO_LOGO[r.team]}.webp`, imageSource: 'https://www.koreabaseball.com/Kbo/League/TeamInfo.aspx' } : {}) })),
       faq: [
         ['홈 관중이 가장 많은 구단은 어디인가요?', `${md(d.date)} 기준 ${team(top.team)}가 ${won(top.crowd)}명으로 1위입니다.`],
-        ['2026 정규시즌 전체 관중은 몇 명인가요?', `10개 구단 홈 관중 합계는 ${won(d.total)}명입니다.`],
+        ['집계된 정규시즌 관중은 몇 명인가요?', `${dot(d.date)} 기준 10개 구단 홈 관중 합계는 ${won(d.total)}명입니다.`],
         ['원정 관중도 포함되나요?', '구단별 홈 경기 관중만 셉니다. 한 경기는 홈 구단에만 집계됩니다.'],
       ],
     };
@@ -160,7 +160,7 @@ const BUILDERS: Record<string, (p: RankingPage) => Live> = {
       faq: [
         ['인구가 가장 많은 시도는?', `${y}년 ${m}월 말 기준 ${top.name}로 ${won(top.population)}명입니다.`],
         ['외국인도 포함되나요?', '이 표의 주민등록 인구에는 외국인이 포함되지 않습니다.'],
-        ['언제 갱신되나요?', '행정안전부가 매월 말 기준 통계를 다음 달 초에 공표하며, 공표되면 자동으로 바뀝니다.'],
+        ['언제 갱신되나요?', '매주 수·토요일에 새 월간 자료를 확인합니다. 수집과 검증이 성공하면 반영하며, 새 자료가 없으면 기존 기준월을 유지합니다.'],
       ],
     };
   },

@@ -79,3 +79,33 @@ test('every public ranking declares how it stays fresh',()=>{
  const {FRESHNESS}=load('app/rankings/freshness.ts');
  for(const p of pages.filter(p=>!p.noindex))assert.ok(FRESHNESS[p.slug],`${p.slug}: freshness.ts에 갱신 방식 없음`);
 });
+
+test('final Asian Games table and FAQ share the final result',()=>{
+ const p=pages.find(p=>p.slug==='asian-games-medal-table-2026');
+ const korea=p.rows.find(r=>r.name==='대한민국');
+ assert.equal(korea.rank,3);assert.equal(korea.value,'금 39 · 은 43 · 동 68');
+ assert.equal(p.rows[0].value,'금 169 · 은 89 · 동 83');
+ assert.match(p.date,/2026\.10\.04.*최종/);
+ assert.ok(p.faq[0][1].includes(korea.value));
+ assert.ok(p.faq[2][1].startsWith('네.'));
+ assert.doesNotMatch(JSON.stringify(p),/9월 23일|2026\.09\.23|대회가 진행되면|중간 집계/);
+ for(let i=1;i<p.rows.length;i++){
+  const prev=p.rows[i-1].value.match(/\d+/g).map(Number),next=p.rows[i].value.match(/\d+/g).map(Number);
+  const diff=prev.map((v,j)=>v-next[j]).find(v=>v!==0);assert.ok(diff>0);
+ }
+});
+
+test('leader FAQs follow changed final rows and dates instead of old hardcoded answers',()=>{
+ const {applyFaq}=load('app/rankings/faq.ts');
+ const slugs=['korean-drama-ratings','world-tallest-buildings','world-population','world-gdp-ranking','world-highest-mountains','korea-highest-mountains','most-visited-countries','korea-mobile-games-users','best-selling-music-artists'];
+ for(const slug of slugs){
+  const original=pages.find(p=>p.slug===slug);
+  const changed={...original,date:'2027.01.01 확인',rows:[{name:'새 선두',value:'123 단위',note:''},...original.rows.slice(1)]};
+  const result=applyFaq([changed])[0];
+  assert.ok(result.faq[0][1].includes('새 선두'),slug);
+  assert.ok(result.faq[0][1].includes('123 단위'),slug);
+  assert.ok(result.faq[0][1].includes('2027.01.01'),slug);
+  assert.ok(!result.faq[0][1].includes(original.rows[0].name),slug);
+  assert.ok(original.faq[0][1].includes(original.rows[0].name),slug);
+ }
+});
