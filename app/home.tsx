@@ -92,7 +92,7 @@ function updatedLabel(slug: string, pageBySlug: Record<string, HomeRanking>) {
 function cycleText(slug: string) {
   const f = FRESHNESS[slug];
   if (!f || f.kind === "fixed") return null;
-  return <span><em>{f.cycle}</em> {f.kind === "auto" ? "자동 업데이트돼요" : "업데이트돼요"}</span>;
+  return <span><em>{f.cycle}</em> 갱신</span>;
 }
 
 const topic = (title: string) => title.replace(/\s*·\s*\d{4}년 \d+월$/, "").replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
@@ -143,16 +143,16 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         <div className="hero-copy">
           <p className="eyebrow">대한민국 모든 순위를 한곳에</p>
           <h1>지금 사람들이<br/><em>가장 궁금한 순위</em></h1>
-          <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
+          <p className="hero-desc">스포츠부터 영화·자동차·OTT까지, 한눈에 비교하세요.</p>
           <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
         </div>
         <div className="hero-board" aria-label="궁금한 순위" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}>
           {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
-            const page = pageBySlug[item.slug];
+            
             return <a href={`/rankings/${item.slug}`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
               <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
-              <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong><small>{page.title}</small></p>
+              <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong></p>
               <i className="hero-go" aria-hidden="true">→</i>
             </a>;
           })}
@@ -165,20 +165,20 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
       </div></section>
 
       <section className="content" id="rankings">
-        <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
+        <div className="section-heading"><div><h2>분야별 인기 순위</h2></div></div>
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
           <div className="card-grid">
             {filtered.map((item) => { const slug = slugByTitle[item.title]; return <article className="rank-card" key={item.title}>
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug, pageBySlug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
-              <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목을 한눈에 비교해 보세요</p>
+              <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목</p>
               <a className="rank-link" href={`/rankings/${slug}`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>
           <aside>
-            <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
+            <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em></div>
             <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
           </aside>

@@ -118,35 +118,6 @@ const changeBadge = (r: { change?: number | "new" }) =>
     </em>
   ) : null;
 
-function rankingPoints(
-  rows: {
-    name: string;
-    value: string;
-    rank?: number;
-    change?: number | "new";
-  }[],
-  values: number[] | null
-) {
-  const out: string[] = [];
-  if (values && values[1] > 0) {
-    const ratio = values[0] / values[1];
-    if (ratio >= 1.5)
-      out.push(`1위 ${rows[0].name}, 2위의 ${ratio.toFixed(1)}배`);
-    else if (ratio > 1.005)
-      out.push(
-        `1위 ${rows[0].name}, 2위보다 ${Math.round((ratio - 1) * 100) || 1}% 높아요`
-      );
-    else out.push(`1위와 2위가 거의 같아요`);
-  }
-  const korea = rows.findIndex((r) => /^(대한민국|한국)$/.test(r.name.trim()));
-  if (korea >= 0) out.push(`대한민국은 ${rows[korea].rank ?? korea + 1}위`);
-  const rising = rows
-    .filter((r) => typeof r.change === "number" && r.change > 0)
-    .sort((a, b) => (b.change as number) - (a.change as number))[0];
-  if (rising) out.push(`가장 많이 오른 곳 ${rising.name} ▲${rising.change}`);
-  return out.slice(0, 3);
-}
-
 export default async function RankingDetail({
   params
 }: {
@@ -191,7 +162,7 @@ export default async function RankingDetail({
   const points =
     p.slug === "file-sharing-services"
       ? p.rows.slice(0, 3).map((row, i) => `${i + 1}등 : ${row.name}`)
-      : rankingPoints(p.rows, p.unranked ? null : numericValues(p.rows));
+      : [];
   const related = pages
     .filter((x) => !x.noindex && x.category === p.category && x.slug !== p.slug)
     .slice(0, 4);
@@ -241,19 +212,9 @@ export default async function RankingDetail({
               {p.category} {p.unranked && !p.divisions ? "GUIDE" : "RANKING"}
             </p>
             <h1>{p.title}</h1>
-            <p className="dp-desc">{p.description}</p>
-            <p className="dp-meta">
-              <span>
-                <b>기준</b>
-                {presentation.basis}
-              </span>
-              {presentation.updated && (
-                <span>
-                  <b>업데이트</b>
-                  {presentation.updated}
-                </span>
-              )}
-            </p>
+            {presentation.headline && (
+              <p className="dp-meta">{presentation.headline}</p>
+            )}
           </div>
         </div>
       </section>
@@ -532,17 +493,9 @@ export default async function RankingDetail({
               )}
             </>
           )}
-          {p.rows.length > 0 && (
-            <p className="dp-credit">
-              이미지는 작품·선수·서비스 식별을 위한 참고 이미지입니다. 사진 촬영
-              시점과 통계 기준일은 다를 수 있습니다. 각 권리는 원저작자에게
-              있습니다.
-            </p>
-          )}
         </div>
         <aside className="dp-side">
           <div className="dp-card">
-            <small>DATA SOURCE</small>
             <h3>자료 출처</h3>
             {p.sourceUrl ? (
               <a
@@ -556,11 +509,24 @@ export default async function RankingDetail({
             ) : (
               <span className="dp-source static">{p.source}</span>
             )}
+            {presentation.updated && (
+              <p className="dp-checked">업데이트 {presentation.updated}</p>
+            )}
+            <details className="dp-method">
+              <summary>집계 기준 보기</summary>
+              <p>{presentation.basis}</p>
+              <p>{p.description}</p>
+              {p.rows.length > 0 && (
+                <p className="dp-credit">
+                  이미지는 식별용이며 통계 기준일과 다를 수 있습니다. 이미지
+                  권리는 원저작자에게 있습니다.
+                </p>
+              )}
+            </details>
           </div>
           {related.length > 0 && (
             <div className="dp-card">
-              <small>RELATED</small>
-              <h3>다른 순위도 둘러보세요</h3>
+              <h3>관련 순위</h3>
               <ul>
                 {related.map((x) => (
                   <li key={x.slug}>

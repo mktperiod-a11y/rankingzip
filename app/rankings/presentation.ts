@@ -67,6 +67,7 @@ export function rankingPresentation(p: RankingPage) {
     });
   return {
     basis: criteria.join(' · '),
+    headline: p.slug === 'file-sharing-services' ? '10월 7일 조사 · 2일마다 갱신' : [dates.reference, VALUE_LABEL[p.slug]].filter(Boolean).join(' · '),
     valueLabel: VALUE_LABEL[p.slug],
     updated: dates.updated,
     notes: parts.map(row => row.filter(s => !shared.includes(s) && !/^\d+위(?:권)?$/.test(s)).join(' · ')),
