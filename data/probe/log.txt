@@ -1,5 +1,0 @@
-kbo-crowd.json 200 text/plain; charset=UTF-8 427
-kaida-202609.json 200 application/json;charset=UTF-8 30210
-kaida-202608.json 200 application/json;charset=UTF-8 29328
-mois-post.html 200 text/html;charset=utf-8 1025
-mois-csv.txt 200 application/octet-stream;charset=utf-8 1969

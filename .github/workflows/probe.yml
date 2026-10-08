@@ -1,8 +1,8 @@
-name: Probe sources 2 (temporary)
+name: Records update 2 (temporary)
 on:
   push:
     branches: [claude/affectionate-einstein-6myk2z]
-    paths: [scripts/probe.mjs, .github/workflows/probe.yml]
+    paths: [scripts/update-records.mjs, .github/workflows/probe.yml]
 permissions:
   contents: write
 jobs:
@@ -12,11 +12,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
-      - run: node scripts/probe.mjs
+      - run: node scripts/update-records.mjs --only kaida,kboCrowd,population
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/probe
-          git commit -m "원자료 확인 4" || exit 0
+          git add data/rankings/live
+          git commit -m "자동 갱신 순위 2차 수집" || exit 0
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push

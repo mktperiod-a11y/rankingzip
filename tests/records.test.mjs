@@ -45,3 +45,28 @@ test('UFC 남성부 8개 체급', () => {
   assert.equal(d.length, 8);
   assert.deepEqual(d[0], { division: 'Flyweight', champion: 'Joshua Van', contenders: ['Alexandre Pantoja', 'Manel Kape', 'Brandon Royval'] });
 });
+
+test('KAIDA 수입차 브랜드 등록', async () => {
+  const { parseKaida } = await import('../scripts/update-records.mjs');
+  const json = JSON.parse(fx('kaida-202609.json'));
+  const d = parseKaida(json, '2026-09');
+  assert.equal(d.total, 34904);
+  assert.deepEqual(d.rows[0], { rank: 1, brand: 'Tesla', count: 12372, share: 35.45 });
+  assert.throws(() => parseKaida(json, '2026-08'));
+});
+
+test('KBO 구단 홈 관중', async () => {
+  const { parseKboCrowd } = await import('../scripts/update-records.mjs');
+  const d = parseKboCrowd(JSON.parse(fx('kbo-crowd.json')));
+  assert.equal(d.date, '2026-10-07');
+  assert.deepEqual(d.rows[0], { rank: 1, team: '삼성', crowd: 1669050 });
+});
+
+test('행정안전부 시도 인구', async () => {
+  const { parseMoisCsv } = await import('../scripts/update-records.mjs');
+  const d = parseMoisCsv(fx('mois.csv'));
+  assert.equal(d.month, '2026-09');
+  assert.equal(d.total, 51082431);
+  assert.deepEqual(d.rows[0], { rank: 1, name: '경기도', population: 13777186 });
+  assert.ok(d.rows.every((r) => r.name !== '전국'));
+});
