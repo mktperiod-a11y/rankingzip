@@ -26,7 +26,7 @@ export const asianGamesPages: RankingPage[] = [{
   rows:[
     {name:'대한민국',value:'금메달 7회',note:'1998·2002·2010·2014·2018·2022·2026',image:'https://flagcdn.com/w640/kr.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
     {name:'일본',value:'금메달 1회',note:'1994 히로시마 대회 우승',image:'https://flagcdn.com/w640/jp.png',sourceUrl:'https://www.japan-baseball.jp/en/team/amateur/2026/asiangames/overview.html'},
-    {name:'차이니스 타이베이',value:'금메달 1회',note:'2006 도하 대회 우승',image:'https://flagcdn.com/w640/tw.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
+    {name:'차이니스 타이베이',value:'금메달 1회',note:'2006 도하 대회 우승',image:'/ranking-images/flags/chinese-taipei.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
   ],
   auditDate:'2026.09.28',
   faq:[
