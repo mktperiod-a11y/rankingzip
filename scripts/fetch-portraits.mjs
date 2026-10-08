@@ -17,7 +17,7 @@ export const PEOPLE = [
   ...[['비틀스','The Beatles'],['마이클 잭슨','Michael Jackson'],['엘비스 프레슬리','Elvis Presley'],['마돈나','Madonna'],['엘턴 존','Elton John'],['퀸','Queen (band)'],['레드 제플린','Led Zeppelin'],['리애나','Rihanna'],['핑크 플로이드','Pink Floyd'],['에미넴','Eminem']].map(([ko,en])=>[ko,en,'musician',false]),
 ];
 
-const MANUAL = new Set(['카넬로 알바레스']);
+const MANUAL = new Set(['카넬로 알바레스', '핑크 플로이드']);
 
 const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\([^)]*\)/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const strip = (html = '') => html.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();

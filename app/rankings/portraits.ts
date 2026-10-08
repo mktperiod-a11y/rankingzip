@@ -10,7 +10,7 @@ export const KBO_LOGO: Record<string, string> = { KIA: 'KIA', LG: 'LG', KT: 'KT'
 const FORMER: Record<string, string> = { OB: 'Doosan', SK: 'SSG', 넥센: 'Kiwoom', 해태: 'KIA' };
 const BASEBALL_SLUGS = ['kbo-home-runs-2026', 'kbo-rbi-2026', 'kbo-single-season-home-runs'];
 
-const PHOTO_OVERRIDE: Record<string, string> = { '카넬로 알바레스': '/ranking-images/portraits/canelo-alvarez-photo.jpg' };
+const PHOTO_OVERRIDE: Record<string, string> = { '카넬로 알바레스': '/ranking-images/portraits/canelo-alvarez-photo.jpg', '핑크 플로이드': '/ranking-images/updates/pink-floyd.jpg' };
 
 export const portraitOf = (name: string): PortraitCredit | undefined => PORTRAITS[name.split(' · ')[0]];
 

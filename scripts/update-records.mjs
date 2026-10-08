@@ -75,15 +75,17 @@ export const UFC_DIVISIONS = { Flyweight: '플라이급', Bantamweight: '밴텀�
 export function parseUfc(html) {
   const groups = html.split('view-grouping-header">').slice(1);
   const divisions = [];
+  let p4p = [];
   for (const g of groups) {
     const name = text(g.slice(0, g.indexOf('<')));
+    if (name === "Men's Pound-for-Pound" && !p4p.length) p4p = [...g.matchAll(/views-field-weight-class-rank">(\d+)\s*<\/td>\s*<td class="views-field views-field-title"><a[^>]*>([^<]+)<\/a>/g)].slice(0, 5).map((m) => text(m[2]));
     if (!UFC_DIVISIONS[name] || divisions.some((d) => d.division === name)) continue;
     const champion = text(g.match(/rankings--athlete--champion[\s\S]*?<h5><a[^>]*>([^<]+)<\/a><\/h5>/)?.[1] ?? '');
     const contenders = [...g.matchAll(/views-field-weight-class-rank">(\d+)\s*<\/td>\s*<td class="views-field views-field-title"><a[^>]*>([^<]+)<\/a>/g)].slice(0, 3).map((m) => text(m[2]));
     divisions.push({ division: name, champion, contenders });
   }
-  check(divisions.length === 8 && divisions.every((d) => d.champion && d.contenders.length === 3), 'UFC: 체급 랭킹 형식이 다릅니다');
-  return { divisions };
+  check(divisions.length === 8 && divisions.every((d) => d.champion && d.contenders.length === 3) && p4p.length === 5, 'UFC: 체급 랭킹 형식이 다릅니다');
+  return { p4p, divisions };
 }
 
 const MONTHS = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
