@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { checkPublicOutput } from './check-public-output.mjs';
 import { embedPageStyles } from './inline-page-styles.mjs';
+import { formatPageSources } from './format-page-source.mjs';
 
 const base = (process.argv[2] ?? process.env.PAGES_BASE_PATH ?? '').replace(/\/+$/, '');
 const outDir = path.resolve(process.argv[3] ?? 'out');
@@ -40,6 +41,7 @@ function rewrite(dir) {
 if (base) rewrite(outDir);
 const styled = embedPageStyles(outDir, base);
 console.log(`스타일 내장 완료: ${styled}개 HTML`);
+console.log(`페이지 소스 정리 완료: ${await formatPageSources(outDir)}개 HTML`);
 console.log(`GitHub Pages 빌드 완료: ${path.relative(process.cwd(), outDir)}/ (기본 경로 "${base || '/'}", 경로 수정 파일 ${changed}개)`);
 
 checkPublicOutput(outDir);
