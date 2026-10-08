@@ -1,0 +1,66 @@
+{
+  "source": "https://www.the-numbers.com/movies/franchise/Spider-Man",
+  "rows": [
+    {
+      "rank": 1,
+      "title": "Spider-Man: Brand New Day",
+      "year": 2026,
+      "gross": 2506511390
+    },
+    {
+      "rank": 2,
+      "title": "Spider-Man: No Way Home",
+      "year": 2021,
+      "gross": 1921206586
+    },
+    {
+      "rank": 3,
+      "title": "Spider-Man: Far From Home",
+      "year": 2019,
+      "gross": 1137144726
+    },
+    {
+      "rank": 4,
+      "title": "Spider-Man 3",
+      "year": 2007,
+      "gross": 896337268
+    },
+    {
+      "rank": 5,
+      "title": "Spider-Man: Homecoming",
+      "year": 2017,
+      "gross": 883830222
+    },
+    {
+      "rank": 6,
+      "title": "Spider-Man",
+      "year": 2002,
+      "gross": 823929972
+    },
+    {
+      "rank": 7,
+      "title": "Spider-Man 2",
+      "year": 2004,
+      "gross": 797001599
+    },
+    {
+      "rank": 8,
+      "title": "The Amazing Spider-Man",
+      "year": 2012,
+      "gross": 758576824
+    },
+    {
+      "rank": 9,
+      "title": "The Amazing Spider-Man 2",
+      "year": 2014,
+      "gross": 709672746
+    },
+    {
+      "rank": 10,
+      "title": "Spider-Man: Across the Spider-Verse",
+      "year": 2023,
+      "gross": 690824738
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}

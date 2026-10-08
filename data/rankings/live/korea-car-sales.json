@@ -1,0 +1,87 @@
+{
+  "source": "https://auto.danawa.com/auto/?Work=record&Tab=Model&Month=2026-09-00",
+  "month": "2026-09",
+  "rows": [
+    {
+      "name": "더 뉴 그랜저",
+      "brand": "현대",
+      "rank": 1,
+      "image": "https://autoimg.danawa.com/photo/4802/model_200.png",
+      "sales": 8898,
+      "local": "/ranking-images/cars/4802.png"
+    },
+    {
+      "name": "쏘렌토",
+      "brand": "기아",
+      "rank": 2,
+      "image": "https://autoimg.danawa.com/photo/4563/model_200.png",
+      "sales": 6957,
+      "local": "/ranking-images/cars/4563.png"
+    },
+    {
+      "name": "디 올 뉴 아반떼",
+      "brand": "현대",
+      "rank": 3,
+      "image": "https://autoimg.danawa.com/photo/4835/model_200.png",
+      "sales": 6945,
+      "local": "/ranking-images/cars/4835.png"
+    },
+    {
+      "name": "스포티지",
+      "brand": "기아",
+      "rank": 4,
+      "image": "https://autoimg.danawa.com/photo/4684/model_200.png",
+      "sales": 5497,
+      "local": "/ranking-images/cars/4684.png"
+    },
+    {
+      "name": "셀토스",
+      "brand": "기아",
+      "rank": 5,
+      "image": "https://autoimg.danawa.com/photo/4763/model_200.png",
+      "sales": 5422,
+      "local": "/ranking-images/cars/4763.png"
+    },
+    {
+      "name": "카니발",
+      "brand": "기아",
+      "rank": 6,
+      "image": "https://autoimg.danawa.com/photo/4586/model_200.png",
+      "sales": 5286,
+      "local": "/ranking-images/cars/4586.png"
+    },
+    {
+      "name": "쏘나타 디 엣지",
+      "brand": "현대",
+      "rank": 7,
+      "image": "https://autoimg.danawa.com/photo/4466/model_200.png",
+      "sales": 4153,
+      "local": "/ranking-images/cars/4466.png"
+    },
+    {
+      "name": "레이",
+      "brand": "기아",
+      "rank": 8,
+      "image": "https://autoimg.danawa.com/photo/4689/model_200.png",
+      "sales": 3382,
+      "local": "/ranking-images/cars/4689.png"
+    },
+    {
+      "name": "싼타페",
+      "brand": "현대",
+      "rank": 9,
+      "image": "https://autoimg.danawa.com/photo/4435/model_200.png",
+      "sales": 3217,
+      "local": "/ranking-images/cars/4435.png"
+    },
+    {
+      "name": "디 올 뉴 팰리세이드",
+      "brand": "현대",
+      "rank": 10,
+      "image": "https://autoimg.danawa.com/photo/4699/model_200.png",
+      "sales": 2965,
+      "local": "/ranking-images/cars/4699.png"
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}
