@@ -42,7 +42,7 @@ test("renders the public ranking site without starter preview metadata", async (
   assert.match(html,/순위ZIP/);
   const cards=html.match(/<article class="rank-card"[\s\S]*?<\/article>/g) ?? [];
   assert.ok(cards.length>20);
-  for(const card of cards){assert.match(card,/개 항목을 한눈에 비교해 보세요/);assert.doesNotMatch(card,/<b>1위<\/b>/);}
+  for(const card of cards){assert.match(card,/개 항목/);assert.doesNotMatch(card,/<b>1위<\/b>/);}
   const ticker=html.match(/<section class="ticker">[\s\S]*?<\/section>/)?.[0];
   assert.ok(ticker);assert.match(ticker,/순위 보기/);assert.doesNotMatch(ticker,/ 1위 /);
   assert.match(html,/kbo-single-season-home-runs/);
@@ -57,6 +57,6 @@ test('all ranking routes render with correct images and indexing rules',async()=
  const pending=pages.filter(p=>p.noindex).map(p=>p.slug);
  const env={ASSETS:{fetch:async()=>new Response('Not found',{status:404})}};
  const ctx={waitUntil(){},passThroughOnException(){}};
- for(const slug of slugs){const response=await worker.fetch(new Request(`http://localhost/rankings/${slug}/`,{headers:{accept:'text/html'}}),env,ctx);assert.equal(response.status,200,slug);const html=(await response.text()).replace(/<!--.*?-->/g,'');assert.ok(html.includes(pages.find(p=>p.slug===slug).title.replace(/&/g,'&amp;')),slug);assert.doesNotMatch(html,/class="image-placeholder"/,slug);for(const m of html.matchAll(/<img[^>]+src="([^"]+)"/g))if(m[1].startsWith('/'))assert.ok(fs.existsSync(`public${m[1]}`),`${slug}: ${m[1]}`);if(pending.includes(slug)){assert.match(html,/noindex/,slug);assert.doesNotMatch(html,/"@type":"ItemList"/,slug);}for(const m of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g))assert.doesNotThrow(()=>JSON.parse(m[1]),slug);}
+ for(const slug of slugs){const response=await worker.fetch(new Request(`http://localhost/rankings/${slug}/`,{headers:{accept:'text/html'}}),env,ctx);assert.equal(response.status,200,slug);const html=(await response.text()).replace(/<!--.*?-->/g,'');assert.ok(html.includes(pages.find(p=>p.slug===slug).title.replace(/&/g,'&amp;')),slug);assert.doesNotMatch(html,/class="image-placeholder"/,slug);for(const m of html.matchAll(/<img[^>]+src="([^"]+)"/g))if(m[1].startsWith('/'))assert.ok(fs.existsSync(`public${m[1]}`),`${slug}: ${m[1]}`);if(pending.includes(slug)){assert.match(html,/noindex/,slug);assert.doesNotMatch(html,/"@type":"ItemList"/,slug);}for(const m of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/g)){const schema=JSON.parse(m[1]);if(schema['@type']==='FAQPage'){const actual=schema.mainEntity.map(e=>[e.name,e.acceptedAnswer.text]);assert.deepEqual(actual,JSON.parse(JSON.stringify(pages.find(p=>p.slug===slug).faq)),slug);}}}
  const sitemap=await(await worker.fetch(new Request('http://localhost/sitemap.xml'),env,ctx)).text();for(const slug of pending)assert.ok(!sitemap.includes(slug));
 });

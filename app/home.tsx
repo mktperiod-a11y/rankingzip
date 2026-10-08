@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { slugByTitle, pageBySlug, pages } from "./rankings/data";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
+import { RankingTicker } from "./ranking-ticker";
 import { FRESHNESS } from "./rankings/freshness";
 import type { TrendPick } from "../lib/trends";
 
@@ -81,7 +82,7 @@ const rankings = [
 
 const ADULT = new Set(["japan-av-actress-ranking"]);
 
-function updatedLabel(slug: string) {
+function updatedLabel(slug: string, pageBySlug: Record<string, HomeRanking>) {
   const p = pageBySlug[slug];
   const f = FRESHNESS[slug];
   if (f?.kind === "fixed") return "변동 없음";
@@ -92,12 +93,12 @@ function updatedLabel(slug: string) {
 function cycleText(slug: string) {
   const f = FRESHNESS[slug];
   if (!f || f.kind === "fixed") return null;
-  return <span><em>{f.cycle}</em> {f.kind === "auto" ? "자동 업데이트돼요" : "업데이트돼요"}</span>;
+  return <span><em>{f.cycle}</em> 갱신</span>;
 }
 
 const topic = (title: string) => title.replace(/\s*·\s*\d{4}년 \d+월$/, "").replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
 
-function hotRankings(day: string, count = 5) {
+function hotRankings(day: string, pages: HomeRanking[], slugByTitle: Record<string, string>, count = 5) {
   const listed = new Set(Object.values(slugByTitle));
   const pool = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug)).map((p) => p.slug).sort();
   let seed = [...day].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261) >>> 0;
@@ -108,26 +109,30 @@ function hotRankings(day: string, count = 5) {
 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
 
-export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; trendsAt?: string; hotDay: string }) {
+export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { picks: TrendPick[]; trendsAt?: string; hotDay: string; pages: HomeRanking[]; slugByTitle: Record<string, string> }) {
+  const pageBySlug = useMemo(() => Object.fromEntries(pages.map(p => [p.slug, p])), [pages]);
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
-  const [flip, setFlip] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroVisible, setHeroVisible] = useState(true);
   const [heroSet, setHeroSet] = useState(0);
   const [heroPaused, setHeroPaused] = useState(false);
   useEffect(() => {
-    if (heroPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (heroPaused || !heroVisible || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = setInterval(() => setHeroSet((n) => (n + 1) % HERO_SETS), 5000);
     return () => clearInterval(timer);
-  }, [heroPaused]);
+  }, [heroPaused, heroVisible]);
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setInterval(() => setFlip((n) => n + 1), 6000);
-    return () => clearInterval(timer);
+    const hero = heroRef.current;
+    if (!hero) return;
+    const observer = new IntersectionObserver(([entry]) => setHeroVisible(entry.isIntersecting));
+    observer.observe(hero);
+    return () => observer.disconnect();
   }, []);
   const filtered = useMemo(() => rankings.filter((item) =>
-    !pageBySlug[slugByTitle[item.title]]?.noindex && (active === "전체" || item.category === active) &&
+    pageBySlug[slugByTitle[item.title]] && !pageBySlug[slugByTitle[item.title]].noindex && (active === "전체" || item.category === active) &&
     (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).toLowerCase().includes(query.toLowerCase())
-  ), [active, query]);
+  ), [active, query, pageBySlug, slugByTitle]);
 
   return (
     <main>
@@ -138,20 +143,27 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
         </div>
       </header>
 
-      <section className="hero" id="top">
+      <section className="hero" id="top" ref={heroRef}>
         <div className="hero-copy">
           <p className="eyebrow">대한민국 모든 순위를 한곳에</p>
           <h1>지금 사람들이<br/><em>가장 궁금한 순위</em></h1>
-          <p className="hero-desc">스포츠 기록부터 영화, 자동차, OTT까지.{" "}<br/>찾기 어려웠던 흥미로운 데이터를 보기 쉽게 모았습니다.</p>
-          <div className="hero-actions"><a href="#rankings">순위 둘러보기 <b>→</b></a></div>
+          <p className="hero-desc">스포츠부터 영화·자동차·OTT까지, 한눈에 비교하세요.</p>
+          <div className="hero-actions"><a href="#rankings" onClick={(event) => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            const target = document.getElementById("rankings");
+            if (!target) return;
+            event.preventDefault();
+            target.focus({ preventScroll: true });
+            target.scrollIntoView({ behavior: "instant", block: "start" });
+          }}>순위 둘러보기 <b>→</b></a></div>
         </div>
         <div className="hero-board" aria-label="궁금한 순위" onMouseEnter={() => setHeroPaused(true)} onMouseLeave={() => setHeroPaused(false)} onFocus={() => setHeroPaused(true)} onBlur={() => setHeroPaused(false)}>
           {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
-            const page = pageBySlug[item.slug];
+            
             return <a href={`/rankings/${item.slug}`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
               <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
-              <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong><small>{page.title}</small></p>
+              <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong></p>
               <i className="hero-go" aria-hidden="true">→</i>
             </a>;
           })}
@@ -160,25 +172,25 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
       </section>
 
       <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
-        <div className="ticker-track"><div className="ticker-run">{[0, 1, 2, 3].map((copy) => hotRankings(hotDay).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
+        <RankingTicker>{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</RankingTicker>
       </div></section>
 
-      <section className="content" id="rankings">
-        <div className="section-heading"><div><p>EXPLORE RANKINGS</p><h2>분야별 인기 순위</h2></div></div>
+      <section className="content" id="rankings" tabIndex={-1}>
+        <div className="section-heading"><div><h2>분야별 인기 순위</h2></div></div>
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
           <div className="card-grid">
             {filtered.map((item) => { const slug = slugByTitle[item.title]; return <article className="rank-card" key={item.title}>
-              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug)}</span>
+              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug, pageBySlug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
-              <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목을 한눈에 비교해 보세요</p>
+              <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목</p>
               <a className="rank-link" href={`/rankings/${slug}`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>
             </article>; })}
             {!filtered.length && <div className="empty">검색 결과가 없습니다. 다른 키워드를 입력해 보세요.</div>}
           </div>
           <aside>
-            <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em><span className="aside-sub">실시간으로 가장 검색이 많이 되고 있어요</span></div>
-            <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title} delay={i*140} run={flip}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
+            <div className="aside-title"><div><span>↗</span><p><small>{trendsAt ? `${trendsAt.split(" ").slice(0, 2).join(" ")} 실시간 검색어` : "오늘의 추천"}</small><strong>지금 주목할 랭킹</strong></p></div><em className="hot">급상승</em></div>
+            <div className="trend-list">{picks.map((item,i)=><a className="trend" href={item.href} target={item.external?"_blank":undefined} rel={item.external?"noreferrer":undefined} key={item.title}><b>{i+1}</b><p><strong><FlapText text={item.title}/></strong><small>{item.subtitle}</small></p>{item.label!=="급상승"&&<em className="up">{item.label}</em>}</a>)}</div>
             <p className="aside-source">{trendsAt ? <>출처 <a href="https://trends.google.co.kr/trending?geo=KR" target="_blank" rel="noreferrer">구글 트렌드</a> · <a href="https://namu.wiki/" target="_blank" rel="noreferrer">나무위키</a> 실시간 검색어 · {trendsAt} 기준</> : "출처 순위ZIP 편집 선정"}</p>
           </aside>
         </div>

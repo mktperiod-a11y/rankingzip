@@ -3,7 +3,7 @@ import { dateParts } from './date-parts';
 
 const DATA_LABEL: Record<string, string> = {
   'asian-games-baseball-champions': 'KBO 2026.09.27 결승 종료 데이터',
-  'asian-games-medal-table-2026': '연합뉴스 2026.09.23 22:08 발표 데이터',
+  'asian-games-medal-table-2026': '연합뉴스 2026.10.04 최종 메달 집계',
  
  
  
@@ -20,10 +20,9 @@ const DATA_LABEL: Record<string, string> = {
  
  
   'korea-highest-mountains': '산림청·국립공원공단 고도 데이터',
-  'korea-ott-users': '와이즈앱 2025년 4월 데이터',
   'korea-mobile-games-users': '모바일인덱스 2026년 8월 데이터',
  
-  'file-sharing-services': '순위ZIP 자체 선정',
+  'file-sharing-services': '구글 트렌드 · 10월 7일 조사 결과 반영',
   'highest-paid-athletes': 'Forbes 2026.05.22 발표 데이터',
   'world-tallest-buildings': 'CTBUH 2026.08.27 확인 데이터',
   'world-population': 'UNFPA 2025년 중간연도 데이터',
