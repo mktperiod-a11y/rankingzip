@@ -4,7 +4,7 @@ import data from '../../data/rankings/ott-users.json';
 const [year, month] = data.month.split('-');
 const period = `${year}년 ${Number(month)}월`;
 export const ottUsersRanking: Partial<RankingPage> = {
-  title: `국내 OTT 앱 사용자 순위 · ${period}`,
+  title: '국내 OTT 앱 사용자 순위',
   date: period,
   auditDate: data.publishedAt.replaceAll('-', '.'),
   basis: '한국인 Android·iOS 스마트폰 앱 월간 사용자 추정치',

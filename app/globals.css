@@ -126,3 +126,13 @@
   .rank-card .rank-link{left:10px;right:10px;bottom:9px}
   .rank-card .rank-link::after{inset:-140px -10px -10px}
 }
+
+@media(max-width:680px){
+  .suggest{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:20px}
+  .suggest>div{min-width:0;gap:12px}
+  .suggest>div>span{flex:0 0 36px;width:36px;height:36px;font-size:20px}
+  .suggest p{min-width:0;line-height:1.5;word-break:keep-all}
+  .suggest p strong{font-size:13px}
+  .suggest button{width:100%;min-height:44px;white-space:nowrap;font-size:13px}
+  .suggest button:after{content:none}
+}
