@@ -1,0 +1,76 @@
+{
+  "source": "https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx?sort=RBI_CN",
+  "rows": [
+    {
+      "rank": 1,
+      "playerId": "56034",
+      "name": "힐리어드",
+      "team": "KT",
+      "value": 134
+    },
+    {
+      "rank": 2,
+      "playerId": "54400",
+      "name": "디아즈",
+      "team": "삼성",
+      "value": 128
+    },
+    {
+      "rank": 3,
+      "playerId": "53123",
+      "name": "오스틴",
+      "team": "LG",
+      "value": 127
+    },
+    {
+      "rank": 4,
+      "playerId": "68050",
+      "name": "강백호",
+      "team": "한화",
+      "value": 117
+    },
+    {
+      "rank": 5,
+      "playerId": "52605",
+      "name": "김도영",
+      "team": "KIA",
+      "value": 114
+    },
+    {
+      "rank": 6,
+      "playerId": "72443",
+      "name": "최형우",
+      "team": "삼성",
+      "value": 106
+    },
+    {
+      "rank": 7,
+      "playerId": "54529",
+      "name": "레이예스",
+      "team": "롯데",
+      "value": 105
+    },
+    {
+      "rank": 8,
+      "playerId": "62404",
+      "name": "구자욱",
+      "team": "삼성",
+      "value": 102
+    },
+    {
+      "rank": 9,
+      "playerId": "53827",
+      "name": "에레디아",
+      "team": "SSG",
+      "value": 97
+    },
+    {
+      "rank": 10,
+      "playerId": "69737",
+      "name": "노시환",
+      "team": "한화",
+      "value": 95
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}

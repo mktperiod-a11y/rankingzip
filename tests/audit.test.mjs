@@ -17,9 +17,11 @@ test('all 38 pages have explicit audit decisions and no broken local row images'
 test('new season rankings and imported brands are complete and linked',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));
  const hr=by['kbo-home-runs-2026'],rbi=by['kbo-rbi-2026'],cars=by['korea-import-car-brands'];
- assert.deepEqual(Array.from(hr.rows,r=>r.value),['43홈런','41홈런','41홈런','33홈런','30홈런','28홈런','27홈런','26홈런','24홈런','23홈런']);
- assert.deepEqual(Array.from(rbi.rows,r=>r.value),['130타점','127타점','125타점','116타점','111타점','106타점','105타점','102타점','97타점','94타점']);
- assert.equal(rbi.rows[0].name,'샘 힐리어드');assert.equal(rbi.rows[2].name,'르윈 디아즈');assert.equal(cars.rows.length,10);
+ // 홈런·타점은 자동 갱신 데이터(data/rankings/live)와 화면 값이 같아야 합니다.
+ const live=(slug)=>JSON.parse(fs.readFileSync(`data/rankings/live/${slug}.json`,'utf8'));
+ assert.deepEqual(Array.from(hr.rows,r=>r.value),live('kbo-home-runs-2026').rows.map(r=>`${r.value}홈런`));
+ assert.deepEqual(Array.from(rbi.rows,r=>r.value),live('kbo-rbi-2026').rows.map(r=>`${r.value}타점`));
+ assert.equal(cars.rows.length,10);
  assert.equal(cars.rows[0].value,'10,400대');assert.match(cars.rows[0].note,/34.9%/);
  const {slugByTitle}=load('app/rankings/data.ts');
  const home=fs.readFileSync('app/home.tsx','utf8');
@@ -29,18 +31,21 @@ test('new season rankings and imported brands are complete and linked',()=>{
  const credits=JSON.parse(fs.readFileSync('public/ranking-images/portraits/credits.json','utf8'));
  for(const r of [...hr.rows,...rbi.rows]){assert.ok(r.sourceUrl);const c=credits[r.name];if(c){assert.equal(r.image,c.image);assert.ok(c.author&&c.license&&c.source);}else assert.match(r.image,/^\/ranking-images\/expansion\/kbo_\w+\.webp$/);assert.ok(fs.existsSync(`public${r.image}`));}
 });
-test('current KBO standings and box office changes are reflected',()=>{
+test('auto-updated rankings show exactly the collected source data',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));
- const teams=by['kbo-team-standings-2026'];assert.equal(teams.rows.length,10);assert.equal(teams.rows[0].name,'KT');assert.match(teams.rows[1].note,/2.5경기 차/);
- const films=by['korea-box-office-2026'];assert.deepEqual(Array.from(films.rows.slice(0,3),r=>r.name),['왕과 사는 남자','오디세이','스파이더맨: 브랜드 뉴 데이']);assert.equal(films.rows[1].value,'12,057,325명');
- assert.equal(by['worldwide-box-office-2026'].rows[0].value,'$2,506,251,053');
+ const live=(slug)=>JSON.parse(fs.readFileSync(`data/rankings/live/${slug}.json`,'utf8'));
+ const fmt=(n)=>n.toLocaleString('en-US');
+ const teams=by['kbo-team-standings-2026'];assert.deepEqual(Array.from(teams.rows,r=>r.name),live('kbo-team-standings-2026').rows.map(r=>r.team));
+ for(const slug of ['korea-box-office-2026','korean-movie-admissions'])assert.deepEqual(Array.from(by[slug].rows,r=>[r.name,r.value]),live(slug).rows.map(r=>[r.title,`${fmt(r.audience)}명`]));
+ assert.deepEqual(Array.from(by['worldwide-box-office-2026'].rows,r=>r.value),live('worldwide-box-office-2026').rows.map(r=>`$${fmt(r.gross)}`));
+ assert.deepEqual(Array.from(by['spider-man-worldwide-box-office'].rows,r=>r.value),live('spider-man-worldwide-box-office').rows.map(r=>`$${fmt(r.gross)}`));
+ assert.deepEqual(Array.from(by['korea-car-sales'].rows,r=>[r.name,r.value]),live('korea-car-sales').rows.map(r=>[r.name,`${fmt(r.sales)}대`]));
+ assert.deepEqual(Array.from(by['korea-pc-games-share'].rows,r=>r.value),live('korea-pc-games-share').rows.map(r=>`${r.share}%`));
+ assert.equal(by['ufc-rankings-by-division'].divisions.length,8);
 });
 test('corrections and withheld rankings are consistent',()=>{
  const by=Object.fromEntries(pages.map(p=>[p.slug,p]));
  assert.deepEqual(Array.from(by['world-gdp-ranking'].rows,r=>r.name),['미국','중국','독일','일본','영국','인도','프랑스','이탈리아','러시아','브라질']);
- assert.equal(by['korean-movie-admissions'].rows[1].name,'왕과 사는 남자');
- assert.equal(by['korea-box-office-2026'].rows[3].name,'군체');
- assert.equal(by['korea-box-office-2026'].rows[4].name,'호프');
  assert.equal(by['korea-province-population'].rows[4].name,'전남광주통합특별시');
  assert.equal(by['ufc-rankings-by-division'].divisions[7].contenders[2],'세르게이 파블로비치');
  assert.equal(by['highest-paid-athletes'].rows[1].name,'카넬로 알바레스');

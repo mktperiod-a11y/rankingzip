@@ -1,0 +1,56 @@
+{
+  "source": "https://www.boxofficemojo.com/year/world/2026/",
+  "rows": [
+    {
+      "rank": 1,
+      "title": "Spider-Man: Brand New Day",
+      "gross": 2506511390
+    },
+    {
+      "rank": 2,
+      "title": "The Odyssey",
+      "gross": 1768249470
+    },
+    {
+      "rank": 3,
+      "title": "Toy Story 5",
+      "gross": 1148032461
+    },
+    {
+      "rank": 4,
+      "title": "Michael",
+      "gross": 1028703388
+    },
+    {
+      "rank": 5,
+      "title": "The Super Mario Galaxy Movie",
+      "gross": 1012751766
+    },
+    {
+      "rank": 6,
+      "title": "The Devil Wears Prada 2",
+      "gross": 693255651
+    },
+    {
+      "rank": 7,
+      "title": "Project Hail Mary",
+      "gross": 684489947
+    },
+    {
+      "rank": 8,
+      "title": "Pegasus 3",
+      "gross": 656459523
+    },
+    {
+      "rank": 9,
+      "title": "Minions & Monsters",
+      "gross": 525512021
+    },
+    {
+      "rank": 10,
+      "title": "Obsession",
+      "gross": 520006715
+    }
+  ],
+  "checkedAt": "2026-10-08"
+}

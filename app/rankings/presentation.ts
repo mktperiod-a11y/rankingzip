@@ -8,25 +8,25 @@ import { dateParts } from './date-parts';
 const DATA_LABEL: Record<string, string> = {
   'asian-games-baseball-champions': 'KBO 2026.09.27 결승 종료 데이터',
   'asian-games-medal-table-2026': '연합뉴스 2026.09.23 22:08 발표 데이터',
-  'kbo-team-standings-2026': 'KBO 2026.09.16 경기 종료 데이터',
-  'kbo-home-runs-2026': 'KBO 2026.10.07 조회 데이터',
-  'kbo-rbi-2026': 'KBO 2026.10.07 조회 데이터',
+ 
+ 
+ 
   'kbo-single-season-home-runs': 'KBO 역대 기록실 2025시즌 종료 데이터',
   'kbo-attendance-2026': 'KBO 보도자료 2026.08.26 데이터',
-  'ufc-rankings-by-division': 'UFC 2026.08.27 데이터',
+ 
   'christopher-nolan-korea-box-office': 'KOBIS·흥행 보도 2026.09.07 데이터',
-  'spider-man-worldwide-box-office': 'The Numbers 2026.08.31 데이터',
-  'korean-movie-admissions': 'KOBIS 2026.10.07 조회 데이터',
-  'korea-box-office-2026': 'KOBIS 2026.10.07 조회 데이터',
-  'worldwide-box-office-2026': 'Box Office Mojo 2026.10.07 조회 데이터',
+ 
+ 
+ 
+ 
   'korean-drama-ratings': '역대 시청률 보도 데이터',
   'korea-import-car-brands': 'KAIDA 2026년 8월 데이터',
-  'korea-car-sales': '다나와자동차 2026년 8월 데이터',
+ 
   'korea-province-population': '행정안전부 2026년 7월 말 데이터',
   'korea-highest-mountains': '산림청·국립공원공단 고도 데이터',
   'korea-ott-users': '와이즈앱 2025년 4월 데이터',
   'korea-mobile-games-users': '모바일인덱스 2026년 8월 데이터',
-  'korea-pc-games-share': '게임트릭스 2026.10.06 데이터',
+ 
   'file-sharing-services': '순위ZIP 자체 선정',
   'highest-paid-athletes': 'Forbes 2026.05.22 발표 데이터',
   'world-tallest-buildings': 'CTBUH 2026.08.27 확인 데이터',
@@ -41,13 +41,13 @@ const WEEKLY_SOURCE: Record<string, string> = { 'netflix-korea-films-weekly': 'N
 // 숫자만 보고는 무엇인지 알기 어려운 값 앞에 붙이는 짧은 이름입니다.
 // "금메달 7회", "33홈런", "승률 0.544"처럼 값에 이미 이름이 있으면 넣지 않습니다.
 const VALUE_LABEL: Record<string, string> = {
-  'korea-import-car-brands': '신규등록', 'christopher-nolan-korea-box-office': '관객', 'spider-man-worldwide-box-office': '세계 매출',
-  'kbo-attendance-2026': '홈 관중', 'korean-movie-admissions': '누적 관객', 'korea-box-office-2026': '올해 관객',
-  'worldwide-box-office-2026': '세계 매출', 'korean-drama-ratings': '최고 시청률', 'korea-car-sales': '월 판매',
+  'korea-import-car-brands': '신규등록', 'christopher-nolan-korea-box-office': '관객',
+  'kbo-attendance-2026': '홈 관중',
+  'korean-drama-ratings': '최고 시청률',
   'korea-ott-users': '월 사용자', 'highest-paid-athletes': '연 수입', 'world-tallest-buildings': '높이',
   'world-population': '인구', 'korea-province-population': '인구', 'korea-highest-mountains': '해발',
   'world-gdp-ranking': '명목 GDP', 'world-largest-countries': '육지 면적', 'world-highest-mountains': '해발',
-  'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자', 'korea-pc-games-share': 'PC방 점유율',
+  'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자',
   'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율', 'best-selling-music-artists': '판매량(추정)',
 };
 
