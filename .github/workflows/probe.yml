@@ -1,0 +1,22 @@
+name: probe
+on:
+  push:
+    branches: [claude/affectionate-einstein-6myk2z]
+    paths: [scripts/probe.mjs, .github/workflows/probe.yml]
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/probe.mjs
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@users.noreply.github.com
+          git add probe
+          git commit -m "probe 결과" || exit 0
+          git push
