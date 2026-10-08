@@ -14,12 +14,12 @@ export const FRESHNESS: Record<string, Freshness> = {
   'anime-all-time-popular': auto('매주 수·토요일'), 'anime-season-poll': auto('매주 수·토요일'),
   'file-sharing-services': auto('2일마다'),
 
-  'kbo-team-standings-2026': auto('매주 수·토요일'), 'kbo-home-runs-2026': auto('매주 수·토요일'), 'kbo-rbi-2026': auto('매주 수·토요일'), 'kbo-attendance-2026': checked('시즌 중'),
+  'kbo-team-standings-2026': auto('매주 수·토요일'), 'kbo-home-runs-2026': auto('매주 수·토요일'), 'kbo-rbi-2026': auto('매주 수·토요일'), 'kbo-attendance-2026': auto('매주 수·토요일'),
   'ufc-rankings-by-division': auto('매주 수·토요일'),
   'korea-box-office-2026': auto('매주 수·토요일'), 'korean-movie-admissions': auto('매주 수·토요일'), 'worldwide-box-office-2026': auto('매주 수·토요일'),
-  'christopher-nolan-korea-box-office': checked('상영 중'), 'spider-man-worldwide-box-office': auto('매주 수·토요일'),
+  'christopher-nolan-korea-box-office': auto('매주 수·토요일'), 'spider-man-worldwide-box-office': auto('매주 수·토요일'),
   'korea-pc-games-share': auto('매주 수·토요일'),
-  'korea-import-car-brands': checked('매월'), 'korea-car-sales': auto('매주 수·토요일'), 'korea-province-population': checked('매월'), 'korea-mobile-games-users': checked('매월'),
+  'korea-import-car-brands': auto('매주 수·토요일'), 'korea-car-sales': auto('매주 수·토요일'), 'korea-province-population': auto('매주 수·토요일'), 'korea-mobile-games-users': checked('매월'),
   'highest-paid-athletes': checked('매년 5월'), 'world-gdp-ranking': checked('매년 4·10월'), 'world-population': checked('매년'), 'most-visited-countries': checked('매년'),
   'best-selling-music-artists': checked('매년'),
 

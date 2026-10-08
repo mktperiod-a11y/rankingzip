@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // 직접 확인하던 순위를 공개 원자료로 자동 갱신합니다. API 키가 필요 없습니다.
+// 원자료: 게임트릭스, KOBIS, Box Office Mojo, The Numbers, 다나와자동차, KBO(팀·홈런·타점·관중), UFC, KAIDA, 행정안전부
 //   node scripts/update-records.mjs                 모든 원자료를 받아 data/rankings/live/<순위 주소>.json에 저장
 //   node scripts/update-records.mjs --dry-run       저장하지 않고 결과만 출력
 //   node scripts/update-records.mjs --only kbo,ufc  일부만 실행
@@ -100,12 +101,62 @@ export function parseUfc(html) {
   return { divisions };
 }
 
+// ── KAIDA: 수입 승용차 브랜드별 월간 신규등록 (로그인 없이 공개되는 브랜드 월별 요약) ──────────
+const MONTHS = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
+export function parseKaida(json, month) {
+  const html = json.statistics ?? '';
+  // 표의 첫 달 머리글이 요청한 달이어야 합니다(같은 표에 전월 열도 있습니다).
+  const firstMonth = html.match(new RegExp(`<th>(${MONTHS.map((m) => m.replace('.', '\\.')).join('|')})</th>`))?.[1];
+  check(firstMonth === MONTHS[Number(month.slice(5)) - 1], `KAIDA: ${month} 표가 아닙니다`);
+  const cells = [...html.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map((m) => [...m[1].matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/g)].map((c) => text(c[1])));
+  const brands = cells.filter((c) => c.length === 14 && /^[\d,]+$/.test(c[1]));
+  const total = brands.find((c) => c[0] === 'Total');
+  check(total && num(total[1]) > 0, `KAIDA: ${month} 합계가 없습니다(아직 발표 전)`);
+  const rows = brands.filter((c) => c[0] !== 'Total').map((c) => ({ brand: c[0], count: num(c[1]), share: num(c[2]) }))
+    .sort((a, b) => b.count - a.count).slice(0, TOP).map((r, i) => ({ rank: i + 1, ...r }));
+  check(rows.length === TOP && rows[0].count > 0, 'KAIDA: 브랜드 표 형식이 다릅니다');
+  return { month, total: num(total[1]), rows };
+}
+
+// ── KBO: 구단별 홈 관중 (정규시즌 누적) ───────────────────────────────────────
+export function parseKboCrowd(json) {
+  const teams = String(json.categories ?? '').split(',').filter(Boolean);
+  const counts = json.data?.[0]?.data ?? [];
+  const day = String(json.date ?? '').match(/(\d{4})년 (\d{1,2})월 (\d{1,2})일/);
+  check(teams.length === 10 && counts.length === 10 && day, 'KBO 관중: 형식이 다릅니다');
+  const rows = teams.map((team, i) => ({ team, crowd: counts[i] })).sort((a, b) => b.crowd - a.crowd).map((r, i) => ({ rank: i + 1, ...r }));
+  return { date: `${day[1]}-${day[2].padStart(2, '0')}-${day[3].padStart(2, '0')}`, total: rows.reduce((a, r) => a + r.crowd, 0), rows };
+}
+
+// ── 행정안전부: 시도별 주민등록 인구 (월간, CSV) ───────────────────────────────
+export function parseMoisCsv(csv) {
+  const lines = csv.trim().split(/\r?\n/).map((l) => [...l.matchAll(/"([^"]*)"/g)].map((m) => m[1].trim()));
+  const ym = lines[0]?.[1]?.match(/(\d{4})년(\d{2})월_총인구수/);
+  check(ym, '행정안전부: 머리글 형식이 다릅니다');
+  const all = lines.slice(1).map((c) => ({ name: c[0].replace(/\s*\(\d+\)$/, ''), population: num(c[1]) }));
+  const nation = all.find((r) => r.name === '전국');
+  const rows = all.filter((r) => r.name !== '전국').sort((a, b) => b.population - a.population).slice(0, TOP).map((r, i) => ({ rank: i + 1, ...r }));
+  check(nation && rows.length === TOP && rows.every((r) => r.population > 0), '행정안전부: 시도 표 형식이 다릅니다');
+  return { month: `${ym[1]}-${ym[2]}`, total: nation.population, rows };
+}
+
 // ── 실행 ─────────────────────────────────────────────────────────────────
 async function get(url) {
   const res = await fetch(url, { headers: { 'user-agent': UA, 'accept-language': 'ko-KR,ko;q=0.9,en;q=0.8' }, signal: AbortSignal.timeout(45000) });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.text();
 }
+/** 쿠키가 있어야 응답하는 사이트용: 페이지를 한 번 열어 쿠키를 받습니다. */
+async function cookies(url) {
+  const res = await fetch(url, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(45000) });
+  return (res.headers.getSetCookie?.() ?? []).map((c) => c.split(';')[0]).join('; ');
+}
+async function post(url, form, headers = {}, encoding = 'utf-8') {
+  const res = await fetch(url, { method: 'POST', headers: { 'user-agent': UA, 'content-type': 'application/x-www-form-urlencoded; charset=UTF-8', 'x-requested-with': 'XMLHttpRequest', accept: 'application/json, text/javascript, */*; q=0.01', ...headers }, body: new URLSearchParams(form).toString(), signal: AbortSignal.timeout(45000) });
+  if (!res.ok) throw new Error(`${res.status} ${url}`);
+  return new TextDecoder(encoding).decode(await res.arrayBuffer());
+}
+const monthBefore = (ym) => { const [y, m] = ym.split('-').map(Number); return m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, '0')}`; };
 const lastMonth = () => { const d = new Date(Date.now() + 9 * 3600000); d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() - 1); return d.toISOString().slice(0, 7); };
 
 export const SOURCES = {
@@ -122,7 +173,7 @@ export const SOURCES = {
   mojo: async () => { const url = `https://www.boxofficemojo.com/year/world/${today().slice(0, 4)}/`; return { 'worldwide-box-office-2026': { source: url, ...parseMojoWorld(await get(url)) } }; },
   spiderman: async () => { const url = 'https://www.the-numbers.com/movies/franchise/Spider-Man'; return { 'spider-man-worldwide-box-office': { source: url, ...parseNumbersFranchise(await get(url)) } }; },
   danawa: async () => {
-    for (const month of [lastMonth(), (() => { const [y, m] = lastMonth().split('-').map(Number); return m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, '0')}`; })()]) {
+    for (const month of [lastMonth(), monthBefore(lastMonth())]) {
       const url = `https://auto.danawa.com/auto/?Work=record&Tab=Model&Month=${month}-00`;
       let data;
       try { data = parseDanawa(await get(url), month); } catch (e) { console.log(`다나와 ${month}: ${e.message}`); continue; }
@@ -148,6 +199,34 @@ export const SOURCES = {
       'kbo-home-runs-2026': { source: `${base}Player/HitterBasic/Basic1.aspx?sort=HR_CN`, ...parseKboHitters(await get(`${base}Player/HitterBasic/Basic1.aspx?sort=HR_CN`), 'hr') },
       'kbo-rbi-2026': { source: `${base}Player/HitterBasic/Basic1.aspx?sort=RBI_CN`, ...parseKboHitters(await get(`${base}Player/HitterBasic/Basic1.aspx?sort=RBI_CN`), 'rbi') },
     };
+  },
+  kaida: async () => {
+    const page = 'https://www.kaida.co.kr/ko/statistics/NewRegistList.do';
+    const cookie = await cookies(page);
+    for (const month of [lastMonth(), monthBefore(lastMonth())]) {
+      try {
+        const json = JSON.parse(await post('https://www.kaida.co.kr/ko/statistics/NewRegistListAjax.do', { programId: '117', layId: 'NewBrandSummary', searchStart: month.replace('-', ''), searchEnd: month.replace('-', ''), regionId: '', buytypeId: '' }, { cookie, referer: page }));
+        return { 'korea-import-car-brands': { source: page, ...parseKaida(json, month) } };
+      } catch (e) { console.log(`KAIDA ${month}: ${e.message}`); }
+    }
+    throw new Error('KAIDA: 최근 두 달 자료가 없습니다');
+  },
+  kboCrowd: async () => {
+    const page = 'https://www.koreabaseball.com/Record/Crowd/GraphTeam.aspx';
+    const json = JSON.parse(await post('https://www.koreabaseball.com/ws/Record.asmx/GetCrowdTeam', { leagueId: '1', seriesId: '0', gameMonth: '0' }, { cookie: await cookies(page), referer: page }));
+    return { 'kbo-attendance-2026': { source: page, ...parseKboCrowd(json) } };
+  },
+  population: async () => {
+    const page = 'https://jumin.mois.go.kr/statMonth.do';
+    const cookie = await cookies(page);
+    for (const month of [lastMonth(), monthBefore(lastMonth())]) {
+      const [y, m] = month.split('-');
+      try {
+        const csv = await post('https://jumin.mois.go.kr/downloadCsv.do?searchYearMonth=month&xlsStats=1', { sltOrgType: '1', sltOrgLvl1: 'A', sltOrgLvl2: 'A', gender: 'gender', genderPer: 'genderPer', generation: 'generation', sltUndefType: '', searchYearStart: y, searchMonthStart: m, searchYearEnd: y, searchMonthEnd: m, sltOrderType: '1', sltOrderValue: 'ASC', category: 'month' }, { cookie, referer: page }, 'euc-kr');
+        return { 'korea-province-population': { source: page, ...parseMoisCsv(csv) } };
+      } catch (e) { console.log(`행정안전부 ${month}: ${e.message}`); }
+    }
+    throw new Error('행정안전부: 최근 두 달 자료가 없습니다');
   },
   ufc: async () => ({ 'ufc-rankings-by-division': { source: 'https://www.ufc.com/rankings', ...parseUfc(await get('https://www.ufc.com/rankings')) } }),
 };

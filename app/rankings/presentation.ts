@@ -12,17 +12,17 @@ const DATA_LABEL: Record<string, string> = {
  
  
   'kbo-single-season-home-runs': 'KBO 역대 기록실 2025시즌 종료 데이터',
-  'kbo-attendance-2026': 'KBO 보도자료 2026.08.26 데이터',
  
-  'christopher-nolan-korea-box-office': 'KOBIS·흥행 보도 2026.09.07 데이터',
+ 
+ 
  
  
  
  
   'korean-drama-ratings': '역대 시청률 보도 데이터',
-  'korea-import-car-brands': 'KAIDA 2026년 8월 데이터',
  
-  'korea-province-population': '행정안전부 2026년 7월 말 데이터',
+ 
+ 
   'korea-highest-mountains': '산림청·국립공원공단 고도 데이터',
   'korea-ott-users': '와이즈앱 2025년 4월 데이터',
   'korea-mobile-games-users': '모바일인덱스 2026년 8월 데이터',
@@ -41,11 +41,11 @@ const WEEKLY_SOURCE: Record<string, string> = { 'netflix-korea-films-weekly': 'N
 // 숫자만 보고는 무엇인지 알기 어려운 값 앞에 붙이는 짧은 이름입니다.
 // "금메달 7회", "33홈런", "승률 0.544"처럼 값에 이미 이름이 있으면 넣지 않습니다.
 const VALUE_LABEL: Record<string, string> = {
-  'korea-import-car-brands': '신규등록', 'christopher-nolan-korea-box-office': '관객',
-  'kbo-attendance-2026': '홈 관중',
+ 
+ 
   'korean-drama-ratings': '최고 시청률',
   'korea-ott-users': '월 사용자', 'highest-paid-athletes': '연 수입', 'world-tallest-buildings': '높이',
-  'world-population': '인구', 'korea-province-population': '인구', 'korea-highest-mountains': '해발',
+  'world-population': '인구', 'korea-highest-mountains': '해발',
   'world-gdp-ranking': '명목 GDP', 'world-largest-countries': '육지 면적', 'world-highest-mountains': '해발',
   'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자',
   'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율', 'best-selling-music-artists': '판매량(추정)',
