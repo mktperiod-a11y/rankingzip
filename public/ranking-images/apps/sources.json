@@ -1,82 +1,92 @@
 {
-  "빅파일": {
-    "image": "/ranking-images/apps/bigfile.jpg",
-    "source": "https://apps.apple.com/kr/app/%EB%B9%85%ED%8C%8C%EC%9D%BC/id1577712260",
-    "app": "빅파일"
+  "넷플릭스": {
+    "image": "/ranking-images/apps/netflix.jpg",
+    "source": "https://apps.apple.com/kr/app/netflix/id363590051",
+    "app": "Netflix"
   },
   "쿠팡플레이": {
     "image": "/ranking-images/apps/coupangplay.jpg",
     "source": "https://apps.apple.com/kr/app/%EC%BF%A0%ED%8C%A1%ED%94%8C%EB%A0%88%EC%9D%B4/id1536885649",
     "app": "쿠팡플레이"
   },
-  "디즈니+": {
-    "image": "/ranking-images/apps/disneyplus.jpg",
-    "source": "https://apps.apple.com/kr/app/disney/id1446075923",
-    "app": "Disney+"
-  },
-  "파일시티": {
-    "image": "/ranking-images/apps/filecity.jpg",
-    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EC%8B%9C%ED%8B%B0/id6514282151",
-    "app": "파일시티"
-  },
-  "파일조": {
-    "image": "/ranking-images/apps/filejo.jpg",
-    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EC%A1%B0-filejo-%EC%B5%9C%EC%8B%A0%EC%98%81%ED%99%94-%EB%93%9C%EB%9D%BC%EB%A7%88-%EB%8F%99%EC%98%81%EC%83%81-%EB%A7%8C%ED%99%94/id1207126155",
-    "app": "파일조(FileJo) - 최신영화/드라마/동영상/만화"
-  },
-  "파일마루": {
-    "image": "/ranking-images/apps/filemaru.jpg",
-    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EB%A7%88%EB%A3%A8/id1640598483",
-    "app": "파일마루"
-  },
-  "케이디스크": {
-    "image": "/ranking-images/apps/kdisk.jpg",
-    "source": "https://apps.apple.com/kr/app/%EC%BC%80%EC%9D%B4%EB%94%94%EC%8A%A4%ED%81%AC-kdisk-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%EC%A0%84%EC%9A%A9%EC%95%B1/id1492405942",
-    "app": "케이디스크(kdisk)-다운로드 전용앱"
-  },
-  "라프텔": {
-    "image": "/ranking-images/apps/laftel.jpg",
-    "source": "https://apps.apple.com/kr/app/%EB%9D%BC%ED%94%84%ED%85%94/id1169440095",
-    "app": "라프텔"
-  },
-  "넷플릭스": {
-    "image": "/ranking-images/apps/netflix.jpg",
-    "source": "https://apps.apple.com/kr/app/netflix/id363590051",
-    "app": "Netflix"
-  },
-  "온디스크": {
-    "image": "/ranking-images/apps/ondisk.jpg",
-    "source": "https://apps.apple.com/kr/app/%EC%98%A8%EB%94%94%EC%8A%A4%ED%81%AC-ondisk/id1536892993",
-    "app": "온디스크(ondisk)"
-  },
-  "스포티비 나우": {
-    "image": "/ranking-images/apps/spotv-now.jpg",
-    "source": "https://apps.apple.com/kr/app/spotv-now-%EC%8A%A4%ED%8F%AC%ED%8B%B0%EB%B9%84-%EB%82%98%EC%9A%B0-%EC%8A%A4%ED%8F%AC%EC%B8%A0-%EC%83%9D%EC%A4%91%EA%B3%84/id1309434426",
-    "app": "SPOTV NOW(스포티비 나우) - 스포츠 생중계"
-  },
   "티빙": {
     "image": "/ranking-images/apps/tving.jpg",
     "source": "https://apps.apple.com/kr/app/tving/id400101401",
     "app": "TVING"
-  },
-  "U+모바일tv": {
-    "image": "/ranking-images/apps/uplus-tv.jpg",
-    "source": "https://apps.apple.com/kr/app/u-tv%EB%AA%A8%EB%B0%94%EC%9D%BC/id1637815745",
-    "app": "U+tv모바일"
-  },
-  "왓챠": {
-    "image": "/ranking-images/apps/watcha.jpg",
-    "source": "https://apps.apple.com/kr/app/%EC%99%93%EC%B1%A0-watcha/id1096493180",
-    "app": "왓챠 - WATCHA"
   },
   "웨이브": {
     "image": "/ranking-images/apps/wavve.jpg",
     "source": "https://apps.apple.com/kr/app/wavve-%EC%9B%A8%EC%9D%B4%EB%B8%8C/id987782077",
     "app": "Wavve (웨이브)"
   },
+  "디즈니+": {
+    "image": "/ranking-images/apps/disneyplus.jpg",
+    "source": "https://apps.apple.com/kr/app/disney/id1446075923",
+    "app": "Disney+"
+  },
+  "U+모바일tv": {
+    "image": "/ranking-images/apps/uplus-tv.jpg",
+    "source": "https://apps.apple.com/kr/app/u-tv%EB%AA%A8%EB%B0%94%EC%9D%BC/id1637815745",
+    "app": "U+tv모바일"
+  },
+  "라프텔": {
+    "image": "/ranking-images/apps/laftel.jpg",
+    "source": "https://apps.apple.com/kr/app/%EB%9D%BC%ED%94%84%ED%85%94/id1169440095",
+    "app": "라프텔"
+  },
+  "스포티비 나우": {
+    "image": "/ranking-images/apps/spotv-now.jpg",
+    "source": "https://apps.apple.com/kr/app/spotv-now-%EC%8A%A4%ED%8F%AC%ED%8B%B0%EB%B9%84-%EB%82%98%EC%9A%B0-%EC%8A%A4%ED%8F%AC%EC%B8%A0-%EC%83%9D%EC%A4%91%EA%B3%84/id1309434426",
+    "app": "SPOTV NOW(스포티비 나우) - 스포츠 생중계"
+  },
+  "왓챠": {
+    "image": "/ranking-images/apps/watcha.jpg",
+    "source": "https://apps.apple.com/kr/app/%EC%99%93%EC%B1%A0-watcha/id1096493180",
+    "app": "왓챠 - WATCHA"
+  },
+  "온디스크": {
+    "image": "/ranking-images/apps/ondisk.jpg",
+    "source": "https://apps.apple.com/kr/app/%EC%98%A8%EB%94%94%EC%8A%A4%ED%81%AC-ondisk/id1536892993",
+    "app": "온디스크(ondisk)"
+  },
   "예스파일": {
     "image": "/ranking-images/apps/yesfile.jpg",
     "source": "https://apps.apple.com/kr/app/%EC%98%88%EC%8A%A4%ED%8C%8C%EC%9D%BC/id562793918",
     "app": "예스파일"
+  },
+  "파일조": {
+    "image": "/ranking-images/apps/filejo.jpg",
+    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EC%A1%B0-filejo-%EC%B5%9C%EC%8B%A0%EC%98%81%ED%99%94-%EB%93%9C%EB%9D%BC%EB%A7%88-%EB%8F%99%EC%98%81%EC%83%81-%EB%A7%8C%ED%99%94/id1207126155",
+    "app": "파일조(FileJo) - 최신영화/드라마/동영상/만화"
+  },
+  "케이디스크": {
+    "image": "/ranking-images/apps/kdisk.jpg",
+    "source": "https://apps.apple.com/kr/app/%EC%BC%80%EC%9D%B4%EB%94%94%EC%8A%A4%ED%81%AC-kdisk-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%EC%A0%84%EC%9A%A9%EC%95%B1/id1492405942",
+    "app": "케이디스크(kdisk)-다운로드 전용앱"
+  },
+  "파일마루": {
+    "image": "/ranking-images/apps/filemaru.jpg",
+    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EB%A7%88%EB%A3%A8/id1640598483",
+    "app": "파일마루"
+  },
+  "빅파일": {
+    "image": "/ranking-images/apps/bigfile.jpg",
+    "source": "https://apps.apple.com/kr/app/%EB%B9%85%ED%8C%8C%EC%9D%BC/id1577712260",
+    "app": "빅파일"
+  },
+  "파일시티": {
+    "image": "/ranking-images/apps/filecity.jpg",
+    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EC%8B%9C%ED%8B%B0/id6514282151",
+    "app": "파일시티"
+  },
+  "파일보고": {
+    "image": "/ranking-images/apps/filebogo.jpg",
+    "source": "https://apps.apple.com/kr/app/%ED%8C%8C%EC%9D%BC%EB%B3%B4%EA%B3%A0/id6766728476",
+    "app": "파일보고"
+  },
+  "애플파일": {
+    "image": "/ranking-images/apps/applefile.jpg",
+    "source": "https://apps.apple.com/kr/app/%EC%95%A0%ED%94%8C%ED%8C%8C%EC%9D%BC/id783487682",
+    "app": "애플파일"
   }
 }
