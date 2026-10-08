@@ -27,6 +27,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: OTT 월간 공개 자료 확인
+        continue-on-error: true
+        run: node scripts/update-ott.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.dry_run) && '--dry-run' || '' }}
       - name: 넷플릭스 TOP 10 갱신
         env:
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
@@ -39,7 +42,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/rankings public/ranking-images/netflix
-          git commit -m "Update Netflix Korea weekly Top 10"
+          git commit -m "Update Netflix charts and OTT monthly users"
           git push
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
 

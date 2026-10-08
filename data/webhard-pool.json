@@ -1,18 +1,18 @@
 {
   "reserve": [
     {
-      "name": "애플파일",
-      "url": "https://www.applefile.com/",
-      "icon": {
-        "image": "/ranking-images/apps/applefile.jpg",
-        "source": "https://apps.apple.com/kr/app/%EC%95%A0%ED%94%8C%ED%8C%8C%EC%9D%BC/id783487682",
-        "app": "애플파일"
-      }
+      "name": "파일시티",
+      "url": "https://www.filecity.co.kr/"
     }
   ],
   "blocked": [
     "미투디스크",
     "파일캐스트",
     "파일이즈"
+  ],
+  "required": [
+    "파일보고",
+    "애플파일",
+    "예스파일"
   ]
 }
