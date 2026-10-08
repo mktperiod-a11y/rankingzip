@@ -229,9 +229,10 @@ export default async function RankingDetail({
                   <div className="dp-head">
                     <p>POUND FOR POUND</p>
                     <h2>체급 무관 랭킹 TOP {p.p4p.length}</h2>
+                    <span>UFC 미디어 패널 투표</span>
                   </div>
                   <ol className="dp-p4p">
-                    {p.p4p.map((x, i) => (
+                    {p.p4p.map(({ name: x, note }, i) => (
                       <li key={x}>
                         {portrait(x) ? (
                           <img
@@ -244,6 +245,7 @@ export default async function RankingDetail({
                         )}
                         <b>{i + 1}</b>
                         <span>{x}</span>
+                        {note && <small>{note}</small>}
                       </li>
                     ))}
                   </ol>
