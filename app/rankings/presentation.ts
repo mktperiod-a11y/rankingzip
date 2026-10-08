@@ -42,7 +42,7 @@ const VALUE_LABEL: Record<string, string> = {
   'world-population': '인구', 'korea-highest-mountains': '해발',
   'world-gdp-ranking': '명목 GDP', 'world-largest-countries': '육지 면적', 'world-highest-mountains': '해발',
   'most-visited-countries': '관광객', 'korea-mobile-games-users': '월 사용자',
-  'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율', 'best-selling-music-artists': '판매량(추정)',
+  'anime-all-time-popular': '목록 등록', 'anime-season-poll': '득표율', 'best-selling-music-artists': '판매량',
 };
 
 const FILLER = new Set(['순위', '기준', '공식', '차트', '데이터', '자료', '한국', '대한민국']);

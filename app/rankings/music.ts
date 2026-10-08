@@ -25,7 +25,7 @@ const claim = (lo: number, hi: number) => (lo === hi ? `${koCount(hi)} 장` : `$
 export const musicPages: RankingPage[] = [{
   slug: 'best-selling-music-artists', title: '역대 가수 음반 판매량 순위', category: '미디어',
   date: '2026.10.07 조회', dataLabel: '위키백과 2026.10.07 조회 데이터',
-  basis: '음반사·언론이 밝힌 누적 판매량(추정) 순 · 음반·싱글·디지털 포함',
+  basis: '음반사·언론이 밝힌 누적 판매량 순 · 음반·싱글·디지털 포함',
   description: '전 세계에서 음반을 가장 많이 판 가수 TOP 10입니다. 위키백과 "가장 많이 팔린 음악가 목록"의 순서를 따르며, 판매량은 음반사·언론이 밝힌 추정치라 범위로 적었습니다. 각국 음반협회가 인증한 판매량도 함께 적었습니다.',
   source: 'Wikipedia · List of best-selling music artists', sourceUrl: 'https://en.wikipedia.org/wiki/List_of_best-selling_music_artists',
   hideBars: true,
