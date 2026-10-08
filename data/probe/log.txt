@@ -1,0 +1,6 @@
+kbo-crowd.json 200 text/html 3382
+kbo-crowd-page.html 200 text/html; charset=utf-8 36020
+mois-get.html 200 text/html;charset=UTF-8 81218
+mois-post.html 200 text/html;charset=UTF-8 81223
+kaida-list.html 200 text/html;charset=UTF-8 96505
+kaida-share.html 200 text/html;charset=UTF-8 79338
