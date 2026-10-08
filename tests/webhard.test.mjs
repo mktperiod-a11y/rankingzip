@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
-import { reshuffle } from '../scripts/update-webhard.mjs';
+import { reshuffle, updateRanking } from '../scripts/update-webhard.mjs';
 
 const start = JSON.parse(fs.readFileSync('data/rankings/webhard.json', 'utf8')).items;
 
@@ -44,4 +44,18 @@ test('blocked webhards never appear and reserve fills empty slots', async () => 
   assert.ok(!out.pool.reserve.some((it) => it.name === next.name));
   const sneaky = fill([...start, { name: pool.blocked[0], url: '', base: 11, rank: 11, prevRank: 11 }], pool);
   assert.ok(sneaky.items.every((it) => !pool.blocked.includes(it.name)));
+});
+
+
+test('new entrants keep NEW for one update and existing ranks compare to the previous publication', () => {
+  const pool = JSON.parse(fs.readFileSync('data/webhard-pool.json', 'utf8'));
+  const previous = start.filter(it => it.name !== '애플파일');
+  const next = updateRanking(previous, { ...pool, reserve: [{ name: '애플파일', url: 'https://www.applefile.com/' }] }, () => 0.99);
+  assert.equal(next.items.find(it => it.name === '애플파일').prevRank, null);
+  for (const row of next.items.filter(it => it.name !== '애플파일')) {
+    assert.equal(row.prevRank, previous.find(it => it.name === row.name).rank);
+  }
+  const again = updateRanking(next.items, next.pool, () => 0.99);
+  assert.equal(again.items.find(it => it.name === '애플파일').prevRank, next.items.find(it => it.name === '애플파일').rank);
+  for (const name of pool.required) assert.ok(again.items.some(it => it.name === name));
 });

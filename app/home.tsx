@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { slugByTitle, pageBySlug, pages } from "./rankings/data";
+import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { FlapText } from "./flap-text";
@@ -81,7 +81,7 @@ const rankings = [
 
 const ADULT = new Set(["japan-av-actress-ranking"]);
 
-function updatedLabel(slug: string) {
+function updatedLabel(slug: string, pageBySlug: Record<string, HomeRanking>) {
   const p = pageBySlug[slug];
   const f = FRESHNESS[slug];
   if (f?.kind === "fixed") return "변동 없음";
@@ -97,7 +97,7 @@ function cycleText(slug: string) {
 
 const topic = (title: string) => title.replace(/\s*·\s*\d{4}년 \d+월$/, "").replace(/^(2026년?|이번 주)\s+/, "").replace(/\s*TOP \d+$/, "").replace(/\s*순위$/, "");
 
-function hotRankings(day: string, count = 5) {
+function hotRankings(day: string, pages: HomeRanking[], slugByTitle: Record<string, string>, count = 5) {
   const listed = new Set(Object.values(slugByTitle));
   const pool = pages.filter((p) => !p.noindex && !p.unranked && listed.has(p.slug)).map((p) => p.slug).sort();
   let seed = [...day].reduce((h, c) => Math.imul(h ^ c.charCodeAt(0), 16777619), 2166136261) >>> 0;
@@ -108,7 +108,8 @@ function hotRankings(day: string, count = 5) {
 
 const upcoming = ["프로야구 선수 연봉", "KBO 통산 홈런", "KBO 통산 투수승", "유튜버 구독자", "유튜버 추정 수입", "아파트 실거래가", "국내 대학 입결", "직업별 평균 연봉", "게임 매출", "모바일 앱 사용자", "치킨 브랜드 매장 수", "커피 프랜차이즈 매장 수", "편의점 매출", "항공사 이용객", "세계 축구클럽 가치", "역대 예능 시청률", "음원 스트리밍", "아이돌 앨범 판매", "웹툰 인기", "배달앱 사용자", "전기차 판매", "국내 캠핑장 인기", "반려견 품종", "세계 공항 이용객"];
 
-export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; trendsAt?: string; hotDay: string }) {
+export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { picks: TrendPick[]; trendsAt?: string; hotDay: string; pages: HomeRanking[]; slugByTitle: Record<string, string> }) {
+  const pageBySlug = useMemo(() => Object.fromEntries(pages.map(p => [p.slug, p])), [pages]);
   const [active, setActive] = useState<Category>("전체");
   const [query, setQuery] = useState("");
   const [flip, setFlip] = useState(0);
@@ -125,9 +126,9 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
     return () => clearInterval(timer);
   }, []);
   const filtered = useMemo(() => rankings.filter((item) =>
-    !pageBySlug[slugByTitle[item.title]]?.noindex && (active === "전체" || item.category === active) &&
+    pageBySlug[slugByTitle[item.title]] && !pageBySlug[slugByTitle[item.title]].noindex && (active === "전체" || item.category === active) &&
     (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).toLowerCase().includes(query.toLowerCase())
-  ), [active, query]);
+  ), [active, query, pageBySlug, slugByTitle]);
 
   return (
     <main>
@@ -160,7 +161,7 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
       </section>
 
       <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
-        <div className="ticker-track"><div className="ticker-run">{[0, 1, 2, 3].map((copy) => hotRankings(hotDay).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
+        <div className="ticker-track"><div className="ticker-run">{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</div></div>
       </div></section>
 
       <section className="content" id="rankings">
@@ -169,7 +170,7 @@ export default function Home({ picks, trendsAt, hotDay }: { picks: TrendPick[]; 
         <div className="layout">
           <div className="card-grid">
             {filtered.map((item) => { const slug = slugByTitle[item.title]; return <article className="rank-card" key={item.title}>
-              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug)}</span>
+              <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug, pageBySlug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
               <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목을 한눈에 비교해 보세요</p>
               <a className="rank-link" href={`/rankings/${slug}`}>{cycleText(slug)}<i>자세히 <b>→</b></i></a>

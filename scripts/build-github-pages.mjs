@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { checkPublicOutput } from './check-public-output.mjs';
 import { embedPageStyles } from './inline-page-styles.mjs';
 
 const base = (process.argv[2] ?? process.env.PAGES_BASE_PATH ?? '').replace(/\/+$/, '');
@@ -40,3 +41,5 @@ if (base) rewrite(outDir);
 const styled = embedPageStyles(outDir, base);
 console.log(`스타일 내장 완료: ${styled}개 HTML`);
 console.log(`GitHub Pages 빌드 완료: ${path.relative(process.cwd(), outDir)}/ (기본 경로 "${base || '/'}", 경로 수정 파일 ${changed}개)`);
+
+checkPublicOutput(outDir);

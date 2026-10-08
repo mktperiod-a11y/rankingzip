@@ -19,6 +19,6 @@ export const FRESHNESS: Record<string, Freshness> = {
   'best-selling-music-artists': checked('매년'),
 
   'asian-games-baseball-champions': FIXED, 'asian-games-medal-table-2026': FIXED, 'kbo-single-season-home-runs': FIXED,
-  'korean-drama-ratings': FIXED, 'korea-ott-users': FIXED, 'world-tallest-buildings': FIXED,
+  'korean-drama-ratings': FIXED, 'korea-ott-users': auto('매주 수·토요일'), 'world-tallest-buildings': FIXED,
   'world-largest-countries': FIXED, 'world-highest-mountains': FIXED, 'korea-highest-mountains': FIXED,
 };

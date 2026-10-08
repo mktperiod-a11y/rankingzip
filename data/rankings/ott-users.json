@@ -1,0 +1,45 @@
+{
+  "month": "2026-08",
+  "publishedAt": "2026-09-03",
+  "source": "와이즈앱·리테일",
+  "sourceUrl": "https://www.wiseapp.co.kr/insight/detail/1084",
+  "sourceId": 1084,
+  "rows": [
+    {
+      "name": "넷플릭스",
+      "users": 14810000
+    },
+    {
+      "name": "쿠팡플레이",
+      "users": 9520000
+    },
+    {
+      "name": "티빙",
+      "users": 5820000
+    },
+    {
+      "name": "디즈니+",
+      "users": 2760000
+    },
+    {
+      "name": "웨이브",
+      "users": 2160000
+    },
+    {
+      "name": "라프텔",
+      "users": 1170000
+    },
+    {
+      "name": "U+모바일tv",
+      "users": 420000
+    },
+    {
+      "name": "왓챠",
+      "users": 380000
+    },
+    {
+      "name": "스포티비 나우",
+      "users": 180000
+    }
+  ]
+}
