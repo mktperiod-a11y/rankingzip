@@ -587,12 +587,14 @@
       {
         "name": "사랑이 뭐길래",
         "value": "64.9%",
-        "note": "MBC"
+        "note": "MBC",
+        "image": "/ranking-images/updates/what-is-love.webp"
       },
       {
         "name": "허준",
         "value": "64.8%",
-        "note": "MBC"
+        "note": "MBC",
+        "image": "/ranking-images/updates/hur-jun.webp"
       },
       {
         "name": "모래시계",
