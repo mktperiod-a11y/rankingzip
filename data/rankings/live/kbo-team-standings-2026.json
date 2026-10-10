@@ -14,31 +14,31 @@
     {
       "rank": 2,
       "team": "삼성",
-      "games": 141,
+      "games": 142,
       "win": 83,
-      "loss": 55,
+      "loss": 56,
       "draw": 3,
-      "pct": "0.601",
-      "behind": "5.5"
+      "pct": "0.597",
+      "behind": "6"
     },
     {
       "rank": 3,
       "team": "KIA",
-      "games": 140,
-      "win": 76,
+      "games": 141,
+      "win": 77,
       "loss": 62,
       "draw": 2,
-      "pct": "0.551",
-      "behind": "12.5"
+      "pct": "0.554",
+      "behind": "12"
     },
     {
       "rank": 4,
       "team": "LG",
-      "games": 141,
-      "win": 77,
-      "loss": 63,
+      "games": 143,
+      "win": 78,
+      "loss": 64,
       "draw": 1,
-      "pct": "0.550",
+      "pct": "0.549",
       "behind": "12.5"
     },
     {
@@ -54,31 +54,31 @@
     {
       "rank": 6,
       "team": "SSG",
-      "games": 142,
-      "win": 64,
+      "games": 143,
+      "win": 65,
       "loss": 73,
       "draw": 5,
-      "pct": "0.467",
-      "behind": "24"
+      "pct": "0.471",
+      "behind": "23.5"
     },
     {
       "rank": 7,
       "team": "NC",
-      "games": 142,
+      "games": 143,
       "win": 63,
-      "loss": 77,
+      "loss": 78,
       "draw": 2,
-      "pct": "0.450",
-      "behind": "26.5"
+      "pct": "0.447",
+      "behind": "27"
     },
     {
       "rank": 8,
       "team": "롯데",
-      "games": 140,
-      "win": 61,
-      "loss": 76,
+      "games": 142,
+      "win": 62,
+      "loss": 77,
       "draw": 3,
-      "pct": "0.445",
+      "pct": "0.446",
       "behind": "27"
     },
     {
@@ -102,5 +102,5 @@
       "behind": "39.5"
     }
   ],
-  "checkedAt": "2026-10-08"
+  "checkedAt": "2026-10-10"
 }

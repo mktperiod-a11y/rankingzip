@@ -1,57 +1,57 @@
 {
   "source": "https://www.gametrics.com/",
-  "date": "2026-10-07",
+  "date": "2026-10-09",
   "rows": [
     {
       "rank": 1,
       "name": "리그 오브 레전드",
-      "share": 33.12
+      "share": 33.9
     },
     {
       "rank": 2,
       "name": "발로란트",
-      "share": 9.56
+      "share": 11.85
     },
     {
       "rank": 3,
       "name": "FC온라인",
-      "share": 9.44
+      "share": 8.97
     },
     {
       "rank": 4,
       "name": "배틀그라운드",
-      "share": 6.99
+      "share": 6.97
     },
     {
       "rank": 5,
       "name": "오버워치",
-      "share": 6.15
+      "share": 6.02
     },
     {
       "rank": 6,
-      "name": "리니지 클래식",
-      "share": 5.57
+      "name": "Roblox",
+      "share": 4.65
     },
     {
       "rank": 7,
       "name": "서든어택",
-      "share": 5.26
+      "share": 4.5
     },
     {
       "rank": 8,
-      "name": "메이플 스토리",
-      "share": 2.89
+      "name": "리니지 클래식",
+      "share": 4.09
     },
     {
       "rank": 9,
-      "name": "Roblox",
-      "share": 2.73
+      "name": "메이플 스토리",
+      "share": 2.61
     },
     {
       "rank": 10,
-      "name": "로스트아크",
-      "share": 1.86
+      "name": "스타크래프트",
+      "share": 1.59
     }
   ],
-  "checkedAt": "2026-10-08"
+  "checkedAt": "2026-10-10"
 }
