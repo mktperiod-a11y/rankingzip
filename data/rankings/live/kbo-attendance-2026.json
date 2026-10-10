@@ -1,7 +1,7 @@
 {
   "source": "https://www.koreabaseball.com/Record/Crowd/GraphTeam.aspx",
-  "date": "2026-10-07",
-  "total": 12534427,
+  "date": "2026-10-09",
+  "total": 12597101,
   "rows": [
     {
       "rank": 1,
@@ -21,17 +21,17 @@
     {
       "rank": 4,
       "team": "롯데",
-      "crowd": 1315655
+      "crowd": 1337201
     },
     {
       "rank": 5,
-      "team": "KIA",
-      "crowd": 1237888
+      "team": "SSG",
+      "crowd": 1251532
     },
     {
       "rank": 6,
-      "team": "SSG",
-      "crowd": 1228532
+      "team": "KIA",
+      "crowd": 1237888
     },
     {
       "rank": 7,
@@ -51,8 +51,8 @@
     {
       "rank": 10,
       "team": "NC",
-      "crowd": 884777
+      "crowd": 902905
     }
   ],
-  "checkedAt": "2026-10-08"
+  "checkedAt": "2026-10-10"
 }
