@@ -1,11 +1,11 @@
 {
   "source": "https://anilist.co/search/anime/popular",
-  "checkedAt": "2026-10-07",
+  "checkedAt": "2026-10-10",
   "rows": [
     {
       "rank": 1,
       "title": "Attack on Titan",
-      "popularity": 1062878,
+      "popularity": 1064069,
       "year": 2013,
       "format": "TV",
       "id": 16498,
@@ -16,7 +16,7 @@
     {
       "rank": 2,
       "title": "Demon Slayer: Kimetsu no Yaiba",
-      "popularity": 1001434,
+      "popularity": 1002545,
       "year": 2019,
       "format": "TV",
       "id": 101922,
@@ -27,7 +27,7 @@
     {
       "rank": 3,
       "title": "JUJUTSU KAISEN",
-      "popularity": 980742,
+      "popularity": 982005,
       "year": 2020,
       "format": "TV",
       "id": 113415,
@@ -38,7 +38,7 @@
     {
       "rank": 4,
       "title": "Death Note",
-      "popularity": 969140,
+      "popularity": 970191,
       "year": 2006,
       "format": "TV",
       "id": 1535,
@@ -49,7 +49,7 @@
     {
       "rank": 5,
       "title": "My Hero Academia",
-      "popularity": 879894,
+      "popularity": 880757,
       "year": 2016,
       "format": "TV",
       "id": 21459,
@@ -60,7 +60,7 @@
     {
       "rank": 6,
       "title": "Hunter x Hunter (2011)",
-      "popularity": 846854,
+      "popularity": 847711,
       "year": 2011,
       "format": "TV",
       "id": 11061,
@@ -71,7 +71,7 @@
     {
       "rank": 7,
       "title": "One-Punch Man",
-      "popularity": 771958,
+      "popularity": 772659,
       "year": 2015,
       "format": "TV",
       "id": 21087,
@@ -82,7 +82,7 @@
     {
       "rank": 8,
       "title": "ONE PIECE",
-      "popularity": 757398,
+      "popularity": 758271,
       "year": 1999,
       "format": "TV",
       "id": 21,
@@ -93,7 +93,7 @@
     {
       "rank": 9,
       "title": "Tokyo Ghoul",
-      "popularity": 745188,
+      "popularity": 745920,
       "year": 2014,
       "format": "TV",
       "id": 20605,
@@ -104,7 +104,7 @@
     {
       "rank": 10,
       "title": "Fullmetal Alchemist: Brotherhood",
-      "popularity": 734477,
+      "popularity": 735269,
       "year": 2009,
       "format": "TV",
       "id": 5114,
