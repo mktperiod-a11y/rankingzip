@@ -38,17 +38,17 @@
     },
     {
       "rank": 6,
+      "playerId": "54529",
+      "name": "레이예스",
+      "team": "롯데",
+      "value": 107
+    },
+    {
+      "rank": 7,
       "playerId": "72443",
       "name": "최형우",
       "team": "삼성",
       "value": 106
-    },
-    {
-      "rank": 7,
-      "playerId": "54529",
-      "name": "레이예스",
-      "team": "롯데",
-      "value": 105
     },
     {
       "rank": 8,
@@ -66,11 +66,11 @@
     },
     {
       "rank": 10,
-      "playerId": "69737",
-      "name": "노시환",
-      "team": "한화",
-      "value": 95
+      "playerId": "62947",
+      "name": "나성범",
+      "team": "KIA",
+      "value": 96
     }
   ],
-  "checkedAt": "2026-10-08"
+  "checkedAt": "2026-10-10"
 }
