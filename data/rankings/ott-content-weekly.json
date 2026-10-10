@@ -2,7 +2,7 @@
   "source": "https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv",
   "weekStart": "2026-09-28",
   "weekEnd": "2026-10-04",
-  "checkedAt": "2026-10-07",
+  "checkedAt": "2026-10-10",
   "rows": [
     {
       "rank": 1,
@@ -10,8 +10,8 @@
       "season": "Season 2",
       "weeks": 2,
       "videoId": 81948520,
-      "titleKo": "대환장 기안장",
-      "image": "/ranking-images/netflix/81948520.jpg"
+      "image": "/ranking-images/netflix/81948520.jpg",
+      "titleKo": "대환장 기안장"
     },
     {
       "rank": 2,
