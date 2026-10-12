@@ -2,7 +2,7 @@ import type { RankingPage } from './data';
 import { dateParts } from './date-parts';
 
 const DATA_LABEL: Record<string, string> = {
-  'asian-games-baseball-champions': 'KBO 2026.09.27 결승 종료 데이터',
+  'asian-games-baseball-champions': '2026.09.27 결승 종료 · 1994~2026 정식 종목 9개 대회',
   'asian-games-medal-table-2026': '연합뉴스 2026.10.04 최종 메달 집계',
  
  

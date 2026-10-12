@@ -24,22 +24,24 @@ const korea = medals.find(row => row.name === '대한민국')!;
 
 export const asianGamesPages: RankingPage[] = [{
   slug:'asian-games-baseball-champions',
-  title:'역대 아시안게임 야구 우승 국가 순위',
+  title:'역대 아시안게임 야구 메달 순위',
   category:'스포츠',
   date:'2026.09.27 결승 종료 기준',
-  basis:'1994년 정식 종목 채택 이후 국가별 금메달 횟수',
-  description:'한국이 2026 아이치·나고야 아시안게임 결승에서 일본을 꺾고 5회 연속 우승을 달성했습니다. 1994년 야구가 정식 종목이 된 뒤 한국은 통산 7번째 금메달로 역대 1위를 더욱 굳혔습니다.',
-  source:'KBO · 2026 아시안게임 일정/결과',
-  sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx',
+  basis:'1994년 정식 종목 채택 이후 금·은·동메달 순 · 메달 수가 같으면 공동 순위',
+  description:'1994년 야구가 아시안게임 정식 종목이 된 뒤 9개 대회의 국가별 메달 순위입니다. 한국은 2026 아이치·나고야 대회에서 5회 연속 우승하며 금메달 7개로 1위이고, 일본과 차이니스 타이베이는 금 1·은 4·동 4개로 메달 수가 같아 공동 2위입니다.',
+  source:'Wikipedia · Baseball at the Asian Games',
+  sourceUrl:'https://en.wikipedia.org/wiki/Baseball_at_the_Asian_Games',
   rows:[
-    {name:'대한민국',value:'금메달 7회',note:'1998·2002·2010·2014·2018·2022·2026',image:'https://flagcdn.com/w640/kr.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
-    {name:'일본',value:'금메달 1회',note:'1994 히로시마 대회 우승',image:'https://flagcdn.com/w640/jp.png',sourceUrl:'https://www.japan-baseball.jp/en/team/amateur/2026/asiangames/overview.html'},
-    {name:'차이니스 타이베이',value:'금메달 1회',note:'2006 도하 대회 우승',image:'/ranking-images/flags/chinese-taipei.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
+    {name:'대한민국',value:'금 7 · 은 1 · 동 1',note:'우승 1998·2002·2010·2014·2018·2022·2026',rank:1,image:'https://flagcdn.com/w640/kr.png',sourceUrl:'https://www.koreabaseball.com/Schedule/International/AsianGames/Main2026.aspx'},
+    {name:'일본',value:'금 1 · 은 4 · 동 4',note:'우승 1994 히로시마',rank:2,image:'https://flagcdn.com/w640/jp.png',sourceUrl:'https://www.japan-baseball.jp/en/team/amateur/2026/asiangames/overview.html'},
+    {name:'차이니스 타이베이',value:'금 1 · 은 4 · 동 4',note:'우승 2006 도하',rank:2,image:'/ranking-images/flags/chinese-taipei.png',sourceUrl:'https://en.wikipedia.org/wiki/Baseball_at_the_Asian_Games'},
   ],
-  auditDate:'2026.09.28',
+  auditDate:'2026.10.12',
   faq:[
     ['아시안게임 야구 최다 우승 국가는 어디인가요?','2026년 대회 종료 기준 대한민국이 금메달 7개로 가장 많습니다.'],
+    ['일본과 차이니스 타이베이는 왜 공동 2위인가요?','두 팀 모두 금메달 1개, 은메달 4개, 동메달 4개로 메달 수가 같기 때문입니다.'],
     ['한국 야구는 몇 회 연속 우승했나요?','2010 광저우 대회부터 2026 아이치·나고야 대회까지 5회 연속 우승했습니다.'],
+    ['다른 나라는 메달이 없나요?','1994년 이후 메달은 한국·일본·차이니스 타이베이 세 팀만 땄습니다. 중국은 매 대회 4위였습니다.'],
     ['1990년 대회는 왜 포함하지 않나요?','1990 베이징 대회 야구는 시범 종목이었고, 정식 메달 종목은 1994 히로시마 대회부터이기 때문입니다.'],
   ],
 },{

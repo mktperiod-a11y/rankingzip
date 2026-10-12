@@ -164,13 +164,13 @@
   .search-wrap.expanded .search-cancel{display:block;border:0;background:none;padding:6px 2px;font-size:14px;font-weight:700;color:#566176;flex-shrink:0}
   .search-pop{position:fixed;top:64px;left:0;right:0;width:auto;max-height:calc(100vh - 64px);border-radius:0 0 14px 14px;border-width:0 0 1px}
 }
-.rank-card{--tint:#d9e6ff;background:#fff;background:color-mix(in srgb,var(--tint) 24%,#fff);border-color:color-mix(in srgb,var(--tint) 50%,var(--line))}
-.rank-card.t-green{--tint:#d2f5de}.rank-card.t-red{--tint:#ffdfe1}.rank-card.t-purple{--tint:#e6dcff}.rank-card.t-orange{--tint:#ffe2c7}.rank-card.t-pink{--tint:#ffd9ea}.rank-card.t-navy{--tint:#d9e3f5}.rank-card.t-cyan{--tint:#cff3fa}.rank-card.t-indigo{--tint:#dedcff}.rank-card.t-black{--tint:#e3e7ec}.rank-card.t-rose{--tint:#ffdbe6}.rank-card.t-gold{--tint:#ffeeae}
+.rank-card,[class*=" t-"],[class^="t-"]{--tint:#d9e6ff;--tone:#3b7bff}
+.rank-card{background:#fff;background:color-mix(in srgb,var(--tint) 24%,#fff);border-color:color-mix(in srgb,var(--tint) 50%,var(--line))}
+.t-green{--tint:#d2f5de}.t-red{--tint:#ffdfe1}.t-purple{--tint:#e6dcff}.t-orange{--tint:#ffe2c7}.t-pink{--tint:#ffd9ea}.t-navy{--tint:#d9e3f5}.t-cyan{--tint:#cff3fa}.t-indigo{--tint:#dedcff}.t-black{--tint:#e3e7ec}.t-rose{--tint:#ffdbe6}.t-gold{--tint:#ffeeae}
 .rank-card:hover{border-color:color-mix(in srgb,var(--tint) 100%,#9fb0c8 25%)}
 .rank-card .badge{background:rgba(255,255,255,.8)}
 .rank-card .rank-link{border-top-color:rgba(15,23,42,.06)}
-.rank-card{--tone:#3b7bff}
-.rank-card.t-green{--tone:#1fae5b}.rank-card.t-red{--tone:#f0444f}.rank-card.t-purple{--tone:#8b5cf6}.rank-card.t-orange{--tone:#f7861c}.rank-card.t-pink{--tone:#f0479b}.rank-card.t-navy{--tone:#3d5a96}.rank-card.t-cyan{--tone:#0fb2cf}.rank-card.t-indigo{--tone:#5b5ff0}.rank-card.t-black{--tone:#4b5563}.rank-card.t-rose{--tone:#ec3f6d}.rank-card.t-gold{--tone:#eaa800}
+.t-green{--tone:#1fae5b}.t-red{--tone:#f0444f}.t-purple{--tone:#8b5cf6}.t-orange{--tone:#f7861c}.t-pink{--tone:#f0479b}.t-navy{--tone:#3d5a96}.t-cyan{--tone:#0fb2cf}.t-indigo{--tone:#5b5ff0}.t-black{--tone:#4b5563}.t-rose{--tone:#ec3f6d}.t-gold{--tone:#eaa800}
 .rank-card .icon{background:color-mix(in srgb,var(--tone) 20%,#fff)}
 .medal-shine{opacity:0}
 .hero-row:first-child .medal-shine,.rank-medal.m1 .medal-shine{animation:medal-shine 3s ease-in-out 1s infinite}

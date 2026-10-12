@@ -8,7 +8,7 @@ export function Medal({ rank, size = 28 }: { rank: number; size?: number }) {
   const t = TONES[rank - 1];
   const id = `medal-${rank}`;
   return (
-    <svg viewBox="0 0 40 48" width={size * (40 / 48)} height={size} aria-hidden="true" className="medal-svg">
+    <svg viewBox="0 9 40 39" width={size * (40 / 39)} height={size} aria-hidden="true" className="medal-svg">
       <defs>
         <radialGradient id={`${id}-coin`} cx="35%" cy="30%" r="75%">
           <stop offset="0" stopColor={t.light} />

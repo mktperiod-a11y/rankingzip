@@ -246,3 +246,8 @@
 .dp-p4p li b.rank-medal{top:4px;left:8px;width:auto;height:auto;border-radius:0;background:none;box-shadow:none}
 @keyframes medal-drop{0%{transform:translateY(-8px) rotate(-14deg);opacity:0}60%{transform:rotate(6deg);opacity:1}100%{transform:none}}
 @media(max-width:640px){.dp-step .rank-medal svg{height:44px;width:auto}.dp-step .rank-medal.m1 svg{height:52px}}
+.dp-card li a{align-items:center}
+.dp-card li a span{flex:1;min-width:0}
+.dp-rel-icon{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--tone) 20%,#fff);font-style:normal;font-size:16px;line-height:1}
+.dp-step strong{white-space:nowrap}
+@media(max-width:640px){.dp-step strong{font-size:12px;letter-spacing:-.4px}}

@@ -23,7 +23,7 @@ test('new season rankings and imported brands are complete and linked',()=>{
  assert.equal(cars.rows.length,10);
  const kaida=live('korea-import-car-brands');assert.deepEqual(Array.from(cars.rows,r=>r.value),kaida.rows.map(r=>`${r.count.toLocaleString('en-US')}대`));assert.match(cars.rows[0].note,new RegExp(`${kaida.rows[0].share.toFixed(1)}%`));
  const {slugByTitle}=load('app/rankings/data.ts');
- const home=fs.readFileSync('app/home.tsx','utf8');
+ const home=fs.readFileSync('app/rankings/catalog.ts','utf8');
  for(const p of [hr,rbi,cars]){assert.equal(slugByTitle[p.title],p.slug);assert.ok(home.includes(p.title));assert.ok(p.faq.length>=2);}
  for(const r of cars.rows){assert.ok(r.sourceUrl);if(r.image)assert.ok(r.image.startsWith('/ranking-images/expansion/')&&r.imageSource);}
  const credits=JSON.parse(fs.readFileSync('public/ranking-images/portraits/credits.json','utf8'));

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { pageBySlug, pages } from "../data";
+import { pageBySlug, pages, slugByTitle } from "../data";
+import { catalog } from "../catalog";
 import { rankingPresentation } from "../presentation";
 import shapes from "../../../data/image-shapes.json";
 import { rankingCountExceptions } from "../completion";
@@ -38,6 +39,7 @@ export const imageByName: Record<string, string> = {
 
 type Found = Record<string, Record<string, { image: string }>>;
 const found = (slug: string, name: string) => (autoImages as Found)[slug]?.[name]?.image || (manualImages as Found)[slug]?.[name]?.image;
+const iconBySlug = Object.fromEntries(catalog.map((c) => [slugByTitle[c.title], c]));
 const portrait = (name: string, slug = "") => portraitOf(name)?.image || found(slug, name);
 const imageOf = (slug: string, r: { name: string; image?: string }) =>
   r.image || imageByName[r.name] || found(slug, r.name);
@@ -564,6 +566,11 @@ export default async function RankingDetail({
                 {related.map((x) => (
                   <li key={x.slug}>
                     <a href={`/rankings/${x.slug}/`}>
+                      {iconBySlug[x.slug] && (
+                        <i className={`dp-rel-icon t-${iconBySlug[x.slug].color}`} aria-hidden="true">
+                          {iconBySlug[x.slug].icon}
+                        </i>
+                      )}
                       <span>{x.title}</span>
                       <b>→</b>
                     </a>
