@@ -67,7 +67,7 @@ const englishOf = (name) => {
   return Object.values(all).flatMap((group) => Object.entries(group)).filter(([, ko]) => ko === name).map(([en]) => en);
 };
 
-async function wikidataImage(slug, name) {
+export async function wikidataImage(slug, name) {
   const base = name.split(' · ')[0].trim();
   for (const [language, term] of [['ko', base], ...englishOf(base).map((en) => ['en', en]), ['en', base]]) {
     const search = await getJson(`https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&type=item&limit=7&language=${language}&uselang=${language}&search=${encodeURIComponent(term)}`);
@@ -81,11 +81,18 @@ async function wikidataImage(slug, name) {
       const file = (p) => e.claims?.[p]?.[0]?.mainsnak?.datavalue?.value;
       const commons = LOGO_SLUGS.has(slug) ? file('P154') ?? file('P18') : file('P18') ?? file('P154');
       if (commons) return { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(commons)}?width=800`, source: `https://www.wikidata.org/wiki/${id}` };
-      const enwiki = e.sitelinks?.enwiki?.title;
-      if (enwiki) {
-        const summary = await getJson(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(enwiki.replace(/ /g, '_'))}`).catch(() => null);
+      for (const [wiki, host] of [['enwiki', 'en'], ['kowiki', 'ko']]) {
+        const title = e.sitelinks?.[wiki]?.title;
+        if (!title) continue;
+        const summary = await getJson(`https://${host}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title.replace(/ /g, '_'))}`).catch(() => null);
         const src = summary?.originalimage?.source ?? summary?.thumbnail?.source;
-        if (src) return { url: src, source: summary.content_urls?.desktop?.page ?? `https://en.wikipedia.org/wiki/${enwiki}` };
+        if (src) return { url: src, source: summary.content_urls?.desktop?.page ?? `https://${host}.wikipedia.org/wiki/${title}` };
+      }
+      const category = file('P373');
+      if (category) {
+        const list = await getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=categorymembers&cmtype=file&cmlimit=50&cmtitle=${encodeURIComponent(`Category:${category}`)}`).catch(() => null);
+        const pick = (list?.query?.categorymembers ?? []).map((m) => m.title).find((t) => /\.jpe?g$/i.test(t) && !/map|location|logo|flag|diagram|chart|sign/i.test(t));
+        if (pick) return { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(pick.replace(/^File:/, ''))}?width=800`, source: `https://commons.wikimedia.org/wiki/${encodeURIComponent(pick)}` };
       }
     }
   }
