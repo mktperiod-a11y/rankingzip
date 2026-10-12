@@ -507,8 +507,8 @@ export default async function RankingDetail({
                           {!noteBeforeBar && presentation.notes[i] && (
                             <p>{presentation.notes[i]}</p>
                           )}
-                          {rowSources(r, true)}
                         </div>
+                        {rowSources(r, true)}
                       </li>
                     );
                   })}
