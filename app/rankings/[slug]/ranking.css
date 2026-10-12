@@ -8,7 +8,6 @@
 .dp-hero-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:32px}
 .dp-eyebrow{margin:0 0 10px;font-size:12px;font-weight:900;letter-spacing:1.6px;color:var(--blue)}
 .dp-hero h1{margin:0;font-size:43px;line-height:1.2;letter-spacing:-2.2px;font-weight:600;word-break:keep-all}
-.dp-desc{max-width:720px;margin:14px 0 0;font-size:16px;line-height:1.75;color:#5d6879;word-break:keep-all}
 .dp-audit{padding:18px 22px;border:1px solid #dbe5f5;border-radius:14px;background:#edf4ff;font-size:14px;line-height:1.7}
 .dp-audit b{font-size:14px}
 .dp-audit p{margin:4px 0 0;color:#526780;word-break:keep-all}
@@ -35,10 +34,6 @@
 .dp-podium-poster{position:relative;width:100%;max-width:150px;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:#eef3fb;box-shadow:0 10px 24px rgba(22,34,52,.14);margin-bottom:10px}
 .dp-podium-poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;color:transparent;font-size:0}
 .dp-podium .place-1 .dp-podium-poster{max-width:180px}
-.dp-medal{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:14px;font-weight:900;color:white;margin-bottom:8px;box-shadow:0 4px 10px rgba(0,0,0,.12)}
-.place-1 .dp-medal{background:linear-gradient(145deg,#ffd45a,#e3a300)}
-.place-2 .dp-medal{background:linear-gradient(145deg,#d9dee6,#9aa4b2)}
-.place-3 .dp-medal{background:linear-gradient(145deg,#f0b07a,#c06a2b)}
 .dp-podium h3{margin:0;font-size:16px;letter-spacing:-.4px;line-height:1.35;word-break:keep-all;overflow-wrap:anywhere}
 .dp-podium strong{margin-top:4px;font-size:15px;font-weight:900;color:var(--blue);word-break:keep-all}
 .dp-podium .dp-row-links{justify-content:center}
@@ -136,7 +131,6 @@
  .dp-wrap{padding:0 16px}
  .dp-hero{padding:26px 0 16px}
  .dp-hero h1{font-size:31px;letter-spacing:-1.4px}
- .dp-desc{font-size:15px}
  .dp-audit{padding:14px 16px;font-size:13px}
  .dp-main{padding:18px 16px;border-radius:16px}
  .dp-list li{gap:12px;padding:14px 0;align-items:flex-start}
@@ -165,8 +159,6 @@
 .media-list.wide .dp-thumb{width:112px;height:63px}
 @media(max-width:640px){.media-list.wide .dp-thumb{width:88px;height:50px}.media-list .dp-thumb{width:60px;height:90px}}
 @media(max-width:640px){.dp-posters.wide{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.dp-lede{margin:0 0 22px;font-size:17px;font-weight:600;line-height:1.5;letter-spacing:-.3px;color:var(--ink);word-break:keep-all}
-@media(max-width:640px){.dp-lede{font-size:16px}}
 .dp-thumb.crest{background:white;border:1px solid #e7ebf1}
 .dp-thumb.crest img{object-fit:contain;object-position:center;padding:8px}
 .dp-initial{flex-shrink:0;display:grid;place-items:center;background:#eef3fb;color:#9fb3d6;font-weight:900}
@@ -182,7 +174,6 @@
 .dp-p4p li img,.dp-p4p li .dp-initial{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center 15%;background:#eef3fb}
 .dp-p4p li b{position:absolute;top:10px;left:10px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--blue);color:white;font-size:12px}
 .dp-p4p li small{margin-top:-4px;font-size:12px;font-weight:700;color:#8a94a4}
-.dp-p4p li:first-child b{background:linear-gradient(145deg,#ffd45a,#e3a300)}
 @media(max-width:640px){
  .dp-p4p{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 4px}
  .dp-p4p li{flex:0 0 112px;scroll-snap-align:start}
@@ -222,10 +213,6 @@
 .dp-podium .dp-row-links a{white-space:nowrap}
 @media(max-width:640px){.dp-podium .dp-row-links a.dp-visit{padding:6px 9px;font-size:12px}}
 .dp-p4p li b{background:#eef1f6;color:#566176;box-shadow:none}
-.dp-p4p li:nth-child(-n+3) b{width:26px;height:26px;color:#fff;font-size:13px;box-shadow:0 4px 10px rgba(0,0,0,.14)}
-.dp-p4p li:nth-child(1) b{background:linear-gradient(145deg,#ffd45a,#e3a300)}
-.dp-p4p li:nth-child(2) b{background:linear-gradient(145deg,#d9dee6,#9aa4b2)}
-.dp-p4p li:nth-child(3) b{background:linear-gradient(145deg,#f0b07a,#c06a2b)}
 .dp-p4p li:nth-child(1){border-color:#f3d36b;background:linear-gradient(180deg,#fffbea,#fff 60%)}
 .dp-p4p li:nth-child(1) img{box-shadow:0 0 0 3px #ffd45a}
 .dp-division-nav{position:sticky;top:74px;z-index:5;display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;margin:-4px -26px 16px;padding:10px 26px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);scrollbar-width:none}

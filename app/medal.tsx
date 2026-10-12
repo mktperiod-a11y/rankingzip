@@ -35,5 +35,6 @@ export function Medal({ rank, size = 28 }: { rank: number; size?: number }) {
 }
 
 export function RankMedal({ rank, size }: { rank: number; size: number }) {
+  if (!TONES[rank - 1]) return <b className="rank-medal plain" aria-label={`${rank}위`}>{rank}</b>;
   return <b className={`rank-medal m${rank}`} aria-label={`${rank}위`}><Medal rank={rank} size={size} /></b>;
 }
