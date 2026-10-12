@@ -1,0 +1,50 @@
+name: Apply image from issue comment
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: github.event.issue.title == '포스터 필요' && github.event.comment.author_association == 'OWNER' && github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: 댓글 이미지 반영
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          GITHUB_TOKEN: ${{ github.token }}
+          POSTER_REPLY: ${{ runner.temp }}/reply.md
+        run: node scripts/posters.mjs comment
+      - name: 저장 후 사이트 재배포
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- data/rankings && [ -z "$(git status --porcelain public/ranking-images/manual)" ]; then echo "바뀐 이미지가 없습니다"; exit 0; fi
+          node scripts/image-shapes.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rankings data/image-shapes.json public/ranking-images/manual
+          git commit -m "Apply images from issue comment"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
+          gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
+      - name: 결과 댓글
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPLY: ${{ runner.temp }}/reply.md
+        run: '[ -s "$REPLY" ] && gh issue comment "${{ github.event.issue.number }}" --body-file "$REPLY" || true'
