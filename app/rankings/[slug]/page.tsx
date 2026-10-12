@@ -6,6 +6,8 @@ import { rankingCountExceptions } from "../completion";
 import { PERSON_SLUGS, portraitOf } from "../portraits";
 import { notFound } from "next/navigation";
 import { BrandLogo } from "../../brand-logo";
+import { DivisionNav } from "./division-nav";
+import { RankTrophy } from "../../trophy";
 import { SITE_URL } from "../../links";
 import { answerOf, updatedOf } from "../summary";
 import autoImages from "../../../data/rankings/auto-images.json";
@@ -34,10 +36,11 @@ export const imageByName: Record<string, string> = {
   "대만": "/ranking-images/travel/taiwan.jpg"
 };
 
-const portrait = (name: string) => portraitOf(name)?.image;
 type Found = Record<string, Record<string, { image: string }>>;
+const found = (slug: string, name: string) => (autoImages as Found)[slug]?.[name]?.image || (manualImages as Found)[slug]?.[name]?.image;
+const portrait = (name: string, slug = "") => portraitOf(name)?.image || found(slug, name);
 const imageOf = (slug: string, r: { name: string; image?: string }) =>
-  r.image || imageByName[r.name] || (autoImages as Found)[slug]?.[r.name]?.image || (manualImages as Found)[slug]?.[r.name]?.image;
+  r.image || imageByName[r.name] || found(slug, r.name);
 export function generateStaticParams() {
   return pages.map((p) => ({ slug: p.slug }));
 }
@@ -271,16 +274,16 @@ export default async function RankingDetail({
                   <ol className="dp-p4p">
                     {p.p4p.map(({ name: x, note }, i) => (
                       <li key={x}>
-                        {portrait(x) ? (
+                        {portrait(x, p.slug) ? (
                           <img
-                            src={portrait(x)}
+                            src={portrait(x, p.slug)}
                             alt={`${x} P4P ${i + 1}위`}
                             loading="lazy"
                           />
                         ) : (
-                          <span className="dp-initial">{x.slice(0, 1)}</span>
+                          <span className="dp-initial" data-missing-image={x}>{x.slice(0, 1)}</span>
                         )}
-                        <b>{i + 1}</b>
+                        {i < 3 ? <RankTrophy rank={i + 1} size={32} /> : <b>{i + 1}</b>}
                         <span>{x}</span>
                         {note && <small>{note}</small>}
                       </li>
@@ -292,13 +295,7 @@ export default async function RankingDetail({
                 <p>WEIGHT CLASSES</p>
                 <h2>체급별 챔피언과 랭커</h2>
               </div>
-              <nav className="dp-division-nav" aria-label="체급 바로가기">
-                {p.divisions.map((d, i) => (
-                  <a key={d.name} href={`#division-${i + 1}`}>
-                    {d.name}
-                  </a>
-                ))}
-              </nav>
+              <DivisionNav names={p.divisions.map((d) => d.name)} />
               <div className="dp-division-grid">
                 {p.divisions.map((d, i) => (
                   <article className="dp-division" id={`division-${i + 1}`} key={d.name}>
@@ -307,14 +304,14 @@ export default async function RankingDetail({
                       {d.limit && <small>{d.limit}</small>}
                     </h3>
                     <div className="dp-champion">
-                      {portrait(d.champion) ? (
+                      {portrait(d.champion, p.slug) ? (
                         <img
-                          src={portrait(d.champion)}
+                          src={portrait(d.champion, p.slug)}
                           alt={`${d.champion} ${d.name} 챔피언`}
                           loading="lazy"
                         />
                       ) : (
-                        <span className="dp-initial">
+                        <span className="dp-initial" data-missing-image={d.champion}>
                           {d.champion.slice(0, 1)}
                         </span>
                       )}
@@ -326,14 +323,14 @@ export default async function RankingDetail({
                     <ol>
                       {d.contenders.map((x, i) => (
                         <li key={x}>
-                          {portrait(x) ? (
+                          {portrait(x, p.slug) ? (
                             <img
-                              src={portrait(x)}
+                              src={portrait(x, p.slug)}
                               alt={`${x} ${d.name} ${i + 1}위`}
                               loading="lazy"
                             />
                           ) : (
-                            <span className="dp-initial">{x.slice(0, 1)}</span>
+                            <span className="dp-initial" data-missing-image={x}>{x.slice(0, 1)}</span>
                           )}
                           <b>{i + 1}</b>
                           <span>{x}</span>
@@ -391,7 +388,7 @@ export default async function RankingDetail({
                           )}
                         </div>
                         <div className="dp-step">
-                          <b className="dp-medal">{rank}</b>
+                          <RankTrophy rank={rank} size={rank === 1 ? 52 : 42} />
                           <h3>
                             {r.name}
                             {changeBadge(r)}

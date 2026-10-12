@@ -5,6 +5,7 @@ import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { TrendRoll } from "./trend-roll";
+import { Trophy } from "./trophy";
 import { SearchBox } from "./search-box";
 import { SUGGEST_FORM } from "./links";
 import { RankingTicker } from "./ranking-ticker";
@@ -15,18 +16,6 @@ type Category = "전체" | "스포츠" | "미디어" | "라이프" | "IT·게임
 
 const categories: Category[] = ["전체", "스포츠", "미디어", "라이프", "IT·게임", "글로벌"];
 
-const TROPHY_COLORS = [["#ffd45a", "#e3a300"], ["#d9dee6", "#9aa4b2"], ["#f0b07a", "#c06a2b"]];
-function Trophy({ rank }: { rank: number }) {
-  const [from, to] = TROPHY_COLORS[rank];
-  const fill = `url(#hero-trophy-${rank})`;
-  return <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-    <defs><linearGradient id={`hero-trophy-${rank}`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={from} /><stop offset="1" stopColor={to} /></linearGradient></defs>
-    <path d="M7 5H4.5v1.5A3.5 3.5 0 0 0 8 10M17 5h2.5v1.5A3.5 3.5 0 0 1 16 10" fill="none" stroke={fill} strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M6.5 3h11v5.5a5.5 5.5 0 0 1-11 0Z" fill={fill} />
-    <rect x="10.9" y="13.5" width="2.2" height="3.5" fill={fill} />
-    <rect x="7.5" y="17" width="9" height="3" rx="1" fill={fill} />
-  </svg>;
-}
 
 const heroQuestions = [
   { icon: "⚾️", question: "아시안게임 야구 최다 우승국은?", slug: "asian-games-baseball-champions" },
