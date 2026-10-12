@@ -7,7 +7,7 @@ import { suggestWith } from "./links";
 export type SearchItem = { slug: string; title: string; category: string; icon: string; color: string; rows: string[] };
 
 const LIMIT = 8;
-const norm = (s: string) => s.toLowerCase().replace(/\s+/g, "");
+export const norm = (s: string) => s.toLowerCase().replace(/\s+/g, "");
 
 function mark(text: string, q: string) {
   const i = text.toLowerCase().indexOf(q.trim().toLowerCase());

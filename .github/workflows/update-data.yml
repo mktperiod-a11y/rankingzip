@@ -49,11 +49,12 @@ jobs:
           node scripts/image-shapes.mjs
           git add data/rankings data/image-shapes.json public/ranking-images/netflix
           git commit -m "Update Netflix charts and OTT monthly users"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
           git push
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
 
   anime:
-    if: github.event.schedule != '0 3 7 * *'
+    if: ${{ !cancelled() && github.event.schedule != '0 3 7 * *' }}
     needs: netflix
     runs-on: ubuntu-latest
     steps:
@@ -93,6 +94,7 @@ jobs:
           if [ -n "$number" ]; then gh issue comment "$number" --body "$body"; else gh issue create --title "$title" --body "$body"; fi
 
   records:
+    if: ${{ !cancelled() }}
     needs: anime
     runs-on: ubuntu-latest
     steps:

@@ -199,7 +199,7 @@ function hitters(d: typeof kboHr, label: string, unit: string): Live {
     date: `${dot(d.checkedAt)} 조회`, dataLabel: `KBO ${dot(d.checkedAt)} 조회 데이터`, auditDate: dot(d.checkedAt), rows,
     description: `2026 KBO 정규시즌 ${label} 기록 상위 10명입니다. ${top.name}(${top.note})${josa(top.name, '이/가')} ${top.value}${josa(top.value, '으로/로')} 1위입니다. 동률은 공동 순위이며, 10번째에서 동률이 이어지면 공식 표의 순서로 10명까지 보여줍니다.`,
     faq: [
-      [`${label} 1위는 누구인가요?`, `${md(d.checkedAt)} 조회 기준 ${top.name}(${top.note})으로 ${top.value}입니다.`],
+      [`${label} 1위는 누구인가요?`, `${md(d.checkedAt)} 조회 기준 ${top.name}(${top.note})${josa(top.name, '으로/로')} ${top.value}입니다.`],
       ['포스트시즌도 포함하나요?', '정규시즌 기록만 비교합니다.'],
       ['공동 10위가 여러 명이면 어떻게 표시하나요?', '최대 10명까지 노출하며 공식 기록표의 표시 순서를 따릅니다.'],
     ],
