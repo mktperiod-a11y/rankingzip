@@ -5,7 +5,7 @@ import type { HomeRanking } from "./home-ranking";
 import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { TrendRoll } from "./trend-roll";
-import { Trophy } from "./trophy";
+import { Medal } from "./medal";
 import { SearchBox } from "./search-box";
 import { SUGGEST_FORM } from "./links";
 import { RankingTicker } from "./ranking-ticker";
@@ -157,7 +157,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
           {heroQuestions.slice(heroSet * 3, heroSet * 3 + 3).map((item, i) => {
             
             return <a href={`/rankings/${item.slug}/`} className="hero-row" key={`${heroSet}-${item.slug}`} style={{ animationDelay: `${i * 90}ms` }}>
-              <b className="hero-trophy" aria-label={`${i + 1}위`}><Trophy rank={i} /></b>
+              <b className="hero-trophy" aria-label={`${i + 1}위`}><Medal rank={i + 1} size={30} /></b>
               <div className="avatar ranking-thumbnail" aria-hidden="true">{item.icon}</div>
               <p><strong style={{ whiteSpace: "normal", lineHeight: 1.5 }}>{item.question}</strong></p>
               <i className="hero-go" aria-hidden="true">→</i>

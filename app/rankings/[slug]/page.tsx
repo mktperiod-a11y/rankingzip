@@ -7,7 +7,7 @@ import { PERSON_SLUGS, portraitOf } from "../portraits";
 import { notFound } from "next/navigation";
 import { BrandLogo } from "../../brand-logo";
 import { DivisionNav } from "./division-nav";
-import { RankTrophy } from "../../trophy";
+import { RankMedal } from "../../medal";
 import { SITE_URL } from "../../links";
 import { answerOf, updatedOf } from "../summary";
 import autoImages from "../../../data/rankings/auto-images.json";
@@ -283,7 +283,7 @@ export default async function RankingDetail({
                         ) : (
                           <span className="dp-initial" data-missing-image={x}>{x.slice(0, 1)}</span>
                         )}
-                        {i < 3 ? <RankTrophy rank={i + 1} size={32} /> : <b>{i + 1}</b>}
+                        {i < 3 ? <RankMedal rank={i + 1} size={34} /> : <b>{i + 1}</b>}
                         <span>{x}</span>
                         {note && <small>{note}</small>}
                       </li>
@@ -388,7 +388,7 @@ export default async function RankingDetail({
                           )}
                         </div>
                         <div className="dp-step">
-                          <RankTrophy rank={rank} size={rank === 1 ? 52 : 42} />
+                          <RankMedal rank={rank} size={rank === 1 ? 62 : 50} />
                           <h3>
                             {r.name}
                             {changeBadge(r)}
