@@ -1,0 +1,1072 @@
+{{short description|none}}
+{{Infobox sports competition event
+| event       = Baseball
+| games       = 2022 Asian Games
+| image       = Baseball, 2022 Asian Games.svg
+| image_size  = 100px
+| venue       = Shaoxing Baseball & Softball Sports Center
+| dates       = 26 September – 7 October 2023
+| competitors = 207
+| nations     = 9
+| gold        = {{bb|KOR}}
+| silver      = {{bb|TPE}}
+| bronze       = {{bb|JPN}}
+| prev        = [[Baseball at the 2018 Asian Games|2018]]
+| next        = [[Baseball at the 2026 Asian Games|2026]]
+}}
+'''[[Baseball]]''' at the '''[[2022 Asian Games]]''' was held in [[Shaoxing]], China from  26 September to 7 October 2023. The top six ranked teams advanced to the main draw. The bottom three teams competed, with the top two qualifiers advancing to the main draw.<ref>{{cite web|url=https://www.hangzhou2022.cn/En/competitions/sports/ball/202204/t20220408_47243.shtml|title=Baseball|date=8 April 2022|website=hangzhou2022.cn|publisher=HAGOC|access-date=28 August 2023}}</ref>
+
+==Schedule==
+{| class="wikitable" style="margin:0.5em auto; font-size:90%; line-height:1.25em; text-align:center;"
+|-
+|bgcolor="#FFE4E1" align=center|Q||Qualification
+|bgcolor="#FFBBBB" align=center|P||Preliminary round
+|bgcolor="#FA7894" align=center|S||Super round
+|bgcolor="#FFDF80" align=center|F||Finals
+|}
+{| class="wikitable" style="margin:0.5em auto; font-size:90%; line-height:1.25em; text-align:center"
+! Event↓/Date → || 26th<br />Tue || 27th<br />Wed || 28th<br />Thu || 29th<br />Fri || 30th<br />Sat || 1st<br />Sun || 2nd<br />Mon || 3rd<br />Tue || 4th<br />Wed || 5th<br />Thu || 6th<br />Fri || 7th<br />Sat
+|-
+| style="text-align:left;" | [[Baseball at the 2022 Asian Games – Men's tournament|Men]] || bgcolor="#FFE4E1"|Q || bgcolor="#FFE4E1"|Q || bgcolor="#FFE4E1"|Q || || || bgcolor="#FFBBBB"|P || bgcolor="#FFBBBB"|P || bgcolor="#FFBBBB"|P || || bgcolor="#FA7894"|S || bgcolor="#FA7894"|S || bgcolor="#FFDF80"|F
+|}
+
+==Medalists==
+{|{{MedalistTable|type=Event}}
+|-
+|Men<br />{{DetailsLink|Baseball at the 2022 Asian Games – Men's tournament}}
+|{{flagIOC2|KOR|2022 Asian Games}}<br />[[Moon Dong-ju]]<br />[[Park Seong-han]]<br />[[Kim Hye-seong (baseball)|Kim Hye-seong]]<br />[[Kim Ju-won (baseball)|Kim Ju-won]]<br />[[Roh Si-hwan]]<br />[[Kim Seong-yoon (baseball)|Kim Seong-yoon]]<br />[[Moon Bo-gyeong]]<br />[[Jang Hyun-seok]]<br />[[Jung Woo-young (baseball)|Jung Woo-young]]<br />[[Kim Young-kyu (baseball)|Kim Young-kyu]]<br />[[Won Tae-in]]<br />[[Go Woo-suk]]<br />[[Park Se-woong]]<br />[[Kim Dong-heon (baseball)|Kim Dong-heon]]<br />[[Kim Hyung-jun (baseball)|Kim Hyung-jun]]<br />[[Choi Won-jun]]<br />[[Choi Ji-min]]<br />[[Na Gyun-an]]<br />[[Gwak Been]]<br />[[Kang Baek-ho]]<br />[[Choi Ji-hoon]]<br />[[Kim Ji-chan]]<br />[[Park Yeong-hyun]]<br />[[Yoon Dong-hee]]
+|{{flagIOC2|TPE|2022 Asian Games}}<br />[[Chen Min-sih]]<br />[[Lin Tzu-hao]]<br />[[Lin Tzu-wei]]<br />[[Li I-wei]]<br />[[Liao Chun-kai]]<br />[[Cheng Tsung-che]]<br />[[Lyle Lin]]<br />[[Gu Lin Ruei-yang]]<br />[[Liu Chih-jung]]<br />[[Wu Sheng-feng]]<br />[[Wang Yan-cheng]]<br />[[Shen Hao-wei]]<br />[[Wu Nien-ting]]<br />[[Lee Hao-yu]]<br />[[Chen Po-yu]]<br />[[Lin Yu-min]]<br />[[Cheng Hao-chun]]<br />[[Lai Po-wei]]<br />[[Yang Chen-yu]]<br />[[Wang Cheng-hao]]<br />[[Lin An-ko]]<br />[[Lin Li (baseball)|Lin Li]]<br />[[Dai Pei-fong]]<br />[[Pan Wen-hui]]
+|{{flagIOC2|JPN|2022 Asian Games}}<br />[[Kazuya Shimokawa]]<br />[[Toshifumi Kaneko]]<br />[[Shoji Kitamura]]<br />[[Naoya Mochizuki]]<br />[[Hisaya Nammoku]]<br />[[Hiroki Nakagawa]]<br />[[Motoki Mukoyama]]<br />[[Jin Nakamura (baseball)|Jin Nakamura]]<br />[[Masashi Maruyama]]<br />[[Mizuki Kato]]<br />[[Yoshiki Fuchigami]]<br />[[Kisho Iwamoto]]<br />[[Makoto Hori]]<br />[[Yuki Katayama]]<br />[[Katsutoshi Satake]]<br />[[Shuichiro Kayo]]<br />[[Shunya Morita]]<br />[[Takehiro Tsujino]]<br />[[Kohei Sasagawa]]<br />[[Tatsuhiko Sato]]<br />[[Seifu Suzuki]]<br />[[Ryo Kinami]]<br />[[Ryuga Ihara]]<br />[[Junichi Tazawa]]
+|}
+
+==Draw==
+The top six ranked teams advanced to the main draw. The bottom three teams competed in the first stage, with the top two advancing to the main draw. The teams were distributed according to their position at the [[WBSC World Rankings]].
+{{col-begin}}
+{{col-3}}
+;Group A
+*{{Bb|JPN}}
+*{{Bb|CHN}}
+*{{Bb|PHI}}
+*First stage – Team 2
+{{col-3}}
+;Group B
+*{{Bb|KOR}}
+*{{Bb|TPE}}
+*{{Bb|HKG}}
+*First stage – Team 1
+{{col-3}}
+;First stage
+*{{Bb|THA}}
+*{{Bb|LAO}}
+*{{Bb|SGP}}
+{{col-end}}
+
+==Squads==
+{{hidden begin
+|title = Squads
+|titlestyle = text-align:center; background:#eeeeee
+}}
+{| class="wikitable" style="font-size:90%"
+|-
+! width=200 | {{flagIOC2|CHN|2022 Asian Games}}
+! width=200 | {{flagIOC2|TPE|2022 Asian Games}}
+! width=200 | {{flagIOC2|HKG|2022 Asian Games}}
+! width=200 | {{flagIOC2|JPN|2022 Asian Games}}
+|-
+|valign=top|
+*Zhang Wentao
+*Lu Yun
+*Wang Shuai
+*Liang Pei
+*Yang Jin
+*[[Zheng Chaoqun]]
+*Suo Xudi
+*[[Li Ning (baseball)|Li Ning]]
+*Wang Weiyi
+*Yi Jian
+*Huadancairang
+*Chen Chen
+*Cao Jie
+*[[Gan Quan]]
+*Wang Xiang
+*Chen Jiaji
+*Li Ningji
+*Kou Yongkang
+*Luo Jinjun
+*Wang Bin
+*Du Nan
+*Li Yuyang
+*Su Changlong
+*Cui Enting
+|valign=top|
+*Chen Min-sih
+*Lin Tzu-hao
+*[[Lin Tzu-wei]]
+*Li I-wei
+*Liao Chun-kai
+*[[Cheng Tsung-che]]
+*[[Lyle Lin]]
+*[[Gu Lin Ruei-yang]]
+*[[Liu Chih-jung]]
+*Wu Sheng-feng
+*Wang Yan-cheng
+*Shen Hao-wei
+*[[Wu Nien-ting]]
+*[[Lee Hao-yu]]
+*Chen Po-yu
+*[[Lin Yu-min]]
+*Cheng Hao-chun
+*Lai Po-wei
+*Yang Chen-yu
+*Wang Cheng-hao
+*[[Lin An-ko]]
+*Lin Li
+*Dai Pei-fong
+*Pan Wen-hui
+|valign=top|
+*Chan Cheuk Kiu
+*Ashley Ma
+*Mok Chun Lam
+*Andy Lo
+*Ansun Fung
+*Lee Ho Chi
+*Jordan Wen
+*Alexander Chan
+*Leung Chung Hei
+*Mok Chun Pui
+*Lam Lai Him
+*Cheng Hoi Ting
+*Tsang Kin Nam
+*York Sze
+*Matthew Andrew Holliday
+*Benny Tam
+*Sam Leung
+*Ryan Cheung
+*Connor Kwok
+*Leung Ho Nam
+*Yung Tsun Wai
+*Ng Yau Pang
+*Kenneth Chiu
+*Wong Yui Fung
+|valign=top|
+*Kazuya Shimokawa
+*Toshifumi Kaneko
+*Shoji Kitamura
+*Naoya Mochizuki
+*Hisaya Nammoku
+*Hiroki Nakagawa
+*Motoki Mukoyama
+*Jin Nakamura
+*Masashi Maruyama
+*Mizuki Kato
+*Yoshiki Fuchigami
+*Kisho Iwamoto
+*Makoto Hori
+*Yuki Katayama
+*Katsutoshi Satake
+*Shuichiro Kayo
+*Shunya Morita
+*Takehiro Tsujino
+*Kohei Sasagawa
+*Tatsuhiko Sato
+*Seifu Suzuki
+*Ryo Kinami
+*Ryuga Ihara
+*[[Junichi Tazawa]]
+|-
+! {{flagIOC2|LAO|2022 Asian Games}}
+! {{flagIOC2|PHI|2022 Asian Games}}
+! {{flagIOC2|SGP|2022 Asian Games}}
+! {{flagIOC2|KOR|2022 Asian Games}}
+|-
+|valign=top|
+*Mung Chuevakham
+*Vansana Chansana
+*Mong Lee
+*Yayua Wa
+*Hue Thor
+*Bee Sengsoulin
+*Soulapixa Khounchaleun
+*Chinu Va
+*Yer Her
+*Youtthasat Herpaoyang
+*Choy Phiboualom
+*Yohanh Xayaphone
+*Souksumlary Phonthamard
+*Xaisana Thammavong
+*To Tava
+*Chounia Phothipanya
+*Natpakone Phialouanglath
+*Payia Wa
+|valign=top|
+*Jennald Pareja
+*Carlos Muñoz
+*Ben Sarmiento
+*Renato Samuel
+*Kyle Soberano
+*Junmar Diarao
+*[[Lord de Vera]]
+*Ignacio Escaño
+*Kennedy Torres
+*Vladimir Eguia
+*Clarence Caasalan
+*Erwin Bosito
+*Paulo Macasaet
+*Mark Steven Manaig
+*Adriane Bernardo
+*Romeo Jasmin
+*Jonhil Carreon
+*Raymond Nerosa
+*Alfredo De Guzman
+*Ferdinand Liguayan
+*Mark Beronilla
+*Jon-Jon Robles
+*Joshua Pineda
+*Harper Sy
+|valign=top|
+*Oscar Tay
+*Kohei Wong
+*Daniel Tam
+*Mikhail Ming Tan Sabri
+*Danis Azminin
+*Ody Tay
+*Eleazar Ng
+*Naeem Zahrin
+*Jared Ng
+*Edward Chuang
+*Joshua Aloysius Ang
+*Gideon Lim
+*Jeremy Chua
+*Hans Benno Pereira
+*Afi Idraki Niza
+*Ryota Wong
+*Ryan How
+*Baek In-jae
+*Shane Sebastian Lee
+*Aaron Toh
+*Sean Tan
+*Caleb Tan
+|valign=top|
+*[[Moon Dong-ju]]
+*[[Park Seong-han]]
+*[[Kim Hye-seong (baseball)|Kim Hye-seong]]
+*[[Kim Ju-won (baseball)|Kim Ju-won]]
+*[[Roh Si-hwan]]
+*[[Kim Seong-yoon (baseball)|Kim Seong-yoon]]
+*[[Moon Bo-gyeong]]
+*[[Jang Hyun-seok]]
+*[[Jung Woo-young (baseball)|Jung Woo-young]]
+*[[Kim Young-kyu (baseball)|Kim Young-kyu]]
+*[[Won Tae-in]]
+*[[Go Woo-suk]]
+*[[Park Se-woong]]
+*Kim Dong-heon
+*[[Kim Hyung-jun (baseball)|Kim Hyung-jun]]
+*[[Choi Won-jun]]
+*Choi Ji-min
+*[[Na Gyun-an]]
+*[[Gwak Been]]
+*[[Kang Baek-ho]]
+*Choi Ji-hoon
+*Kim Ji-chan
+*[[Park Yeong-hyun]]
+*Yoon Dong-hee
+|-
+! {{flagIOC2|THA|2022 Asian Games}}
+! 
+!
+!
+|-
+|valign=top|
+*Naruephol Muangkasem
+*Nirawit Bunnam
+*Suepsak Somsuai
+*Sek Sitthikaew
+*Joe Daru
+*Sitthichok Aunmueang
+*Yodsaphan Saewa
+*Nutdanai Pingti
+*Phoomwut Wutthikorn
+*Siraphop Nadee
+*Setthawut Bucha
+*Kiattisak Chutongrat
+*Pakorn Chaikaew
+*Kittipong Thonglor
+*Anuchat Chanto
+*Jake Chaisongkram
+*Sakai Phraechai
+*Suppakorn Lin
+*Phongsathon Nituthon
+*Yotsaphol Artdee
+*Kevin Irwin
+*Yuthai Ryoto
+*Chanatip Thongbai
+|valign=top|
+|valign=top|
+|valign=top|
+|}
+{{hidden end}}
+
+==Results==
+<small>All times are China Standard Time ([[UTC+08:00]])</small>
+
+===First stage===
+<section begin=R1 />{{#invoke:Sports table|main|style=WL
+|update=complete
+|source=[https://www.ocagames.com/HZ_Info/AG2022-/en/results/baseball/groups-baseball-men.htm OCA]
+|ranking_style=perc
+|for_against_style=runs
+|use_goal_diff=no
+|show_GB=yes
+|team1=THA |team2=LAO |team3=SGP 
+
+|win_THA=2 |loss_THA=0 |pf_THA=21|pa_THA=1
+|win_SGP=0 |loss_SGP=2 |pf_SGP=7|pa_SGP=25
+|win_LAO=1 |loss_LAO=1 |pf_LAO=9|pa_LAO=11
+
+|name_THA={{bb|THA}} 
+|name_SGP={{bb|SGP}}
+|name_LAO={{bb|LAO}}
+
+|result1=A|result2=A
+|col_A=#ccffcc
+|res_col_header=Q
+|text_A=Second stage
+}}<section end=R1 />
+<section begin=R1G1 />{{Baseballbox
+|date=26 September
+|time = 18:30
+|team1 = {{bb-rt|LAO}}
+|score = 1–4
+|mercy rule =
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/126782
+|team2 = '''{{bb|THA}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Chen Te-jung (TPE)
+|team1lp = Mung Chuevakham
+|team2wp = Siraphop Nadee
+|team1hr = 
+|team2hr = 
+}}
+<section end=R1G1 />
+{{Linescore
+| Road={{bb|LAO}} |RoadAbr=LAO
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=1|R8=0|R9=0|RR=1|RH=2|RE=5
+| Home='''{{bb|THA}}''' |HomeAbr=THA
+|H1=0|H2=1|H3=1|H4=2|H5=0|H6=0|H7=0|H8=0|H9=X|HR=4|HH=7|HE=3
+}}
+----
+<section begin=R1G2 />{{Baseballbox
+|date=27 September
+|time = 18:30
+|team1 = {{bb-rt|SGP}}
+|score = 7–8
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125913
+|team2 = '''{{bb|LAO}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Wen Yu-chun (TPE)
+|team1lp = Eleazar Ng
+|team2wp = Hue Thor
+|team1hr = 
+|team2hr = 
+}}
+<section end=R1G2 />
+{{Linescore
+| Road={{bb|SGP}} |RoadAbr=SGP
+|R1=0|R2=2|R3=0|R4=0|R5=0|R6=2|R7=2|R8=1|R9=0|RR=7|RH=11|RE=2
+| Home='''{{bb|LAO}}''' |HomeAbr=LAO
+|H1=0|H2=0|H3=2|H4=0|H5=1|H6=5|H7=0|H8=0|H9=X|HR=8|HH=5|HE=4
+}}
+----
+<section begin=R1G3 />{{Baseballbox
+|date=28 September
+|time = 18:30
+|team1 = '''{{bb-rt|THA}}'''
+|score = 17–0
+|mercy rule = 7
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125914
+|team2 = {{bb|SGP}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Chen Te-jung (TPE)
+|team1wp = Siraphop Nadee
+|team2lp = Eleazar Ng
+}}
+<section end=R1G3 />
+{{Linescore
+| Road='''{{bb|THA}}''' |RoadAbr=THA
+|R1=1|R2=0|R3=3|R4=0|R5=0|R6=0|R7=13|R8=—|R9=—|RR=17|RH=6|RE=0
+| Home={{bb|SGP}} |HomeAbr=SGP
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=—|H9=—|HR=0|HH=1|HE=0
+}}
+
+===Second stage===
+
+====Group A====
+<section begin=R2A />{{#invoke:Sports table|main|style=WL
+|update=complete
+|source=[https://www.ocagames.com/HZ_Info/AG2022-/en/results/baseball/groups-baseball-men.htm OCA]
+|ranking_style=perc
+|for_against_style=runs
+|use_goal_diff=no
+|show_GB=yes
+|team1=CHN |team2=JPN |team3=PHI |team4=LAO 
+
+|win_CHN=3 |loss_CHN=0 |pf_CHN=18 |pa_CHN=0
+|win_JPN=2 |loss_JPN=1 |pf_JPN=24 |pa_JPN=1
+|win_PHI=1 |loss_PHI=2 |pf_PHI=7 |pa_PHI=8
+|win_LAO=0 |loss_LAO=3 |pf_LAO=0 |pa_LAO=40
+
+|name_CHN={{bb|CHN}} 
+|name_JPN={{bb|JPN}}
+|name_PHI={{bb|PHI}}
+|name_LAO={{bb|LAO}}
+
+|result1=A |result2=A |result3=B |result4=B
+|col_A=#ccffcc
+|res_col_header=Q
+|text_A=Super round
+|text_B=Placement round
+}}<section end=R2A />
+<section begin=R2AG1 />{{Baseballbox
+|date=1 October
+|time = 12:00
+|team1 = {{bb-rt|LAO}}
+|score = 0–15
+|mercy rule = 5
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125915
+|team2 = '''{{bb|CHN}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Wen Yu-chun (TPE)
+|team1lp = To Tava
+|team2wp = Su Changlong
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2AG1 />
+{{Linescore
+| Road={{bb|LAO}} |RoadAbr=LAO
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=—|R7=—|R8=—|R9=—|RR=0|RH=2|RE=3
+| Home='''{{bb|CHN}}''' |HomeAbr=CHN
+|H1=2|H2=4|H3=0|H4=0|H5=9|H6=—|H7=—|H8=—|H9=—|HR=15|HH=11|HE=0
+}}
+----
+<section begin=R2AG2 />{{Baseballbox
+|date=1 October
+|time = 12:00
+|team1 = '''{{bb-rt|JPN}}'''
+|score = 6–0
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125916
+|team2 = {{bb|PHI}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Wang Tianyi (CHN)
+|team1wp = Mizuki Kato
+|team2lp = Paulo Macasaet
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2AG2 />
+{{Linescore
+| Road='''{{bb|JPN}}''' |RoadAbr=JPN
+|R1=3|R2=0|R3=0|R4=0|R5=1|R6=0|R7=1|R8=1|R9=0|RR=6|RH=10|RE=0
+| Home={{bb|PHI}} |HomeAbr=PHI
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=0|H9=0|HR=0|HH=3|HE=0
+}}
+----
+<section begin=R2AG3 />{{Baseballbox
+|date=2 October
+|time = 12:00
+|team1 = {{bb-rt|PHI}}
+|score = 0–2
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125919
+|team2 = '''{{bb|CHN}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Chen Te-jung (TPE)
+|team1lp = Romeo Jasmin
+|team2wp = Li Ningji
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2AG3 />
+{{Linescore
+| Road={{bb|PHI}} |RoadAbr=PHI
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=0|RR=0|RH=2|RE=3
+| Home='''{{bb|CHN}}''' |HomeAbr=CHN
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=1|H7=1|H8=0|H9=X|HR=2|HH=4|HE=0
+}}
+----
+<section begin=R2AG4 />{{Baseballbox
+|date=2 October
+|time = 18:30
+|team1 = {{bb-rt|LAO}}
+|score = 0–18
+|mercy rule = 5
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125922
+|team2 = '''{{bb|JPN}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Cho Min-jun (KOR)
+|team1lp = Soulapixa Khounchaleun
+|team2wp = Kisho Iwamoto
+|team2sp = Yoshiki Fuchigami
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2AG4 />
+{{Linescore
+| Road={{bb|LAO}} |RoadAbr=LAO
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=—|R7=—|R8=—|R9=—|RR=0|RH=0|RE=0
+| Home='''{{bb|JPN}}''' |HomeAbr=JPN
+|H1=3|H2=0|H3=6|H4=9|H5=X|H6=—|H7=—|H8=—|H9=—|HR=18|HH=11|HE=0
+}}
+----
+<section begin=R2AG5 />{{Baseballbox
+|date=3 October
+|time = 18:30
+|team1 = '''{{bb-rt|CHN}}'''
+|score = 1–0
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125925
+|team2 = {{bb|JPN}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Li Chih-hao (TPE)
+|team1wp = Wang Xiang
+|team1sp = [[Zheng Chaoqun]]
+|team2lp = Shunya Morita
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2AG5 />
+{{Linescore
+| Road='''{{bb|CHN}}''' |RoadAbr=CHN
+|R1=0|R2=1|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=0|RR=1|RH=5|RE=2
+| Home={{bb|JPN}} |HomeAbr=JPN
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=0|H9=0|HR=0|HH=2|HE=0
+}}
+----
+<section begin=R2AG6 />{{Baseballbox
+|date=3 October
+|time = 18:30
+|team1 = '''{{bb-rt|PHI}}'''
+|score = 7–0
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125926
+|team2 = {{bb|LAO}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Lee Seung-chul (KOR)
+|team1wp = Raymond Nerosa
+|team2lp = Mung Chuevakham
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2AG6 />
+{{Linescore
+| Road='''{{bb|PHI}}''' |RoadAbr=PHI
+|R1=2|R2=1|R3=1|R4=1|R5=0|R6=1|R7=0|R8=0|R9=1|RR=7|RH=12|RE=2
+| Home={{bb|LAO}} |HomeAbr=LAO
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=0|H9=0|HR=0|HH=3|HE=3
+}}
+
+====Group B====
+
+<section begin=R2B />{{#invoke:Sports table|main|style=WL
+| update = complete
+| source = [https://www.ocagames.com/HZ_Info/AG2022-/en/results/baseball/groups-baseball-men.htm OCA]
+| ranking_style = perc
+| for_against_style = runs
+| use_goal_diff = NO
+| show_GB = YES
+|team1=TPE|team2=KOR |team3=HKG |team4=THA 
+
+|win_TPE=3 |loss_TPE=0 |pf_TPE=31 |pa_TPE=1
+|win_HKG=1 |loss_HKG=2 |pf_HKG=8 |pa_HKG=25
+|win_KOR=2 |loss_KOR=1 |pf_KOR=27 |pa_KOR=4
+|win_THA=0 |loss_THA=3 |pf_THA=1 |pa_THA=37
+
+|name_TPE={{bb|TPE}} 
+|name_HKG={{bb|HKG}}
+|name_KOR={{bb|KOR}}
+|name_THA={{bb|THA}}
+
+|result1=A |result2=A |result3=B |result4=B
+|col_A=#ccffcc
+|res_col_header=Q
+|text_A=Super round
+|text_B=Placement round
+}}<section end=R2B />
+<section begin=R2BG1 />{{Baseballbox
+|date=1 October
+|time = 18:30
+|team1 = {{bb-rt|HKG}}
+|score = 0–10
+|mercy rule = 8
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125917
+|team2 = '''{{bb|KOR}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Hironori Yoshino (JPN)
+|team1lp = Leung Chung Hei
+|team2wp = Choi Ji-min
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2BG1 />
+{{Linescore
+| Road={{bb|HKG}} |RoadAbr=HKG
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=—|RR=0|RH=2|RE=3
+| Home='''{{bb|KOR}}''' |HomeAbr=KOR
+|H1=1|H2=0|H3=0|H4=2|H5=0|H6=0|H7=0|H8=7|H9=—|HR=10|HH=14|HE=0
+}}
+----
+<section begin = R2BG2 />
+{{ Baseballbox
+| date = 1 October
+| time = 18:30
+| team1 = {{bb-rt|THA}}
+| score = 1–12
+| mercy rule = 7
+| boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125918
+| team2 = '''{{bb|TPE}}'''
+| stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+| umpire = Kim Dae-nam (KOR)
+| team1lp = Suppakorn Lin
+| team2wp = Wu Sheng-feng
+| team1hr = 
+| team2hr = Lin Li (1)
+}}<section end = R2BG2 />
+{{ Linescore
+|Road={{bb|THA}} | RoadAbr=THA
+|R1=1|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=—|R9=—|RR=1|RH=5|RE=3
+|Home='''{{bb|TPE }}''' |HomeAbr=TPE
+|H1=0|H2=0|H3=7|H4=1|H5=2|H6=2|H7=X|H8=—|H9=—|HR=12|HH=10|HE=0
+}}
+----
+<section begin=R2BG3 />{{Baseballbox
+|date=2 October
+|time = 12:00
+|team1 = '''{{bb-rt|HKG}}'''
+|score = 8–0
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125920
+|team2 = {{bb|THA}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Wu Ding (CHN)
+|team1wp = Leung Chung Hei
+|team2lp = Siraphop Nadee
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2BG3 />
+{{Linescore
+| Road='''{{bb|HKG}}''' |RoadAbr=HKG
+|R1=2|R2=0|R3=1|R4=1|R5=1|R6=3|R7=0|R8=0|R9=0|RR=8|RH=12|RE=1
+| Home={{bb|THA}} |HomeAbr=THA
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=0|H9=0|HR=0|HH=3|HE=5
+}}
+----
+<section begin = R2BG4 />
+{{ Baseballbox
+| date=2 October
+| time = 18:30
+| team1 = {{bb-rt|KOR}}
+| score = 0–4
+| boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125921
+| team2 = '''{{bb|TPE}}'''
+| stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+| umpire = Shunichi Fukuzawa (JPN)
+| team1lp = [[Moon Dong-ju]]
+| team2wp = [[Lin Yu-min]]
+| team1hr = 
+| team2hr = 
+}}<section end = R2BG4 />
+{{Linescore
+|Road={{bb|KOR}} |RoadAbr=KOR
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=0|RR=0|RH=6|RE=0
+|Home='''{{bb|TPE}}''' |HomeAbr=TPE
+|H1=1|H2=0|H3=0|H4=1|H5=0|H6=0|H7=0|H8=2|H9=X|HR=4|HH=7|HE=0
+}}
+----
+<section begin=R2BG5 />{{Baseballbox
+|date=3 October
+|time = 12:00
+|team1 = '''{{bb-rt|TPE}}'''
+|score = 15–0
+|mercy rule = 6
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125923
+|team2 = {{bb|HKG}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Masataka Mino (JPN)
+|team1wp = Lai Po-wei
+|team2lp = Sam Leung
+|team1hr = 
+|team2hr = 
+}}
+<section end=R2BG5 />
+{{Linescore
+| Road='''{{bb|TPE}}''' |RoadAbr=TPE
+|R1=2|R2=0|R3=2|R4=1|R5=5|R6=5|R7=—|R8=—|R9=—|RR=15|RH=9|RE=1
+| Home={{bb|HKG}} |HomeAbr=HKG
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=—|H8=—|H9=—|HR=0|HH=1|HE=2
+}}
+----
+<section begin=R2BG6 />{{Baseballbox
+|date=3 October
+|time = 12:00
+|team1 = {{bb-rt|THA}}
+|score = 0–17
+|mercy rule = 5
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125924
+|team2 = '''{{bb|KOR}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Fan Jie (CHN)
+|team1lp = Phoomwut Wutthikorn
+|team2wp = [[Na Gyun-an]]
+|team1hr = 
+|team2hr = Choi Ji-hoon (1), Yoon Dong-hee (1), [[Kim Ju-won (baseball)|Kim Ju-won]] (1)
+}}
+<section end=R2BG6 />
+{{Linescore
+| Road={{bb|THA}} |RoadAbr=THA
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=—|R7=—|R8=—|R9=—|RR=0|RH=4|RE=2
+| Home='''{{bb|KOR}}''' |HomeAbr=KOR
+|H1=2|H2=4|H3=1|H4=10|H5=X|H6=—|H7=—|H8=—|H9=—|HR=17|HH=11|HE=0
+}}
+
+===Placement round===
+* The results of the matches between the same teams that were already played during the second stage shall be taken into account for the placement round.
+<section begin=PR />{{#invoke:Sports table|main|style=WL
+|update=complete
+| source = [https://www.ocagames.com/HZ_Info/AG2022-/en/results/baseball/groups-baseball-men.htm OCA]
+|ranking_style=perc
+|for_against_style=runs
+|use_goal_diff=no
+|show_GB=yes
+|team1=PHI |team2=HKG |team3=THA |team4=LAO 
+
+|win_PHI=3 |loss_PHI=0 |pf_PHI=23 |pa_PHI=2 |status_PHI=
+|win_LAO=0 |loss_LAO=3 |pf_LAO=0 |pa_LAO=24 |status_LAO=
+|win_HKG=2 |loss_HKG=1 |pf_HKG=20 |pa_HKG=5 |status_HKG=
+|win_THA=1 |loss_THA=2 |pf_THA=7 |pa_THA=19 |status_THA=
+
+|name_PHI={{bb|PHI}} 
+|name_LAO={{bb|LAO}}
+|name_HKG={{bb|HKG}}
+|name_THA={{bb|THA}}
+
+|result1= |result2= |result3= |result4=
+|res_col_header=
+}}<section end=PR />
+<section begin=PRG1 />{{Baseballbox
+|date=5 October
+|time = 12:00
+|team1 = {{bb-rt|LAO}}
+|score = 0–6
+|mercy rule = 
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125927
+|team2 = '''{{bb|THA}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Cheung Sui Man (HKG)
+|team1lp = Yayua Wa
+|team2wp = Phoomwut Wutthikorn
+|team1hr = 
+|team2hr = 
+}}
+<section end=PRG1 />
+{{Linescore
+| Road={{bb|LAO}} |RoadAbr=LAO
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=0|RR=0|RH=2|RE=2
+| Home={{bb|THA}} |HomeAbr=THA
+|H1=0|H2=0|H3=0|H4=0|H5=6|H6=0|H7=0|H8=0|H9=X|HR=6|HH=5|HE=1
+}}
+----
+<section begin=PRG2 />{{Baseballbox
+|date=5 October
+|time = 18:30
+|team1 = {{bb-rt|HKG}}
+|score = 1–5
+|mercy rule = 
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125929
+|team2 = '''{{bb|PHI}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Wang Tianyi (CHN)
+|team1lp = Lam Lai Him
+|team1sp =
+|team2wp = Junmar Diarao
+|team2sp = Romeo Jasmin
+|team1hr = 
+|team2hr = 
+}}<section end=PRG2 />
+{{Linescore
+| Road={{bb|HKG}} |RoadAbr=HKG
+|R1=0|R2=0|R3=0|R4=1|R5=0|R6=0|R7=0|R8=0|R9=0|RR=1|RH=9|RE=3
+| Home='''{{bb|PHI}}''' |HomeAbr=PHI
+|H1=2|H2=0|H3=0|H4=0|H5=0|H6=0|H7=2|H8=1|H9=X|HR=5|HH=7|HE=0
+}}
+----
+<section begin=PRG3 />{{Baseballbox
+|date=6 October
+|time = 12:00
+|team1 = {{bb-rt|THA}}
+|score = 1–11
+|mercy rule = 8
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125939
+|team2 = '''{{bb|PHI}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Hironori Yoshino (JPN)
+|team1lp = Siraphop Nadee
+|team1sp =
+|team2wp = Kennedy Torres
+|team2sp =
+|team1hr = 
+|team2hr = 
+}}<section end=PRG3 />
+{{Linescore
+| Road={{bb|THA}} |RoadAbr=THA
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=1|R7=0|R8=0|R9=—|RR=1|RH=4|RE=1
+| Home='''{{bb|PHI}}''' |HomeAbr=PHI
+|H1=3|H2=0|H3=2|H4=3|H5=0|H6=0|H7=2|H8=1|H9=—|HR=11|HH=17|HE=0
+}}
+----
+<section begin=PRG4 />{{Baseballbox
+|date=6 October
+|time = 18:30
+|team1 = {{bb-rt|LAO}}
+|score = 0–11
+|mercy rule = 7
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125941
+|team2 = '''{{bb|HKG}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Chen Te-jung (TPE)
+|team1lp = Mung Chuevakham
+|team1sp =
+|team2wp = Sam Leung
+|team2sp =
+|team1hr = 
+|team2hr = York Sze (1)
+}}<section end=PRG4 />
+{{Linescore
+| Road={{bb|LAO}} |RoadAbr=LAO
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=—|R9=—|RR=0|RH=3|RE=3
+| Home='''{{bb|HKG}}''' |HomeAbr=HKG
+|H1=0|H2=2|H3=7|H4=0|H5=2|H6=0|H7=X|H8=—|H9=—|HR=11|HH=9|HE=1
+}}
+
+===Super round===
+* The results of the matches between the same teams that were already played during the second stage shall be taken into account for the super round.
+<section begin=SR />{{#invoke:Sports table|main|style=WL
+|update=complete
+| source = [https://www.ocagames.com/HZ_Info/AG2022-/en/results/baseball/groups-baseball-men.htm OCA]
+|ranking_style=perc
+|for_against_style=runs
+|use_goal_diff=no
+|show_GB=yes
+| team1 = TPE |team2=KOR |team3=CHN |team4=JPN
+
+|win_CHN=1 |loss_CHN=2 |pf_CHN=3 |pa_CHN=12 |status_CHN=
+|win_JPN=1 |loss_JPN=2 |pf_JPN=2 |pa_JPN=3 |status_JPN=
+|win_TPE=2 |loss_TPE=1 |pf_TPE=8 |pa_TPE=3 |status_TPE=
+|win_KOR=2 |loss_KOR=1 |pf_KOR=10 |pa_KOR=5 |status_KOR=
+
+|name_CHN={{bb|CHN}} 
+|name_JPN={{bb|JPN}}
+|name_TPE={{bb|TPE}}
+|name_KOR={{bb|KOR}}
+
+|result1=A |result2=A |result3=B |result4=B
+|res_col_header=Q 
+|col_A=#ccffcc|col_B=#ffffcc
+|text_A=Gold medal match
+|text_B=Bronze medal match
+|hth_TPE=Head-to-head result: TPE 4–0 KOR.
+|hth_KOR=TPE
+|hth_CHN=Head-to-head result: CHN 1–0 JPN.
+|hth_JPN=CHN
+}}<section end=SR />
+<section begin=SRG1 />{{Baseballbox
+|date=5 October
+|time = 12:00
+|team1 = {{bb-rt|JPN}}
+|score = 0–2
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125928
+|team2 = '''{{bb|KOR}}'''
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Wen Yu-chun (TPE)
+|team1lp = Shuichiro Kayo
+|team2wp = [[Park Se-woong]]
+|team2sp = [[Park Yeong-hyun]]
+|team1hr = 
+|team2hr = 
+}}
+<section end=SRG1 />
+{{Linescore
+| Road={{bb|JPN}} |RoadAbr=JPN
+|R1=0|R2=0|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=0|RR=0|RH=5|RE=0
+| Home='''{{bb|KOR}}''' |HomeAbr=KOR
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=1|H7=0|H8=1|H9=X|HR=2|HH=6|HE=1
+}}
+----
+<section begin=SRG2 />{{Baseballbox
+|date=5 October
+|time = 18:30
+|team1 = '''{{bb-rt|TPE}}'''
+|score = 4–1
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125930
+|team2 = {{bb|CHN}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Shunichi Fukuzawa (JPN)
+|team1wp = Chen Po-yu
+|team1sp = [[Gu Lin Ruei-yang]]
+|team2lp = [[Gan Quan]]
+|team1hr = 
+|team2hr = 
+}}
+<section end=SRG2 />
+{{Linescore
+| Road='''{{bb|TPE}}''' |RoadAbr=TPE
+|R1=2|R2=0|R3=0|R4=0|R5=1|R6=0|R7=0|R8=1|R9=0|RR=4|RH=6|RE=1
+| Home={{bb|CHN}} |HomeAbr=CHN
+|H1=0|H2=0|H3=0|H4=0|H5=1|H6=0|H7=0|H8=0|H9=0|HR=1|HH=6|HE=1
+}}
+----
+<section begin=SRG3 />{{Baseballbox
+|date=6 October
+|time = 12:00
+|team1 = '''{{bb-rt|KOR}}'''
+|score = 8–1
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125940
+|team2 = {{bb|CHN}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Li Chih-hao (TPE)
+|team1wp = [[Won Tae-in]]
+|team2lp = Wang Weiyi
+|team1hr = [[Kim Ju-won (baseball)|Kim Ju-won]] (1), [[Kang Baek-ho]] (1)
+|team2hr = 
+}}
+<section end=SRG3 />
+{{Linescore
+| Road='''{{bb|KOR}}''' |RoadAbr=KOR
+|R1=0|R2=3|R3=1|R4=2|R5=0|R6=0|R7=0|R8=2|R9=0|RR=8|RH=16|RE=0
+| Home={{bb|CHN}} |HomeAbr=CHN
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=1|H9=0|HR=1|HH=6|HE=2
+}}
+----
+<section begin=SRG4 />{{Baseballbox
+|date=6 October
+|time = 18:30
+|team1 = '''{{bb-rt|JPN}}'''
+|score = 2–0
+|mercy rule = 
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125942
+|team2 = {{bb|TPE}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Cho Ji-hyun (KOR)
+|team1wp = Yoshiki Fuchigami
+|team2lp = Wang Yan-cheng
+|team1hr = 
+|team2hr = 
+}}
+<section end=SRG4 />
+{{Linescore
+| Road='''{{bb|JPN}}''' |RoadAbr=JPN
+|R1=0|R2=1|R3=0|R4=1|R5=0|R6=0|R7=—|R8=—|R9=—|RR=2|RH=8|RE=0
+| Home={{bb|TPE}} |HomeAbr=TPE
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=—|H8=—|H9=—|HR=0|HH=3|HE=1
+}}
+
+* The game was stopped at the top of the 7th inning, due to heavy rains. The game was eventually called off after 60 minutes, with the score after 6 innings only taken into consideration.
+
+===Final round===
+
+====Bronze medal match====
+<section begin=BM />{{Baseballbox
+|date=7 October
+|time = 12:00
+|team1 = '''{{bb-rt|JPN}}'''
+|score = 4–3
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125946
+|team2 = {{bb|CHN}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Kim Dae-nam (KOR)
+|team1wp = Shuichiro Kayo
+|team1sp = Katsutoshi Satake
+|team2lp = Wang Xiang
+|team1hr = 
+|team2hr = Kou Yongkang (1)
+}}
+<section end=BM />
+{{Linescore
+| Road='''{{bb|JPN}}''' |RoadAbr=JPN
+|R1=0|R2=2|R3=0|R4=0|R5=0|R6=0|R7=0|R8=2|R9=0|RR=4|RH=6|RE=0
+| Home={{bb|CHN}} |HomeAbr=CHN
+|H1=1|H2=0|H3=2|H4=0|H5=0|H6=0|H7=0|H8=0|H9=0|HR=3|HH=7|HE=2
+}}
+
+====Gold medal match====
+<section begin=GM />{{Baseballbox
+|date=7 October
+|time = 18:00
+|team1 = '''{{bb-rt|KOR}}'''
+|score = 2–0
+|boxurl = https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results/box-score/125947
+|team2 = {{bb|TPE}}
+|stadium = Baseball & Softball Sports Center, [[Shaoxing]]
+|umpire = Masataka Mino (JPN)
+|team2lp = [[Lin Yu-min]]
+|team1wp = [[Moon Dong-ju]]
+|team1sp = [[Go Woo-suk]]
+|team1hr = 
+|team2hr = 
+}}
+<section end=GM />
+{{Linescore
+| Road='''{{bb|KOR}}''' |RoadAbr=KOR
+|R1=0|R2=2|R3=0|R4=0|R5=0|R6=0|R7=0|R8=0|R9=0|RR=2|RH=6|RE=0
+| Home={{bb|TPE}} |HomeAbr=TPE
+|H1=0|H2=0|H3=0|H4=0|H5=0|H6=0|H7=0|H8=0|H9=0|HR=0|HH=5|HE=0
+}}
+
+==Final standing==
+{| class="wikitable" style="text-align: center;"
+!width=40|Rank
+!width=180|Team
+!width=30|{{Tooltip|Pld|Played}}
+!width=30|{{Tooltip|W|Won}}
+!width=30|{{Tooltip|L|Lost}}
+|-
+|{{Gold1}}
+| align=left|{{bb|KOR}} || 6 || 5 || 1 
+|-
+|{{Silver2}}
+| align=left|{{bb|TPE}} || 6 || 4 || 2
+|-
+|{{Bronze3}}
+| align=left|{{bb|JPN}} || 6 || 4 || 2
+|-
+| 4
+| align=left|{{bb|CHN}} || 6 || 3 || 3
+|-
+| 5
+| align=left|{{bb|PHI}} || 5 || 3 || 2
+|-
+| 6
+| align=left|{{bb|HKG}} || 5 || 2 || 3
+|-
+| 7
+| align=left|{{bb|THA}} || 7 || 3 || 4
+|-
+|8
+| align=left|{{bb|LAO}} || 7 || 1 || 6
+|-
+|9
+| align=left|{{bb|SGP}} || 2 || 0 || 2
+|}
+
+==References==
+{{Reflist}}
+
+==External links==
+*[https://www.wbscasia.org/en/events/xix-asian-games-2022-mens-baseball/schedule-and-results WBSC Asia]
+
+{{Events at the 2022 Asian Games}}
+{{Baseball at the Asian Games}}
+
+[[Category:Baseball at the 2022 Asian Games]]
+[[Category:Baseball at the Asian Games|2022]]
+[[Category:International baseball competitions hosted by China|2022 Asian Games]]
+[[Category:Events at the 2022 Asian Games]]
+[[Category:2023 in baseball|Asian Games]]
+[[Category:Sport in Shaoxing]]

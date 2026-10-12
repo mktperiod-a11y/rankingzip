@@ -1,0 +1,196 @@
+{{short description|None}}
+{{Infobox Asian Games sport
+|image = Baseball pictogram.svg
+|size = 100
+|sport = baseball
+|menevents = 1
+|womenevents = 
+}}
+'''Men's [[baseball]]''' made its first appearance as a demonstration sport at the 1990. Baseball became a full medal sport at the [[1994 Asian Games]] in [[Hiroshima]], [[Japan]], and has been a sport in the games since then.<ref>{{cite web |title=History of Asian Games |url=https://www.insidethegames.biz/articles/1059784/history-of-asian-games |website=insidethegames.biz |access-date=1 November 2024}}</ref> International baseball in Asia is governed by the [[World Baseball Softball Confederation]] (WBSC) and the [[Baseball Federation of Asia]] (BFA).
+
+The competition has been dominated by teams from Japan, South Korea and Chinese Taipei (Taiwan). South Korea is the most successful team by winning 6 gold medals.
+
+==Summary==
+{| class="wikitable" style="font-size:90%; width: 100%; text-align: center;"
+!width=3% rowspan=2|#
+!rowspan=2 width=5%|Year 
+!rowspan=2 width=10%|Host 
+|width=1% rowspan=11| 
+!colspan=3|Final 
+|width=1% rowspan=11| 
+!colspan=3|Third place match 
+!width=3% rowspan=2|Teams 
+|-
+!width=15%|Winner 
+!width=8%|Score 
+!width=15%|Runner-up 
+!width=15%|3rd place
+!width=8%|Score 
+!width=15%|4th place
+|- bgcolor=#D0E7FF
+|1
+|1994<br />{{DetailsLink|Baseball at the 1994 Asian Games}}
+|{{flagicon|JPN|1947}}<br />[[Hiroshima]]
+|'''{{bb-big|JPN|1947}}'''
+|'''6–5'''
+|{{bb-big|KOR|1984}}
+|{{bb-big|TPE}}
+|'''9–4'''
+|{{bb-big|CHN}}
+|6
+|-
+|2
+|1998<br />{{DetailsLink|Baseball at the 1998 Asian Games}}
+|{{flagicon|THA}}<br />[[Bangkok]]
+|'''{{bb-big|KOR|1997}}'''
+|'''13–1'''<br />([[Mercy rule|F/7]])
+|{{bb-big|JPN|1947}}
+|{{bb-big|TPE}}
+|'''10–6'''
+|{{bb-big|CHN}}
+|6
+|-bgcolor=#D0E7FF
+|3
+|2002<br />{{DetailsLink|Baseball at the 2002 Asian Games}}
+|{{flagicon|KOR|1997}}<br />[[Busan]]
+|'''{{bb-big|KOR|1997}}'''
+|'''4–3'''
+|{{bb-big|TPE}}
+|{{bb-big|JPN}}
+|'''7–4'''
+|{{bb-big|CHN}}
+|5
+|-
+|4
+|2006<br />{{DetailsLink|Baseball at the 2006 Asian Games}}
+|{{flagicon|QAT}}<br />[[Doha]]
+|'''{{bb-big|TPE}}'''
+|{{color|#A0A0A0|No playoffs}}
+|{{bb-big|JPN}}
+|{{bb-big|KOR|1997}}
+|{{color|#A0A0A0|No playoffs}}
+|{{bb-big|CHN}}
+|6
+|-bgcolor=#D0E7FF
+|5
+|2010<br />{{DetailsLink|Baseball at the 2010 Asian Games}}
+|{{flagicon|CHN}}<br />[[Guangzhou]]
+|'''{{bb-big|KOR|1997}}'''
+|'''9–3'''
+|{{bb-big|TPE}}
+|{{bb-big|JPN}}
+|'''6–2'''
+|{{bb-big|CHN}}
+|8
+|-
+|6
+|2014<br />{{DetailsLink|Baseball at the 2014 Asian Games}}
+|{{flagicon|KOR}}<br />[[Incheon]]
+|'''{{bb-big|KOR}}'''
+|'''6–3'''
+|{{bb-big|TPE}}
+|{{bb-big|JPN}}
+|'''10–0'''<br />([[Mercy rule|F/7]])
+|{{bb-big|CHN}}
+|8
+|-bgcolor=#D0E7FF
+|7
+|2018<br />{{DetailsLink|Baseball at the 2018 Asian Games}}
+|{{flagicon|INA}}<br />[[Jakarta]]–[[Palembang]]
+|'''{{bb-big|KOR}}'''
+|'''3–0'''
+|{{bb-big|JPN}}
+|{{bb-big|TPE}}
+|'''10–0'''<br />([[Mercy rule|F/8]])
+|{{bb-big|CHN}}
+|10
+|-
+|8
+|2022<br />{{DetailsLink|Baseball at the 2022 Asian Games}}
+|{{flagicon|CHN}}<br />[[Hangzhou]]
+|'''{{bb-big|KOR}}'''
+|'''2–0'''
+|{{bb-big|TPE}}
+|{{bb-big|JPN}}
+|'''4–3'''
+|{{bb-big|CHN}}
+|9
+|-bgcolor=#D0E7FF
+|9
+|2026<br />{{DetailsLink|Baseball at the 2026 Asian Games}}
+|{{flagicon|JPN}}<br />[[Aichi Prefecture|Aichi]]–[[Nagoya]]
+|'''{{bb-big|KOR}}'''
+|'''3–1'''
+|{{bb-big|JPN}}
+|{{bb-big|TPE}}
+|'''5–1'''
+|{{bb-big|CHN}}
+|8
+|}
+
+==Medal table==
+{{Medals table
+ | caption        = 
+ | host           = 
+ | flag_template  = flagIOC2team
+ | event          = Asian Games
+ | team           = 
+ | gold_KOR = 7 | silver_KOR = 1 | bronze_KOR = 1
+ | gold_TPE = 1 | silver_TPE = 4 | bronze_TPE = 4
+ | gold_JPN = 1 | silver_JPN = 4 | bronze_JPN = 4
+}}
+
+==Participating nations==
+
+{| class="wikitable sortable" style="text-align:center; font-size:90%"
+! width=150|Team
+! {{flagicon|CHN}}<br />[[Baseball at the 1990 Asian Games|1990]] || {{flagicon|JPN|1947}}<br />[[Baseball at the 1994 Asian Games|1994]] || {{flagicon|THA}}<br />[[Baseball at the 1998 Asian Games|1998]] || {{flagicon|KOR|1997}}<br />[[Baseball at the 2002 Asian Games|2002]] || {{flagicon|QAT}}<br />[[Baseball at the 2006 Asian Games|2006]] || {{flagicon|CHN}}<br />[[Baseball at the 2010 Asian Games|2010]] || {{flagicon|KOR}}<br />[[Baseball at the 2014 Asian Games|2014]] || {{flagicon|INA}}<br />[[Baseball at the 2018 Asian Games|2018]] || {{flagicon|CHN}}<br />[[Baseball at the 2022 Asian Games|2022]] || {{flagicon|JPN}}<br />[[Baseball at the 2026 Asian Games|2026]] || Years
+|-
+|align=left| {{bb|CHN|size=20px}} || ''4th'' || 4th || 4th || 4th || 4th || 4th || 4th || 4th || 4th || 4th || '''10'''
+|-
+|align=left| {{bb|TPE|size=20px}} || ''1st'' || bgcolor=cc9966|'''3rd''' || bgcolor=cc9966|'''3rd''' || bgcolor=silver|'''2nd''' || bgcolor=gold|'''1st''' || bgcolor=silver|'''2nd''' || bgcolor=silver|'''2nd''' || bgcolor=cc9966|'''3rd''' || bgcolor=silver|'''2nd''' || bgcolor=cc9966|'''3rd''' || '''10'''
+|-
+|align=left| {{bb|HKG|size=20px}} ||  ||  ||  ||  ||  || 7th || 7th || 6th || 6th || 7th || '''5'''
+|-
+|align=left| {{bb|INA|size=20px}} ||  ||  ||  ||  ||  ||  ||  || 7th ||  ||  || '''1'''
+|-
+|align=left| {{bb|JPN|size=20px}} || ''3rd'' || bgcolor=gold|'''1st''' || bgcolor=silver|'''2nd''' || bgcolor=cc9966|'''3rd''' || bgcolor=silver|'''2nd''' || bgcolor=cc9966|'''3rd''' || bgcolor=cc9966|'''3rd''' || bgcolor=silver|'''2nd''' || bgcolor=cc9966|'''3rd''' || bgcolor=silver|'''2nd''' || '''10'''
+|-
+|align=left| {{bb|LAO|size=20px}} ||  ||  ||  ||  ||  ||  ||  || 10th || 8th ||  || '''2'''
+|-
+|align=left| {{bb|MGL|size=20px}} ||  || 6th ||  ||  ||  || 7th || 7th ||  ||  ||  || '''3'''
+|-
+|align=left| {{bb|PAK|size=20px}} ||  ||  ||  ||  ||  || 5th || 5th || 5th ||  ||  || '''3'''
+|-
+|align=left| {{bb|PLE|size=20px}} ||  ||  ||  ||  ||  ||  ||  ||  ||  || 8th || '''1'''
+|-
+|align=left| {{bb|PHI|size=20px}} ||  ||  || 5th || 5th || 6th ||  || || || 5th || 5th || '''5'''
+|-
+|align=left| {{bb|SGP|size=20px}} ||  ||  ||  ||  ||  ||  ||  ||  || 9th ||  || '''1'''
+|-
+|align=left| {{bb|KOR|size=20px}} || ''2nd'' || bgcolor=silver|'''2nd''' || bgcolor=gold|'''1st''' || bgcolor=gold|'''1st''' || bgcolor=cc9966|'''3rd''' || bgcolor=gold|'''1st''' || bgcolor=gold|'''1st'''|| bgcolor=gold|'''1st''' || bgcolor=gold|'''1st''' || bgcolor=gold|'''1st''' || '''10'''
+|-
+|align=left| {{bb|SRI|size=20px}} ||  ||  ||  ||  ||  ||  ||  || 9th ||  ||  || '''1'''
+|-
+|align=left| {{bb|THA|size=20px}} ||  || 5th || 6th ||  || 5th || 5th || 5th || 8th || 7th || 6th || '''8'''
+|-
+! Teams (14) || ''4'' || 6 || 6 || 5 || 6 || 8 || 8 || 10 || 9 || 8 || _
+|}
+
+==List of medalists==
+{{further|List of Asian Games medalists in baseball}}
+
+==References==
+{{reflist}}
+
+==External links==
+*[https://web.archive.org/web/20101012135240/http://www.gz2010.cn/09/0318/17/54N36ESF0078007E.html Medallists from previous Asian Games - Baseball]
+
+{{Sports at the Asian Games}}
+{{Baseball at the Asian Games}}
+{{International Baseball}}
+
+[[Category:Baseball at the Asian Games| ]]
+[[Category:Sports at the Asian Games]]
+[[Category:International baseball competitions in Asia|Asian Games]]
+[[Category:Baseball at multi-sport events|Asian Games]]
