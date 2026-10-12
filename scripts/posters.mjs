@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const AUTO = 'data/rankings/auto-images.json';
 const MANUAL = 'data/rankings/manual-images.json';
 const MISSING = 'data/rankings/poster-missing.json';
-const UA = 'RankingZipBot/1.0 (https://rankingzip.co.kr/)';
+const UA = 'RankingZipBot/1.0';
 const LOGO_SLUGS = new Set(['korea-import-car-brands', 'korea-car-sales', 'kbo-team-standings-2026', 'kbo-attendance-2026']);
 const LD = /<script\s+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script\s*>/g;
 const MAX_BYTES = 8 * 1024 * 1024;

@@ -9,6 +9,9 @@ import { writeSeoFiles } from './seo-files.mjs';
 
 const base = (process.argv[2] ?? process.env.PAGES_BASE_PATH ?? '').replace(/\/+$/, '');
 const outDir = path.resolve(process.argv[3] ?? 'out');
+const PLACEHOLDER = 'https://site-url.invalid';
+const site = (process.env.SITE_URL ?? '').replace(/\/+$/, '');
+if (site && !/^https?:\/\/[^/\s]+(\/[\w.-]+)*$/.test(site)) throw new Error(`사이트 주소 형식 오류: ${site}`);
 if (base && !/^\/[\w.-]+(\/[\w.-]+)*$/.test(base)) throw new Error(`기본 경로 형식 오류: ${base}`);
 
 execFileSync(process.execPath, ['node_modules/vinext/dist/cli.js', 'build'], {
@@ -34,12 +37,14 @@ function rewrite(dir) {
     if (entry.isDirectory()) { rewrite(file); continue; }
     if (!/\.(html|js|css|rsc|json|txt|xml)$/.test(entry.name)) continue;
     const text = fs.readFileSync(file, 'utf8');
-    let next = text.replace(absolute, `$1${base}/$2`).replace(homeLink, `$1${base}/$2`);
-    if (entry.name.endsWith('.js')) next = next.replace(preloadBase, `$1$2${base}/$2+`);
+    let next = base ? text.replace(absolute, `$1${base}/$2`).replace(homeLink, `$1${base}/$2`) : text;
+    if (base && entry.name.endsWith('.js')) next = next.replace(preloadBase, `$1$2${base}/$2+`);
+    if (site) next = next.replaceAll(PLACEHOLDER, site);
     if (next !== text) { fs.writeFileSync(file, next); changed++; }
   }
 }
-if (base) rewrite(outDir);
+if (base || site) rewrite(outDir);
+else console.log(`SITE_URL이 없어 사이트 주소를 ${PLACEHOLDER}로 둡니다`);
 const styled = embedPageStyles(outDir, base);
 console.log(`스타일 내장 완료: ${styled}개 HTML`);
 console.log(`페이지 소스 정리 완료: ${await formatPageSources(outDir)}개 HTML`);

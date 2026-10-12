@@ -3,7 +3,7 @@
 **대한민국의 흥미로운 순위를 한곳에 모은 서비스**입니다.
 스포츠 기록, 영화 흥행, 자동차 판매, OTT, 세계 통계처럼 사람들이 궁금해하지만 흩어져 있어 찾기 어려운 순위를 공개 자료로 확인해 보기 쉽게 정리합니다.
 
-- 서비스 주소: https://rankingzip.co.kr/
+- 서비스 주소: 저장소 Settings → Pages의 Custom domain
 - 개발·배포 안내: [docs/개발환경.md](docs/개발환경.md)
 
 ## 목차
@@ -215,11 +215,11 @@ docs/핸드오프.md            데이터 흐름·스크립트·규칙
 
 ### 배포 (GitHub Pages)
 
-`main`에 올라오면 `.github/workflows/pages.yml`이 정적 사이트를 만들어 GitHub Pages에 올립니다. 주소는 https://rankingzip.co.kr/ 입니다(저장소 Settings → Pages의 Custom domain).
+`main`에 올라오면 `.github/workflows/pages.yml`이 정적 사이트를 만들어 GitHub Pages에 올립니다. 사이트 주소는 코드에 적지 않습니다. 배포할 때 Pages 설정(Custom domain)의 주소를 받아 빌드 결과물의 `https://site-url.invalid`를 바꿔 넣습니다.
 
 - 처음 한 번: 저장소 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 바꿉니다.
 - 다시 만들기: **Actions → GitHub Pages → Run workflow**를 누르면 최신 실시간 검색어로 다시 만들어집니다.
-- 내 컴퓨터에서 같은 결과 만들기: `node scripts/build-github-pages.mjs "" out` 실행 후 `out/` 폴더 확인
+- 내 컴퓨터에서 같은 결과 만들기: `SITE_URL=https://example.com node scripts/build-github-pages.mjs "" out` 실행 후 `out/` 폴더 확인
 
 ### 테스트
 
