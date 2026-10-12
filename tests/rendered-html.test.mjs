@@ -40,7 +40,7 @@ test("renders the public ranking site without starter preview metadata", async (
   const html=await response.text();
   assert.doesNotMatch(html, developmentPreviewMeta);
   assert.match(html,/순위ZIP/);
-  const cards=html.match(/<article class="rank-card"[\s\S]*?<\/article>/g) ?? [];
+  const cards=html.match(/<article class="rank-card[ "][\s\S]*?<\/article>/g) ?? [];
   assert.ok(cards.length>20);
   for(const card of cards){assert.match(card,/개 항목/);assert.doesNotMatch(card,/<b>1위<\/b>/);}
   const ticker=html.match(/<section class="ticker">[\s\S]*?<\/section>/)?.[0];
