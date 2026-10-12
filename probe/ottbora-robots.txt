@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ottbora.co.kr/sitemap.xml

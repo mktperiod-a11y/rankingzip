@@ -1,0 +1,110 @@
+## https://www.movieseesaw.workers.dev/movie/20266281 -> 200
+  header cf-ray: a49314a2ad86b746-LAX
+  header server: cloudflare
+  hits: pretendard@v1.3.9 | movieseesaw.workers.dev | naver-site-verification" content="717ce11afc03a92567cf89a3305bc44244759141"/ | cloudflareinsights | naver-site-verification\",\"content\":\"717ce11afc03a92567cf89a3305bc44244759141\"}]\n6:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n")</script
+## https://www.movieseesaw.workers.dev/ -> 308
+  header cf-ray: a49314a94a8cb746-LAX
+  header location: https://www.movieseesaw.workers.dev/movies/now
+  header server: cloudflare
+  hits: -
+## https://www.movieseesaw.workers.dev/robots.txt -> 200
+  header cf-ray: a49314a989f813a3-LAX
+  header server: cloudflare
+  hits: movieseesaw.workers.dev
+## https://www.movieseesaw.workers.dev/sitemap.xml -> 200
+  header cf-ray: a49314aa5b65b746-LAX
+  header server: cloudflare
+  hits: movieseesaw.workers.dev
+## https://ottbora.co.kr/index.html -> 200
+  header server: GitHub.com
+  header via: 1.1 varnish
+  header x-fastly-request-id: cba55d0e410f775d9f948fa930af96d878668478
+  header x-github-edge-region: westus3
+  header x-github-request-id: 3F94:125D76:381A95:40E6E7:6ACC5691
+  header x-served-by: cache-hhr-khhr2060035-HHR
+  hits: naver-site-verification" content="44cbe9c91ec5457990af4b4288e494bd2a472aec" /
+## https://ottbora.co.kr/assets/posters-picks.js?v=20261001-1 -> 200
+  header server: GitHub.com
+  header via: 1.1 varnish
+  header x-fastly-request-id: 771e1c43148511f80e67ff12bd09af76cfc075bd
+  header x-github-edge-region: westus3
+  header x-github-request-id: 3F94:125D76:381A98:40E6EB:6ACC5691
+  header x-served-by: cache-hhr-khhr2060035-HHR
+  hits: -
+## https://ottbora.co.kr/assets/webhard-ranking.js?v=20261012-1 -> 200
+  header server: GitHub.com
+  header via: 1.1 varnish
+  header x-fastly-request-id: 96f9f70abbd3c413dfd85c99ff2ea8bdb8558faf
+  header x-github-edge-region: westus3
+  header x-github-request-id: E79C:1E87A5:377529:40421A:6ACC5691
+  header x-served-by: cache-hhr-khhr2060035-HHR
+  hits: -
+## https://ottbora.co.kr/robots.txt -> 200
+  header server: GitHub.com
+  header via: 1.1 varnish
+  header x-fastly-request-id: df6d8a8f2a88054fc33e9af2f76ad86607dd2a0a
+  header x-github-edge-region: westus3
+  header x-github-request-id: E79C:1E87A5:37752B:40421F:6ACC5691
+  header x-served-by: cache-hhr-khhr2060035-HHR
+  hits: -
+## https://ottbora.co.kr/sitemap.xml -> 200
+  header server: GitHub.com
+  header via: 1.1 varnish
+  header x-fastly-request-id: 5b8f0d24da7c3d316a97db46d72a326130c10c24
+  header x-github-edge-region: iad
+  header x-github-request-id: 3D46:10A460:45675D1:4C2FF49:6ACC568D
+  header x-served-by: cache-phx1710079-PHX
+  hits: -
+dns ottbora.co.kr CNAME: -
+dns ottbora.co.kr A: 185.199.110.153 , 185.199.111.153 , 185.199.108.153 , 185.199.109.153
+dns ottbora.co.kr NS: ns.gabia.co.kr. , ns.gabia.net. , ns1.gabia.co.kr.
+dns ottbora.co.kr TXT: "google-site-verification=7lDQweu7UMP2hshYTFumwYAahzK9f3a0qAwllBlfBXo"
+dns www.ottbora.co.kr CNAME: mktperiod-a11y.github.io.
+dns www.ottbora.co.kr A: mktperiod-a11y.github.io. , 185.199.108.153 , 185.199.109.153 , 185.199.110.153 , 185.199.111.153
+dns www.ottbora.co.kr NS: mktperiod-a11y.github.io.
+dns www.ottbora.co.kr TXT: mktperiod-a11y.github.io.
+dns www.movieseesaw.workers.dev CNAME: -
+dns www.movieseesaw.workers.dev A: 172.67.157.42 , 104.21.81.57
+dns www.movieseesaw.workers.dev NS: -
+dns www.movieseesaw.workers.dev TXT: -
+whois ottbora.co.kr:
+query : ottbora.co.kr
+
+
+# KOREAN(UTF8)
+
+도메인이름                  : ottbora.co.kr
+등록인                      : 도메인 관리자
+등록인 주소                 : 경기도 과천시 과천대로7나길 34 
+등록인 우편번호             : 13840
+책임자                      : 도메인 관리자
+책임자 전자우편             : gottbora.co.kr1002714762@whoisprivacyservices.domains
+책임자 전화번호             : +82.215444370
+등록일                      : 2026. 10. 02.
+최근 정보 변경일            : 2026. 10. 02.
+사용 종료일                 : 2027. 10. 02.
+정보공개여부                : Y
+등록대행자                  : (주)가비아(http://www.gabia.co.kr)
+DNSSEC                      : 미서명
+등록정보 보호               : clientTransferProhibited
+
+1차 네임서버 정보
+   호스트이름               : ns.gabia.co.kr
+   IP 주소                  : 43.201.170.100
+
+2차 네임서버 정보
+   호스트이름               : ns1.gabia.co.kr
+   IP 주소                  : 20.200.205.248
+   호스트이름               : ns.gabia.net
+
+네임서버 이름이 .kr이 아닌 경우는 IP주소가 보이지 않습니다.
+
+
+# ENGLISH
+
+Domain Name                 : ottbora.co.kr
+Registrant                  : Whois Privacy Services by gabia
+Registrant Address          : 34, Gwacheon-daero 7na-gil, Gwacheon-si, Gyeonggi-do, 
+Registrant Zip Code         : 13840
+Administrative Contact(AC)  : Registration public
+AC E-Mail                   : gottbora.co.kr1002714762@whoisprivacyservices.domains

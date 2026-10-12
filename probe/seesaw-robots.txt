@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /search
+Disallow: /api/
+Disallow: /go/
+
+Sitemap: https://www.movieseesaw.workers.dev/sitemap.xml
