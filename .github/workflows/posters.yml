@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: node scripts/build-github-pages.mjs /rankingzip out
+      - run: node scripts/build-github-pages.mjs "" out
       - name: 빠진 이미지 자동 수집
         env:
           POSTER_ISSUE_BODY: ${{ runner.temp }}/poster-issue.md
