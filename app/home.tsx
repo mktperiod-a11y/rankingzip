@@ -6,6 +6,7 @@ import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { TrendRoll } from "./trend-roll";
 import { Medal } from "./medal";
+import { catalog as rankings } from "./rankings/catalog";
 import { SearchBox } from "./search-box";
 import { SUGGEST_FORM } from "./links";
 import { RankingTicker } from "./ranking-ticker";
@@ -30,46 +31,6 @@ const heroQuestions = [
 ];
 const HERO_SETS = Math.ceil(heroQuestions.length / 3);
 
-const rankings = [
-  { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 우승 국가 순위", color: "blue" },
-  { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", color: "gold" },
-  { category: "IT·게임", icon: "💾", title: "파일 공유 서비스 비교", color: "indigo" },
-  { category: "IT·게임", icon: "🎮", title: "국내 인기 모바일 게임 순위", color: "purple" },
-  { category: "IT·게임", icon: "🖥️", title: "국내 인기 PC 게임 순위", color: "navy" },
-  { category: "미디어", icon: "🍿", title: "이번 주 넷플릭스 영화 TOP 10", color: "red" },
-  { category: "미디어", icon: "🎬", title: "2026년 국내 영화 흥행", color: "red" },
-  { category: "스포츠", icon: "🏟️", title: "2026 KBO 팀 순위", color: "blue" },
-  { category: "스포츠", icon: "💥", title: "2026 KBO 홈런 순위 TOP 10", color: "blue" },
-  { category: "라이프", icon: "🚗", title: "수입차 브랜드 등록 순위 TOP 10", color: "navy" },
-  { category: "스포츠", icon: "🎯", title: "2026 KBO 타점 순위 TOP 10", color: "green" },
-  { category: "스포츠", icon: "👑", title: "KBO 역대 한 시즌 홈런 TOP 10", color: "blue" },
-  { category: "미디어", icon: "🎞️", title: "크리스토퍼 놀란 영화 국내 흥행 순위", color: "purple" },
-  { category: "미디어", icon: "🕷️", title: "역대 스파이더맨 영화 흥행 순위", color: "red" },
-  { category: "스포츠", icon: "🎟️", title: "2026 KBO 구단 관중", color: "blue" },
-  { category: "미디어", icon: "📺", title: "OTT 인기 콘텐츠", color: "pink" },
-  { category: "라이프", icon: "🚙", title: "국내 자동차 판매량", color: "navy" },
-  { category: "스포츠", icon: "⚽️", title: "한국 축구선수 연봉", color: "green" },
-  { category: "미디어", icon: "🌏", title: "2026년 세계 영화 흥행", color: "purple" },
-  { category: "스포츠", icon: "💵", title: "MLB 한국 선수 역대 연봉", color: "blue" },
-  { category: "스포츠", icon: "🥊", title: "UFC 체급별 랭킹", color: "red" },
-  { category: "미디어", icon: "🎥", title: "역대 국내 영화 관객", color: "purple" },
-  { category: "미디어", icon: "🎭", title: "역대 드라마 시청률", color: "orange" },
-  { category: "미디어", icon: "🐉", title: "역대 인기 애니메이션 순위", color: "purple" },
-  { category: "미디어", icon: "📺", title: "이번 시즌 인기 애니메이션 순위", color: "rose" },
-  { category: "미디어", icon: "💿", title: "역대 가수 음반 판매량 순위", color: "indigo" },
-  { category: "라이프", icon: "🧳", title: "한국인이 찾는 여행지", color: "cyan" },
-  { category: "IT·게임", icon: "📱", title: "국내 OTT 서비스", color: "black" },
-  { category: "글로벌", icon: "🎌", title: "일본 AV 배우 인기", color: "rose" },
-  { category: "글로벌", icon: "💸", title: "세계 스포츠 스타 수입", color: "gold" },
-  { category: "글로벌", icon: "🏙️", title: "세계 최고층 빌딩", color: "blue" },
-  { category: "글로벌", icon: "🌍", title: "세계 인구", color: "green" },
-  { category: "라이프", icon: "👥", title: "대한민국 시도 인구", color: "orange" },
-  { category: "라이프", icon: "⛰️", title: "대한민국 높은 산", color: "cyan" },
-  { category: "글로벌", icon: "💰", title: "세계 GDP", color: "gold" },
-  { category: "글로벌", icon: "🗺️", title: "세계에서 가장 큰 나라", color: "green" },
-  { category: "글로벌", icon: "🏔️", title: "세계에서 가장 높은 산", color: "navy" },
-  { category: "라이프", icon: "✈️", title: "세계 관광객 방문 국가", color: "purple" },
-];
 
 const ADULT = new Set(["japan-av-actress-ranking"]);
 

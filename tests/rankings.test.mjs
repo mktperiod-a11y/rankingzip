@@ -27,7 +27,7 @@ test('home-run ties and order are correct',()=>{
  assert.equal(rows[0].value,'56홈런');assert.equal(rows[19].value,'42홈런');
 });
 test('webhard comparison is third, appears only once in homepage cards',()=>{
- const home=fs.readFileSync('app/home.tsx','utf8').split('const rankings = [')[1].split('];')[0];
+ const home=fs.readFileSync('app/rankings/catalog.ts','utf8').split('export const catalog = [')[1].split('];')[0];
  const titles=Array.from(home.matchAll(/title: "([^"]+)"/g),m=>m[1]);
  assert.equal(titles[2],'파일 공유 서비스 비교');
  assert.equal(titles.filter(t=>t==='파일 공유 서비스 비교').length,1);
