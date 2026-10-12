@@ -7,7 +7,7 @@ export const MAX_RANKING_ITEMS = 10;
 export const MIN_RANKING_ITEMS = 5;
 
 export const rankingCountExceptions: Record<string, string> = {
-  'asian-games-baseball-champions': '정식 종목 채택 이후 우승 국가는 3곳뿐입니다.',
+  'asian-games-baseball-champions': '정식 종목 채택 이후 메달을 딴 나라는 3곳뿐입니다.',
   'ufc-rankings-by-division': '이 페이지의 비교 대상은 남성부 8개 체급입니다.',
   'korea-ott-users': '동일 기준월의 공개 조사에 포함된 OTT 앱을 비교합니다.',
 };
