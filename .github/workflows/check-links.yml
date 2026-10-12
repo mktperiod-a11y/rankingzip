@@ -18,5 +18,5 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: node scripts/build-github-pages.mjs /rankingzip out
-      - run: node scripts/check-links.mjs out /rankingzip
+      - run: node scripts/build-github-pages.mjs "" out
+      - run: node scripts/check-links.mjs out
