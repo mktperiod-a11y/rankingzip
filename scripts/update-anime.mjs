@@ -51,7 +51,7 @@ export function pickFranchiseLeaders(media, count = TOP) {
   return picked;
 }
 
-async function anilist(query, variables = {}) {
+export async function anilist(query, variables = {}) {
   await wait(800);
   const res = await fetch('https://graphql.anilist.co', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' }, body: JSON.stringify({ query, variables }), signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`AniList ${res.status}`);
@@ -60,7 +60,7 @@ async function anilist(query, variables = {}) {
   return json.data;
 }
 
-const FIELDS = 'id idMal title { romaji english native } popularity startDate { year } format coverImage { extraLarge large } siteUrl';
+const FIELDS = 'id idMal title { romaji english native } synonyms popularity startDate { year } format coverImage { extraLarge large } siteUrl relations { edges { relationType node { id type } } }';
 
 async function wikidataKo(m) {
   const q = `SELECT ?l WHERE { { ?i wdt:P8729 "${m.id}" } UNION { ?i wdt:P4086 "${m.idMal ?? 0}" } ?i rdfs:label ?l FILTER(lang(?l)="ko") } LIMIT 1`;
@@ -68,6 +68,45 @@ async function wikidataKo(m) {
     const res = await fetch(`https://query.wikidata.org/sparql?format=json&query=${encodeURIComponent(q)}`, { headers: { 'user-agent': UA, accept: 'application/sparql-results+json' }, signal: AbortSignal.timeout(30000) });
     return res.ok ? (await res.json()).results.bindings[0]?.l?.value : undefined;
   } catch { return undefined; }
+}
+
+const HANGUL = /[가-힣]/;
+const FOREIGN = /[\u3040-\u30ff\u4e00-\u9fff\u0e00-\u0e7f\u0400-\u04ff]/;
+export const hangulSynonym = (m) => (m.synonyms ?? []).find((s) => HANGUL.test(s) && !FOREIGN.test(s));
+
+export function seasonOf(m) {
+  const t = [m.title.english, m.title.romaji, m.title.native].filter(Boolean).join(' ');
+  const n = t.match(/Season\s*(\d+)|(\d+)(?:st|nd|rd|th)\s+Season|第(\d+)期/i);
+  return n ? Number(n[1] ?? n[2] ?? n[3]) : undefined;
+}
+
+const baseOf = (ko) => ko.replace(/\s*(\d+기|시즌\s*\d+|제\d+기)$/, '').trim();
+
+async function jaWikiKo(m) {
+  const title = m.title.native?.replace(/\s*(第\d+期|Season\s*\S+|\d+(st|nd|rd|th) Season)$/i, '').trim();
+  if (!title) return undefined;
+  try {
+    const res = await fetch(`https://ja.wikipedia.org/w/api.php?action=query&format=json&redirects=1&prop=langlinks&lllang=ko&titles=${encodeURIComponent(title)}`, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
+    const pages = Object.values((await res.json()).query?.pages ?? {});
+    return pages[0]?.langlinks?.[0]?.['*'];
+  } catch { return undefined; }
+}
+
+async function mediaById(id) {
+  return (await anilist(`query ($id: Int) { Media(id: $id) { ${FIELDS} } }`, { id }).catch(() => null))?.Media;
+}
+
+export async function koreanTitle(m, manual, depth = 0) {
+  const direct = manual[m.id] ?? hangulSynonym(m) ?? (await wikidataKo(m));
+  if (direct) return direct;
+  const season = seasonOf(m);
+  const prequel = m.relations?.edges?.find((e) => e.relationType === 'PREQUEL' && e.node.type === 'ANIME')?.node;
+  if (season && season > 1 && prequel && depth < 4) {
+    const before = await mediaById(prequel.id);
+    const base = before && (await koreanTitle(before, manual, depth + 1));
+    if (base) return `${baseOf(base)} ${season}기`;
+  }
+  return season && season > 1 ? undefined : jaWikiKo(m);
 }
 
 async function saveCover(m, dryRun) {
@@ -84,7 +123,7 @@ async function saveCover(m, dryRun) {
 }
 
 async function describe(m, manual, missing, dryRun, sourceTitle) {
-  const titleKo = manual[m.id] ?? manual[sourceTitle] ?? (await wikidataKo(m));
+  const titleKo = manual[sourceTitle] ?? (await koreanTitle(m, manual));
   if (!titleKo) missing.push(`${m.id} ${m.title.english ?? m.title.romaji}`);
   return { id: m.id, ...(titleKo ? { titleKo } : {}), image: await saveCover(m, dryRun), url: m.siteUrl };
 }
@@ -94,7 +133,7 @@ async function main() {
   const manual = JSON.parse(fs.readFileSync(TITLES_KO, 'utf8'));
   const missing = [];
 
-  const { Page } = await anilist(`{ Page(perPage: 50) { media(type: ANIME, sort: POPULARITY_DESC, isAdult: false) { ${FIELDS} relations { edges { relationType node { id } } } } } }`);
+  const { Page } = await anilist(`{ Page(perPage: 50) { media(type: ANIME, sort: POPULARITY_DESC, isAdult: false) { ${FIELDS} } } }`);
   const leaders = pickFranchiseLeaders(Page.media);
   if (leaders.length < TOP) throw new Error('AniList 결과가 부족합니다');
   const allTime = { source: 'https://anilist.co/search/anime/popular', checkedAt: today(), rows: [] };
@@ -117,7 +156,7 @@ async function main() {
   } else console.log(`주간 투표: 새 회차 없음 (${url})`);
 
   console.log(JSON.stringify({ allTime: allTime.rows.map((r) => `${r.rank}. ${r.titleKo ?? r.title} ${r.popularity}`), weekly: weekly?.rows.map((r) => `${r.rank}. ${r.titleKo ?? r.title} ${r.votes}`) }, null, 1));
-  if (missing.length) console.log(`한국어 제목 없음 → ${TITLES_KO}에 추가하세요:\n${missing.join('\n')}`);
+  if (missing.length) throw new Error(`한국어 제목을 찾지 못해 이번 갱신을 저장하지 않습니다. ${TITLES_KO}에 추가하세요:\n${missing.join('\n')}`);
   if (dryRun) return;
   fs.writeFileSync(ALL_TIME_FILE, `${JSON.stringify(allTime, null, 2)}\n`);
   if (weekly) fs.writeFileSync(WEEKLY_FILE, `${JSON.stringify(weekly, null, 2)}\n`);
