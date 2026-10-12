@@ -8,6 +8,8 @@ import { notFound } from "next/navigation";
 import { BrandLogo } from "../../brand-logo";
 import { SITE_URL } from "../../links";
 import { answerOf, updatedOf } from "../summary";
+import autoImages from "../../../data/rankings/auto-images.json";
+import manualImages from "../../../data/rankings/manual-images.json";
 import "./ranking.css";
 
 export const imageByName: Record<string, string> = {
@@ -33,6 +35,9 @@ export const imageByName: Record<string, string> = {
 };
 
 const portrait = (name: string) => portraitOf(name)?.image;
+type Found = Record<string, Record<string, { image: string }>>;
+const imageOf = (slug: string, r: { name: string; image?: string }) =>
+  r.image || imageByName[r.name] || (autoImages as Found)[slug]?.[r.name]?.image || (manualImages as Found)[slug]?.[r.name]?.image;
 export function generateStaticParams() {
   return pages.map((p) => ({ slug: p.slug }));
 }
@@ -170,7 +175,8 @@ export default async function RankingDetail({
           "@type": "ListItem",
           "position": r.rank ?? i + 1,
           "name": r.name,
-          "description": [r.value, r.note].filter(Boolean).join(" · ")
+          "description": [r.value, r.note].filter(Boolean).join(" · "),
+          ...(imageOf(p.slug, r) && { "image": /^https?:/.test(imageOf(p.slug, r)!) ? imageOf(p.slug, r) : `${SITE_URL}${imageOf(p.slug, r)}` })
         }))
       },
       ...(p.faq.length
@@ -189,7 +195,7 @@ export default async function RankingDetail({
   const json = (value: unknown) =>
     JSON.stringify(value).replace(/</g, "\\u003c");
   const poster = p.posterLayout || POSTER_SLUGS.includes(p.slug);
-  const landscape = p.rows.some((r) => r.image) && p.rows.every((r) => !r.image || ((shapes as Record<string, number>)[r.image] ?? 1.78) > 1.2);
+  const landscape = p.rows.some((r) => imageOf(p.slug, r)) && p.rows.every((r) => !imageOf(p.slug, r) || ((shapes as Record<string, number>)[imageOf(p.slug, r)!] ?? 1.78) > 1.2);
   const wide = poster && WIDE_POSTER_SLUGS.includes(p.slug) && landscape ? " wide" : "";
   const values = p.unranked || p.hideBars ? null : numericValues(p.rows);
   const max = values ? Math.max(...values) : 0;
@@ -286,9 +292,16 @@ export default async function RankingDetail({
                 <p>WEIGHT CLASSES</p>
                 <h2>체급별 챔피언과 랭커</h2>
               </div>
+              <nav className="dp-division-nav" aria-label="체급 바로가기">
+                {p.divisions.map((d, i) => (
+                  <a key={d.name} href={`#division-${i + 1}`}>
+                    {d.name}
+                  </a>
+                ))}
+              </nav>
               <div className="dp-division-grid">
-                {p.divisions.map((d) => (
-                  <article className="dp-division" key={d.name}>
+                {p.divisions.map((d, i) => (
+                  <article className="dp-division" id={`division-${i + 1}`} key={d.name}>
                     <h3>
                       {d.name}
                       {d.limit && <small>{d.limit}</small>}
@@ -355,7 +368,7 @@ export default async function RankingDetail({
                 <ol className={`dp-podium ${poster ? "poster" : ""}${wide}`}>
                   {[1, 0, 2].map((i) => {
                     const r = p.rows[i];
-                    const image = r.image || imageByName[r.name];
+                    const image = imageOf(p.slug, r);
                     const rank = r.rank ?? i + 1;
                     return (
                       <li key={r.name} className={`place-${i + 1}`}>
@@ -404,7 +417,7 @@ export default async function RankingDetail({
                 <ol className={`dp-posters${wide}`} start={start + 1}>
                   {p.rows.slice(start).map((r, k) => {
                     const i = k + start;
-                    const image = r.image || imageByName[r.name];
+                    const image = imageOf(p.slug, r);
                     return (
                       <li key={r.name}>
                         <div className="dp-poster">
@@ -453,7 +466,7 @@ export default async function RankingDetail({
                 >
                   {p.rows.slice(start).map((r, k) => {
                     const i = k + start;
-                    const image = r.image || imageByName[r.name];
+                    const image = imageOf(p.slug, r);
                     const rank = r.rank ?? i + 1;
                     return (
                       <li
