@@ -239,13 +239,10 @@
 @media(max-width:680px){.dp-division-nav{top:64px;margin:-4px -16px 14px;padding:8px 16px}}
 @media(prefers-reduced-motion:reduce){.dp-division.flash{animation:none}}
 .dp-body>.dp-main,.dp-body>aside{min-width:0}
-.rank-trophy{position:relative;display:inline-grid;place-items:center;flex-shrink:0;filter:drop-shadow(0 3px 4px rgba(0,0,0,.14))}
-.rank-trophy svg{display:block;animation:hero-trophy-pop .6s cubic-bezier(.3,1.6,.5,1) backwards}
-.rank-trophy span{position:absolute;left:0;right:0;top:calc(30% - .6em);text-align:center;font-weight:900;line-height:1.2;color:#fff;text-shadow:0 0 2px rgba(60,40,0,.55),0 1px 1px rgba(0,0,0,.35)}
-.rank-trophy.t2 span{text-shadow:0 0 2px rgba(40,48,60,.7),0 1px 1px rgba(0,0,0,.4)}
-.rank-trophy.t1 svg{animation:hero-trophy-pop .6s cubic-bezier(.3,1.6,.5,1) backwards,trophy-glint 3.2s ease-in-out 1s infinite}
-@keyframes trophy-glint{0%,70%,100%{filter:none}80%{filter:brightness(1.25) saturate(1.2)}}
-.dp-step .rank-trophy{margin-bottom:6px}
-.place-2 .rank-trophy svg{animation-delay:.12s}.place-3 .rank-trophy svg{animation-delay:.24s}
-.dp-p4p li b.rank-trophy{top:6px;left:6px;width:auto;height:auto;border-radius:0;background:none;box-shadow:none}
-@media(prefers-reduced-motion:reduce){.rank-trophy svg,.rank-trophy.t1 svg{animation:none}}
+.rank-medal{position:relative;display:inline-grid;place-items:center;flex-shrink:0;filter:drop-shadow(0 3px 5px rgba(22,34,52,.16))}
+.rank-medal svg{display:block;transform-origin:50% 0;animation:medal-drop .7s cubic-bezier(.3,1.5,.5,1) backwards}
+.dp-step .rank-medal{margin-bottom:6px}
+.place-2 .rank-medal svg{animation-delay:.12s}.place-3 .rank-medal svg{animation-delay:.24s}
+.dp-p4p li b.rank-medal{top:4px;left:8px;width:auto;height:auto;border-radius:0;background:none;box-shadow:none}
+@keyframes medal-drop{0%{transform:translateY(-8px) rotate(-14deg);opacity:0}60%{transform:rotate(6deg);opacity:1}100%{transform:none}}
+@media(max-width:640px){.dp-step .rank-medal svg{height:44px;width:auto}.dp-step .rank-medal.m1 svg{height:52px}}
