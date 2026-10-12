@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import ts from 'typescript';
-import { parseKoreaCharts, parseTitlePage, parseTudumCards, weekRange } from '../scripts/update-netflix.mjs';
+import { parseKoreaCharts, parseTitlePage, parseTudumCards, pickPoster, weekRange } from '../scripts/update-netflix.mjs';
 
 const fixture = fs.readFileSync('tests/fixtures/netflix-top10.tsv', 'utf8');
 
@@ -97,4 +97,16 @@ test('Korean titles and images are used when saved', async () => {
   assert.deepEqual(t.rows[0], { name: '대환장 기안장', value: '1위', note: '시즌 2 · TOP 10 진입 2주', image: '/ranking-images/netflix/1.jpg' });
   assert.equal(t.rows[1].name, 'Marriage of Convenience');
   assert.equal(t.faq[0][1], '9월 28일부터 10월 4일까지 1위는 대환장 기안장 시즌 2입니다.');
+});
+
+test('TMDB poster prefers the Korean poster, then English, then textless', () => {
+  const posters = [
+    { iso_639_1: null, vote_average: 9, width: 2000, file_path: '/plain.jpg' },
+    { iso_639_1: 'en', vote_average: 8, width: 2000, file_path: '/en.jpg' },
+    { iso_639_1: 'ko', vote_average: 5, width: 1000, file_path: '/ko-low.jpg' },
+    { iso_639_1: 'ko', vote_average: 7, width: 1000, file_path: '/ko.jpg' },
+  ];
+  assert.equal(pickPoster(posters).file_path, '/ko.jpg');
+  assert.equal(pickPoster(posters.slice(0, 2)).file_path, '/en.jpg');
+  assert.equal(pickPoster([]), undefined);
 });
