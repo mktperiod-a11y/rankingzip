@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 
 const OUT = 'public/ranking-images/portraits';
-const UA = 'RankingZipBot/1.0 (https://mktperiod-a11y.github.io/rankingzip/)';
+const UA = 'RankingZipBot/1.0 (https://rankingzip.co.kr/)';
 const FREE = /^(CC BY(-SA)? \d|CC0|Public domain|PD|CC-BY|OGL)/i;
 const KIND = {
   mma: { en: /mixed martial|MMA|fighter/i, ko: /종합격투기|격투기|UFC/ },
