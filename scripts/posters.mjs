@@ -30,6 +30,10 @@ export function missingFromBuild(outDir) {
       const page = graph.find((n) => n['@type'] === 'WebPage');
       const list = graph.find((n) => n['@type'] === 'ItemList');
       for (const item of list?.itemListElement ?? []) if (!item.image) rows.push({ slug, page: page?.name ?? slug, name: item.name });
+      for (const [, name] of html.matchAll(/data-missing-image="([^"]+)"/g)) {
+        const decoded = name.replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"');
+        if (!rows.some((r) => r.slug === slug && r.name === decoded)) rows.push({ slug, page: page?.name ?? slug, name: decoded });
+      }
     }
   }
   return rows;
@@ -57,16 +61,22 @@ async function getJson(url) {
   return res.json();
 }
 
+const NAMES = 'data/rankings/names-ko.json';
+const englishOf = (name) => {
+  const all = readJson(NAMES, {});
+  return Object.values(all).flatMap((group) => Object.entries(group)).filter(([, ko]) => ko === name).map(([en]) => en);
+};
+
 async function wikidataImage(slug, name) {
-  const term = name.split(' · ')[0].trim();
-  for (const language of ['ko', 'en']) {
+  const base = name.split(' · ')[0].trim();
+  for (const [language, term] of [['ko', base], ...englishOf(base).map((en) => ['en', en]), ['en', base]]) {
     const search = await getJson(`https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&type=item&limit=7&language=${language}&uselang=${language}&search=${encodeURIComponent(term)}`);
     const ids = (search.search ?? []).map((s) => s.id);
     if (!ids.length) continue;
     const { entities } = await getJson(`https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels|aliases|claims|sitelinks&languages=ko|en&ids=${ids.join('|')}`);
     for (const id of ids) {
       const e = entities[id];
-      const labels = [e.labels?.ko?.value, e.labels?.en?.value, ...(e.aliases?.ko ?? []).map((a) => a.value)].filter(Boolean).map(norm);
+      const labels = [e.labels?.ko?.value, e.labels?.en?.value, ...(e.aliases?.ko ?? []), ...(e.aliases?.en ?? [])].map((a) => (typeof a === 'string' ? a : a?.value)).filter(Boolean).map(norm);
       if (!labels.includes(norm(term))) continue;
       const file = (p) => e.claims?.[p]?.[0]?.mainsnak?.datavalue?.value;
       const commons = LOGO_SLUGS.has(slug) ? file('P154') ?? file('P18') : file('P18') ?? file('P154');
