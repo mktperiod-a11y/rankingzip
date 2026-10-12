@@ -161,10 +161,9 @@
 .dp-posters.wide .dp-poster{aspect-ratio:16/9}
 .dp-podium+.dp-list.media-list{margin-top:24px;padding-top:16px;border-top:2px solid #e7ebf1}
 .dp-count-note{font-size:13px;line-height:1.6;color:#64748b;margin:0 0 16px}
-.media-list .dp-thumb{width:64px;height:96px;border-radius:8px}
-.dp-podium-poster img.off-ratio,.dp-poster img.off-ratio,.media-list:not(.wide) .dp-thumb img.off-ratio{object-fit:contain;object-position:center}
+.media-list .dp-thumb{width:72px;height:108px;border-radius:10px}
 .media-list.wide .dp-thumb{width:112px;height:63px}
-@media(max-width:640px){.media-list.wide .dp-thumb{width:88px;height:50px}.media-list .dp-thumb{width:52px;height:78px}}
+@media(max-width:640px){.media-list.wide .dp-thumb{width:88px;height:50px}.media-list .dp-thumb{width:60px;height:90px}}
 @media(max-width:640px){.dp-posters.wide{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .dp-lede{margin:0 0 22px;font-size:17px;font-weight:600;line-height:1.5;letter-spacing:-.3px;color:var(--ink);word-break:keep-all}
 @media(max-width:640px){.dp-lede{font-size:16px}}
@@ -216,3 +215,9 @@
 @media(max-width:680px){.dp-hero{padding-top:24px}.dp-hero h1{font-size:28px;letter-spacing:-1px}.dp-main{padding:20px 16px}}
 .dp-answer{margin:12px 0 0;font-size:16px;line-height:1.6;color:#4b5565;word-break:keep-all}
 @media(max-width:680px){.dp-answer{margin-top:8px;font-size:14px}}
+.dp-list li>.dp-row-links{flex-shrink:0;margin:0}
+.dp-list li>.dp-row-links a{white-space:nowrap}
+.dp-poster img,.dp-podium-poster img,.media-list .dp-thumb img{object-fit:cover}
+.dp-list li:has(>.dp-row-links){align-items:center}
+.dp-podium .dp-row-links a{white-space:nowrap}
+@media(max-width:640px){.dp-podium .dp-row-links a.dp-visit{padding:6px 9px;font-size:12px}}
