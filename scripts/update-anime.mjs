@@ -8,7 +8,7 @@ const WEEKLY_FILE = 'data/rankings/anime-weekly.json';
 const TITLES_KO = 'data/rankings/anime-titles-ko.json';
 const IMAGE_DIR = 'public/ranking-images/anime';
 const RANKINGS_PAGE = 'https://animecorner.me/category/anime-corner/rankings/';
-const UA = 'RankingZipBot/1.0 (https://mktperiod-a11y.github.io/rankingzip/)';
+const UA = 'RankingZipBot/1.0 (https://rankingzip.co.kr/)';
 const TOP = 10;
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const today = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
