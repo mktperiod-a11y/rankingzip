@@ -29,6 +29,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - run: npm ci
       - name: OTT 월간 공개 자료 확인
         if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 3 7 * *'
         continue-on-error: true
@@ -45,7 +46,8 @@ jobs:
           if git diff --quiet -- data/rankings && [ -z "$(git status --porcelain public/ranking-images/netflix)" ]; then echo "바뀐 데이터가 없습니다"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/rankings public/ranking-images/netflix
+          node scripts/image-shapes.mjs
+          git add data/rankings data/image-shapes.json public/ranking-images/netflix
           git commit -m "Update Netflix charts and OTT monthly users"
           git push
           gh workflow run pages.yml --ref "${GITHUB_REF_NAME}"
