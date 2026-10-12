@@ -7,7 +7,7 @@ import { BrandLogo } from "./brand-logo";
 import { TrendRoll } from "./trend-roll";
 import { Medal } from "./medal";
 import { catalog as rankings } from "./rankings/catalog";
-import { SearchBox } from "./search-box";
+import { SearchBox, norm } from "./search-box";
 import { SUGGEST_FORM } from "./links";
 import { RankingTicker } from "./ranking-ticker";
 import { FRESHNESS } from "./rankings/freshness";
@@ -83,7 +83,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
   }, []);
   const filtered = useMemo(() => rankings.filter((item) =>
     pageBySlug[slugByTitle[item.title]] && !pageBySlug[slugByTitle[item.title]].noindex && (active === "전체" || item.category === active) &&
-    (item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).toLowerCase().includes(query.toLowerCase())
+    norm(item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).includes(norm(query))
   ), [active, query, pageBySlug, slugByTitle]);
 
   const searchItems = useMemo(() => rankings.flatMap((item) => {

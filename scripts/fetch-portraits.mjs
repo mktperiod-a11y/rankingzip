@@ -54,7 +54,9 @@ async function commonsInfo(file) {
 
 async function main() {
   fs.mkdirSync(OUT, { recursive: true });
-  const credits = {};
+  const creditsFile = `${OUT}/credits.json`;
+  const credits = fs.existsSync(creditsFile) ? JSON.parse(fs.readFileSync(creditsFile, 'utf8')) : {};
+  for (const name of MANUAL) delete credits[name];
   for (const [name, en, kind, koFirst] of PEOPLE) {
     await new Promise((r) => setTimeout(r, 1500));
     if (MANUAL.has(name)) continue;

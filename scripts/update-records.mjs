@@ -145,13 +145,13 @@ export const SOURCES = {
   kobis: async () => {
     const yearly = 'https://www.kobis.or.kr/kobis/business/stat/boxs/findYearlyBoxOfficeList.do?loadEnd=0&searchType=search&sSearchYearFrom=';
     const former = 'https://www.kobis.or.kr/kobis/business/stat/boxs/findFormerBoxOfficeList.do?loadEnd=0&searchType=search';
-    const year = today().slice(0, 4);
+    const year = '2026';
     return {
       'korea-box-office-2026': { source: yearly + year, year: Number(year), ...parseKobis(await get(yearly + year)) },
       'korean-movie-admissions': { source: former, ...parseKobis(await get(former)) },
     };
   },
-  mojo: async () => { const url = `https://www.boxofficemojo.com/year/world/${today().slice(0, 4)}/`; return { 'worldwide-box-office-2026': { source: url, ...parseMojoWorld(await get(url)) } }; },
+  mojo: async () => { const url = 'https://www.boxofficemojo.com/year/world/2026/'; return { 'worldwide-box-office-2026': { source: url, ...parseMojoWorld(await get(url)) } }; },
   spiderman: async () => { const url = 'https://www.the-numbers.com/movies/franchise/Spider-Man'; return { 'spider-man-worldwide-box-office': { source: url, ...parseNumbersFranchise(await get(url)) } }; },
   danawa: async () => {
     for (const month of [lastMonth(), monthBefore(lastMonth())]) {
@@ -163,8 +163,8 @@ export const SOURCES = {
         if (!id) continue;
         const file = `public/ranking-images/cars/${id}.png`;
         if (!fs.existsSync(file) && !process.argv.includes('--dry-run')) {
-          const res = await fetch(r.image, { headers: { 'user-agent': UA } }).catch(() => null);
-          if (res?.ok) { fs.mkdirSync('public/ranking-images/cars', { recursive: true }); fs.writeFileSync(file, Buffer.from(await res.arrayBuffer())); }
+          const res = await fetch(r.image, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) }).catch(() => null);
+          if (res?.ok && /^image\//.test(res.headers.get('content-type') ?? '')) { fs.mkdirSync('public/ranking-images/cars', { recursive: true }); fs.writeFileSync(file, Buffer.from(await res.arrayBuffer())); }
         }
         if (fs.existsSync(file)) r.local = `/${file.replace(/^public\//, '')}`;
       }
