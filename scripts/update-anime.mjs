@@ -51,7 +51,7 @@ export function pickFranchiseLeaders(media, count = TOP) {
   return picked;
 }
 
-export async function anilist(query, variables = {}) {
+async function anilist(query, variables = {}) {
   await wait(800);
   const res = await fetch('https://graphql.anilist.co', { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json' }, body: JSON.stringify({ query, variables }), signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`AniList ${res.status}`);
@@ -96,8 +96,10 @@ async function mediaById(id) {
   return (await anilist(`query ($id: Int) { Media(id: $id) { ${FIELDS} } }`, { id }).catch(() => null))?.Media;
 }
 
+export const cleanKo = (ko) => ko?.replace(/\s*\(애니메이션\)|\s+애니메이션(?=\s*(\d+기)?$)/g, '').trim() || undefined;
+
 export async function koreanTitle(m, manual, depth = 0) {
-  const direct = manual[m.id] ?? hangulSynonym(m) ?? (await wikidataKo(m));
+  const direct = manual[m.id] ?? cleanKo(hangulSynonym(m) ?? (await wikidataKo(m)));
   if (direct) return direct;
   const season = seasonOf(m);
   const prequel = m.relations?.edges?.find((e) => e.relationType === 'PREQUEL' && e.node.type === 'ANIME')?.node;
@@ -106,7 +108,7 @@ export async function koreanTitle(m, manual, depth = 0) {
     const base = before && (await koreanTitle(before, manual, depth + 1));
     if (base) return `${baseOf(base)} ${season}기`;
   }
-  return season && season > 1 ? undefined : jaWikiKo(m);
+  return season && season > 1 ? undefined : cleanKo(await jaWikiKo(m));
 }
 
 async function saveCover(m, dryRun) {
