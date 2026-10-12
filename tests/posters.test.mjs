@@ -29,8 +29,8 @@ test('missing images are the list items without an image in public pages', () =>
     const graph = [{ '@type': 'WebPage', name: `${slug} 제목` }, { '@type': 'ItemList', itemListElement: items }];
     fs.writeFileSync(path.join(out, 'rankings', slug, 'index.html'), `${extra}<script type="application/ld+json">${JSON.stringify({ '@graph': graph })}</script\n>`);
   };
-  page('a', [{ name: '있음', image: 'https://x/y.jpg' }, { name: '없음' }]);
+  page('a', [{ name: '있음', image: 'https://x/y.jpg' }, { name: '없음' }], '<span class="dp-initial" data-missing-image="송야동">송</span><span data-missing-image="없음">없</span>');
   page('b', [{ name: '숨김' }], '<meta name="robots" content="noindex, follow" />');
-  assert.deepEqual(missingFromBuild(out), [{ slug: 'a', page: 'a 제목', name: '없음' }]);
+  assert.deepEqual(missingFromBuild(out), [{ slug: 'a', page: 'a 제목', name: '없음' }, { slug: 'a', page: 'a 제목', name: '송야동' }]);
   fs.rmSync(out, { recursive: true, force: true });
 });
