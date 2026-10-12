@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     icon: [{ url: "favicon.ico", sizes: "48x48" }, { url: "favicon.svg", type: "image/svg+xml" }, { url: "icon-192.png", sizes: "192x192", type: "image/png" }],
     apple: "apple-icon.png",
   },
+  verification: { other: { "naver-site-verification": "4a7e61d8e5994a5e50e8a3aab053351d15dc9e2e" } },
 };
 
 export default function RootLayout({
