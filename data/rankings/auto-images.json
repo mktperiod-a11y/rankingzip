@@ -1,1 +1,8 @@
-{}
+{
+  "korea-import-car-brands": {
+    "폴스타": {
+      "image": "/ranking-images/auto/3b82e65db5e7.png",
+      "source": "https://www.wikidata.org/wiki/Q4047174"
+    }
+  }
+}
