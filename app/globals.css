@@ -171,4 +171,4 @@
 .rank-card .rank-link{border-top-color:rgba(15,23,42,.06)}
 .rank-card{--tone:#3b7bff}
 .rank-card.t-green{--tone:#1fae5b}.rank-card.t-red{--tone:#f0444f}.rank-card.t-purple{--tone:#8b5cf6}.rank-card.t-orange{--tone:#f7861c}.rank-card.t-pink{--tone:#f0479b}.rank-card.t-navy{--tone:#3d5a96}.rank-card.t-cyan{--tone:#0fb2cf}.rank-card.t-indigo{--tone:#5b5ff0}.rank-card.t-black{--tone:#4b5563}.rank-card.t-rose{--tone:#ec3f6d}.rank-card.t-gold{--tone:#eaa800}
-.rank-card .icon{background:color-mix(in srgb,var(--tone) 20%,#fff);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tone) 14%,transparent)}
+.rank-card .icon{background:color-mix(in srgb,var(--tone) 20%,#fff)}
