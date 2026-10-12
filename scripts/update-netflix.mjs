@@ -95,6 +95,35 @@ async function tmdbTitleKo(title, category) {
   return hit ? (hit.title ?? hit.name) : undefined;
 }
 
+async function tmdb(path, params = {}) {
+  const key = process.env.TMDB_API_KEY;
+  if (!key) return undefined;
+  const url = new URL(`https://api.themoviedb.org/3/${path}`);
+  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
+  const headers = { accept: 'application/json' };
+  if (key.length > 40) headers.authorization = `Bearer ${key}`; else url.searchParams.set('api_key', key);
+  const res = await fetch(url, { headers, signal: AbortSignal.timeout(30000) });
+  if (!res.ok) throw new Error(`TMDB 응답 ${res.status}`);
+  return res.json();
+}
+
+export function pickPoster(posters) {
+  const rank = (p) => ({ ko: 0, en: 1 })[p.iso_639_1] ?? 2;
+  return [...(posters ?? [])].sort((a, b) => rank(a) - rank(b) || b.vote_average - a.vote_average || b.width - a.width)[0];
+}
+
+async function tmdbPoster(row, category) {
+  const kind = category === 'Films' ? 'movie' : 'tv';
+  for (const query of [...new Set([row.titleKo, row.title].filter(Boolean))]) {
+    const found = (await tmdb(`search/${kind}`, { query, language: 'ko-KR' }))?.results ?? [];
+    const hit = found.find((r) => (r.original_title ?? r.original_name) === row.title || (r.title ?? r.name) === row.titleKo) ?? found[0];
+    if (!hit) continue;
+    const poster = pickPoster((await tmdb(`${kind}/${hit.id}/images`, { include_image_language: 'ko,en,null' }))?.posters);
+    if (poster) return `https://image.tmdb.org/t/p/w500${poster.file_path}`;
+  }
+  return undefined;
+}
+
 async function download(src, file) {
   const res = await fetch(src, { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
   if (!res.ok) throw new Error(`이미지 응답 ${res.status}`);
@@ -120,9 +149,11 @@ async function enrich(chart, saveImages) {
     else {
       try { const ko = await tmdbTitleKo(row.title, chart.category); if (ko) row.titleKo = ko; } catch (error) { console.log(`  ! ${row.title}: TMDB 실패 (${error.message})`); }
     }
-    const src = card?.artwork || page.image;
+    let poster;
+    try { poster = await tmdbPoster(row, chart.category); } catch (error) { console.log(`  ! ${row.title}: TMDB 포스터 실패 (${error.message})`); }
+    const src = poster || card?.artwork || page.image;
     if (src && saveImages) {
-      const file = `${IMAGE_DIR}/${card?.videoId ?? row.title.replace(/\W+/g, '-')}.jpg`;
+      const file = `${IMAGE_DIR}/${poster ? 'poster-' : ''}${card?.videoId ?? row.videoId ?? row.title.replace(/\W+/g, '-')}.jpg`;
       try { await download(src, file); row.image = `/${file.replace(/^public\//, '')}`; } catch (error) { console.log(`  ! ${row.title}: ${error.message}`); }
     }
   }

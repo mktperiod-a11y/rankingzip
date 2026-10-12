@@ -189,7 +189,8 @@ export default async function RankingDetail({
   const json = (value: unknown) =>
     JSON.stringify(value).replace(/</g, "\\u003c");
   const poster = p.posterLayout || POSTER_SLUGS.includes(p.slug);
-  const wide = poster && WIDE_POSTER_SLUGS.includes(p.slug) ? " wide" : "";
+  const landscape = p.rows.some((r) => r.image) && p.rows.every((r) => !r.image || ((shapes as Record<string, number>)[r.image] ?? 1.78) > 1.2);
+  const wide = poster && WIDE_POSTER_SLUGS.includes(p.slug) && landscape ? " wide" : "";
   const values = p.unranked || p.hideBars ? null : numericValues(p.rows);
   const max = values ? Math.max(...values) : 0;
   const podium = !p.unranked && !p.divisions && p.rows.length >= 3;
