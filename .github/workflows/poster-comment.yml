@@ -10,7 +10,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: update-data
+  group: poster-comment-${{ github.event.comment.id }}
   cancel-in-progress: false
 
 jobs:
