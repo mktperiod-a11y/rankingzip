@@ -187,7 +187,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         <div className="tabs" role="tablist">{categories.map((cat) => <button role="tab" aria-selected={active===cat} className={active===cat?"active":""} key={cat} onClick={()=>setActive(cat)}>{cat}</button>)}</div>
         <div className="layout">
           <div className="card-grid">
-            {filtered.map((item) => { const slug = slugByTitle[item.title]; return <article className="rank-card" key={item.title}>
+            {filtered.map((item) => { const slug = slugByTitle[item.title]; return <article className={`rank-card t-${item.color}`} key={item.title}>
               <div className={`icon ${item.color}`}>{item.icon}</div><span className="badge">{updatedLabel(slug, pageBySlug)}</span>
               <small>{item.category}{ADULT.has(slug) && " · 19+"}</small><h3>{pageBySlug[slug]?.title||item.title}</h3>
               <p className="rank-lead">{pageBySlug[slug]?.rows.length}개 항목</p>
