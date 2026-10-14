@@ -21,6 +21,7 @@ export type RankingPage = {
    hideBars?: boolean;
    dataLabel?: string;
    rowLinkLabel?: string;
+   rowLinkShort?: string;
 };
 
 const originalPages: RankingPage[] = [

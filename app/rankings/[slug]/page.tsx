@@ -219,7 +219,8 @@ export default async function RankingDetail({
           target="_blank"
           rel="noreferrer"
         >
-          {p.rowLinkLabel} <b>→</b>
+          <span className="dp-link-long">{p.rowLinkLabel}</span>
+          {p.rowLinkShort && <span className="dp-link-short">{p.rowLinkShort}</span>} <b>→</b>
         </a>
       </span>
     );
@@ -395,9 +396,6 @@ export default async function RankingDetail({
                             {r.name}
                             {changeBadge(r)}
                           </h3>
-                          {p.rowLinkLabel && presentation.notes[i] && (
-                            <p className="dp-step-note">{presentation.notes[i]}</p>
-                          )}
                           {r.value && (
                             <strong>
                               {presentation.valueLabel && (
