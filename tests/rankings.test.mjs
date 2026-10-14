@@ -30,6 +30,9 @@ test('webhard comparison is third, appears only once in homepage cards',()=>{
  const home=fs.readFileSync('app/rankings/catalog.ts','utf8').split('export const catalog = [')[1].split('];')[0];
  const titles=Array.from(home.matchAll(/title: "([^"]+)"/g),m=>m[1]);
  assert.equal(titles[2],'파일 공유 서비스 비교');
+ const homeTsx=fs.readFileSync('app/home.tsx','utf8');
+ assert.match(fs.readFileSync('app/rankings/catalog.ts','utf8'),/PINNED_THIRD = "파일 공유 서비스 비교"/);
+ assert.match(homeTsx,/rest\.slice\(0, 2\), pin, \.\.\.rest\.slice\(2\)/);
  assert.equal(titles.filter(t=>t==='파일 공유 서비스 비교').length,1);
  const {slugByTitle}=load('app/rankings/data.ts');for(const p of pages)assert.ok(titles.some(t=>slugByTitle[t]===p.slug));
 });
