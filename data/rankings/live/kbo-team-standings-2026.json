@@ -4,92 +4,92 @@
     {
       "rank": 1,
       "team": "KT",
-      "games": 142,
-      "win": 88,
+      "games": 144,
+      "win": 90,
       "loss": 49,
       "draw": 5,
-      "pct": "0.642",
+      "pct": "0.647",
       "behind": "0"
     },
     {
       "rank": 2,
       "team": "삼성",
-      "games": 142,
+      "games": 144,
       "win": 83,
-      "loss": 56,
+      "loss": 58,
       "draw": 3,
-      "pct": "0.597",
-      "behind": "6"
+      "pct": "0.589",
+      "behind": "8"
     },
     {
       "rank": 3,
       "team": "KIA",
-      "games": 141,
-      "win": 77,
-      "loss": 62,
+      "games": 144,
+      "win": 79,
+      "loss": 63,
       "draw": 2,
-      "pct": "0.554",
-      "behind": "12"
+      "pct": "0.556",
+      "behind": "12.5"
     },
     {
       "rank": 4,
       "team": "LG",
-      "games": 143,
+      "games": 144,
       "win": 78,
-      "loss": 64,
+      "loss": 65,
       "draw": 1,
-      "pct": "0.549",
-      "behind": "12.5"
+      "pct": "0.545",
+      "behind": "14"
     },
     {
       "rank": 5,
       "team": "두산",
-      "games": 143,
+      "games": 144,
       "win": 73,
-      "loss": 65,
+      "loss": 66,
       "draw": 5,
-      "pct": "0.529",
-      "behind": "15.5"
+      "pct": "0.525",
+      "behind": "17"
     },
     {
       "rank": 6,
       "team": "SSG",
-      "games": 143,
+      "games": 144,
       "win": 65,
-      "loss": 73,
+      "loss": 74,
       "draw": 5,
-      "pct": "0.471",
-      "behind": "23.5"
+      "pct": "0.468",
+      "behind": "25"
     },
     {
       "rank": 7,
-      "team": "NC",
-      "games": 143,
-      "win": 63,
-      "loss": 78,
-      "draw": 2,
-      "pct": "0.447",
+      "team": "롯데",
+      "games": 144,
+      "win": 64,
+      "loss": 77,
+      "draw": 3,
+      "pct": "0.454",
       "behind": "27"
     },
     {
       "rank": 8,
-      "team": "롯데",
-      "games": 142,
-      "win": 62,
-      "loss": 77,
-      "draw": 3,
-      "pct": "0.446",
-      "behind": "27"
+      "team": "NC",
+      "games": 144,
+      "win": 64,
+      "loss": 78,
+      "draw": 2,
+      "pct": "0.451",
+      "behind": "27.5"
     },
     {
       "rank": 9,
       "team": "한화",
-      "games": 143,
+      "games": 144,
       "win": 57,
-      "loss": 82,
+      "loss": 83,
       "draw": 4,
-      "pct": "0.410",
-      "behind": "32"
+      "pct": "0.407",
+      "behind": "33.5"
     },
     {
       "rank": 10,
@@ -99,8 +99,8 @@
       "loss": 90,
       "draw": 4,
       "pct": "0.357",
-      "behind": "39.5"
+      "behind": "40.5"
     }
   ],
-  "checkedAt": "2026-10-10"
+  "checkedAt": "2026-10-14"
 }

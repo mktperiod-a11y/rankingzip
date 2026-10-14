@@ -7,21 +7,21 @@
       "title": "왕과 사는 남자",
       "movieCd": "20242837",
       "openDt": "2026-02-04",
-      "audience": 16929392
+      "audience": 16930061
     },
     {
       "rank": 2,
       "title": "오디세이",
       "movieCd": "20250654",
       "openDt": "2026-08-05",
-      "audience": 12121277
+      "audience": 12197802
     },
     {
       "rank": 3,
       "title": "스파이더맨: 브랜드 뉴 데이",
       "movieCd": "20262770",
       "openDt": "2026-07-29",
-      "audience": 9049471
+      "audience": 9050438
     },
     {
       "rank": 4,
@@ -35,7 +35,7 @@
       "title": "호프",
       "movieCd": "20233219",
       "openDt": "2026-07-15",
-      "audience": 4589571
+      "audience": 4590645
     },
     {
       "rank": 6,
@@ -46,24 +46,24 @@
     },
     {
       "rank": 7,
-      "title": "토이 스토리 5",
-      "movieCd": "20259781",
-      "openDt": "2026-06-17",
-      "audience": 2948393
+      "title": "암살자(들)",
+      "movieCd": "20255033",
+      "openDt": "2026-09-23",
+      "audience": 3057408
     },
     {
       "rank": 8,
+      "title": "토이 스토리 5",
+      "movieCd": "20259781",
+      "openDt": "2026-06-17",
+      "audience": 2948637
+    },
+    {
+      "rank": 9,
       "title": "프로젝트 헤일메리",
       "movieCd": "20261782",
       "openDt": "2026-03-18",
       "audience": 2914612
-    },
-    {
-      "rank": 9,
-      "title": "암살자(들)",
-      "movieCd": "20255033",
-      "openDt": "2026-09-23",
-      "audience": 2745971
     },
     {
       "rank": 10,
@@ -73,5 +73,5 @@
       "audience": 2474077
     }
   ],
-  "checkedAt": "2026-10-10"
+  "checkedAt": "2026-10-14"
 }

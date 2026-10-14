@@ -6,14 +6,14 @@
       "playerId": "52605",
       "name": "김도영",
       "team": "KIA",
-      "value": 43
+      "value": 45
     },
     {
       "rank": 2,
       "playerId": "56034",
       "name": "힐리어드",
       "team": "KT",
-      "value": 42
+      "value": 44
     },
     {
       "rank": 3,
@@ -34,7 +34,7 @@
       "playerId": "62947",
       "name": "나성범",
       "team": "KIA",
-      "value": 30
+      "value": 31
     },
     {
       "rank": 6,
@@ -59,18 +59,18 @@
     },
     {
       "rank": 9,
+      "playerId": "68525",
+      "name": "한동희",
+      "team": "롯데",
+      "value": 25
+    },
+    {
+      "rank": 10,
       "playerId": "78224",
       "name": "김재환",
       "team": "SSG",
       "value": 24
-    },
-    {
-      "rank": 10,
-      "playerId": "68525",
-      "name": "한동희",
-      "team": "롯데",
-      "value": 23
     }
   ],
-  "checkedAt": "2026-10-08"
+  "checkedAt": "2026-10-14"
 }
