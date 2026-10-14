@@ -113,12 +113,12 @@
 .dp-division li b{color:var(--blue);width:12px}
 
 .dp-faq{margin-top:40px}
-.dp-faq details{background:white;border:1px solid var(--line);border-radius:14px;margin-top:10px}
-.dp-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;padding:17px 20px;font-size:15px;font-weight:800}
+.dp-faq details{background:white;border:1px solid var(--line);border-radius:12px;margin-top:8px}
+.dp-faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;font-size:14px;font-weight:600;color:#3a4556}
 .dp-faq summary::-webkit-details-marker{display:none}
-.dp-faq summary:after{content:"+";color:var(--blue);font-size:19px;line-height:1}
+.dp-faq summary:after{content:"+";flex-shrink:0;color:#a3adbb;font-size:16px;font-weight:400;line-height:1}
 .dp-faq details[open] summary:after{content:"−"}
-.dp-faq details p{margin:0;padding:0 20px 18px;font-size:14px;line-height:1.7;color:#5d6879;word-break:keep-all}
+.dp-faq details p{margin:0;padding:0 18px 16px;font-size:13px;line-height:1.7;color:#5d6879;word-break:keep-all}
 
 .dp-footer{margin-top:56px;border-top:1px solid var(--line);background:white;padding:26px 0}
 .dp-footer .dp-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -133,11 +133,11 @@
  .dp-hero h1{font-size:31px;letter-spacing:-1.4px}
  .dp-audit{padding:14px 16px;font-size:13px}
  .dp-main{padding:18px 16px;border-radius:16px}
- .dp-list li{gap:12px;padding:14px 0;align-items:flex-start}
+ .dp-list li{gap:12px;padding:14px 0;align-items:center}
  .dp-thumb{width:52px;height:52px;border-radius:12px}
- .dp-thumb.flag{width:54px;height:36px;margin-top:4px}
+ .dp-thumb.flag{width:54px;height:36px}
  .dp-thumb.logo{width:60px}
- .dp-rank{width:26px;height:26px;font-size:13px;margin-top:4px}
+ .dp-rank{width:26px;height:26px;font-size:13px}
  .dp-line{flex-direction:column;gap:3px}
  .dp-line strong{text-align:left;font-size:15px}
  .dp-posters{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
@@ -239,4 +239,4 @@
 .dp-card li a span{flex:1;min-width:0}
 .dp-rel-icon{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--tone) 20%,#fff);font-style:normal;font-size:16px;line-height:1}
 .dp-step strong{white-space:nowrap}
-@media(max-width:640px){.dp-step strong{font-size:12px;letter-spacing:-.4px}}
+@media(max-width:640px){.dp-step strong{font-size:12px;letter-spacing:-.4px;white-space:normal;word-break:keep-all;text-align:center;line-height:1.4;max-width:100%}.dp-step strong .dp-nb{white-space:nowrap}}

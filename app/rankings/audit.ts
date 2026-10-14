@@ -27,8 +27,8 @@ export function applyAudit(pages:RankingPage[]):RankingPage[]{
  const kst=(iso:string)=>iso.replaceAll('-','.');
  const hard=[...webhard.items].sort((x,y)=>x.rank-y.rank);
  const hardDay=kst(webhard.updatedAt);
- const hardNotes:Record<string,string>=webhardNotes;
- assign('file-sharing-services',{unranked:false,auditDate:hardDay,title:`웹하드 · P2P 사이트 순위 TOP ${hard.length}`,date:`${hardDay} 갱신`,basis:'구글 트렌드 검색 관심도(10.07 조사) 바탕 편집 순위 · 2일마다 조정',description:`요즘 많이 찾는 국내 웹하드·P2P 사이트 ${hard.length}곳을 순위로 정리했습니다. 업체별 특징은 각 공식 사이트 소개를 바탕으로 적었습니다.`,source:'구글 트렌드 검색 관심도 · 10.07 조사',sourceUrl:'',rows:hard.map(it=>({name:it.name,value:'',note:hardNotes[it.name]??'',rank:it.rank,sourceUrl:it.url})),hideBars:true,rowLinkLabel:'사이트로 이동',rowLinkShort:'이동',faq:[
+ const hardNotes:Record<string,{point:string;note:string}>=webhardNotes;
+ assign('file-sharing-services',{unranked:false,auditDate:hardDay,title:`웹하드 · P2P 사이트 순위 TOP ${hard.length}`,date:`${hardDay} 갱신`,basis:'구글 트렌드 검색 관심도(10.07 조사) 바탕 편집 순위 · 2일마다 조정',description:`요즘 많이 찾는 국내 웹하드·P2P 사이트 ${hard.length}곳을 순위로 정리했습니다. 업체별 특징은 각 공식 사이트 소개를 바탕으로 적었습니다.`,source:'구글 트렌드 검색 관심도 · 10.07 조사',sourceUrl:'',rows:hard.map(it=>({name:it.name,value:'',note:hardNotes[it.name]?.note??'',point:hardNotes[it.name]?.point,rank:it.rank,sourceUrl:it.url})),hideBars:true,rowLinkLabel:'사이트로 이동',rowLinkShort:'이동',faq:[
   ['웹하드 순위 1위는 어디인가요?',`${hardDay} 기준 1위는 ${hard[0].name}, 2위는 ${hard[1].name}, 3위는 ${hard[2].name}입니다.`],
   ['추천하는 웹하드 업체가 있나요?',`많이 찾는 곳은 ${hard.slice(0,3).map(it=>it.name).join('·')}입니다. 휴대폰으로 바로 보는 일이 많다면 파일스타·케이디스크처럼 스트리밍을 지원하는 곳을, 웹툰·웹소설까지 보려면 예스파일을 살펴보세요.`],
   ['웹하드 쿠폰은 뭔가요?','웹하드에서 쓰는 포인트나 무료 이용권을 받을 수 있는 쿠폰번호입니다. 가입·이벤트 때 받은 번호를 사이트의 쿠폰등록 메뉴에 입력하면 포인트로 바뀝니다. 예스파일·파일조·파일마루·애플파일 등이 쿠폰등록 메뉴를 운영합니다.'],

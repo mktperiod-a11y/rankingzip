@@ -396,14 +396,16 @@ export default async function RankingDetail({
                             {r.name}
                             {changeBadge(r)}
                           </h3>
-                          {r.value && (
+                          {(r.value || r.point) && (
                             <strong>
-                              {presentation.valueLabel && (
+                              {r.value && presentation.valueLabel && (
                                 <small className="dp-value-label">
                                   {presentation.valueLabel}
                                 </small>
                               )}
-                              {r.value}
+                              {(r.value || r.point || "").split(" · ").map((part, k) => (
+                                <span key={k}>{k > 0 && " · "}<span className="dp-nb">{part}</span></span>
+                              ))}
                             </strong>
                           )}
                           {rowSources(r)}
