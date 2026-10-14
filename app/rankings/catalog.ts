@@ -1,3 +1,5 @@
+export const PINNED_THIRD = "파일 공유 서비스 비교";
+
 export const catalog = [
   { category: "스포츠", icon: "🏆", title: "역대 아시안게임 야구 메달 순위", color: "blue" },
   { category: "스포츠", icon: "🏅", title: "2026 아시안게임 국가별 메달 순위", color: "gold" },
