@@ -123,12 +123,15 @@ function numericValues(rows: { value: string }[]) {
 }
 
 const compactValue = (value: string) => {
-  const m = value.match(/^([\d,]+)(\s*[^\d,.\s][^\d]*)?$/);
-  const n = m ? Number(m[1].replaceAll(",", "")) : NaN;
-  if (!m || !(n >= 1_000_000)) return value;
-  const unit = m[2] ?? "";
-  if (n >= 100_000_000) return `${Number((n / 100_000_000).toFixed(2))}억${unit}`;
-  return `${Math.round(n / 10_000).toLocaleString("ko-KR")}만${unit}`;
+  const m = value.match(/^(\$)?([\d,]+(?:\.\d+)?)(십억|억|만)?(\s*)([^\d·]*)$/);
+  if (!m) return value;
+  const [, dollar, digits, scale, space, rest] = m;
+  const n = Number(digits.replaceAll(",", "")) * ({ 십억: 1e9, 억: 1e8, 만: 1e4 }[scale ?? ""] ?? 1);
+  if (!(n >= 1_000_000)) return value;
+  const unit = dollar ? " 달러" : `${space}${rest}`;
+  const short = n >= 1e12 ? `${Number((n / 1e12).toFixed(2))}조` : n >= 1e8 ? `${Number((n / 1e8).toFixed(2))}억` : `${Math.round(n / 1e4).toLocaleString("ko-KR")}만`;
+  const next = `${short}${unit}`;
+  return next.length < value.length ? next : value;
 };
 
 const changeBadge = (r: { change?: number | "new" }) =>
