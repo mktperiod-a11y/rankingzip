@@ -50,7 +50,7 @@ export function SearchBox({ items, query, onQuery }: { items: SearchItem[]; quer
   return (
     <div className={`search-wrap${expanded ? " expanded" : ""}`} ref={wrapRef}>
       <div className="search">
-        <button type="button" className="search-icon" aria-label="검색" onClick={() => { flushSync(() => { setExpanded(true); setOpen(true); }); inputRef.current?.focus(); }}>⌕</button>
+        <button type="button" className="search-icon" aria-label="검색" onClick={() => { flushSync(() => { setExpanded(true); setOpen(true); }); inputRef.current?.focus(); }}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" strokeWidth="2.2" /><path d="m15.5 15.5 4.5 4.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" /></svg></button>
         <input
           ref={inputRef}
           value={query}
