@@ -2,7 +2,7 @@
   "source": "https://www.netflix.com/tudum/top10/data/all-weeks-countries.tsv",
   "weekStart": "2026-09-28",
   "weekEnd": "2026-10-04",
-  "checkedAt": "2026-10-10",
+  "checkedAt": "2026-10-14",
   "rows": [
     {
       "rank": 1,
@@ -36,27 +36,27 @@
       "title": "Clash of the Titans",
       "season": "",
       "weeks": 2,
-      "videoId": 70119812,
       "titleKo": "타이탄",
-      "image": "/ranking-images/netflix/70119812.jpg"
+      "image": "/ranking-images/netflix/70119812.jpg",
+      "videoId": 70119812
     },
     {
       "rank": 5,
       "title": "OK! Madam",
       "season": "",
       "weeks": 5,
-      "videoId": 81464337,
       "titleKo": "오케이 마담",
-      "image": "/ranking-images/netflix/81464337.jpg"
+      "image": "/ranking-images/netflix/81464337.jpg",
+      "videoId": 81464337
     },
     {
       "rank": 6,
       "title": "The Silence of the Lambs",
       "season": "",
       "weeks": 1,
-      "videoId": 14546747,
       "titleKo": "양들의 침묵",
-      "image": "/ranking-images/netflix/14546747.jpg"
+      "image": "/ranking-images/netflix/14546747.jpg",
+      "videoId": 14546747
     },
     {
       "rank": 7,
@@ -72,26 +72,26 @@
       "title": "Shelter",
       "season": "",
       "weeks": 6,
-      "videoId": 82676951,
-      "image": "/ranking-images/netflix/82676951.jpg"
+      "image": "/ranking-images/netflix/82676951.jpg",
+      "videoId": 82676951
     },
     {
       "rank": 9,
       "title": "Law Abiding Citizen",
       "season": "",
       "weeks": 4,
-      "videoId": 70116679,
       "titleKo": "모범시민",
-      "image": "/ranking-images/netflix/70116679.jpg"
+      "image": "/ranking-images/netflix/70116679.jpg",
+      "videoId": 70116679
     },
     {
       "rank": 10,
       "title": "Hansel & Gretel",
       "season": "",
       "weeks": 1,
-      "videoId": 70117920,
       "titleKo": "헨젤과 그레텔",
-      "image": "/ranking-images/netflix/70117920.jpg"
+      "image": "/ranking-images/netflix/70117920.jpg",
+      "videoId": 70117920
     }
   ]
 }
