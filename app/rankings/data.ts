@@ -11,7 +11,7 @@ import { musicPages } from './music';
 import { applyCompletion } from './completion';
 import { applyBrandImages } from './brand-images';
 import { applyLive } from './live';
-export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string;  change?: number | 'new' };
+export type RankingRow = { name: string; value: string; note: string; image?: string; rank?: number; sourceUrl?: string; imageSource?: string;  change?: number | 'new'; point?: string };
 export type Division = { name: string; limit?: string; champion: string; contenders: string[] };
 export type RankingPage = {
   slug: string; title: string; category: string; date: string; basis: string;
