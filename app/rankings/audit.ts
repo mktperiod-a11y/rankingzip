@@ -28,12 +28,12 @@ export function applyAudit(pages:RankingPage[]):RankingPage[]{
  const hard=[...webhard.items].sort((x,y)=>x.rank-y.rank);
  const hardDay=kst(webhard.updatedAt);
  const hardNotes:Record<string,string>=webhardNotes;
- assign('file-sharing-services',{unranked:false,auditDate:hardDay,title:`웹하드 순위 TOP ${hard.length} · P2P 사이트 추천`,date:`${hardDay} 갱신`,basis:'구글 트렌드 검색 관심도(10.07 조사) 바탕 편집 순위 · 2일마다 조정',description:`요즘 많이 찾는 국내 웹하드·P2P 사이트 ${hard.length}곳을 순위로 정리했습니다. 업체별 특징은 각 공식 사이트 소개를 바탕으로 적었습니다.`,source:'구글 트렌드 검색 관심도 · 10.07 조사',sourceUrl:'',rows:hard.map(it=>({name:it.name,value:'',note:hardNotes[it.name]??'',rank:it.rank,sourceUrl:it.url})),hideBars:true,rowLinkLabel:'사이트로 이동',faq:[
+ assign('file-sharing-services',{unranked:false,auditDate:hardDay,title:`웹하드 · P2P 사이트 순위 TOP ${hard.length}`,date:`${hardDay} 갱신`,basis:'구글 트렌드 검색 관심도(10.07 조사) 바탕 편집 순위 · 2일마다 조정',description:`요즘 많이 찾는 국내 웹하드·P2P 사이트 ${hard.length}곳을 순위로 정리했습니다. 업체별 특징은 각 공식 사이트 소개를 바탕으로 적었습니다.`,source:'구글 트렌드 검색 관심도 · 10.07 조사',sourceUrl:'',rows:hard.map(it=>({name:it.name,value:'',note:hardNotes[it.name]??'',rank:it.rank,sourceUrl:it.url})),hideBars:true,rowLinkLabel:'사이트로 이동',faq:[
   ['웹하드 순위 1위는 어디인가요?',`${hardDay} 기준 1위는 ${hard[0].name}, 2위는 ${hard[1].name}, 3위는 ${hard[2].name}입니다.`],
-  ['웹하드 순위는 어떤 기준인가요?','구글 트렌드의 웹하드별 검색 관심도 조사(2026년 10월 7일)를 바탕으로 순위ZIP이 정한 편집 순위입니다. 요금이나 콘텐츠 수는 순위에 넣지 않았습니다.'],
-  ['순위는 얼마나 자주 바뀌나요?','2일마다 순위를 조정하고, 바뀐 날짜를 제목 아래에 표시합니다.'],
-  ['웹하드와 P2P 사이트는 다른 건가요?','국내에서는 보통 같은 서비스를 가리킵니다. 업체 서버에 올라온 파일을 포인트나 정액제로 내려받거나 바로 보는 방식으로, 이용자끼리 직접 파일을 주고받는 토렌트와는 다릅니다.'],
-  ['웹하드에 가입하기 전에 무엇을 확인해야 하나요?','정액제와 포인트 중 어떤 요금 방식인지, 신규 가입 쿠폰·포인트 조건, 자동결제 해지 방법, 제휴(저작권 계약) 콘텐츠인지를 공식 사이트에서 확인하세요.'],
+  ['추천하는 웹하드 업체가 있나요?',`많이 찾는 곳은 ${hard.slice(0,3).map(it=>it.name).join('·')}입니다. 휴대폰으로 바로 보는 일이 많다면 파일스타·케이디스크처럼 스트리밍을 지원하는 곳을, 웹툰·웹소설까지 보려면 예스파일을 살펴보세요. 업체별 특징은 순위 목록에 한 줄씩 적어 두었습니다.`],
+  ['웹하드 쿠폰은 뭔가요?','웹하드에서 쓰는 포인트나 무료 이용권을 받을 수 있는 쿠폰번호입니다. 가입·이벤트 때 받은 번호를 사이트의 쿠폰등록 메뉴에 입력하면 포인트로 바뀝니다. 예스파일·파일조·파일마루·애플파일 등이 쿠폰등록 메뉴를 운영합니다.'],
+  ['웹하드 가입 혜택이 있나요?','대부분 신규 회원에게 포인트나 쿠폰을 줍니다. 파일스타처럼 가입만 해도 포인트를 주는 곳이 있고, 무료충전소·무료관을 함께 운영하는 곳도 많습니다. 금액과 조건은 자주 바뀌니 가입 전에 공식 사이트에서 확인하세요.'],
+  ['웹하드 순위는 어떤 기준인가요?','구글 트렌드의 웹하드별 검색 관심도 조사(2026년 10월 7일)를 바탕으로 순위ZIP이 정한 편집 순위이며, 2일마다 순위를 조정합니다.'],
 ]});
  assign('worldwide-box-office-2026',{date:'2026.08.31 확인',source:'Box Office Mojo · 2026 Worldwide',rows:[['스파이더맨: 브랜드 뉴 데이',2332507928,'Spider-Man:_Brand_New_Day'],['오디세이',1552604605,'The_Odyssey_(2026_film)'],['토이 스토리 5',1129456859,'Toy_Story_5'],['마이클',1021945850,'Michael_(2026_film)'],['슈퍼 마리오 갤럭시 무비',1013053769,'The_Super_Mario_Galaxy_Movie']].map(([name,v,key])=>({name:String(name),value:`$${num(Number(v))}`,note:'2026년 개봉작 · 전 세계 극장 누적 매출 · 8월 31일 확인',...art(String(key))})),faq:[['흥행 1위는 어떤 작품인가요?','2026년 8월 31일 확인한 표에서 스파이더맨: 브랜드 뉴 데이가 1위입니다.'],['극장 매출은 순이익인가요?','아닙니다. 제작·배급·마케팅 비용을 차감하지 않은 매출입니다.']]});
  const film=get('korea-box-office-2026');

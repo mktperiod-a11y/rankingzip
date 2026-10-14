@@ -395,6 +395,9 @@ export default async function RankingDetail({
                             {r.name}
                             {changeBadge(r)}
                           </h3>
+                          {p.rowLinkLabel && presentation.notes[i] && (
+                            <p className="dp-step-note">{presentation.notes[i]}</p>
+                          )}
                           {r.value && (
                             <strong>
                               {presentation.valueLabel && (
