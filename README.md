@@ -1,4 +1,4 @@
-# 순위ZIP
+# 순위 정리 사이트
 
 **대한민국의 흥미로운 순위를 한곳에 모은 서비스**입니다.
 스포츠 기록, 영화 흥행, 자동차 판매, OTT, 세계 통계처럼 사람들이 궁금해하지만 흩어져 있어 찾기 어려운 순위를 공개 자료로 확인해 보기 쉽게 정리합니다.
@@ -91,7 +91,7 @@
 
 | 순위 | 출처 | 갱신 |
 |---|---|---|
-| 인기 웹하드 순위 | 순위ZIP 선정 | 자동 · 2일마다 |
+| 인기 웹하드 순위 | 편집 선정 | 자동 · 2일마다 |
 | 국내 OTT 앱 사용자 순위 · 2025년 4월 | 와이즈앱 조사 · 2025.05.27 보도 | 변동 없음 |
 | 국내 인기 모바일 게임 순위 | 모바일인덱스 GAME · 26년 9월 인기 모바일 게임 순위 | 직접 확인 · 매월 |
 | 국내 인기 PC 게임 순위 | 게임트릭스 · PC방 게임 순위 | 자동 · 매주 수·토요일 |
@@ -126,7 +126,7 @@
 |---|---|---|
 | 이번 주 넷플릭스 영화 TOP 10, 넷플릭스 한국 TV TOP 10 | 넷플릭스 공개 주간 데이터 | `update-data.yml` → `scripts/update-netflix.mjs` (매주 수요일 12시 KST) |
 | 역대 인기 애니메이션, 이번 시즌 인기 애니메이션 | AniList, Anime Corner 주간 투표 | `update-data.yml` → `scripts/update-anime.mjs` (매주 수·토요일 12시 KST) |
-| 인기 웹하드 순위 | 순위ZIP 선정 | `update-webhard.yml` → `scripts/update-webhard.mjs` (2일마다) |
+| 인기 웹하드 순위 | 편집 선정 | `update-webhard.yml` → `scripts/update-webhard.mjs` (2일마다) |
 | PC방 게임, 국내·역대 영화 흥행, 놀란 영화(상영작), 세계 흥행, 스파이더맨 흥행, 국산차 판매, 수입차 등록, 시도 인구, KBO 팀·홈런·타점·관중, UFC 랭킹 | 게임트릭스, KOBIS, Box Office Mojo, The Numbers, 다나와자동차, KAIDA, 행정안전부, KBO, UFC | `update-data.yml` → `scripts/update-records.mjs` (매주 수·토요일 12시 KST). 원자료마다 따로 실행해 한 곳이 실패해도 나머지는 저장. 영어 제목·이름의 한국어 표기는 `data/rankings/names-ko.json`, 이미지는 `data/rankings/live-images.json` |
 
 - 새 자료가 없으면 바꾸지 않고, 데이터 형식이 예상과 다르면 저장하지 않고 실패로 남깁니다.
