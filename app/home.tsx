@@ -133,7 +133,7 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
         </div>
       </section>
 
-      <section className="ticker"><div><b>HOT</b><strong>이번 주 주목할 랭킹</strong>
+      <section className="ticker"><div><strong>주목할 랭킹</strong>
         <RankingTicker>{[0, 1, 2, 3].map((copy) => hotRankings(hotDay, pages, slugByTitle).map((slug) => <a key={`${copy}-${slug}`} href={`/rankings/${slug}/`} aria-hidden={copy > 0 || undefined} tabIndex={copy > 0 ? -1 : undefined}>{topic(pageBySlug[slug].title)} <em>순위 보기 →</em></a>))}</RankingTicker>
       </div></section>
 
