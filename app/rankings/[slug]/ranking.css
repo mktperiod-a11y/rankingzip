@@ -237,4 +237,6 @@
 .dp-card li a span{flex:1;min-width:0}
 .dp-rel-icon{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:color-mix(in srgb,var(--tone) 20%,#fff);font-style:normal;font-size:16px;line-height:1}
 .dp-step strong{white-space:nowrap}
+.dp-step-note{margin:2px 0 10px;padding:0 4px;font-size:12px;line-height:1.45;color:#7a8597;text-align:center;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:640px){.dp-step-note{font-size:11px;line-height:1.4;letter-spacing:-.3px;-webkit-line-clamp:unset;display:block}}
 @media(max-width:640px){.dp-step strong{font-size:12px;letter-spacing:-.4px}}
