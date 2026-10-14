@@ -6,7 +6,7 @@ import { dateParts } from "./rankings/date-parts";
 import { BrandLogo } from "./brand-logo";
 import { TrendRoll } from "./trend-roll";
 import { Medal } from "./medal";
-import { catalog as rankings } from "./rankings/catalog";
+import { catalog as rankings, PINNED_THIRD } from "./rankings/catalog";
 import { SearchBox, norm } from "./search-box";
 import { SUGGEST_FORM } from "./links";
 import { RankingTicker } from "./ranking-ticker";
@@ -81,10 +81,15 @@ export default function Home({ picks, trendsAt, hotDay, pages, slugByTitle }: { 
     observer.observe(hero);
     return () => observer.disconnect();
   }, []);
-  const filtered = useMemo(() => rankings.filter((item) =>
-    pageBySlug[slugByTitle[item.title]] && !pageBySlug[slugByTitle[item.title]].noindex && (active === "전체" || item.category === active) &&
-    norm(item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).includes(norm(query))
-  ), [active, query, pageBySlug, slugByTitle]);
+  const filtered = useMemo(() => {
+    const shown = (item: typeof rankings[number]) => pageBySlug[slugByTitle[item.title]] && !pageBySlug[slugByTitle[item.title]].noindex;
+    const list = rankings.filter((item) => shown(item) && (active === "전체" || item.category === active) &&
+      norm(item.title + (pageBySlug[slugByTitle[item.title]]?.title ?? "") + (pageBySlug[slugByTitle[item.title]]?.rows.map(row => row.name).join(" ") ?? "")).includes(norm(query)));
+    const pin = rankings.find((item) => item.title === PINNED_THIRD);
+    if (norm(query) || !pin || !shown(pin)) return list;
+    const rest = list.filter((item) => item !== pin);
+    return [...rest.slice(0, 2), pin, ...rest.slice(2)];
+  }, [active, query, pageBySlug, slugByTitle]);
 
   const searchItems = useMemo(() => rankings.flatMap((item) => {
     const page = pageBySlug[slugByTitle[item.title]];
