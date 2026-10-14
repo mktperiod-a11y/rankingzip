@@ -6,7 +6,10 @@ import { getPicks } from "../lib/trends-server";
 import { SITE_URL } from "./links";
 import { answerOf } from "./rankings/summary";
 
-export const metadata: Metadata = { alternates: { canonical: "./" } };
+export const metadata: Metadata = {
+  alternates: { canonical: "./" },
+  keywords: ["순위", "랭킹", "순위집", "스포츠 순위", "영화 관객 순위", "UFC 체급별 랭킹", "웹하드 순위", "자동차 판매 순위", "OTT 순위"],
+};
 
 const kst = new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
 
