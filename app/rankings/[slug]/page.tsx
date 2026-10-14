@@ -122,6 +122,15 @@ function numericValues(rows: { value: string }[]) {
     : null;
 }
 
+const compactValue = (value: string) => {
+  const m = value.match(/^([\d,]+)(\s*[^\d,.\s][^\d]*)?$/);
+  const n = m ? Number(m[1].replaceAll(",", "")) : NaN;
+  if (!m || !(n >= 1_000_000)) return value;
+  const unit = m[2] ?? "";
+  if (n >= 100_000_000) return `${Number((n / 100_000_000).toFixed(2))}억${unit}`;
+  return `${Math.round(n / 10_000).toLocaleString("ko-KR")}만${unit}`;
+};
+
 const changeBadge = (r: { change?: number | "new" }) =>
   r.change === "new" ? (
     <em className="dp-change new">NEW</em>
@@ -403,7 +412,7 @@ export default async function RankingDetail({
                                   {presentation.valueLabel}
                                 </small>
                               )}
-                              {(r.value || r.point || "").split(" · ").map((part, k) => (
+                              {(r.value ? compactValue(r.value) : r.point || "").split(" · ").map((part, k) => (
                                 <span key={k}>{k > 0 && " · "}<span className="dp-nb">{part}</span></span>
                               ))}
                             </strong>
