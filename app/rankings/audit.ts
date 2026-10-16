@@ -28,7 +28,7 @@ export function applyAudit(pages:RankingPage[]):RankingPage[]{
  const hard=[...webhard.items].sort((x,y)=>x.rank-y.rank);
  const hardDay=kst(webhard.updatedAt);
  const hardNotes:Record<string,{point:string;note:string}>=webhardNotes;
- assign('file-sharing-services',{unranked:false,auditDate:hardDay,title:`웹하드 · P2P 사이트 순위 TOP ${hard.length}`,date:`${hardDay} 갱신`,basis:'구글 트렌드 검색 관심도(10.07 조사) 바탕 편집 순위 · 2일마다 조정',description:`요즘 많이 찾는 국내 웹하드·P2P 사이트 ${hard.length}곳을 순위로 정리했습니다. 업체별 특징은 각 공식 사이트 소개를 바탕으로 적었습니다.`,source:'구글 트렌드 검색 관심도 · 10.07 조사',sourceUrl:'',rows:hard.map(it=>({name:it.name,value:'',note:hardNotes[it.name]?.note??'',point:hardNotes[it.name]?.point,rank:it.rank,sourceUrl:it.url})),hideBars:true,rowLinkLabel:'사이트로 이동',rowLinkShort:'이동',faq:[
+ assign('file-sharing-services',{unranked:false,auditDate:hardDay,title:`웹하드 · P2P 사이트 순위 TOP ${hard.length}`,date:`${hardDay} 갱신`,basis:'구글 트렌드 검색 관심도(10.07 조사) 바탕 편집 순위 · 2일마다 조정',description:`요즘 많이 찾는 국내 웹하드·P2P 사이트 ${hard.length}곳을 순위로 정리했습니다. 업체별 특징은 각 공식 사이트 소개를 바탕으로 적었습니다.`,source:'구글 트렌드 검색 관심도 · 10.07 조사',sourceUrl:'',rows:hard.map(it=>({name:it.name,value:'',note:hardNotes[it.name]?.note??'',point:hardNotes[it.name]?.point,rank:it.rank,sourceUrl:`/go/${it.url.replace(/^https?:\/\/(www\.)?/,'').split(/[./]/)[0]}/`})),hideBars:true,rowLinkLabel:'사이트로 이동',rowLinkShort:'이동',faq:[
   ['추천하는 웹하드 업체가 있나요?',`많이 찾는 곳은 ${hard.slice(0,3).map(it=>it.name).join('·')}입니다. 휴대폰으로 바로 보는 일이 많다면 파일스타·케이디스크처럼 스트리밍을 지원하는 곳을, 웹툰·웹소설까지 보려면 예스파일을 살펴보세요.`],
   ['웹하드 가입 혜택이 있나요?','대부분 신규 회원에게 포인트나 쿠폰을 줍니다. 파일스타처럼 가입만 해도 포인트를 주는 곳이 있고, 무료충전소·무료관을 함께 운영하는 곳도 많습니다. 금액과 조건은 자주 바뀌니 가입 전에 공식 사이트에서 확인하세요.'],
   ['웹하드 순위는 어떤 기준인가요?','구글 트렌드의 웹하드별 검색 관심도 조사를 기준으로 하며, 순위는 2일마다 조정합니다.'],

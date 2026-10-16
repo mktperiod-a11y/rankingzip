@@ -229,7 +229,7 @@ export default async function RankingDetail({
           className={sub ? "btn-sub" : "dp-visit"}
           href={r.sourceUrl}
           target="_blank"
-          rel="noreferrer"
+          rel={r.sourceUrl.startsWith("/go/") ? "sponsored nofollow noopener" : "noreferrer"}
         >
           <span className="dp-link-long">{p.rowLinkLabel}</span>
           {p.rowLinkShort && <span className="dp-link-short">{p.rowLinkShort}</span>} <b>→</b>

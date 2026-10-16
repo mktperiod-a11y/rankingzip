@@ -59,3 +59,22 @@ test('new entrants keep NEW for one update and existing ranks compare to the pre
   assert.equal(again.items.find(it => it.name === '애플파일').prevRank, next.items.find(it => it.name === '애플파일').rank);
   for (const name of pool.required) assert.ok(again.items.some(it => it.name === name));
 });
+
+test('every webhard button goes through a go page that leads to the partner link or the official site', async () => {
+  const os = await import('node:os');
+  const path = await import('node:path');
+  const { writeGoPages, goId } = await import('../scripts/go-pages.mjs');
+  const pool = JSON.parse(fs.readFileSync('data/webhard-pool.json', 'utf8'));
+  const links = JSON.parse(fs.readFileSync('data/rankings/webhard-links.json', 'utf8'));
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), 'go-'));
+  writeGoPages(out);
+  for (const it of [...start, ...pool.reserve]) {
+    const html = fs.readFileSync(path.join(out, 'go', goId(it.url), 'index.html'), 'utf8');
+    const to = links[it.name] ?? it.url;
+    assert.ok(html.includes(`location.replace(${JSON.stringify(to)})`), it.name);
+    assert.match(html, /noindex/);
+  }
+  for (const name of Object.keys(links)) assert.ok(start.some((it) => it.name === name) || pool.reserve.some((it) => it.name === name), name);
+  assert.ok(!fs.readdirSync(path.join(out, 'go')).some((id) => /me2disk|filecast|fileis/.test(id)));
+  fs.rmSync(out, { recursive: true, force: true });
+});
