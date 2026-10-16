@@ -48,7 +48,7 @@ export function writeSeoFiles(outDir) {
     '',
   ].join('\n'));
 
-  write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${root}sitemap.xml\n`);
+  write('robots.txt', `User-agent: *\nAllow: /\nDisallow: /go/\n\nSitemap: ${root}sitemap.xml\n`);
 
   write('llms.txt', [
     `# ${site.name}`,

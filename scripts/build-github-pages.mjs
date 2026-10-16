@@ -6,6 +6,7 @@ import { checkPublicOutput } from './check-public-output.mjs';
 import { embedPageStyles } from './inline-page-styles.mjs';
 import { formatPageSources } from './format-page-source.mjs';
 import { writeSeoFiles } from './seo-files.mjs';
+import { writeGoPages } from './go-pages.mjs';
 
 const base = (process.argv[2] ?? process.env.PAGES_BASE_PATH ?? '').replace(/\/+$/, '');
 const outDir = path.resolve(process.argv[3] ?? 'out');
@@ -24,7 +25,7 @@ fs.cpSync('dist/client', outDir, { recursive: true });
 fs.rmSync(path.join(outDir, '_headers'), { force: true });
 fs.writeFileSync(path.join(outDir, '.nojekyll'), '');
 
-const roots = new Set(['assets', 'rankings', '_vinext_fonts', 'feed.xml', ...fs.readdirSync('public')]);
+const roots = new Set(['assets', 'rankings', 'go', '_vinext_fonts', 'feed.xml', ...fs.readdirSync('public')]);
 const escaped = [...roots].map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
 const absolute = new RegExp(`(["'\`(=])/(${escaped})(?=[/"'\`)?#]|$)`, 'g');
 const homeLink = /((?:href=|\\?"href\\?":)\\?["'`])\/(\\?["'`#?])/g;
@@ -49,6 +50,7 @@ const styled = embedPageStyles(outDir, base);
 console.log(`스타일 내장 완료: ${styled}개 HTML`);
 console.log(`페이지 소스 정리 완료: ${await formatPageSources(outDir)}개 HTML`);
 console.log(`검색용 파일 생성 완료: sitemap·robots·llms·feed (순위 ${writeSeoFiles(outDir)}개)`);
+console.log(`이동 페이지 생성 완료: go/ ${writeGoPages(outDir)}개`);
 console.log(`GitHub Pages 빌드 완료: ${path.relative(process.cwd(), outDir)}/ (기본 경로 "${base || '/'}", 경로 수정 파일 ${changed}개)`);
 
 checkPublicOutput(outDir);
